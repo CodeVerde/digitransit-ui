@@ -25,6 +25,9 @@ export default configMerger(walttiConfig, {
     },
   },
 
+  availableLanguages: ['fi', 'en'],
+  defaultLanguage: 'fi',
+
   title: APP_TITLE,
 
   searchParams: {
@@ -50,7 +53,7 @@ export default configMerger(walttiConfig, {
 
   footer: {
     content: [
-      { label: (function () { return `© Oulu ${(1900 + new Date().getYear())}`; }()) },
+      { label: (function footerContent() { return `© Oulu ${(1900 + new Date().getYear())}`; }()) },
       {},
       { name: 'footer-feedback', nameEn: 'Submit feedback', href: 'http://www.oulunjoukkoliikenne.fi/palautteet', icon: 'icon-icon_speech-bubble' },
       { name: 'about-this-service', nameEn: 'About this service', route: '/tietoja-palvelusta', icon: 'icon-icon_info' },
