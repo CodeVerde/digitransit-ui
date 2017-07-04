@@ -25,6 +25,7 @@ sass/themes/*
 !sass/themes/lappeenranta
 !sass/themes/matka
 !sass/themes/oulu
+!sass/themes/oulu20
 !sass/themes/turku
 
 app/configurations/config.*.js
@@ -37,5 +38,6 @@ app/configurations/config.*.js
 !app/configurations/config.matka.js
 !app/configurations/config.turku.js
 !app/configurations/config.oulu.js
+!app/configurations/config.oulu20.js
 
 tags
