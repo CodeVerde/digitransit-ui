@@ -11,6 +11,6 @@ ORG=${ORG:-codeverde}
 
 yarn install
 yarn run lint
-docker build -t $ORG/digitransit-ui:ci-$TRAVIS_COMMIT .
-docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_AUTH quay.io
+docker build -t quay.io/$ORG/digitransit-ui:ci-$TRAVIS_COMMIT .
+docker login -u $DOCKER_USER -p $DOCKER_AUTH quay.io
 docker push quay.io/$ORG/digitransit-ui:ci-$TRAVIS_COMMIT
