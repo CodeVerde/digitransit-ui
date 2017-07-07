@@ -133,6 +133,14 @@ export function setModeStorage(data) {
   setItem('mode', data);
 }
 
+export function getSimpleModeStorage() {
+  return getItemAsJson('simpleMode', '{}');
+}
+
+export function setSimpleModeStorage(data) {
+  setItem('simpleMode', data);
+}
+
 export function getOldSearchesStorage() {
   return getItemAsJson('saved-searches', '{"items": []}');
 }

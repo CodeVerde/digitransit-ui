@@ -251,6 +251,44 @@ export default {
     car: 'CAR',
     car_park: 'CAR_PARK',
   },
+
+  simpleTransportModes: {
+    bus: {
+      availableForSelection: true,
+      defaultValue: true,
+    },
+
+    tram: {
+      availableForSelection: true,
+      defaultValue: true,
+    },
+
+    rail: {
+      availableForSelection: true,
+      defaultValue: true,
+    },
+
+    subway: {
+      availableForSelection: true,
+      defaultValue: true,
+    },
+
+    citybike: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    airplane: {
+      availableForSelection: true,
+      defaultValue: true,
+    },
+
+    ferry: {
+      availableForSelection: true,
+      defaultValue: true,
+    },
+  },
+
   // Control what transport modes that should be possible to select in the UI
   // and whether the transport mode is used in trip planning by default.
   transportModes: {

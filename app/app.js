@@ -8,6 +8,7 @@ import FavouriteStopsStore from './store/FavouriteStopsStore';
 import FeedbackStore from './store/FeedbackStore';
 import MessageStore from './store/MessageStore';
 import ModeStore from './store/ModeStore';
+import SimpleModeStore from './store/SimpleModeStore';
 import OldSearchesStore from './store/OldSearchesStore';
 import PositionStore from './store/PositionStore';
 import PreferencesStore from './store/PreferencesStore';
@@ -27,6 +28,7 @@ export default (config) => {
   app.registerStore(FeedbackStore);
   app.registerStore(MessageStore);
   app.registerStore(ModeStore);
+  app.registerStore(SimpleModeStore);
   app.registerStore(OldSearchesStore);
   app.registerStore(PositionStore);
   app.registerStore(PreferencesStore);
