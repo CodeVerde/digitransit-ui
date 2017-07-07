@@ -51,6 +51,155 @@ export default configMerger(walttiConfig, {
     { icon: 'icon-icon_airplane', label: 'Lentoasema, Oulu', lat: 64.928808, lon: 25.373296 },
   ],
 
+  modeToOTP: {
+    bus: 'BUS',
+    tram: 'TRAM',
+    rail: 'RAIL',
+    subway: 'SUBWAY',
+    citybike: 'BICYCLE_RENT',
+    airplane: 'AIRPLANE',
+    ferry: 'FERRY',
+    walk: 'WALK',
+    bicycle: 'BICYCLE',
+    car: 'CAR',
+    car_park: 'CAR_PARK',
+    kaara: 'CAR',
+    kavely: 'WALK',
+    polkupyora: 'BICYCLE',
+  },
+
+  simpleTransportModes: {
+    kaara: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    kavely: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    polkupyora: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    bus: {
+      availableForSelection: true,
+      defaultValue: true,
+    },
+
+    // tram: {
+    //   availableForSelection: true,
+    //   defaultValue: true,
+    // },
+
+    rail: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    // subway: {
+    //   availableForSelection: true,
+    //   defaultValue: true,
+    // },
+
+    // citybike: {
+    //   availableForSelection: true,
+    //   defaultValue: false,
+    // },
+
+    // airplane: {
+    //   availableForSelection: true,
+    //   defaultValue: true,
+    // },
+
+    // ferry: {
+    //   availableForSelection: true,
+    //   defaultValue: true,
+    // },
+  },
+
+  // Control what transport modes that should be possible to select in the UI
+  // and whether the transport mode is used in trip planning by default.
+  transportModes: {
+    kaara: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    kavely: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    polkupyora: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    bus: {
+      availableForSelection: true,
+      defaultValue: true,
+    },
+
+    // tram: {
+    //   availableForSelection: true,
+    //   defaultValue: true,
+    // },
+
+    rail: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    // subway: {
+    //   availableForSelection: true,
+    //   defaultValue: true,
+    // },
+
+    // citybike: {
+    //   availableForSelection: true,
+    //   defaultValue: false,
+    // },
+
+    // airplane: {
+    //   availableForSelection: true,
+    //   defaultValue: true,
+    // },
+
+    // ferry: {
+    //   availableForSelection: true,
+    //   defaultValue: true,
+    // },
+  },
+
+  streetModes: {
+    walk: {
+      availableForSelection: true,
+      defaultValue: true,
+      icon: 'walk',
+    },
+
+    bicycle: {
+      availableForSelection: true,
+      defaultValue: false,
+      icon: 'bicycle-withoutBox',
+    },
+
+    car: {
+      availableForSelection: true,
+      defaultValue: false,
+      icon: 'car-withoutBox',
+    },
+
+    // car_park: {
+    //   availableForSelection: true,
+    //   defaultValue: false,
+    //   icon: 'car_park-withoutBox',
+    // },
+  },
+
   footer: {
     content: [
       { label: (function footerContent() { return `© Oulu ${(1900 + new Date().getYear())}`; }()) },
