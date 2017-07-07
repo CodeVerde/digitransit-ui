@@ -150,17 +150,14 @@ class SimpleModeStore extends Store {
   }
 
   toggleKaaraState() {
-    console.log('Toggling in toggleKaaraState');
     this.doToggle('kaaraState');
   }
 
   toggleKavelyState() {
-    console.log('Toggling in toggleKavelyState');
     this.doToggle('kavelyState');
   }
 
   togglePolkupyoraState() {
-    console.log('Toggling in togglePolkupyoraState');
     this.doToggle('polkupyoraState');
   }
 
