@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import OneTabSearchModal from './OneTabSearchModal';
 import Icon from './Icon';
@@ -25,6 +26,7 @@ class Splash extends React.Component {
   static propTypes = {
     shouldShowIntro: PropTypes.bool.isRequired,
     setIntroShown: PropTypes.func.isRequired,
+    transportData: PropTypes.object,
   }
 
   constructor(props) {
@@ -92,6 +94,7 @@ class Splash extends React.Component {
     const config = this.context.config;
     const modalOpen =
       Boolean(this.context.location.state && this.context.location.state.oneTabSearchModalOpen);
+    console.log('renderContents, transportData: ', this.props.transportData);
     return (
       <div key="contents" className="flex-vertical">
         <h3>
@@ -167,4 +170,8 @@ class Splash extends React.Component {
   }
 }
 
-export default Splash;
+const SplashContainer = connectToStores(Splash, ['SimpleModeStore'], context => ({
+  transportData: context.getStore('SimpleModeStore').getData(),
+}));
+
+export default SplashContainer;

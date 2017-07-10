@@ -8,6 +8,7 @@ class SimpleModeStore extends Store {
   constructor(dispatcher) {
     super(dispatcher);
     const localData = getSimpleModeStorage();
+    console.log('constructor, getSimpleModeStorage(): ', getSimpleModeStorage());
     this.config = dispatcher.getContext().config;
     this.data = localData.busState !== undefined ? localData : this.enableAll();
     this.generateMode();
@@ -83,6 +84,7 @@ class SimpleModeStore extends Store {
   getModeString = () => this.modeString
 
   getKaaraState() {
+    console.log('getKaaraState: ', this.data.kaaraState);
     return this.data.kaaraState;
   }
 
@@ -136,6 +138,7 @@ class SimpleModeStore extends Store {
   }
 
   doToggle = (name) => {
+    console.log('doToggle: ', name);
     if (this.data.selected !== name) {
       this.clearState();
       this.data[name] = true;
