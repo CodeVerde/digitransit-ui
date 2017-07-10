@@ -13,6 +13,8 @@ export default configMerger(walttiConfig, {
 
   appBarLink: { name: 'Oulun joukkoliikenne', href: 'http://www.oulunjoukkoliikenne.fi' },
 
+  sprites: 'svg-sprite.oulu20.svg', // use default set
+
   colors: {
     primary: '#c40065',
   },
