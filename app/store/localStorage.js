@@ -13,8 +13,11 @@ function handleSecurityError(error, logMessage) {
 function setItem(key, value) {
   if (isBrowser && window.localStorage) {
     try {
+      console.log('Storing to LocalStorage');
       window.localStorage.setItem(key, JSON.stringify(value));
+      console.log('Storing ok!');
     } catch (error) {
+      console.log('Storing failed, error: ', error);
       if (error.name === 'QuotaExceededError') {
         console.log('[localStorage]' + // eslint-disable-line no-console
           ' Unable to save state; localStorage is not available in Safari private mode');
@@ -138,6 +141,7 @@ export function getSimpleModeStorage() {
 }
 
 export function setSimpleModeStorage(data) {
+  console.log('setSimpleModeStorage');
   setItem('simpleMode', data);
 }
 
