@@ -9,11 +9,11 @@ if [ -z "$BS_ACCESS_KEY" ]; then
 fi
 
 set -e
-ORG=${ORG:-hsldevcom}
+ORG=${ORG:-codeverde}
 yarn install
 
-openssl aes-256-cbc -K $encrypted_59b1a6418079_key -iv $encrypted_59b1a6418079_iv -in test/.dropbox_uploader.enc -out test/.dropbox_uploader -d
-docker run -d -e CONFIG=hsl -p 127.0.0.1:8080:8080 $ORG/digitransit-ui:ci-$TRAVIS_COMMIT
+openssl aes-256-cbc -K $DB_KEY -iv $DB_IV -in test/.dropbox_uploader.enc -out test/.dropbox_uploader -d
+docker run -d -e CONFIG=hsl -p 127.0.0.1:8080:8080 quay.io/$ORG/digitransit-ui:ci-$TRAVIS_COMMIT
 
 set +e
 IDENTIFIER=${TRAVIS_COMMIT}_${VISUAL} yarn run test-visual -- --browser $VISUAL
