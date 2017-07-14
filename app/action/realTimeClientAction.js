@@ -1,6 +1,9 @@
 import moment from 'moment';
 import { getJson } from '../util/xhrPromise';
 
+const cityMode = 'OULU';
+// const cityMode = 'HSL';
+
 // getTopic
 // Returns MQTT topic to be subscribed
 // Input: options - route, direction, tripStartTime are used to generate the topic
@@ -10,6 +13,10 @@ function getTopic(options) {
   const direction = options.direction ? parseInt(options.direction, 10) + 1 : '+';
 
   const tripStartTime = options.tripStartTime ? options.tripStartTime : '+';
+  if (cityMode === 'OULU') {
+    return `/hfp/OULU/+/+/${route}/${direction}/+/${tripStartTime}/#`;
+  }
+
   return `/hfp/journey/+/+/${route}/${direction}/+/${tripStartTime}/#`;
 }
 
@@ -24,10 +31,15 @@ function parseMessage(topic, message, actionContext) {
     parsedMessage = message.VP;
   }
 
+  let direction = parseInt(dir, 10) - 1;
+  if (cityMode && cityMode === 'OULU') {
+    direction += 1;
+  }
+
   const messageContents = {
     id,
-    route: `HSL:${line}`,
-    direction: parseInt(dir, 10) - 1,
+    route: `${cityMode}:${line}`,
+    direction,
     tripStartTime: startTime,
     operatingDay: parsedMessage.oday && parsedMessage.oday !== 'XXX' ? parsedMessage.oday :
       moment().format('YYYYMMDD'),
@@ -44,7 +56,18 @@ function parseMessage(topic, message, actionContext) {
   actionContext.dispatch('RealTimeClientMessage', { id, message: messageContents });
 }
 
-function getInitialData(topic, actionContext) {
+function getInitialData(topic, actionContext, originalOptions) {
+  if (cityMode === 'OULU') {
+    const devUrl = `http://dev.hsl.fi/vehicle/journey/+/+/${originalOptions.route}/+/+/+/#`;
+    getJson(devUrl).then((data) => {
+      Object.keys(data).forEach((resTopic) => {
+        if (data[resTopic].VP && data[resTopic].VP.source && data[resTopic].VP.source === 'oulu') {
+          parseMessage(resTopic, data[resTopic], actionContext);
+        }
+      });
+    });
+    return;
+  }
   getJson(actionContext.config.URL.REALTIME + topic.replace('#', '')).then((data) => {
     Object.keys(data).forEach((resTopic) => {
       parseMessage(resTopic, data[resTopic], actionContext);
@@ -57,7 +80,7 @@ export function startRealTimeClient(actionContext, originalOptions, done) {
 
   const topics = options.map(option => getTopic(option));
 
-  topics.forEach(topic => getInitialData(topic, actionContext));
+  topics.forEach(topic => getInitialData(topic, actionContext, originalOptions));
 
   System.import('mqtt').then((mqtt) => {
     const client = mqtt.connect(actionContext.config.URL.MQTT);
