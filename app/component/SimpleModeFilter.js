@@ -6,7 +6,7 @@ import ToggleButton from './ToggleButton';
 import ComponentUsageExample from './ComponentUsageExample';
 
 
-class ModeFilter extends React.Component {
+class SimpleModeFilter extends React.Component {
   static propTypes = {
     selectedModes: PropTypes.array.isRequired,
     action: PropTypes.object.isRequired,
@@ -53,24 +53,19 @@ class ModeFilter extends React.Component {
       <ModeToggleButton type="bus" />
       <ModeToggleButton type="kavely" />
       <ModeToggleButton type="polkupyora" />
-      <ModeToggleButton type="tram" />
       <ModeToggleButton type="rail" />
-      <ModeToggleButton type="subway" />
-      <ModeToggleButton type="ferry" />
-      <ModeToggleButton type="airplane" />
-      <ModeToggleButton type="citybike" stateName="BICYCLE_RENT" />
     </div>);
   }
 }
 
-const pureModeFilter = pure(ModeFilter);
+const pureSimpleModeFilter = pure(SimpleModeFilter);
 
-pureModeFilter.description = () =>
+pureSimpleModeFilter.description = () =>
   <div>
-    <p>ModeFilter displays row of transport mode icons that can be used to select transport modes
+    <p>SimpleModeFilter displays row of transport mode icons that can be used to select transport modes
     </p>
     <ComponentUsageExample>
-      <ModeFilter
+      <SimpleModeFilter
         selectedModes={['BUS', 'TRAM']}
         action={{
           toggleBusState: () => {},
@@ -83,7 +78,7 @@ pureModeFilter.description = () =>
     <p>For &lsquo;nearby white buttons&rsquo;</p>
     <div className="nearby-routes">
       <ComponentUsageExample>
-        <ModeFilter
+        <SimpleModeFilter
           selectedModes={['BUS', 'TRAM']}
           action={{
             toggleBusState: () => {},
@@ -95,6 +90,6 @@ pureModeFilter.description = () =>
     </div>
   </div>;
 
-pureModeFilter.displayName = 'ModeFilter';
+pureSimpleModeFilter.displayName = 'SimpleModeFilter';
 
-export default pureModeFilter;
+export default pureSimpleModeFilter;

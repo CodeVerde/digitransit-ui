@@ -82,12 +82,7 @@ class Splash extends React.Component {
     toggleKavelyState: () => this.toggleTransportMode('kavely', toggleSimpleModeKavelyState),
     togglePolkupyoraState: () => this.toggleTransportMode('polkupyora', toggleSimpleModePolkupyoraState),
     toggleBusState: () => this.toggleTransportMode('bus', toggleSimpleModeBusState),
-    toggleTramState: () => {},
     toggleRailState: () => this.toggleTransportMode('rail', toggleSimpleModeRailState),
-    toggleSubwayState: () => {},
-    toggleFerryState: () => {},
-    toggleCitybikeState: () => {},
-    toggleAirplaneState: () => {},
   }
 
   renderContents() {

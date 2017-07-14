@@ -53,33 +53,6 @@ export default configMerger(walttiConfig, {
     { icon: 'icon-icon_airplane', label: 'Lentoasema, Oulu', lat: 64.928808, lon: 25.373296 },
   ],
 
-  simpleTransportModes: {
-    kaara: {
-      availableForSelection: true,
-      defaultValue: false,
-    },
-
-    kavely: {
-      availableForSelection: true,
-      defaultValue: true,
-    },
-
-    polkupyora: {
-      availableForSelection: true,
-      defaultValue: false,
-    },
-
-    bus: {
-      availableForSelection: true,
-      defaultValue: false,
-    },
-
-    rail: {
-      availableForSelection: true,
-      defaultValue: false,
-    },
-  },
-
   footer: {
     content: [
       { label: (function footerContent() { return `© Oulu ${(1900 + new Date().getYear())}`; }()) },

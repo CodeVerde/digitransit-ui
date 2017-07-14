@@ -33,37 +33,6 @@ export default {
   availableLanguages: ['fi', 'sv', 'en'],
   defaultLanguage: 'fi',
 
-  simpleTransportModes: {
-    rail: {
-      availableForSelection: false,
-      defaultValue: false,
-    },
-
-    tram: {
-      availableForSelection: false,
-      defaultValue: false,
-    },
-
-    subway: {
-      availableForSelection: false,
-      defaultValue: false,
-    },
-
-    citybike: {
-      availableForSelection: false,
-    },
-
-    airplane: {
-      availableForSelection: false,
-      defaultValue: false,
-    },
-
-    ferry: {
-      availableForSelection: false,
-      defaultValue: false,
-    },
-  },
-
   transportModes: {
     rail: {
       availableForSelection: false,
