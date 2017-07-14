@@ -253,39 +253,29 @@ export default {
   },
 
   simpleTransportModes: {
-    bus: {
-      availableForSelection: true,
-      defaultValue: true,
-    },
-
-    tram: {
-      availableForSelection: true,
-      defaultValue: true,
-    },
-
-    rail: {
-      availableForSelection: true,
-      defaultValue: true,
-    },
-
-    subway: {
-      availableForSelection: true,
-      defaultValue: true,
-    },
-
-    citybike: {
+    kaara: {
       availableForSelection: true,
       defaultValue: false,
     },
 
-    airplane: {
+    kavely: {
       availableForSelection: true,
       defaultValue: true,
     },
 
-    ferry: {
+    polkupyora: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: false,
+    },
+
+    bus: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    rail: {
+      availableForSelection: true,
+      defaultValue: false,
     },
   },
 

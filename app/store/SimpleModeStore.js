@@ -8,7 +8,6 @@ class SimpleModeStore extends Store {
   constructor(dispatcher) {
     super(dispatcher);
     const localData = getSimpleModeStorage();
-    console.log('constructor, getSimpleModeStorage(): ', getSimpleModeStorage());
     this.config = dispatcher.getContext().config;
     this.data = localData.busState !== undefined ? localData : this.enableAll();
     this.generateMode();
@@ -19,12 +18,7 @@ class SimpleModeStore extends Store {
     kavelyState: this.config.simpleTransportModes.kavely.availableForSelection,
     polkupyoraState: this.config.simpleTransportModes.polkupyora.availableForSelection,
     busState: this.config.simpleTransportModes.bus.availableForSelection,
-    tramState: this.config.simpleTransportModes.tram.availableForSelection,
     railState: this.config.simpleTransportModes.rail.availableForSelection,
-    subwayState: this.config.simpleTransportModes.subway.availableForSelection,
-    ferryState: this.config.simpleTransportModes.ferry.availableForSelection,
-    airplaneState: this.config.simpleTransportModes.airplane.availableForSelection,
-    citybikeState: this.config.simpleTransportModes.citybike.availableForSelection,
   });
 
   getData() {
@@ -51,28 +45,8 @@ class SimpleModeStore extends Store {
       mode.push('BUS');
     }
 
-    if (this.getTramState()) {
-      mode.push('TRAM');
-    }
-
     if (this.getRailState()) {
       mode.push('RAIL');
-    }
-
-    if (this.getSubwayState()) {
-      mode.push('SUBWAY');
-    }
-
-    if (this.getFerryState()) {
-      mode.push('FERRY');
-    }
-
-    if (this.getAirplaneState()) {
-      mode.push('AIRPLANE');
-    }
-
-    if (this.getCitybikeState()) {
-      mode.push('BICYCLE_RENT');
     }
 
     this.mode = mode;
@@ -84,7 +58,6 @@ class SimpleModeStore extends Store {
   getModeString = () => this.modeString
 
   getKaaraState() {
-    console.log('getKaaraState: ', this.data.kaaraState);
     return this.data.kaaraState;
   }
 
@@ -100,45 +73,19 @@ class SimpleModeStore extends Store {
     return this.data.busState;
   }
 
-  getTramState() {
-    return this.data.tramState;
-  }
-
   getRailState() {
     return this.data.railState;
-  }
-
-  getSubwayState() {
-    return this.data.subwayState;
-  }
-
-  getFerryState() {
-    return this.data.ferryState;
-  }
-
-  getAirplaneState() {
-    return this.data.airplaneState;
-  }
-
-  getCitybikeState() {
-    return this.data.citybikeState;
   }
 
   clearState = () => {
     this.data.kaaraState = false;
     this.data.kavelyState = false;
     this.data.polkupyoraState = false;
-    this.data.subwayState = false;
-    this.data.ferryState = false;
-    this.data.airplaneState = false;
-    this.data.citybikeState = false;
     this.data.railState = false;
-    this.data.tramState = false;
     this.data.busState = false;
   }
 
   doToggle = (name) => {
-    console.log('doToggle: ', name);
     if (this.data.selected !== name) {
       this.clearState();
       this.data[name] = true;
@@ -168,28 +115,8 @@ class SimpleModeStore extends Store {
     this.doToggle('busState');
   }
 
-  toggleTramState() {
-    this.doToggle('tramState');
-  }
-
   toggleRailState() {
     this.doToggle('railState');
-  }
-
-  toggleSubwayState() {
-    this.doToggle('subwayState');
-  }
-
-  toggleFerryState = () => {
-    this.doToggle('ferryState');
-  }
-
-  toggleAirplaneState = () => {
-    this.doToggle('airplaneState');
-  }
-
-  toggleCitybikeState() {
-    this.doToggle('citybikeState');
   }
 
   storeMode = () => {
@@ -207,12 +134,7 @@ class SimpleModeStore extends Store {
     ToggleSimpleModeKavelyState: 'toggleKavelyState',
     ToggleSimpleModePolkupyoraState: 'togglePolkupyoraState',
     ToggleSimpleModeBusState: 'toggleBusState',
-    ToggleSimpleModeTramState: 'toggleTramState',
     ToggleSimpleModeRailState: 'toggleRailState',
-    ToggleSimpleModeSubwayState: 'toggleSubwayState',
-    ToggleSimpleModeFerryState: 'toggleFerryState',
-    ToggleSimpleModeCitybikeState: 'toggleCitybikeState',
-    ToggleSimpleModeAirplaneState: 'toggleAirplaneState',
   };
 }
 

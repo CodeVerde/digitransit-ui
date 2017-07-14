@@ -13,7 +13,7 @@ export default configMerger(walttiConfig, {
 
   appBarLink: { name: 'Oulun joukkoliikenne', href: 'http://www.oulunjoukkoliikenne.fi' },
 
-  sprites: 'svg-sprite.oulu20.svg', // use default set
+  sprites: 'svg-sprite.oulu20.svg',
 
   colors: {
     primary: '#c40065',
@@ -53,23 +53,6 @@ export default configMerger(walttiConfig, {
     { icon: 'icon-icon_airplane', label: 'Lentoasema, Oulu', lat: 64.928808, lon: 25.373296 },
   ],
 
-  modeToOTP: {
-    bus: 'BUS',
-    tram: 'TRAM',
-    rail: 'RAIL',
-    subway: 'SUBWAY',
-    citybike: 'BICYCLE_RENT',
-    airplane: 'AIRPLANE',
-    ferry: 'FERRY',
-    walk: 'WALK',
-    bicycle: 'BICYCLE',
-    car: 'CAR',
-    car_park: 'CAR_PARK',
-    kaara: 'CAR',
-    kavely: 'WALK',
-    polkupyora: 'BICYCLE',
-  },
-
   simpleTransportModes: {
     kaara: {
       availableForSelection: true,
@@ -78,7 +61,7 @@ export default configMerger(walttiConfig, {
 
     kavely: {
       availableForSelection: true,
-      defaultValue: false,
+      defaultValue: true,
     },
 
     polkupyora: {
@@ -88,118 +71,13 @@ export default configMerger(walttiConfig, {
 
     bus: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: false,
     },
-
-    // tram: {
-    //   availableForSelection: true,
-    //   defaultValue: true,
-    // },
 
     rail: {
       availableForSelection: true,
       defaultValue: false,
     },
-
-    // subway: {
-    //   availableForSelection: true,
-    //   defaultValue: true,
-    // },
-
-    // citybike: {
-    //   availableForSelection: true,
-    //   defaultValue: false,
-    // },
-
-    // airplane: {
-    //   availableForSelection: true,
-    //   defaultValue: true,
-    // },
-
-    // ferry: {
-    //   availableForSelection: true,
-    //   defaultValue: true,
-    // },
-  },
-
-  // Control what transport modes that should be possible to select in the UI
-  // and whether the transport mode is used in trip planning by default.
-  transportModes: {
-    kaara: {
-      availableForSelection: true,
-      defaultValue: false,
-    },
-
-    kavely: {
-      availableForSelection: true,
-      defaultValue: false,
-    },
-
-    polkupyora: {
-      availableForSelection: true,
-      defaultValue: false,
-    },
-
-    bus: {
-      availableForSelection: true,
-      defaultValue: true,
-    },
-
-    // tram: {
-    //   availableForSelection: true,
-    //   defaultValue: true,
-    // },
-
-    rail: {
-      availableForSelection: true,
-      defaultValue: false,
-    },
-
-    // subway: {
-    //   availableForSelection: true,
-    //   defaultValue: true,
-    // },
-
-    // citybike: {
-    //   availableForSelection: true,
-    //   defaultValue: false,
-    // },
-
-    // airplane: {
-    //   availableForSelection: true,
-    //   defaultValue: true,
-    // },
-
-    // ferry: {
-    //   availableForSelection: true,
-    //   defaultValue: true,
-    // },
-  },
-
-  streetModes: {
-    walk: {
-      availableForSelection: true,
-      defaultValue: true,
-      icon: 'walk',
-    },
-
-    bicycle: {
-      availableForSelection: true,
-      defaultValue: false,
-      icon: 'bicycle-withoutBox',
-    },
-
-    car: {
-      availableForSelection: true,
-      defaultValue: false,
-      icon: 'car-withoutBox',
-    },
-
-    // car_park: {
-    //   availableForSelection: true,
-    //   defaultValue: false,
-    //   icon: 'car_park-withoutBox',
-    // },
   },
 
   footer: {
@@ -216,13 +94,6 @@ export default configMerger(walttiConfig, {
       {
         header: 'Tietoja palvelusta',
         paragraphs: ['Tämän palvelun tarjoaa Oulun joukkoliikenne joukkoliikenteen reittisuunnittelua varten Oulun, Iin, Kempeleen, Limingan, Lumijoen, Muhoksen ja Tyrnävän alueella. Palvelu kattaa joukkoliikenteen, kävelyn, pyöräilyn ja yksityisautoilun rajatuilta osin. Palvelu perustuu Digitransit palvelualustaan.'],
-      },
-    ],
-
-    sv: [
-      {
-        header: 'Om tjänsten',
-        paragraphs: ['Den här tjänsten erbjuds av Oulun joukkoliikenne för reseplanering inom Oulu, Ii, Kempele, Liminka, Lumijoki, Muhos och Tyrnävä region. Reseplaneraren täcker med vissa begränsningar kollektivtrafik, promenad, cykling samt privatbilism. Tjänsten baserar sig på Digitransit-plattformen.'],
       },
     ],
 
