@@ -136,6 +136,9 @@ $thumb-color-pink: $favourite-color;
 $btn-highlight-opacity: 0.9;
 
 $btn-inactive-background-color: $dark-gray;
+$btn-kaara-active-background-color: $car-color;
+$btn-kavely-active-background-color: $walk-color;
+$btn-polkupyora-active-background-color: $bicycle-color;
 $btn-bus-active-background-color: $bus-color;
 $btn-tram-active-background-color: $tram-color;
 $btn-rail-active-background-color: $rail-color;
@@ -161,6 +164,15 @@ $btn-heigth: 17px;
 
   &:hover {
     opacity: $btn-highlight-opacity;
+  }
+  &.kaara {
+    background-color: $btn-kaara-active-background-color;
+  }
+  &.kavely {
+    background-color: $btn-kavely-active-background-color;
+  }
+  &.polkupyora {
+    background-color: $btn-polkupyora-active-background-color;
   }
   &.bus {
     background-color: $btn-bus-active-background-color;
@@ -189,7 +201,7 @@ $btn-heigth: 17px;
       color: $btn-icon-color-checked;
     }
   }
-  &.bus, &.tram, &.rail, &.subway, &.ferry, &.airplane, &.citybike {
+  &.kaara, &.kavely, &.polkupyora, &.bus, &.tram, &.rail, &.subway, &.ferry, &.airplane, &.citybike {
     .icon{
       color:$btn-icon-color-active;
     }

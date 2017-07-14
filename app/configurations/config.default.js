@@ -251,6 +251,34 @@ export default {
     car: 'CAR',
     car_park: 'CAR_PARK',
   },
+
+  simpleTransportModes: {
+    kaara: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    kavely: {
+      availableForSelection: true,
+      defaultValue: true,
+    },
+
+    polkupyora: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    bus: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+
+    rail: {
+      availableForSelection: true,
+      defaultValue: false,
+    },
+  },
+
   // Control what transport modes that should be possible to select in the UI
   // and whether the transport mode is used in trip planning by default.
   transportModes: {
@@ -496,6 +524,7 @@ export default {
     oulu: 'oulu',
     hameenlinna: 'hameenlinna',
     matka: 'matka',
+    oulu20: 'oulu20',
     jyvaskyla: 'jyvaskyla',
     lahti: 'lahti',
     kuopio: 'kuopio',
