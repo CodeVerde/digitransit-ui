@@ -62,7 +62,7 @@ const pureSimpleModeFilter = pure(SimpleModeFilter);
 
 pureSimpleModeFilter.description = () =>
   <div>
-    <p>SimpleModeFilter displays row of transport mode icons that can be used to select transport modes
+    <p>SimpleModeFilter displays row of transport modes icons for selecting transport modes
     </p>
     <ComponentUsageExample>
       <SimpleModeFilter
