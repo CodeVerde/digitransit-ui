@@ -18,6 +18,15 @@ let Popup;
 let Marker;
 let L;
 
+// Function to fix issues with times in Waltti format
+const walttiTimeFormatCheck = (timeString) => {
+  if (timeString.includes(':')) {
+    return (timeString.substring(0, 2) * 60 * 60) +
+      (Number(timeString.substring(3)) * 60);
+  }
+  return (timeString.substring(0, 2) * 60 * 60) + Number(timeString.substring(2, 4) * 60);
+};
+
 function getVehicleIcon(mode, heading, useSmallIcon = false) {
   if (!isBrowser) {
     return null;
@@ -136,9 +145,7 @@ export default class VehicleMarkerContainer extends React.PureComponent {
           route: message.route,
           direction: message.direction,
           date: message.operatingDay,
-          time:
-            (message.tripStartTime.substring(0, 2) * 60 * 60) +
-            (message.tripStartTime.substring(2, 4) * 60),
+          time: walttiTimeFormatCheck(message.tripStartTime),
         })}
         renderLoading={() => (
           <div className="card" style={{ height: '12rem' }}><Loading /></div>

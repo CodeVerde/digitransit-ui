@@ -1,5 +1,8 @@
 import configMerger from '../util/configMerger';
 
+const API_URL = process.env.API_URL || 'https://dev-api.digitransit.fi';
+// const API_URL = process.env.API_URL || 'https://dev-api.localhost';
+
 const CONFIG = 'oulu20';
 const APP_DESCRIPTION = 'Oulun seudun uusi reittiopas - Oulunliikenne.fi 2.0';
 const APP_TITLE = 'Reittiopas - Oulunliikenne.fi 2.0';
@@ -8,6 +11,12 @@ const walttiConfig = require('./waltti').default;
 
 export default configMerger(walttiConfig, {
   CONFIG,
+
+  URL: {
+    MQTT: 'wss://mqtt.hsl.fi',
+    // MQTT: 'wss://localhost',
+    REALTIME: `${API_URL}/realtime/vehicle-positions/v1`,
+  },
 
   feedIds: ['OULU'],
 
