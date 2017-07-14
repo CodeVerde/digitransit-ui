@@ -9,6 +9,9 @@ import cx from 'classnames';
 import { getDistanceToNearestStop } from '../util/geo-utils';
 import RouteStop from './RouteStop';
 
+const cityMode = 'OULU';
+// const cityMode = 'HSL';
+
 class RouteStopListContainer extends React.Component {
   static propTypes = {
     pattern: PropTypes.object.isRequired,
@@ -49,7 +52,7 @@ class RouteStopListContainer extends React.Component {
       , vehicle => vehicle.direction);
 
     const vehicleStops = groupBy(vehicles[this.props.pattern.directionId], vehicle =>
-      `HSL:${vehicle.next_stop}`,
+      `${cityMode}:${vehicle.next_stop}`,
     );
 
     const rowClassName = this.context.breakpoint === 'large' && 'bp-large';
