@@ -11,6 +11,15 @@ import StopCode from './StopCode';
 import { fromStopTime } from './DepartureTime';
 import ComponentUsageExample from './ComponentUsageExample';
 
+// Function to fix issues with times in Waltti format
+const walttiTimeFormatCheck = (timeString) => {
+  if (timeString.includes(':')) {
+    return (timeString.substring(0, 2) * 60 * 60) +
+      (Number(timeString.substring(3)) * 60);
+  }
+  return (timeString.substring(0, 2) * 60 * 60) + Number(timeString.substring(2, 4) * 60);
+};
+
 const getRouteStopSvg = (first, last) => (
   <svg className="route-stop-schematized" >
     <line
@@ -89,8 +98,7 @@ class RouteStop extends React.Component {
           route: vehicle.route,
           direction: vehicle.direction,
           date: vehicle.operatingDay,
-          time: (vehicle.tripStartTime.substring(0, 2) * 60 * 60) +
-            (vehicle.tripStartTime.substring(2, 4) * 60),
+          time: walttiTimeFormatCheck(vehicle.tripStartTime),
         })}
         renderFetched={data =>
           (<TripLink
