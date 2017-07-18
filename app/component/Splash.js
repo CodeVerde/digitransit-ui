@@ -102,7 +102,7 @@ class Splash extends React.Component {
           <FormattedMessage id="splash-select-mode-of-transport" defaultMessage="Select mode of transport" />
         </div>
         <div id="splash-select-mode-of-transport" className="flex-vertical">
-          <div className="row btn-bar">
+          <div className="row btn-simple-bar">
             <SimpleModeFilter
               action={this.actions}
               buttonClass="mode-icon"
