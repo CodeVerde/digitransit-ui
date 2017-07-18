@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import pure from 'recompose/pure';
 
-import ToggleButton from './ToggleButton';
+import SimpleToggleButton from './SimpleToggleButton';
 import ComponentUsageExample from './ComponentUsageExample';
 
 
@@ -33,7 +33,7 @@ class SimpleModeFilter extends React.Component {
         const onButtonClick = () => {
           this.context.executeAction(action);
         };
-        return (<ToggleButton
+        return (<SimpleToggleButton
           icon={`${type}-withoutBox`}
           onBtnClick={onButtonClick}
           state={isEnabled}
@@ -48,7 +48,7 @@ class SimpleModeFilter extends React.Component {
     };
 
     // TODO we could build the filter strictly based on config
-    return (<div className="btn-bar mode-filter no-select">
+    return (<div className="simple-btn-bar mode-filter no-select">
       <ModeToggleButton type="kaara" />
       <ModeToggleButton type="bus" />
       <ModeToggleButton type="kavely" />
