@@ -6,10 +6,10 @@ import ComponentUsageExample from './ComponentUsageExample';
 import FakeSearchBar from './FakeSearchBar';
 
 export const FakeSearchWithButton = ({ fakeSearchBar, onClick, breakpoint }) => (
-  <div className={`row search-form bp-${breakpoint}`}>
-    <div className="small-12 columns search-form-map-overlay">
+  <div className={`search-form bp-${breakpoint}`}>
+    <div className="small-12 search-form-map-overlay">
       <button title="haku" tabIndex="0" onClick={onClick} className="noborder search-button flex-horisontal">
-        <div className="flex-grow row collapse postfix-radius">
+        <div className="flex-grow row collapse">
           <div className="small-11 columns">
             {fakeSearchBar}
           </div>

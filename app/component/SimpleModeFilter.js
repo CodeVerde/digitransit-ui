@@ -8,8 +8,9 @@ import ComponentUsageExample from './ComponentUsageExample';
 
 class SimpleModeFilter extends React.Component {
   static propTypes = {
-    selectedModes: PropTypes.array.isRequired,
     action: PropTypes.object.isRequired,
+    availableModes: PropTypes.array.isRequired,
+    selectedModes: PropTypes.array.isRequired,
     buttonClass: PropTypes.string,
   };
 
@@ -18,11 +19,8 @@ class SimpleModeFilter extends React.Component {
     config: PropTypes.object.isRequired,
   };
 
-  availableModes = () => Object.keys(this.context.config.simpleTransportModes).filter(
-    mode => (this.context.config.simpleTransportModes[mode].availableForSelection))
-
   render = () => {
-    const widthPercentage = 100 / this.availableModes().length;
+    const widthPercentage = 100 / this.props.availableModes.length;
     const ModeToggleButton = ({ type, stateName }) => {
       if (this.context.config.simpleTransportModes[type].availableForSelection) {
         const action = this.props.action[

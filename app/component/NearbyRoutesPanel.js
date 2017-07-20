@@ -5,13 +5,74 @@ import includes from 'lodash/includes';
 import pull from 'lodash/pull';
 import without from 'lodash/without';
 
+import { intlShape } from 'react-intl';
+
+import FakeSearchBar from './FakeSearchBar';
+// import FakeSearchWithButtonContainer from './FakeSearchWithButtonContainer';
 import ModeFilterContainer from './ModeFilterContainer';
 import NearestRoutesContainer from './NearestRoutesContainer';
 import NextDeparturesListHeader from './NextDeparturesListHeader';
+import SearchMainContainer from './SearchMainContainer';
+import SimpleModeFilterContainer from './SimpleModeFilterContainer';
+
 
 function NearbyRoutesPanel({ location, currentTime, modes, placeTypes }, context) {
+  //   console.log('clickSearch');
+  // };
+
+  const openDialog = (tab) => {
+    context.router.push({
+      ...context.location,
+      state: {
+        ...context.location.state,
+        searchModalIsOpen: true,
+        selectedTab: tab,
+      },
+    });
+  };
+
+  const clickSearch = () => {
+    const origin = context.getStore('EndpointStore').getOrigin();
+    const geolocation = context.getStore('PositionStore').getLocationState();
+    const hasOrigin = origin.lat || (origin.useCurrentPosition && geolocation.hasLocation);
+
+    openDialog(hasOrigin ? 'destination' : 'origin');
+  };
+
+  // const destinationPlaceholder = context.intl.formatMessage({
+  //   id: 'destination-placeholder',
+  //   defaultMessage: 'Enter destination, route or stop',
+  // });
+
+  // const fakeSearchBar = (
+  //   <FakeSearchBar
+  //     placeholder={destinationPlaceholder}
+  //     id="front-page-search-bar"
+  //   />);
+
+  const selectedSearchTab =
+    context.location.state &&
+    context.location.state.selectedTab ?
+    context.location.state.selectedTab : 'destination';
+
+  const searchModalIsOpen =
+    context.location.state ?
+    Boolean(context.location.state.searchModalIsOpen) : false;
+
   return (
     <div className="frontpage-panel nearby-routes fullscreen">
+      <div className="flex-vertical">
+        <div className="row btn-simple-bar">
+          <SimpleModeFilterContainer
+            buttonClass="mode-icon"
+          />
+        </div>
+      </div>
+      {/* <FakeSearchWithButtonContainer fakeSearchBar={fakeSearchBar} onClick={clickSearch} /> */}
+      <SearchMainContainer
+        searchModalIsOpen={searchModalIsOpen}
+        selectedTab={selectedSearchTab}
+      />
       {context.config.showModeFilter &&
         (<div className="row border-bottom">
           <div className="small-12 column">
@@ -50,6 +111,10 @@ NearbyRoutesPanel.propTypes = {
 
 NearbyRoutesPanel.contextTypes = {
   config: PropTypes.object,
+  intl: intlShape.isRequired,
+  getStore: React.PropTypes.func.isRequired,
+  location: PropTypes.object,
+  router: PropTypes.object,
 };
 
 export default connectToStores(

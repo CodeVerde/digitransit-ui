@@ -176,10 +176,10 @@ class IndexPage extends React.Component {
           selectedTab={selectedSearchTab}
           tab={selectedMainTab}
         >
-          <SearchMainContainer
+          {/* <SearchMainContainer
             searchModalIsOpen={searchModalIsOpen}
             selectedTab={selectedSearchTab}
-          />
+          /> */}
           <div key="foo" className="fpccontainer">
             <FrontPagePanelLarge
               selectedPanel={selectedMainTab}
@@ -206,10 +206,10 @@ class IndexPage extends React.Component {
             selectedTab={selectedSearchTab}
           >
             {messageBar}
-            <SearchMainContainer
+            {/* <SearchMainContainer
               searchModalIsOpen={searchModalIsOpen}
               selectedTab={selectedSearchTab}
-            />
+            /> */}
           </MapWithTracking>
         </div>
         <div>
