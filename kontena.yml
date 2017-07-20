@@ -1,0 +1,11 @@
+stack: coodari/digidev
+version: 0.0.1
+description: Oulu Digitransit Project
+
+variables:
+
+services:
+  digidev:
+    image: quay.io/codeverde/digitransit-ui:ci-fc402b532a8a7612215897b364733046d0f5a598
+    ports:
+      - 80:8080
