@@ -7,7 +7,7 @@ import LazilyLoad, { importLazy } from './LazilyLoad';
 import FrontPagePanelLarge from './FrontPagePanelLarge';
 import FrontPagePanelSmall from './FrontPagePanelSmall';
 import MapWithTracking from '../component/map/MapWithTracking';
-import SearchMainContainer from './SearchMainContainer';
+// import SearchMainContainer from './SearchMainContainer';
 import PageFooter from './PageFooter';
 
 const feedbackPanelMudules = { Panel: () => importLazy(System.import('./FeedbackPanel')) };
