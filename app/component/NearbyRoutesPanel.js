@@ -7,8 +7,7 @@ import without from 'lodash/without';
 
 import { intlShape } from 'react-intl';
 
-import FakeSearchBar from './FakeSearchBar';
-// import FakeSearchWithButtonContainer from './FakeSearchWithButtonContainer';
+import BusLineSelector from './BusLineSelector';
 import ModeFilterContainer from './ModeFilterContainer';
 import NearestRoutesContainer from './NearestRoutesContainer';
 import NextDeparturesListHeader from './NextDeparturesListHeader';
@@ -20,35 +19,16 @@ function NearbyRoutesPanel({ location, currentTime, modes, placeTypes }, context
   //   console.log('clickSearch');
   // };
 
-  const openDialog = (tab) => {
-    context.router.push({
-      ...context.location,
-      state: {
-        ...context.location.state,
-        searchModalIsOpen: true,
-        selectedTab: tab,
-      },
-    });
-  };
-
-  const clickSearch = () => {
-    const origin = context.getStore('EndpointStore').getOrigin();
-    const geolocation = context.getStore('PositionStore').getLocationState();
-    const hasOrigin = origin.lat || (origin.useCurrentPosition && geolocation.hasLocation);
-
-    openDialog(hasOrigin ? 'destination' : 'origin');
-  };
-
-  // const destinationPlaceholder = context.intl.formatMessage({
-  //   id: 'destination-placeholder',
-  //   defaultMessage: 'Enter destination, route or stop',
-  // });
-
-  // const fakeSearchBar = (
-  //   <FakeSearchBar
-  //     placeholder={destinationPlaceholder}
-  //     id="front-page-search-bar"
-  //   />);
+  // const openDialog = (tab) => {
+  //   context.router.push({
+  //     ...context.location,
+  //     state: {
+  //       ...context.location.state,
+  //       searchModalIsOpen: true,
+  //       selectedTab: tab,
+  //     },
+  //   });
+  // };
 
   const selectedSearchTab =
     context.location.state &&
@@ -68,7 +48,7 @@ function NearbyRoutesPanel({ location, currentTime, modes, placeTypes }, context
           />
         </div>
       </div>
-      {/* <FakeSearchWithButtonContainer fakeSearchBar={fakeSearchBar} onClick={clickSearch} /> */}
+      <BusLineSelector />
       <SearchMainContainer
         searchModalIsOpen={searchModalIsOpen}
         selectedTab={selectedSearchTab}
