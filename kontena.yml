@@ -5,7 +5,27 @@ description: Oulu Digitransit Project
 variables:
 
 services:
+  lb-proxy:
+    image: kontena/lb:latest
+    ports:
+      - 443:443
+      - 80:80
+    secrets:
+      - secret: SSL_LOAD_BALANCER_CERT_BUNDLE
+        name: SSL_CERTS
+        type: env
+
   digidev:
     image: quay.io/codeverde/digitransit-ui:ci-fc402b532a8a7612215897b364733046d0f5a598
-    ports:
-      - 80:8080
+    environment:
+      - CONFIG=oulu20
+      - KONTENA_LB_MODE=http
+      - KONTENA_LB_BALANCE=roundrobin
+      - KONTENA_LB_INTERNAL_PORT=8080
+      - KONTENA_LB_CUSTOM_SETTINGS=redirect scheme https code 301 if !{ ssl_fc }
+    links:
+      - lb-proxy
+    secrets:
+      - secret: FRONT_SERVICE_DOMAIN
+        name: KONTENA_LB_VIRTUAL_HOSTS
+        type: env
