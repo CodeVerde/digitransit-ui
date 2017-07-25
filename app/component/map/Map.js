@@ -15,6 +15,7 @@ import Icon from '../Icon';
 //      Perhaps still using the require from webpack?
 let LeafletMap;
 let TileLayer;
+let BusLinesLayer;
 let AttributionControl;
 let ScaleControl;
 let ZoomControl;
@@ -23,6 +24,7 @@ let L;
 if (isBrowser) {
   LeafletMap = require('react-leaflet/lib/Map').default;
   TileLayer = require('react-leaflet/lib/TileLayer').default;
+  BusLinesLayer = require('react-leaflet/lib/TileLayer').default;
   AttributionControl = require('react-leaflet/lib/AttributionControl').default;
   ScaleControl = require('react-leaflet/lib/ScaleControl').default;
   ZoomControl = require('react-leaflet/lib/ZoomControl').default;
@@ -166,6 +168,17 @@ class Map extends React.Component {
       const center = (!this.props.fitBounds && this.props.lat && this.props.lon &&
         [this.props.lat, this.props.lon]) || null;
 
+      const getBusLinesUrl = (param) => {
+        const westSouthPoint = param.map.unproject(
+          L.point(param.x * param.tileSize, (param.y + 1) * param.tileSize),
+          param.z - param.zoomOffset);
+        const eastNortnPoint = param.map.unproject(
+          L.point((param.x + 1) * param.tileSize, param.y * param.tileSize),
+          param.z - param.zoomOffset);
+
+        return `https://e-kartta.ouka.fi/TeklaOGCWebOpen/WMS.ashx?&service=WMS&version=1.1.1&request=GetMap&layers=Bussireitit&styles=&format=image/png&transparent=true&srs=EPSG:4326&bbox=${westSouthPoint.lng},${westSouthPoint.lat},${eastNortnPoint.lng},${eastNortnPoint.lat}&width=${param.tileSize}&height=${param.tileSize}`;
+      };
+
       ({ zoom } = this.props);
 
       const boundsOptions = this.props.boundsOptions;
@@ -197,6 +210,16 @@ class Map extends React.Component {
         >
           <TileLayer
             url={`${mapUrl}{z}/{x}/{y}{size}.png`}
+            tileSize={config.map.tileSize || 256}
+            zoomOffset={config.map.zoomOffset || 0}
+            updateWhenIdle={false}
+            size={(config.map.useRetinaTiles && L.Browser.retina && !isDebugTiles) ? '@2x' : ''}
+            minZoom={this.context.config.map.minZoom}
+            maxZoom={this.context.config.map.maxZoom}
+          />
+          <BusLinesLayer
+            url={'{busLinesUrl}'}
+            busLinesUrl={getBusLinesUrl}
             tileSize={config.map.tileSize || 256}
             zoomOffset={config.map.zoomOffset || 0}
             updateWhenIdle={false}
