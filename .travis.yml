@@ -17,6 +17,18 @@ jobs:
      node_js: "6"
      script: test/build.sh
    - stage: test
-     env: VISUAL=chrome50
+     env: VISUAL=chrome59
+     node_js: "6"
+     script: test/visual.sh
+   - stage: test
+     env: VISUAL=edge15
+     node_js: "6"
+     script: test/visual.sh
+   - stage: test
+     env: VISUAL=ie11
+     node_js: "6"
+     script: test/visual.sh
+   - stage: test
+     env: VISUAL=safari10
      node_js: "6"
      script: test/visual.sh
