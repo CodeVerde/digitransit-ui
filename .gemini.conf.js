@@ -14,40 +14,40 @@ module.exports = {
       },
       'windowSize': '600x1024'
     },
-    'edge15': {
-      'desiredCapabilities': {
-        'browserName': 'edge',
-        'locationContextEnabled': false,
-        'os': 'Windows',
-        'os_version': '10',
-        'version': '15'
-      },
-      'windowSize': '600x1024'
-    },
-    'ie11': {
-      'desiredCapabilities': {
-        'browser': 'IE',
-        'browserName': 'internet explorer',
-        'browser_version': '11',
-        'locationContextEnabled': false,
-        'os': 'Windows',
-        'os_version': '8.1'
-      },
-      'windowSize': '600x1024'
-    },
-    'safari10': {
-      'desiredCapabilities': {
-        'browserName': 'safari',
-        'locationContextEnabled': false,
-        'os': 'OS X',
-        'os_version': 'Sierra',
-        'safari.options': {
-          'technologyPreview': true
-        },
-        'version': '10.1'
-      },
-      'windowSize': '600x1024'
-    }
+    // 'edge15': {
+    //   'desiredCapabilities': {
+    //     'browserName': 'edge',
+    //     'locationContextEnabled': false,
+    //     'os': 'Windows',
+    //     'os_version': '10',
+    //     'version': '15'
+    //   },
+    //   'windowSize': '600x1024'
+    // },
+    // 'ie11': {
+    //   'desiredCapabilities': {
+    //     'browser': 'IE',
+    //     'browserName': 'internet explorer',
+    //     'browser_version': '11',
+    //     'locationContextEnabled': false,
+    //     'os': 'Windows',
+    //     'os_version': '8.1'
+    //   },
+    //   'windowSize': '600x1024'
+    // },
+    // 'safari10': {
+    //   'desiredCapabilities': {
+    //     'browserName': 'safari',
+    //     'locationContextEnabled': false,
+    //     'os': 'OS X',
+    //     'os_version': 'Sierra',
+    //     'safari.options': {
+    //       'technologyPreview': true
+    //     },
+    //     'version': '10.1'
+    //   },
+    //   'windowSize': '600x1024'
+    // }
   },
   'httpTimeout': 40000,
   'retry': 1,
