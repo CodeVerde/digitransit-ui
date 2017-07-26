@@ -54,10 +54,12 @@ class Map extends React.Component {
     showStops: PropTypes.bool,
     zoom: PropTypes.number,
     showScaleBar: PropTypes.bool,
+    showBusLines: PropTypes.bool,
   };
 
   static defaultProps ={
     showScaleBar: false,
+    showBusLines: false,
   }
 
   static contextTypes = {
@@ -217,16 +219,18 @@ class Map extends React.Component {
             minZoom={this.context.config.map.minZoom}
             maxZoom={this.context.config.map.maxZoom}
           />
-          <BusLinesLayer
-            url={'{busLinesUrl}'}
-            busLinesUrl={getBusLinesUrl}
-            tileSize={config.map.tileSize || 256}
-            zoomOffset={config.map.zoomOffset || 0}
-            updateWhenIdle={false}
-            size={(config.map.useRetinaTiles && L.Browser.retina && !isDebugTiles) ? '@2x' : ''}
-            minZoom={this.context.config.map.minZoom}
-            maxZoom={this.context.config.map.maxZoom}
-          />
+          {this.props.showBusLines && (
+            <BusLinesLayer
+              url={'{busLinesUrl}'}
+              busLinesUrl={getBusLinesUrl}
+              tileSize={config.map.tileSize || 256}
+              zoomOffset={config.map.zoomOffset || 0}
+              updateWhenIdle={false}
+              size={(config.map.useRetinaTiles && L.Browser.retina && !isDebugTiles) ? '@2x' : ''}
+              minZoom={this.context.config.map.minZoom}
+              maxZoom={this.context.config.map.maxZoom}
+            />
+          )}
           <AttributionControl
             position="bottomleft"
             prefix='&copy; <a tabindex="-1" href="http://osm.org/copyright">OpenStreetMap</a>'

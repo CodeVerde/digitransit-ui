@@ -128,6 +128,28 @@ $content-background-color: $background-color;
   }
 }
 
+#toggle-bus-lines {
+  display: inline-block;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: middle;
+  color: white;
+  padding: 0px 5px;
+}
+
+#toggle-bus-lines-button {
+  white-space: nowrap;
+  display: flex;
+  // flex-direction: row;
+  margin: 0px;
+  padding: 0.3rem 1rem 0.3rem 1rem;
+  // align-self: stretch;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
 .navi-languages { //desktop
   #lang-select{
     border-bottom: 0px;

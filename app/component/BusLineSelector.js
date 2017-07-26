@@ -26,9 +26,9 @@ class BusLineSelector extends React.Component {
     });
 
     return (
-      <div className="time-selectors">
+      <div className="bus-line-selector small-8 columns">
         <div className="select-wrapper">
-          <select className="arrive" onChange={this.selectLine}>
+          <select className="lines" onChange={this.selectLine}>
             {selectOptions}
           </select>
           <Icon className="fake-select-arrow" img="icon-icon_arrow-dropdown" />
@@ -53,7 +53,7 @@ BusLineSelector.displayName = 'BusLineSelector';
 BusLineSelector.description = () =>
   <div>
     <p>
-      A toolbar for changing arriveBy/departAt, date and time
+      A toolbar for selecting a bus line
     </p>
     <ComponentUsageExample>
       <BusLineSelector />

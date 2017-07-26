@@ -56,13 +56,13 @@ const withMapStateTracking = withReducer('mapState', 'dispatch', mapStateReducer
 const onlyUpdateCoordChanges = onlyUpdateForKeys(
   // searchModalIsOpen and selectedTab keys here's just to get map updated
   // when those props change (in large view tabs are inside map)
-  ['breakpoint', 'lat', 'lon', 'zoom', 'mapTracking', 'lang', 'tab', 'searchModalIsOpen', 'selectedTab']);
+  ['breakpoint', 'lat', 'lon', 'zoom', 'mapTracking', 'lang', 'tab', 'searchModalIsOpen', 'selectedTab', 'showBusLines']);
 
 const MapWithTracking =
   withMapStateTracking(
     connectToStores(
       onlyUpdateCoordChanges(Map),
-      ['PositionStore', 'EndpointStore', 'PreferencesStore'],
+      ['PositionStore', 'EndpointStore', 'PreferencesStore', 'MapSelectionsStore'],
       (context, props) => {
         const { mapTracking } = props.mapState;
         const PositionStore = context.getStore('PositionStore');
@@ -142,6 +142,7 @@ const MapWithTracking =
           },
           disableMapTracking,
           children,
+          showBusLines: context.getStore('MapSelectionsStore').getData().showBusLines,
         };
       },
     ),
