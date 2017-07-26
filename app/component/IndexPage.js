@@ -7,7 +7,7 @@ import LazilyLoad, { importLazy } from './LazilyLoad';
 import FrontPagePanelLarge from './FrontPagePanelLarge';
 import FrontPagePanelSmall from './FrontPagePanelSmall';
 import MapWithTracking from '../component/map/MapWithTracking';
-import SearchMainContainer from './SearchMainContainer';
+// import SearchMainContainer from './SearchMainContainer';
 import PageFooter from './PageFooter';
 
 const feedbackPanelMudules = { Panel: () => importLazy(System.import('./FeedbackPanel')) };
@@ -176,10 +176,10 @@ class IndexPage extends React.Component {
           selectedTab={selectedSearchTab}
           tab={selectedMainTab}
         >
-          <SearchMainContainer
+          {/* <SearchMainContainer
             searchModalIsOpen={searchModalIsOpen}
             selectedTab={selectedSearchTab}
-          />
+          /> */}
           <div key="foo" className="fpccontainer">
             <FrontPagePanelLarge
               selectedPanel={selectedMainTab}
@@ -206,10 +206,10 @@ class IndexPage extends React.Component {
             selectedTab={selectedSearchTab}
           >
             {messageBar}
-            <SearchMainContainer
+            {/* <SearchMainContainer
               searchModalIsOpen={searchModalIsOpen}
               selectedTab={selectedSearchTab}
-            />
+            /> */}
           </MapWithTracking>
         </div>
         <div>

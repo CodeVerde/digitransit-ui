@@ -5,13 +5,60 @@ import includes from 'lodash/includes';
 import pull from 'lodash/pull';
 import without from 'lodash/without';
 
+import { intlShape } from 'react-intl';
+
+import BusLinesToggle from './BusLinesToggle';
+import BusLineSelector from './BusLineSelector';
 import ModeFilterContainer from './ModeFilterContainer';
 import NearestRoutesContainer from './NearestRoutesContainer';
 import NextDeparturesListHeader from './NextDeparturesListHeader';
+import SearchMainContainer from './SearchMainContainer';
+import SimpleModeFilterContainer from './SimpleModeFilterContainer';
+
 
 function NearbyRoutesPanel({ location, currentTime, modes, placeTypes }, context) {
+  //   console.log('clickSearch');
+  // };
+
+  // const openDialog = (tab) => {
+  //   context.router.push({
+  //     ...context.location,
+  //     state: {
+  //       ...context.location.state,
+  //       searchModalIsOpen: true,
+  //       selectedTab: tab,
+  //     },
+  //   });
+  // };
+
+  const selectedSearchTab =
+    context.location.state &&
+    context.location.state.selectedTab ?
+    context.location.state.selectedTab : 'destination';
+
+  const searchModalIsOpen =
+    context.location.state ?
+    Boolean(context.location.state.searchModalIsOpen) : false;
+
   return (
     <div className="frontpage-panel nearby-routes fullscreen">
+      <div className="flex-vertical">
+        <div className="row btn-simple-bar">
+          <SimpleModeFilterContainer
+            buttonClass="mode-icon"
+          />
+        </div>
+      </div>
+      <div className="flex-vertical">
+        <div className="row small-12 small-centered columns">
+          <BusLineSelector />
+          <BusLinesToggle />
+        </div>
+      </div>
+      <SearchMainContainer
+        searchModalIsOpen={searchModalIsOpen}
+        selectedTab={selectedSearchTab}
+      />
       {context.config.showModeFilter &&
         (<div className="row border-bottom">
           <div className="small-12 column">
@@ -50,6 +97,10 @@ NearbyRoutesPanel.propTypes = {
 
 NearbyRoutesPanel.contextTypes = {
   config: PropTypes.object,
+  intl: intlShape.isRequired,
+  getStore: React.PropTypes.func.isRequired,
+  location: PropTypes.object,
+  router: PropTypes.object,
 };
 
 export default connectToStores(
