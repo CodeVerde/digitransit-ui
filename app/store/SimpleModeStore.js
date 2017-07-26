@@ -10,6 +10,8 @@ class SimpleModeStore extends Store {
     const localData = getSimpleModeStorage();
     this.config = dispatcher.getContext().config;
     this.data = localData.busState !== undefined ? localData : this.enableAll();
+    this.clearState();
+    this.data.busState = true;
     this.generateMode();
   }
 

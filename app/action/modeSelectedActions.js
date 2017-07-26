@@ -2,6 +2,14 @@ export function toggleBusState(actionContext) {
   actionContext.dispatch('ToggleNearbyRouteBusState');
 }
 
+export function enableBusState(actionContext) {
+  actionContext.dispatch('EnableNearbyRouteBusState');
+}
+
+export function disableBusState(actionContext) {
+  actionContext.dispatch('DisableNearbyRouteBusState');
+}
+
 export function toggleTramState(actionContext) {
   actionContext.dispatch('ToggleNearbyRouteTramState');
 }
