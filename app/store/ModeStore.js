@@ -123,6 +123,18 @@ class ModeStore extends Store {
     this.doToggle('busState');
   }
 
+  enableBusState() {
+    if (!this.data.busState) {
+      this.doToggle('busState');
+    }
+  }
+
+  disableBusState() {
+    if (this.data.busState) {
+      this.doToggle('busState');
+    }
+  }
+
   toggleTramState() {
     this.doToggle('tramState');
   }
@@ -159,6 +171,8 @@ class ModeStore extends Store {
 
   static handlers = {
     ToggleNearbyRouteBusState: 'toggleBusState',
+    EnableNearbyRouteBusState: 'enableBusState',
+    DisableNearbyRouteBusState: 'disableBusState',
     ToggleNearbyRouteTramState: 'toggleTramState',
     ToggleNearbyRouteRailState: 'toggleRailState',
     ToggleNearbyRouteSubwayState: 'toggleSubwayState',

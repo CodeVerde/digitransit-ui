@@ -11,11 +11,15 @@ import {
   toggleSimpleModeBusState,
   toggleSimpleModeRailState,
 } from '../action/simpleModeSelectedActions';
+import {
+  enableBusState,
+} from '../action/modeSelectedActions';
 
 
 class SimpleModeFilterContainer extends React.Component {
   static propTypes = {
     buttonClass: PropTypes.string,
+    transportData: PropTypes.object.isRequired,
   };
 
   static contextTypes = {
@@ -65,8 +69,13 @@ class SimpleModeFilterContainer extends React.Component {
   }
 
   toggleTransportMode(mode, action) {
-    this.context.executeAction(action);
-    this.setState({ selectedMode: mode });
+    console.log('this.props.transportData: ', this.props.transportData);
+    if (!this.props.transportData[`${mode}State`]) {
+      console.log('toggleTransportMode: ', mode);
+      this.context.executeAction(action);
+      this.context.executeAction(enableBusState);
+      this.setState({ selectedMode: mode });
+    }
   }
 
   actions = {
