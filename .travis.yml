@@ -22,13 +22,17 @@ services:
 
 jobs:
   include:
-   - stage: build container
-     node_js: "6"
-     script: test/build.sh
-   - stage: test
-     env: VISUAL=chrome59
-     node_js: "6"
-     script: test/visual.sh
+  - stage: build container
+    node_js: "6"
+    script: test/build.sh
+  - stage: test
+    env: VISUAL=chrome59
+    node_js: "6"
+    script: test/visual.sh
+  - stage: deploy
+    node_js: "6"
+    script: test/deploy-kontena.sh
+
   #  - stage: test
   #    env: VISUAL=edge15
   #    node_js: "6"
@@ -41,6 +45,3 @@ jobs:
   #    env: VISUAL=safari10
   #    node_js: "6"
   #    script: test/visual.sh
-     - stage: deploy
-       node_js: "6"
-       script: test/deploy-kontena.sh
