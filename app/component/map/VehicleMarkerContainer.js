@@ -37,7 +37,7 @@ function getVehicleIcon(mode, heading, useSmallIcon = false, iconText = undefine
       html: iconAsString({ img: `icon-icon_${mode}-live`, rotate: heading, iconText }),
       className: `vehicle-icon ${mode} ${useSmallIcon ? 'small-map-icon' : ''}`,
       iconSize: [20, 20],
-      iconAnchor: [10, 10],
+      iconAnchor: [10, 27],
     });
   }
 
@@ -45,7 +45,7 @@ function getVehicleIcon(mode, heading, useSmallIcon = false, iconText = undefine
     html: iconAsString({ img: 'icon-icon_bus-live', rotate: heading, iconText }),
     className: `vehicle-icon bus ${useSmallIcon ? 'small-map-icon' : ''}`,
     iconSize: [20, 20],
-    iconAnchor: [10, 10],
+    iconAnchor: [10, 27],
   });
 }
 
