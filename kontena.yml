@@ -3,6 +3,10 @@ version: 0.0.1
 description: Oulu Digitransit Project
 
 variables:
+  front_service_version:
+    type: string
+    from:
+      vault: FRONT_SERVICE_VERSION
 
 services:
   lb-proxy:
@@ -16,7 +20,7 @@ services:
         type: env
 
   digidev:
-    image: quay.io/codeverde/digitransit-ui:ci-fc402b532a8a7612215897b364733046d0f5a598
+    image: "quay.io/codeverde/digitransit-ui:${front_service_version}"
     environment:
       - CONFIG=oulu20
       - KONTENA_LB_MODE=http
