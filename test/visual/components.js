@@ -163,7 +163,7 @@ testVariation('DepartureRow', 'normal', 1, [
   '.component-example:nth-of-type(1) .component .realtime-icon',
 ]).then(skip('ie11'));
 
-testVariation('DepartureRow', 'with-cancelation', 2);
+// testVariation('DepartureRow', 'with-cancelation', 2);
 
 
 // testVariation('BicycleRentalStationRow', 'plenty-of-bikes');
