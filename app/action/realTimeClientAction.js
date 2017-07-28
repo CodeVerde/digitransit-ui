@@ -81,7 +81,7 @@ function parseMessage(topic, message, actionContext) {
 
 function getInitialData(topic, actionContext, originalOptions) {
   if (cityMode === 'OULU') {
-    const devUrl = `http://dev.hsl.fi/vehicle/journey/+/+/${originalOptions.route}/+/+/+/#`;
+    const devUrl = `https://dev.hsl.fi/vehicle/journey/+/+/${originalOptions.route}/+/+/+/#`;
     getJson(devUrl).then((data) => {
       Object.keys(data).forEach((resTopic) => {
         if (data[resTopic].VP && data[resTopic].VP.source && data[resTopic].VP.source === 'oulu') {
