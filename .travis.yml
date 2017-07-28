@@ -41,3 +41,6 @@ jobs:
   #    env: VISUAL=safari10
   #    node_js: "6"
   #    script: test/visual.sh
+     - stage: deploy
+       node_js: "6"
+       script: test/deploy-kontena.sh
