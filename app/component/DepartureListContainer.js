@@ -8,6 +8,7 @@ import { Link } from 'react-router';
 import cx from 'classnames';
 import Departure from './Departure';
 import { isBrowser } from '../util/browser';
+import { startRealTimeClient, stopRealTimeClient } from '../action/realTimeClientAction';
 
 const asDepartures = stoptimes => (
   !stoptimes ? [] : stoptimes.map((stoptime) => {
@@ -52,6 +53,38 @@ class DepartureListContainer extends Component {
     className: PropTypes.string,
     isTerminal: PropTypes.bool,
   };
+
+  static contextTypes = {
+    executeAction: PropTypes.func.isRequired,
+    getStore: PropTypes.func.isRequired,
+  };
+
+  componentWillMount() {
+    const currentTime = this.props.currentTime;
+    const departures = asDepartures(this.props.stoptimes)
+      .filter(departure => !(this.props.isTerminal && departure.isArrival))
+      .filter(departure => currentTime < departure.stoptime);
+
+    const allRoutes = [];
+    const topics = [];
+    departures.forEach((departure) => {
+      const route = departure.pattern.route.gtfsId.split(':');
+      allRoutes.push(route[1]);
+    });
+
+    const uniqueRoutes = [...new Set(allRoutes)];
+    uniqueRoutes.forEach((departure) => {
+      topics.push({ route: departure });
+    });
+    this.context.executeAction(startRealTimeClient, topics);
+  }
+
+  componentWillUnmount() {
+    const { client } = this.context.getStore('RealTimeInformationStore');
+    if (client) {
+      this.context.executeAction(stopRealTimeClient, client);
+    }
+  }
 
   onScroll = () => {
     if (this.props.infiniteScroll && isBrowser) {

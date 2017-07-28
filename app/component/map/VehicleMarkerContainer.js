@@ -27,14 +27,14 @@ const walttiTimeFormatCheck = (timeString) => {
   return (timeString.substring(0, 2) * 60 * 60) + Number(timeString.substring(2, 4) * 60);
 };
 
-function getVehicleIcon(mode, heading, useSmallIcon = false) {
+function getVehicleIcon(mode, heading, useSmallIcon = false, iconText = undefined) {
   if (!isBrowser) {
     return null;
   }
 
   if (MODES_WITH_ICONS.indexOf(mode) !== -1) {
     return L.divIcon({
-      html: iconAsString({ img: `icon-icon_${mode}-live`, rotate: heading }),
+      html: iconAsString({ img: `icon-icon_${mode}-live`, rotate: heading, iconText }),
       className: `vehicle-icon ${mode} ${useSmallIcon ? 'small-map-icon' : ''}`,
       iconSize: [20, 20],
       iconAnchor: [10, 10],
@@ -42,7 +42,7 @@ function getVehicleIcon(mode, heading, useSmallIcon = false) {
   }
 
   return L.divIcon({
-    html: iconAsString({ img: 'icon-icon_bus-live', rotate: heading }),
+    html: iconAsString({ img: 'icon-icon_bus-live', rotate: heading, iconText }),
     className: `vehicle-icon bus ${useSmallIcon ? 'small-map-icon' : ''}`,
     iconSize: [20, 20],
     iconAnchor: [10, 10],
@@ -81,6 +81,7 @@ export default class VehicleMarkerContainer extends React.PureComponent {
   }
 
   componentWillMount() {
+    // console.log('VehicleMarkerContainer, componentWillMount: ', this.props.startRealTimeClient);
     this.context.getStore('RealTimeInformationStore').addChangeListener(this.onChange);
 
     if (this.props.startRealTimeClient) {
@@ -107,7 +108,10 @@ export default class VehicleMarkerContainer extends React.PureComponent {
 
   onChange = (id) => {
     const message = this.context.getStore('RealTimeInformationStore').getVehicle(id);
-    if (this.shouldVehicleUpdate(message)) {
+    if (message === undefined) {
+      delete this.vehicles[id];
+      this.forceUpdate();
+    } else if (this.shouldVehicleUpdate(message)) {
       this.updateVehicle(id, message);
       this.forceUpdate();
     }
@@ -162,7 +166,8 @@ export default class VehicleMarkerContainer extends React.PureComponent {
           lat: message.lat,
           lng: message.long,
         }}
-        icon={getVehicleIcon(message.mode, message.heading, this.props.useSmallIcons)}
+        icon={getVehicleIcon(message.mode, message.heading, this.props.useSmallIcons, message.desi)}
+        title={message.desi}
       >
         <Popup
           offset={[106, 16]}

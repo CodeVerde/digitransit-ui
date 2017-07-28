@@ -2,6 +2,28 @@ import moment from 'moment';
 import { getJson } from '../util/xhrPromise';
 
 const cityMode = 'OULU';
+
+// Current real time API doesn't return the bus line number
+// meant for regular passengers.
+// Separate request would be needed, but that is inefficient way
+// to handle the case. So in this pilot we'll use hard coded listenTo
+// to map busses "desi" field to their numbers for real time location
+// maps
+const ouluBusNumberHaxTable = {
+  201: '20B',
+  237: '23',
+  31: '3',
+  353: '35K',
+  441: '4A',
+  511: '51',
+  523: '52',
+};
+
+function getOuluBusNumber(designator) {
+  return ouluBusNumberHaxTable[designator] ?
+    ouluBusNumberHaxTable[designator] : designator;
+}
+
 // const cityMode = 'HSL';
 
 // getTopic
@@ -40,6 +62,7 @@ function parseMessage(topic, message, actionContext) {
     id,
     route: `${cityMode}:${line}`,
     direction,
+    desi: getOuluBusNumber(parsedMessage.desi),
     tripStartTime: startTime,
     operatingDay: parsedMessage.oday && parsedMessage.oday !== 'XXX' ? parsedMessage.oday :
       moment().format('YYYYMMDD'),
@@ -80,7 +103,9 @@ export function startRealTimeClient(actionContext, originalOptions, done) {
 
   const topics = options.map(option => getTopic(option));
 
-  topics.forEach(topic => getInitialData(topic, actionContext, originalOptions));
+  for (let i = 0; i < options.length; i++) {
+    getInitialData(topics[i], actionContext, options[i]);
+  }
 
   System.import('mqtt').then((mqtt) => {
     const client = mqtt.connect(actionContext.config.URL.MQTT);
