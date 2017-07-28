@@ -5,9 +5,13 @@ import cx from 'classnames';
 import ComponentUsageExample from './ComponentUsageExample';
 
 const IconWithTail = ({
-  className, id, img, rotate, children, desaturate = false, scrollIntoView = false,
+  className, id, img, rotate, children,
+  desaturate = false, scrollIntoView = false, iconText = false,
 }) => (
   <span>
+    <div>
+      {iconText && `${iconText}`}
+    </div>
     <svg
       id={id}
       viewBox="0 0 80 80"
@@ -66,6 +70,7 @@ IconWithTail.propTypes = {
   children: PropTypes.element,
   desaturate: PropTypes.bool,
   scrollIntoView: PropTypes.bool,
+  iconText: PropTypes.string,
 };
 
 export default IconWithTail;

@@ -7,6 +7,7 @@ import Map from './map/Map';
 import SelectedStopPopup from './map/popups/SelectedStopPopup';
 import SelectedStopPopupContent from './SelectedStopPopupContent';
 import Icon from './Icon';
+import VehicleMarkerContainer from './map/VehicleMarkerContainer';
 
 const getFullscreenTogglePath = (fullscreenMap, params) =>
   `/${
@@ -59,6 +60,14 @@ const StopPageMap = ({ stop, routes, params }, { breakpoint, router }) => {
   }
 
   const showScale = fullscreenMap || breakpoint === 'large';
+
+  leafletObjs.push(
+    <VehicleMarkerContainer
+      key="vehicles"
+      direction={undefined}
+      tripStart={undefined}
+      useSmallIcons={false}
+    />);
 
   return (
     <Map

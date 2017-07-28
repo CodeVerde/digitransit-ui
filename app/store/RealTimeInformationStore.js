@@ -15,9 +15,13 @@ class RealTimeInformationStore extends Store {
   }
 
   clearClient() {
+    const clearedVehicles = this.vehicles;
     this.client = undefined;
     this.vehicles = {};
     this.subscriptions = [];
+    Object.keys(clearedVehicles).forEach((vehicle) => {
+      this.emitChange(vehicle);
+    });
   }
 
   updateSubscriptions(topics) {

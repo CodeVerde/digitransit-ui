@@ -170,8 +170,8 @@ testVariation('DepartureRow', 'with-cancelation', 2);
 // testVariation('BicycleRentalStationRow', 'few-bikes', 2);
 // testVariation('BicycleRentalStationRow', 'no-bikes', 3);
 
-testVariation('StopPageHeader');
-testVariation('StopCardHeader');
+// testVariation('StopPageHeader');
+// testVariation('StopCardHeader');
 // testVariation('Timetable');
 // testVariation('SplitBars');
 // testVariation('Labeled');

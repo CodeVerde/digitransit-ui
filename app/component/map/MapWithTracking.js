@@ -7,6 +7,7 @@ import onlyUpdateForKeys from 'recompose/onlyUpdateForKeys';
 import ComponentUsageExample from '../ComponentUsageExample';
 import Map from './Map';
 import ToggleMapTracking from '../ToggleMapTracking';
+import VehicleMarkerContainer from './VehicleMarkerContainer';
 
 function mapStateReducer(state, action) {
   switch (action.type) {
@@ -52,6 +53,15 @@ const withMapStateTracking = withReducer('mapState', 'dispatch', mapStateReducer
     focusOnOrigin: false,
   }),
 );
+
+const leafletObjs = [
+  <VehicleMarkerContainer
+    key="vehicles"
+    direction={undefined}
+    tripStart={undefined}
+    useSmallIcons={false}
+  />,
+];
 
 const onlyUpdateCoordChanges = onlyUpdateForKeys(
   // searchModalIsOpen and selectedTab keys here's just to get map updated
@@ -142,6 +152,7 @@ const MapWithTracking =
           },
           disableMapTracking,
           children,
+          leafletObjs,
           showBusLines: context.getStore('MapSelectionsStore').getData().showBusLines,
         };
       },
