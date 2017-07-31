@@ -5,6 +5,7 @@
 
 set -e
 ORG=${ORG:-hsldevcom}
+export SSL_IGNORE_ERRORS=true
 
 kontena master login --token $KONTENA_LOGIN_TOKEN --grid $KONTENA_GRID https://$KONTENA_MASTER_IP
 
