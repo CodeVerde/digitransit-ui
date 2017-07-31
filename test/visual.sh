@@ -1,8 +1,5 @@
 #/bin/bash
 
-# Skip tests while testing deployment scripts
-if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then exit 0; fi
-
 # do nothing if the build is for tagging a prod release
 if [ -n "$TRAVIS_TAG" ]; then exit 0; fi
 
