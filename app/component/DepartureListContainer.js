@@ -65,15 +65,14 @@ class DepartureListContainer extends Component {
       .filter(departure => !(this.props.isTerminal && departure.isArrival))
       .filter(departure => currentTime < departure.stoptime);
 
-    const allRoutes = [];
+    const routes = {};
     const topics = [];
     departures.forEach((departure) => {
       const route = departure.pattern.route.gtfsId.split(':');
-      allRoutes.push(route[1]);
+      routes[route[1]] = route[1];
     });
 
-    const uniqueRoutes = [...new Set(allRoutes)];
-    uniqueRoutes.forEach((departure) => {
+    Object.keys(routes).forEach((departure) => {
       topics.push({ route: departure });
     });
     this.context.executeAction(startRealTimeClient, topics);
