@@ -1,7 +1,7 @@
 #/bin/bash
 
 # Skip the deployment for PRs
-- if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then exit 0; fi
+if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then exit 0; fi
 
 set -e
 ORG=${ORG:-hsldevcom}
