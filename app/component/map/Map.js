@@ -130,7 +130,7 @@ class Map extends React.Component {
     const config = this.context.config;
 
     if (isBrowser) {
-      leafletObjs = this.props.leafletObjs || [];
+      leafletObjs = this.props.leafletObjs.slice() || [];
 
       if (config.map.useVectorTiles) {
         leafletObjs.push(
