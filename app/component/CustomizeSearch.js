@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { intlShape, FormattedMessage } from 'react-intl';
 import { routerShape, locationShape } from 'react-router';
-import connectToStores from 'fluxible-addons-react/connectToStores';
 import range from 'lodash/range';
 import xor from 'lodash/xor';
 import without from 'lodash/without';
@@ -60,7 +59,6 @@ class CustomizeSearch extends React.Component {
   static propTypes = {
     isOpen: PropTypes.bool,
     onToggleClick: PropTypes.func.isRequired,
-    simpleModeData: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -170,32 +168,15 @@ class CustomizeSearch extends React.Component {
     });
   }
 
-  getDefaultModes = () => {
-    console.log('getModes, simpleModeData: ', this.props.simpleModeData);
-    const simpleModeBasedDefaults = [];
-    if (this.props.simpleModeData.kaaraState === true) {
-      simpleModeBasedDefaults.push('CAR');
-    } else if (this.props.simpleModeData.polkupyoraState === true) {
-      simpleModeBasedDefaults.push('BICYCLE');
-    } else {
-      simpleModeBasedDefaults.push('BUS');
-      simpleModeBasedDefaults.push('WALK');
-    }
-
-    return simpleModeBasedDefaults;
-  }
-    // [
-    //   // 'BUS', 'BICYCLE',
-    //   'BICYCLE',
-    // ]
-    // [
-    //   ...Object.keys(this.context.config.transportModes)
-    //     .filter(mode => this.context.config.transportModes[mode].defaultValue)
-    //     .map(mode => mode.toUpperCase()),
-    //   ...Object.keys(this.context.config.streetModes)
-    //     .filter(mode => this.context.config.streetModes[mode].defaultValue)
-    //     .map(mode => mode.toUpperCase()),
-    // ]
+  getDefaultModes = () =>
+    [
+      ...Object.keys(this.context.config.transportModes)
+        .filter(mode => this.context.config.transportModes[mode].defaultValue)
+        .map(mode => mode.toUpperCase()),
+      ...Object.keys(this.context.config.streetModes)
+        .filter(mode => this.context.config.streetModes[mode].defaultValue)
+        .map(mode => mode.toUpperCase()),
+    ]
 
   getStreetModesToggleButtons = () => {
     const availableStreetModes = Object.keys(this.context.config.streetModes)
@@ -381,8 +362,7 @@ class CustomizeSearch extends React.Component {
     } else if (getCustomizedSettings().modes) {
       return getCustomizedSettings().modes;
     }
-    console.log('getModes, getDefaultModes: ', this.getDefaultModes());
-    console.log('getModes, simpleModeData: ', this.props.simpleModeData);
+
     return this.getDefaultModes();
   }
 
@@ -572,10 +552,4 @@ class CustomizeSearch extends React.Component {
   }
 }
 
-export default connectToStores(
-  CustomizeSearch,
-  ['SimpleModeStore'],
-  context => ({
-    simpleModeData: context.getStore('SimpleModeStore').getData(),
-  }),
-);
+export default CustomizeSearch;
