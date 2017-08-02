@@ -362,7 +362,6 @@ class CustomizeSearch extends React.Component {
     } else if (getCustomizedSettings().modes) {
       return getCustomizedSettings().modes;
     }
-
     return this.getDefaultModes();
   }
 

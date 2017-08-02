@@ -17,9 +17,3 @@ export function toggleSimpleModeBusState(actionContext) {
 export function toggleSimpleModeRailState(actionContext) {
   actionContext.dispatch('ToggleSimpleModeRailState');
 }
-
-export function enableSimpleModeKaaraState(actionContext) {
-  console.log('enableSimpleModeKaaraState');
-  actionContext.dispatch('ToggleSimpleModeKaaraState');
-  actionContext.dispatch('EnableNearbyRouteBusState');
-}
