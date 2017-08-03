@@ -25,13 +25,6 @@ class SimpleModeFilterContainer extends React.Component {
     location: PropTypes.object,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedMode: 'bus',
-    };
-  }
-
   getDefaultModes = () =>
     [
       ...Object.keys(this.context.config.simpleTransportModes)
@@ -53,9 +46,11 @@ class SimpleModeFilterContainer extends React.Component {
       return getCustomizedSettings().modes;
     }
 
-    const modes = this.getDefaultModes();
-    modes[0] = this.state.selectedMode.toUpperCase();
-    return modes;
+    const newMode = Object.keys(this.props.transportData)
+      .filter(mode => this.props.transportData[mode] === true)
+      .map(mode => mode.toUpperCase().replace('STATE', ''));
+
+    return newMode[0];
   }
 
   selectedModes() {
@@ -66,10 +61,7 @@ class SimpleModeFilterContainer extends React.Component {
   }
 
   toggleTransportMode(mode, action) {
-    if (!this.props.transportData[`${mode}State`]) {
-      this.context.executeAction(action);
-      this.setState({ selectedMode: mode });
-    }
+    this.context.executeAction(action);
   }
 
   actions = {
@@ -92,11 +84,9 @@ class SimpleModeFilterContainer extends React.Component {
       buttonClass={this.props.buttonClass}
       availableModes={this.availableModes()}
       selectedModes={this.selectedModes()}
-    />);
+    />)
 }
 
-const SimpleModeFilterContainer2 = connectToStores(SimpleModeFilterContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(SimpleModeFilterContainer, ['SimpleModeStore'], context => ({
   transportData: context.getStore('SimpleModeStore').getData(),
 }));
-
-export default SimpleModeFilterContainer2;
