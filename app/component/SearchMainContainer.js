@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { intlShape, FormattedMessage } from 'react-intl';
 import { routerShape, locationShape } from 'react-router';
+import connectToStores from 'fluxible-addons-react/connectToStores';
 import Tab from 'material-ui/Tabs/Tab';
 import cx from 'classnames';
 import without from 'lodash/without';
@@ -30,6 +31,7 @@ class SearchMainContainer extends React.Component {
     className: PropTypes.string,
     searchModalIsOpen: PropTypes.bool.isRequired,
     selectedTab: PropTypes.string.isRequired,
+    simpleModeData: PropTypes.object.isRequired,
   }
 
   componentDidUpdate() {
@@ -54,6 +56,13 @@ class SearchMainContainer extends React.Component {
     }
 
     const locationWithTime = withCurrentTime(this.context.getStore, this.context.location);
+    const locationWithTimeAndMode = {
+      ...locationWithTime,
+      query: {
+        ...locationWithTime.query,
+        modes: this.getModes(),
+      },
+    };
 
     if (item.type === 'CurrentLocation') {
       this.context.executeAction(setUseCurrent, {
@@ -65,7 +74,7 @@ class SearchMainContainer extends React.Component {
       this.context.executeAction(setEndpoint, {
         target: this.props.selectedTab,
         router: this.context.router,
-        location: locationWithTime,
+        location: locationWithTimeAndMode,
         endpoint: {
           lat: item.geometry.coordinates[1],
           lon: item.geometry.coordinates[0],
@@ -75,6 +84,21 @@ class SearchMainContainer extends React.Component {
     }
 
     return this.closeModal();
+  }
+
+  getModes() {
+    let simpleModeBasedDefaults = '';
+    if (this.props.simpleModeData.kaaraState === true) {
+      simpleModeBasedDefaults = 'CAR';
+    } else if (this.props.simpleModeData.polkupyoraState === true) {
+      simpleModeBasedDefaults = 'BICYCLE';
+    } else if (this.props.simpleModeData.kavelyState === true) {
+      simpleModeBasedDefaults = 'WALK';
+    } else {
+      simpleModeBasedDefaults = 'BUS,WALK';
+    }
+
+    return simpleModeBasedDefaults;
   }
 
   searchInputs = [];
@@ -215,4 +239,10 @@ class SearchMainContainer extends React.Component {
   }
 }
 
-export default SearchMainContainer;
+export default connectToStores(
+  SearchMainContainer,
+  ['SimpleModeStore'],
+  context => ({
+    simpleModeData: context.getStore('SimpleModeStore').getData(),
+  }),
+);

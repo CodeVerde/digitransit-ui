@@ -9,16 +9,21 @@ class SimpleModeStore extends Store {
     super(dispatcher);
     const localData = getSimpleModeStorage();
     this.config = dispatcher.getContext().config;
-    this.data = localData.busState !== undefined ? localData : this.enableAll();
+    if (localData && localData.busState !== undefined) {
+      this.data = localData;
+    } else {
+      this.data = this.resetAll();
+    }
     this.generateMode();
   }
 
-  enableAll = () => ({
-    kaaraState: this.config.simpleTransportModes.kaara.availableForSelection,
-    kavelyState: this.config.simpleTransportModes.kavely.availableForSelection,
-    polkupyoraState: this.config.simpleTransportModes.polkupyora.availableForSelection,
-    busState: this.config.simpleTransportModes.bus.availableForSelection,
-    railState: this.config.simpleTransportModes.rail.availableForSelection,
+  resetAll = () => ({
+    kaaraState: this.config.simpleTransportModes.kaara.defaultValue,
+    kavelyState: this.config.simpleTransportModes.kavely.defaultValue,
+    polkupyoraState: this.config.simpleTransportModes.polkupyora.defaultValue,
+    busState: this.config.simpleTransportModes.bus.defaultValue,
+    railState: this.config.simpleTransportModes.rail.defaultValue,
+    selected: 'busState',
   });
 
   getData() {
@@ -90,13 +95,10 @@ class SimpleModeStore extends Store {
       this.clearState();
       this.data[name] = true;
       this.data.selected = name;
-    } else {
-      this.data = this.enableAll();
-      this.data.selected = undefined;
+      this.storeMode();
+      this.generateMode();
+      this.emitChange();
     }
-    this.storeMode();
-    this.generateMode();
-    this.emitChange();
   }
 
   toggleKaaraState() {
