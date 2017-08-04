@@ -7,7 +7,10 @@ class MapSelectionsStore extends Store {
   constructor(dispatcher) {
     super(dispatcher);
     this.config = dispatcher.getContext().config;
-    this.data = { showBusLines: false };
+    this.data = {
+      showBusLines: false,
+      showRoadWeather: false,
+    };
   }
 
   getData() {
@@ -19,6 +22,11 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  toggleRoadWeatherState() {
+    this.data.showRoadWeather = !this.data.showRoadWeather;
+    this.emitChange();
+  }
+
   dehydrate = () => this.data;
 
   rehydrate = (data) => {
@@ -27,6 +35,7 @@ class MapSelectionsStore extends Store {
 
   static handlers = {
     ToggleBusLinesState: 'toggleBusLinesState',
+    ToggleRoadWeatherState: 'toggleRoadWeatherState',
   };
 }
 
