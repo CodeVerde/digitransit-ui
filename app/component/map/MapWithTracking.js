@@ -8,6 +8,7 @@ import ComponentUsageExample from '../ComponentUsageExample';
 import Map from './Map';
 import ToggleMapTracking from '../ToggleMapTracking';
 import VehicleMarkerContainer from './VehicleMarkerContainer';
+import RoadWeatherLineContainer from './RoadWeatherLineContainer';
 
 function mapStateReducer(state, action) {
   switch (action.type) {
@@ -60,6 +61,9 @@ const leafletObjs = [
     direction={undefined}
     tripStart={undefined}
     useSmallIcons={false}
+  />,
+  <RoadWeatherLineContainer
+    key="road-weather"
   />,
 ];
 
