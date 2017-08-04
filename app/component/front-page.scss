@@ -67,6 +67,28 @@ $heading-color: #858585;
   max-width: 600px;
 }
 
+.map-utils-container {
+  height: 100%;
+  max-height: calc(100% - 60px);
+  max-width: 200px;
+  min-width: 40px;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 30%;
+  z-index: 802;
+}
+
+.map-utils-float {
+  background: #fff;
+  border-radius: $border-radius-bigger;
+  box-shadow: 1.5px 2.6px 10px 0 rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 1000px;
+}
+
 .fpcfloat {
   height: 100%;
   max-height: 1000px;
