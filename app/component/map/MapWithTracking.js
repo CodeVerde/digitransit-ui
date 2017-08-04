@@ -64,14 +64,13 @@ const leafletObjs = [
   />,
   <RoadWeatherLineContainer
     key="road-weather"
-    showRoadWeather={false}
   />,
 ];
 
 const onlyUpdateCoordChanges = onlyUpdateForKeys(
   // searchModalIsOpen and selectedTab keys here's just to get map updated
   // when those props change (in large view tabs are inside map)
-  ['breakpoint', 'lat', 'lon', 'zoom', 'mapTracking', 'lang', 'tab', 'searchModalIsOpen', 'selectedTab', 'showBusLines']);
+  ['breakpoint', 'lat', 'lon', 'zoom', 'mapTracking', 'lang', 'tab', 'searchModalIsOpen', 'selectedTab', 'showBusLines', 'showRoadWeather']);
 
 const MapWithTracking =
   withMapStateTracking(
@@ -158,6 +157,7 @@ const MapWithTracking =
           disableMapTracking,
           children,
           leafletObjs,
+          showRoadWeather: context.getStore('MapSelectionsStore').getData().showRoadWeather,
           showBusLines: context.getStore('MapSelectionsStore').getData().showBusLines,
         };
       },
