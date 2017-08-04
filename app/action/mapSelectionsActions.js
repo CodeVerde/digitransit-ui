@@ -7,3 +7,7 @@ export function toggleBusLinesState(actionContext) {
 export function ToggleRoadWeatherState(actionContext) {
   actionContext.dispatch('ToggleRoadWeatherState');
 }
+
+export function ToggleWeatherStationsState(actionContext) {
+  actionContext.dispatch('ToggleWeatherStationsState');
+}

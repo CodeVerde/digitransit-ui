@@ -51,11 +51,7 @@ class WeatherStationMarkerContainer extends React.PureComponent {
   };
 
   static propTypes = {
-    showWeatherStations: PropTypes.bool,
-  }
-
-  static defaultProps = {
-    showWeatherStations: false,
+    showWeatherStations: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -110,5 +106,5 @@ class WeatherStationMarkerContainer extends React.PureComponent {
 }
 
 export default connectToStores(WeatherStationMarkerContainer, ['SimpleModeStore'], context => ({
-  mapSelections: context.getStore('MapSelectionsStore').getData(),
+  showWeatherStations: context.getStore('MapSelectionsStore').getData().showWeatherStations,
 }));
