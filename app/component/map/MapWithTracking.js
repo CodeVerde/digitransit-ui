@@ -64,6 +64,7 @@ const leafletObjs = [
   />,
   <RoadWeatherLineContainer
     key="road-weather"
+    showRoadWeather={false}
   />,
 ];
 

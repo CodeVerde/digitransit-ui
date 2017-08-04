@@ -63,7 +63,7 @@ class RoadWeatherLineContainer extends React.Component {
   render() {
     if (!isBrowser) { return false; }
 
-    if (this.roadData === null) { return false; }
+    if (this.roadData === null || !this.props.showRoadWeather) { return false; }
 
     const objs = [];
 
@@ -81,11 +81,15 @@ class RoadWeatherLineContainer extends React.Component {
 }
 
 RoadWeatherLineContainer.propTypes = {
-  mapSelections: PropTypes.object.isRequired,
+  showRoadWeather: PropTypes.bool,
 };
 
 RoadWeatherLineContainer.contextTypes = {
   config: PropTypes.object.isRequired,
+};
+
+RoadWeatherLineContainer.defaultProps = {
+  showRoadWeather: false,
 };
 
 export default connectToStores(RoadWeatherLineContainer, ['SimpleModeStore'], context => ({
