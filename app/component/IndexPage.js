@@ -8,6 +8,7 @@ import FrontPagePanelLarge from './FrontPagePanelLarge';
 import FrontPagePanelSmall from './FrontPagePanelSmall';
 import MapWithTracking from '../component/map/MapWithTracking';
 // import SearchMainContainer from './SearchMainContainer';
+import MapUtils from './MapUtils';
 import PageFooter from './PageFooter';
 
 const feedbackPanelMudules = { Panel: () => importLazy(System.import('./FeedbackPanel')) };
@@ -186,6 +187,9 @@ class IndexPage extends React.Component {
               nearbyClicked={this.clickNearby}
               favouritesClicked={this.clickFavourites}
             >{this.props.content}</FrontPagePanelLarge>
+          </div>
+          <div className="map-utils-container">
+            <MapUtils>{this.props.content}</MapUtils>
           </div>
         </MapWithTracking>
         <div id="page-footer-container">
