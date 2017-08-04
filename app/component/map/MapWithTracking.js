@@ -8,6 +8,7 @@ import ComponentUsageExample from '../ComponentUsageExample';
 import Map from './Map';
 import ToggleMapTracking from '../ToggleMapTracking';
 import VehicleMarkerContainer from './VehicleMarkerContainer';
+import WeatherStationMarkerContainer from './WeatherStationMarkerContainer';
 
 function mapStateReducer(state, action) {
   switch (action.type) {
@@ -55,6 +56,10 @@ const withMapStateTracking = withReducer('mapState', 'dispatch', mapStateReducer
 );
 
 const leafletObjs = [
+  <WeatherStationMarkerContainer
+    key="weather-stations"
+    showWeatherStations={false}
+  />,
   <VehicleMarkerContainer
     key="vehicles"
     direction={undefined}
