@@ -1,45 +1,43 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import ReactModal from 'react-modal';
-import ComponentUsageExample from './ComponentUsageExample';
 
 class WeatherForecast extends React.Component {
-  constructor () {
+  constructor() {
     super();
     this.state = {
-      showModal: false
+      showModal: false,
     };
 
     this.handleOpenModal = this.handleOpenModal.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
-  handleOpenModal () {
+  handleOpenModal() {
     this.setState({ showModal: true });
   }
 
-  handleCloseModal () {
+  handleCloseModal() {
     this.setState({ showModal: false });
   }
 
-  render () {
+  render() {
     return (
       <div>
         <button onClick={this.handleOpenModal}>Weather Forecast</button>
         <ReactModal
-           isOpen={this.state.showModal}
-           contentLabel="Weather Forecast"
-           style={{
-             overlay: {
-               zIndex: 10000
-             },
-             content: {
-               zIndex: 10001
-             }
-           }}
+          isOpen={this.state.showModal}
+          contentLabel="Weather Forecast"
+          style={{
+            overlay: {
+              zIndex: 10000,
+            },
+            content: {
+              zIndex: 10001,
+            },
+          }}
         >
           <button onClick={this.handleCloseModal}>Close</button>
-          <iframe src="//www.oulunliikenne.fi/php/oulun_saa_simple.php"></iframe>
+          <iframe src="//www.oulunliikenne.fi/php/oulun_saa_simple.php" />
         </ReactModal>
       </div>
     );
