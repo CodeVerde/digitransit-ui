@@ -9,6 +9,7 @@ import Map from './Map';
 import ToggleMapTracking from '../ToggleMapTracking';
 import VehicleMarkerContainer from './VehicleMarkerContainer';
 import RoadWeatherLineContainer from './RoadWeatherLineContainer';
+import WeatherStationMarkerContainer from './WeatherStationMarkerContainer';
 
 function mapStateReducer(state, action) {
   switch (action.type) {
@@ -56,6 +57,9 @@ const withMapStateTracking = withReducer('mapState', 'dispatch', mapStateReducer
 );
 
 const leafletObjs = [
+  <WeatherStationMarkerContainer
+    key="weather-stations"
+  />,
   <VehicleMarkerContainer
     key="vehicles"
     direction={undefined}
@@ -70,7 +74,9 @@ const leafletObjs = [
 const onlyUpdateCoordChanges = onlyUpdateForKeys(
   // searchModalIsOpen and selectedTab keys here's just to get map updated
   // when those props change (in large view tabs are inside map)
-  ['breakpoint', 'lat', 'lon', 'zoom', 'mapTracking', 'lang', 'tab', 'searchModalIsOpen', 'selectedTab', 'showBusLines', 'showRoadWeather']);
+  ['breakpoint', 'lat', 'lon', 'zoom', 'mapTracking', 'lang', 'tab',
+    'searchModalIsOpen', 'selectedTab',
+    'showBusLines', 'showRoadWeather', 'showWeatherStations']);
 
 const MapWithTracking =
   withMapStateTracking(
@@ -157,8 +163,9 @@ const MapWithTracking =
           disableMapTracking,
           children,
           leafletObjs,
-          showRoadWeather: context.getStore('MapSelectionsStore').getData().showRoadWeather,
           showBusLines: context.getStore('MapSelectionsStore').getData().showBusLines,
+          showRoadWeather: context.getStore('MapSelectionsStore').getData().showRoadWeather,
+          showWeatherStations: context.getStore('MapSelectionsStore').getData().showWeatherStations,
         };
       },
     ),

@@ -27,6 +27,11 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  toggleWeatherStationsState() {
+    this.data.showWeatherStations = !this.data.showWeatherStations;
+    this.emitChange();
+  }
+
   dehydrate = () => this.data;
 
   rehydrate = (data) => {
@@ -36,6 +41,7 @@ class MapSelectionsStore extends Store {
   static handlers = {
     ToggleBusLinesState: 'toggleBusLinesState',
     ToggleRoadWeatherState: 'toggleRoadWeatherState',
+    ToggleWeatherStationsState: 'toggleWeatherStationsState',
   };
 }
 

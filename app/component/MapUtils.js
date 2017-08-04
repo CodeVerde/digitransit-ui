@@ -2,6 +2,7 @@ import React from 'react';
 import WeatherForecast from './WeatherForecast';
 import RainMap from './RainMap';
 import RoadWeatherToggle from './RoadWeatherToggle';
+import WeatherStationsToggle from './WeatherStationsToggle';
 
 const MapUtils = () => (
   <div className="map-utils-float">
@@ -9,6 +10,7 @@ const MapUtils = () => (
       <WeatherForecast />
       <RainMap />
       <RoadWeatherToggle />
+      <WeatherStationsToggle />
     </div>
   </div>
 );
