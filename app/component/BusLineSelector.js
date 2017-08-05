@@ -13,11 +13,12 @@ class BusLineSelector extends React.Component {
   };
 
   render() {
+    const sortedData = busData.sort((a, b) => (a.shortName > b.shortName));
     const selectOptions = [];
     let count = 0;
-    busData.forEach((element) => {
-      const label = `${element.item.shortName} (${element.item.longName})`;
-      const linkUrl = `/linjat/${element.item.gtfsId}/pysakit/${element.item.patterns[0].code}`;
+    sortedData.forEach((element) => {
+      const label = `${element.shortName} (${element.longName})`;
+      const linkUrl = `/linjat/${element.gtfsId}/pysakit/${element.patterns[0].code}`;
       selectOptions.push(
         <option value={linkUrl} key={count}>
           {label}
