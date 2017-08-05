@@ -36,10 +36,10 @@ const parseWeatherStationMessage = (data) => {
 
 const getWeatherStationMarkerIcon = iconText => (
   L.divIcon({
-    html: iconAsString({ img: 'icon-icon_ferry-live', iconText }),
-    className: 'vehicle-icon ferry',
+    html: iconAsString({ img: 'icon-icon_tiesaa_marker', iconText }),
+    className: 'weather-station-marker',
     iconSize: [20, 20],
-    iconAnchor: [10, 27],
+    iconAnchor: [30, 40],
   })
 );
 

@@ -132,6 +132,18 @@ div.leaflet-marker-icon.vehicle-icon {
   }
 }
 
+div.leaflet-marker-icon.weather-station-marker {
+  border: none;
+  background: none;
+  > span > svg.icon {
+    color: $hilight-color;
+    width: 5em;
+    height: 5em;
+    top:-2em;
+    left:-2em;
+  }
+}
+
 div.leaflet-marker-icon.vehicle-icon.small-map-icon  {
   > span > svg.icon {
     stroke-width: 40px;
