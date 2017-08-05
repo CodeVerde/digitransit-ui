@@ -48,21 +48,3 @@ export function postJson(url, params, payload) {
 export function getJsons(urls) {
   return Promise.all(urls.map(url => getJson(url)));
 }
-
-// Return Promise for a url json get request
-export function getJsonWithHeaders(url, params, newHeaders) {
-  const defaultHeaders = { Accept: 'application/json' };
-
-  return fetch(
-    encodeURI(url) + (params ? (url.search(/\?/) === -1 ? '?' : '&') + serialize(params) : ''),
-    {
-      timeout: 10000,
-      method: 'GET',
-
-      headers: {
-        ...defaultHeaders,
-        newHeaders,
-      },
-    },
-  ).then(res => res.json());
-}

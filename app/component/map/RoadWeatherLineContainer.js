@@ -7,7 +7,6 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import RoadWeatherLine from './RoadWeatherLine';
 import { isBrowser } from '../../util/browser';
-import { getJsonWithHeaders } from '../../util/xhrPromise';
 import roadWeatherData from './RoadWeatherData';
 
 const parseRoadWeatherMessage = (data) => {
@@ -45,18 +44,6 @@ class RoadWeatherLineContainer extends React.Component {
   }
 
   componentWillMount() {
-    // Fetch data if the related setting is setting
-    const devUrl = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadcondition/roadconditions.php';
-
-    console.log('RoadWeatherLineContainer, componentWillMount, fetching data');
-    getJsonWithHeaders(devUrl, undefined, { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' })
-    .then((data) => {
-      console.log('RoadWeatherLineContainer, got data: ', data);
-    })
-    .catch((err) => {
-      console.log('getJsonWithHeaders error!!: ', err);
-    });
-
     this.roadData = parseRoadWeatherMessage(roadWeatherData);
   }
 
