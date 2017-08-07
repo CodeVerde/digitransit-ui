@@ -44,9 +44,11 @@ class WeatherForecast extends React.Component {
               zIndex: 10000,
             },
             content: {
+              height: '250px',
               left: 'auto',
               right: '200px',
-              width: '420px',
+              top: '250px',
+              width: '320px',
               zIndex: 10001,
             },
           }}
@@ -83,9 +85,9 @@ class WeatherForecast extends React.Component {
           </div>
           <iframe
             frameBorder="0"
-            height="670"
+            height="190"
             src="//www.oulunliikenne.fi/php/oulun_saa_simple.php"
-            width="380"
+            width="280"
           />
         </ReactModal>
       </div>
