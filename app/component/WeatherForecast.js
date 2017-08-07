@@ -40,15 +40,53 @@ class WeatherForecast extends React.Component {
           contentLabel="Weather Forecast"
           style={{
             overlay: {
+              backgroundColor: 'rgba(255, 255, 255, 0)',
               zIndex: 10000,
             },
             content: {
+              left: 'auto',
+              right: '200px',
+              width: '420px',
               zIndex: 10001,
             },
           }}
         >
-          <button onClick={this.handleCloseModal}>Close</button>
-          <iframe src="//www.oulunliikenne.fi/php/oulun_saa_simple.php" />
+          <div className="row">
+            <h2
+              className="left"
+              style={{
+                margin: 0,
+              }}
+            >
+              <span>Sääennuste</span>
+            </h2>
+            <div
+              className="small-1 columns right text-right modal-top-nav"
+              style={{
+                marginTop: '5px',
+              }}
+            >
+              <a
+                className="close-button cursor-pointer"
+                onClick={this.handleCloseModal}
+              >
+                <span ariaHidden="true">
+                  <svg
+                    className="icon"
+                    viewBox="0 0 40 40"
+                  >
+                    <use xlinkHref="#icon-icon_close" />
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+          <iframe
+            frameBorder="0"
+            height="670"
+            src="//www.oulunliikenne.fi/php/oulun_saa_simple.php"
+            width="380"
+          />
         </ReactModal>
       </div>
     );
