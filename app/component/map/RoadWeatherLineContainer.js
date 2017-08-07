@@ -76,5 +76,5 @@ RoadWeatherLineContainer.contextTypes = {
 };
 
 export default connectToStores(RoadWeatherLineContainer, ['SimpleModeStore'], context => ({
-  showRoadWeather: context.getStore('MapSelectionsStore').getData().showRoadWeather,
+  showRoadWeather: context.getStore('MapSelectionsStore').getRoadWeatherState(),
 }));

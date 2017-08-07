@@ -44,7 +44,7 @@ RoadWeatherToggle.contextTypes = {
 };
 
 const connected = connectToStores(RoadWeatherToggle, ['MapSelectionsStore'], context => ({
-  showRoadWeather: context.getStore('MapSelectionsStore').getData().showRoadWeather,
+  showRoadWeather: context.getStore('MapSelectionsStore').getRoadWeatherState(),
 }));
 
 export { connected as default, RoadWeatherToggle as Component };
