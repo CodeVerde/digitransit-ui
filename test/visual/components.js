@@ -73,7 +73,7 @@ testVariation('PlatformNumber');
 // testVariation('CityBikeAvailability');
 // testVariation('CityBikeUse');
 
-//testVariation('Availability');
+// testVariation('Availability');
 
 // testVariation('ParkAndRideAvailability', 'non-realtime');
 // testVariation('ParkAndRideAvailability', 'realtime', 2);
