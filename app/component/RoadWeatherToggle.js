@@ -23,7 +23,6 @@ const RoadWeatherToggle = ({ showRoadWeather }, { executeAction }) => (
         <use xlinkHref="#icon-icon_ajokeli" />
       </svg>
       <span><FormattedMessage id="toggle-road-weather" defaultMessage="Driving Weather" /></span>
-      {showRoadWeather ? ': ON' : ': OFF'}
     </button>
   </div>
 );

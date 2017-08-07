@@ -7,7 +7,6 @@ import without from 'lodash/without';
 
 import { intlShape } from 'react-intl';
 
-import BusLinesToggle from './BusLinesToggle';
 import BusLineSelector from './BusLineSelector';
 import ModeFilterContainer from './ModeFilterContainer';
 import NearestRoutesContainer from './NearestRoutesContainer';
@@ -52,7 +51,6 @@ function NearbyRoutesPanel({ location, currentTime, modes, placeTypes }, context
       <div className="flex-vertical">
         <div className="row small-12 small-centered columns">
           <BusLineSelector />
-          <BusLinesToggle />
         </div>
       </div>
       <SearchMainContainer
