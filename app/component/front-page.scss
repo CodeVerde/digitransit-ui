@@ -72,10 +72,12 @@ $heading-color: #858585;
   max-height: calc(100% - 60px);
   max-width: 200px;
   min-width: 40px;
+  padding: 10px;
   position: absolute;
   right: 30px;
   top: 30px;
-  width: 30%;
+  //width: 30%;
+  width: 150px;
   z-index: 802;
 }
 
@@ -87,6 +89,32 @@ $heading-color: #858585;
   flex-direction: column;
   height: 100%;
   max-height: 1000px;
+}
+
+.map-utils-button {
+  background: transparent;
+  color: #333;
+  display: block;
+  font-family: "PT Sans Narrow", "Arial Condensed", Arial, Georgia, Serif;
+  font-weight: 400;
+  margin: 10px 0 10px 10px;
+  padding: 0;
+
+  .icon {
+    margin-top: 8px;
+  }
+
+  span {
+    margin-left: 4px;
+  }
+
+}
+
+.map-utils-button:focus,
+.map-utils-button:hover,
+.map-utils-button.active {
+  background: transparent;
+  color: #9d0051;
 }
 
 .fpcfloat {

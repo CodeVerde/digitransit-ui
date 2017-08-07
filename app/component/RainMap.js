@@ -23,7 +23,18 @@ class RainMap extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleOpenModal}>Rain Map</button>
+        <button
+          className="map-utils-button"
+          onClick={this.handleOpenModal}
+        >
+          <svg
+            className="icon"
+            viewBox="0 0 283.46 283.46"
+          >
+            <use xlinkHref="#icon-icon_sadekartta" />
+          </svg>
+          <span>Sadekartta</span>
+        </button>
         <ReactModal
           isOpen={this.state.showModal}
           contentLabel="Rain Map"
@@ -37,7 +48,12 @@ class RainMap extends React.Component {
           }}
         >
           <button onClick={this.handleCloseModal}>Close</button>
-          <iframe src="//http.foreca.com/xfer/infotripla/fin/fca_fin-precip-inline-fi.html" />
+          <iframe
+            frameBorder="0"
+            height="670"
+            src="//http.foreca.com/xfer/infotripla/fin/fca_fin-precip-inline-fi.html"
+            width="580"
+          />
         </ReactModal>
       </div>
     );

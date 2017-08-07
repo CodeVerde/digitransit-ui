@@ -12,10 +12,17 @@ const toggleWeatherStations = executeAction =>
 const WeatherStationsToggle = ({ showWeatherStations }, { executeAction }) => (
   <div key="toggle-weather-stations" id="toggle-weather-stations" className="">
     <button
+      className={showWeatherStations ? 'map-utils-button active' : 'map-utils-button'}
       id="toggle-weather-stations-button"
       onClick={toggleWeatherStations(executeAction)}
     >
-      <FormattedMessage id="toggle-weather-stations" defaultMessage="Road Weather" />
+      <svg
+        className="icon"
+        viewBox="0 0 283.46 283.46"
+      >
+        <use xlinkHref="#icon-icon_tiesaa_marker" />
+      </svg>
+      <span><FormattedMessage id="toggle-weather-stations" defaultMessage="Road Weather" /></span>
       {showWeatherStations ? ': ON' : ': OFF'}
     </button>
   </div>
