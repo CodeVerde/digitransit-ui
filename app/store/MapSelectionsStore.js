@@ -8,6 +8,7 @@ class MapSelectionsStore extends Store {
     super(dispatcher);
     this.config = dispatcher.getContext().config;
     this.data = {
+      showBulletins: false,
       showBusLines: false,
       showRoadWeather: false,
       showWeatherStations: false,
@@ -18,6 +19,11 @@ class MapSelectionsStore extends Store {
 
   rehydrate = (data) => {
     this.data = data;
+  }
+
+  toggleBulletinsState() {
+    this.data.showBulletins = !this.data.showBulletins;
+    this.emitChange();
   }
 
   toggleBusLinesState() {
@@ -35,6 +41,11 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  getBulletinsState() {
+    // return this.data.showBulletins;
+    return true;
+  }
+
   getBusLinesState() {
     return this.data.showBusLines;
   }
@@ -48,6 +59,7 @@ class MapSelectionsStore extends Store {
   }
 
   static handlers = {
+    ToggleBulletinsState: 'toggleBulletinsState',
     ToggleBusLinesState: 'toggleBusLinesState',
     ToggleRoadWeatherState: 'toggleRoadWeatherState',
     ToggleWeatherStationsState: 'toggleWeatherStationsState',
