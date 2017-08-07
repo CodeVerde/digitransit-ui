@@ -27,7 +27,7 @@ class BusLineSelector extends React.Component {
     });
 
     return (
-      <div className="bus-line-selector small-8 columns">
+      <div className="bus-line-selector small-12 columns">
         <div className="select-wrapper">
           <select className="lines" onChange={this.selectLine}>
             {selectOptions}

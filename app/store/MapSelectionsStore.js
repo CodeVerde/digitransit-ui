@@ -10,6 +10,7 @@ class MapSelectionsStore extends Store {
     this.data = {
       showBusLines: false,
       showRoadWeather: false,
+      showWeatherStations: false,
     };
   }
 

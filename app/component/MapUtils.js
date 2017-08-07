@@ -1,4 +1,6 @@
 import React from 'react';
+
+import BusLinesMapToggle from './BusLinesMapToggle';
 import WeatherForecast from './WeatherForecast';
 import RainMap from './RainMap';
 import RoadWeatherToggle from './RoadWeatherToggle';
@@ -7,7 +9,7 @@ import WeatherStationsToggle from './WeatherStationsToggle';
 const MapUtils = () => (
   <div className="map-utils-float">
     <div className="MapUtils">
-      <button className="map-utils-button">
+      {/* <button className="map-utils-button">
         <svg
           className="icon"
           viewBox="0 0 283.46 283.46"
@@ -15,7 +17,9 @@ const MapUtils = () => (
           <use xlinkHref="#icon-icon_linjakartta" />
         </svg>
         <span>Linjakartta</span>
-      </button>
+      </button> */}
+
+      <BusLinesMapToggle />
 
       <button className="map-utils-button">
         <svg

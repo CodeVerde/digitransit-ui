@@ -23,7 +23,6 @@ const WeatherStationsToggle = ({ showWeatherStations }, { executeAction }) => (
         <use xlinkHref="#icon-icon_tiesaa_marker" />
       </svg>
       <span><FormattedMessage id="toggle-weather-stations" defaultMessage="Road Weather" /></span>
-      {showWeatherStations ? ': ON' : ': OFF'}
     </button>
   </div>
 );
