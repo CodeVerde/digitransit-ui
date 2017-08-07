@@ -14,8 +14,10 @@ class MapSelectionsStore extends Store {
     };
   }
 
-  getData() {
-    return this.data;
+  dehydrate = () => this.data;
+
+  rehydrate = (data) => {
+    this.data = data;
   }
 
   toggleBusLinesState() {
@@ -33,10 +35,16 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
-  dehydrate = () => this.data;
+  getBusLinesState() {
+    return this.data.showBusLines;
+  }
 
-  rehydrate = (data) => {
-    this.data = data;
+  getRoadWeatherState() {
+    return this.data.showRoadWeather;
+  }
+
+  getWeatherStationsState() {
+    return this.data.showWeatherStations;
   }
 
   static handlers = {

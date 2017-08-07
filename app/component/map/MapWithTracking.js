@@ -7,9 +7,8 @@ import onlyUpdateForKeys from 'recompose/onlyUpdateForKeys';
 import ComponentUsageExample from '../ComponentUsageExample';
 import Map from './Map';
 import ToggleMapTracking from '../ToggleMapTracking';
+import OuluMapObjects from './OuluMapObjects';
 import VehicleMarkerContainer from './VehicleMarkerContainer';
-import RoadWeatherLineContainer from './RoadWeatherLineContainer';
-import WeatherStationMarkerContainer from './WeatherStationMarkerContainer';
 
 function mapStateReducer(state, action) {
   switch (action.type) {
@@ -57,18 +56,13 @@ const withMapStateTracking = withReducer('mapState', 'dispatch', mapStateReducer
 );
 
 const leafletObjs = [
-  <WeatherStationMarkerContainer
-    key="weather-stations"
-  />,
   <VehicleMarkerContainer
     key="vehicles"
     direction={undefined}
     tripStart={undefined}
     useSmallIcons={false}
   />,
-  <RoadWeatherLineContainer
-    key="road-weather"
-  />,
+  ...OuluMapObjects,
 ];
 
 const onlyUpdateCoordChanges = onlyUpdateForKeys(
@@ -163,9 +157,9 @@ const MapWithTracking =
           disableMapTracking,
           children,
           leafletObjs,
-          showBusLines: context.getStore('MapSelectionsStore').getData().showBusLines,
-          showRoadWeather: context.getStore('MapSelectionsStore').getData().showRoadWeather,
-          showWeatherStations: context.getStore('MapSelectionsStore').getData().showWeatherStations,
+          showBusLines: context.getStore('MapSelectionsStore').getBusLinesState(),
+          showRoadWeather: context.getStore('MapSelectionsStore').getRoadWeatherState(),
+          showWeatherStations: context.getStore('MapSelectionsStore').getWeatherStationsState(),
         };
       },
     ),
