@@ -59,11 +59,16 @@
     font-size: 0.5rem;
     width: 2em;
     color: $link-color;
+    pointer-events: none;
+    position: absolute;
+    right: 16px;
+    top: 14px;
   }
 
   .lines {
     text-align: left;
     box-shadow: none;
+    padding: 0;
   }
 }
 
