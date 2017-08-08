@@ -42,8 +42,7 @@ class MapSelectionsStore extends Store {
   }
 
   getBulletinsState() {
-    // return this.data.showBulletins;
-    return true;
+    return this.data.showBulletins;
   }
 
   getBusLinesState() {

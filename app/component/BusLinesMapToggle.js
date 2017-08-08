@@ -50,7 +50,7 @@ BusLinesMapToggle.contextTypes = {
 };
 
 const connected = connectToStores(BusLinesMapToggle, ['MapSelectionsStore'], context => ({
-  showBusLinesMap: context.getStore('MapSelectionsStore').getData().showBusLines,
+  showBusLinesMap: context.getStore('MapSelectionsStore').getBusLinesState(),
 }));
 
 export { connected as default, BusLinesMapToggle as Component };
