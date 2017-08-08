@@ -34,7 +34,6 @@ const parseBulletinMessage = (data) => {
     });
   });
 
-  console.log('parseBulletinMessage: ', cleanData);
   return cleanData;
 };
 
