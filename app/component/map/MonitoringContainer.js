@@ -6,7 +6,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { asString as iconAsString } from '../IconWithTail';
 
 import { isBrowser } from '../../util/browser';
-import { bulletinMarkerData, bulletinDetailsData } from './BulletinData';
+import { monitoringMarkerData, monitoringDetailsData } from './MonitoringData';
 
 
 let Popup;
@@ -22,22 +22,23 @@ if (isBrowser) {
 }
 
 
-const parseBulletinMessage = (data) => {
+const parseMonitoringMessage = (data) => {
   const cleanData = [];
   data.forEach((element) => {
     cleanData.push({
-      id: `bulletin-marker-${element.id}`,
+      id: `monitoring-marker-${element.id}`,
       geometry: { lat: element.geom.coordinates[1], lon: element.geom.coordinates[0] },
-      mainClass: element.incidentmainclass,
-      reason: element.incidentmainreason,
-      area: element.area,
+      name: element.name,
+      directionName: element.direction_name,
+      type: element.type,
     });
   });
 
+  console.log('parseMonitoringMessage: ', cleanData);
   return cleanData;
 };
 
-const getBulletinIcon = iconText => (
+const getMonitoringIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-icon_tiesaa_marker', iconText }),
     className: 'weather-station-marker',
@@ -46,7 +47,7 @@ const getBulletinIcon = iconText => (
   })
 );
 
-class BulletinContainer extends React.PureComponent {
+class MonitoringContainer extends React.PureComponent {
   static contextTypes = {
     getStore: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired,
@@ -54,7 +55,7 @@ class BulletinContainer extends React.PureComponent {
   };
 
   static propTypes = {
-    showBulletins: PropTypes.bool.isRequired,
+    showMonitoring: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -66,20 +67,18 @@ class BulletinContainer extends React.PureComponent {
 
   componentWillMount() {
     // Fetch data if the related setting is setting
-    this.data = parseBulletinMessage(bulletinMarkerData);
+    this.data = parseMonitoringMessage(monitoringMarkerData);
   }
 
   render() {
     if (!isBrowser) { return false; }
 
-    if (this.data === null || !this.props.showBulletins) { return false; }
+    if (this.data === null || !this.props.showMonitoring) { return false; }
 
     const objs = [];
-
     this.data.forEach((element) => {
-      const titleString = `${bulletinDetailsData.incidentmainclass}
-        , ${bulletinDetailsData.area}
-        , ${bulletinDetailsData.incidentmainreason}`;
+      const contentString = `${monitoringDetailsData[0].weekday} ${monitoringDetailsData[0].date}
+      : ${monitoringDetailsData[0].value}`;
       objs.push(
         <Marker
           key={element.id}
@@ -87,8 +86,8 @@ class BulletinContainer extends React.PureComponent {
             lat: element.geometry.lat,
             lng: element.geometry.lon,
           }}
-          icon={getBulletinIcon()}
-          title={titleString}
+          icon={getMonitoringIcon()}
+          title={element.name}
         >
           <Popup
             offset={[106, 16]}
@@ -97,12 +96,9 @@ class BulletinContainer extends React.PureComponent {
             minWidth={250}
             className="popup"
           >
-            <p><strong>{titleString}</strong><br />
-              Kesto: {bulletinDetailsData.startdate} toistaiseksi<br />
-              {bulletinDetailsData.information}<br />
-              Lisätiedot:
-              {bulletinDetailsData.incidentadditionalreason1}<br />
-              {bulletinDetailsData.severity}</p>
+            <p><strong>{element.name}</strong><br />
+              {contentString}
+            </p>
           </Popup>
         </Marker>,
       );
@@ -112,6 +108,6 @@ class BulletinContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(BulletinContainer, ['SimpleModeStore'], context => ({
-  showBulletins: context.getStore('MapSelectionsStore').getBulletinsState(),
+export default connectToStores(MonitoringContainer, ['SimpleModeStore'], context => ({
+  showMonitoring: context.getStore('MapSelectionsStore').getMonitoringState(),
 }));
