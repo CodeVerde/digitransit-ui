@@ -4,10 +4,10 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { FormattedMessage } from 'react-intl';
 
 import ComponentUsageExample from './ComponentUsageExample';
-import { toggleBusLinesState } from '../action/mapSelectionsActions';
+import { ToggleBusLinesState } from '../action/mapSelectionsActions';
 
 const toggleBusLinesMap = executeAction =>
-  () => executeAction(toggleBusLinesState);
+  () => executeAction(ToggleBusLinesState);
 
 const BusLinesMapToggle = ({ showBusLinesMap }, { executeAction }) => (
   <div key="toggle-bus-lines-map" id="toggle-bus-lines-map" className="">

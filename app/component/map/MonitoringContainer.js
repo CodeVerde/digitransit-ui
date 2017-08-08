@@ -34,7 +34,6 @@ const parseMonitoringMessage = (data) => {
     });
   });
 
-  console.log('parseMonitoringMessage: ', cleanData);
   return cleanData;
 };
 
@@ -62,24 +61,17 @@ class MonitoringContainer extends React.PureComponent {
     super(props);
     this.state = {
       data: null,
+      objs: null,
     };
   }
 
   componentWillMount() {
-    // Fetch data if the related setting is setting
     this.data = parseMonitoringMessage(monitoringMarkerData);
-  }
-
-  render() {
-    if (!isBrowser) { return false; }
-
-    if (this.data === null || !this.props.showMonitoring) { return false; }
-
-    const objs = [];
+    this.objs = [];
     this.data.forEach((element) => {
       const contentString = `${monitoringDetailsData[0].weekday} ${monitoringDetailsData[0].date}
       : ${monitoringDetailsData[0].value}`;
-      objs.push(
+      this.objs.push(
         <Marker
           key={element.id}
           position={{
@@ -103,8 +95,14 @@ class MonitoringContainer extends React.PureComponent {
         </Marker>,
       );
     });
+  }
 
-    return (<div style={{ display: 'none' }}>{objs}</div>);
+  render() {
+    if (!isBrowser) { return false; }
+
+    if (this.data === null || !this.props.showMonitoring) { return false; }
+
+    return (<div style={{ display: 'none' }}>{this.objs}</div>);
   }
 }
 

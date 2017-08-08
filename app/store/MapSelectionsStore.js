@@ -56,8 +56,7 @@ class MapSelectionsStore extends Store {
   }
 
   getMonitoringState() {
-    // return this.data.showMonitoring;
-    return true;
+    return this.data.showMonitoring;
   }
 
   getRoadWeatherState() {
