@@ -13,6 +13,7 @@ class MapSelectionsStore extends Store {
       showIncidents: false,
       showMonitoring: false,
       showRoadWeather: false,
+      showTrafficFluency: false,
       showWeatherStations: false,
     };
   }
@@ -48,6 +49,11 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  toggleTrafficFluencyState() {
+    this.data.showTrafficFluency = !this.data.showTrafficFluency;
+    this.emitChange();
+  }
+
   toggleWeatherStationsState() {
     this.data.showWeatherStations = !this.data.showWeatherStations;
     this.emitChange();
@@ -73,6 +79,10 @@ class MapSelectionsStore extends Store {
     return this.data.showRoadWeather;
   }
 
+  getTrafficFluencyState() {
+    return this.data.showTrafficFluency;
+  }
+
   getWeatherStationsState() {
     return this.data.showWeatherStations;
   }
@@ -83,6 +93,7 @@ class MapSelectionsStore extends Store {
     TogglIncidentsState: 'toggleIncidentsState',
     ToggleMonitoringState: 'toggleMonitoringState',
     ToggleRoadWeatherState: 'toggleRoadWeatherState',
+    ToggleTrafficFluencyState: 'toggleTrafficFluencyState',
     ToggleWeatherStationsState: 'toggleWeatherStationsState',
   };
 }

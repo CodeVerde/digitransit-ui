@@ -3,6 +3,7 @@ import BulletinContainer from './BulletinContainer';
 import IncidentsContainer from './IncidentsContainer';
 import MonitoringContainer from './MonitoringContainer';
 import RoadWeatherLineContainer from './RoadWeatherLineContainer';
+import TrafficFluencyContainer from './TrafficFluencyContainer';
 import WeatherStationMarkerContainer from './WeatherStationMarkerContainer';
 
 
@@ -16,11 +17,14 @@ const OuluMapObjects = [
   <MonitoringContainer
     key="monitoring"
   />,
-  <WeatherStationMarkerContainer
-    key="weather-stations"
-  />,
   <RoadWeatherLineContainer
     key="road-weather"
+  />,
+  <TrafficFluencyContainer
+    key="traffic-fluency"
+  />,
+  <WeatherStationMarkerContainer
+    key="weather-stations"
   />,
 ];
 
