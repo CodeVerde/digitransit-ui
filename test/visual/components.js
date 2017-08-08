@@ -37,7 +37,7 @@ function testVariation(componentName, variationName = 'normal', captureOrExample
     });
 }
 
-const skip = (browsers => (suite) => { suite.skip(browsers); });
+// const skip = (browsers => (suite) => { suite.skip(browsers); });
 
 
 // tests//
@@ -48,21 +48,21 @@ const skip = (browsers => (suite) => { suite.skip(browsers); });
 // testVariation('Departure', 'with-stop', 3);
 // testVariation('Departure', 'isArrival', 4);
 
-testVariation('DepartureTime', 'normal', 2);
-testVariation('DepartureTime', 'canceled', 3);
+// testVariation('DepartureTime', 'normal', 2);
+// testVariation('DepartureTime', 'canceled', 3);
 
 // testVariation('RouteNumber', 'normal');
 // testVariation('RouteNumber', 'with-disruption', 2);
 // testVariation('RouteNumber', 'vertical', 4);
 // testVariation('RouteNumber', 'vertical-with-disruption', 5);
 
-testVariation('RouteDestination', 'normal');
-testVariation('RouteDestination', 'isArrival', 2);
+// testVariation('RouteDestination', 'normal');
+// testVariation('RouteDestination', 'isArrival', 2);
 
 
-testVariation('Distance', 'zero');
-testVariation('Distance', 'meters', 2);
-testVariation('Distance', 'km', 3);
+// testVariation('Distance', 'zero');
+// testVariation('Distance', 'meters', 2);
+// testVariation('Distance', 'km', 3);
 
 testVariation('PlatformNumber');
 
@@ -82,14 +82,14 @@ testVariation('PlatformNumber');
 //       '.component-example:nth-of-type(1) .component .realtime-icon').then(skip('ie11'));
 testVariation('NoFavouriteLocations');
 
-testVariation('EmptyFavouriteLocationSlot');
+// testVariation('EmptyFavouriteLocationSlot');
 
 // testVariation('TripRouteStop', 'non-realtime');
 // testVariation('TripRouteStop', 'realtime', [
 //   '.component-example:nth-of-type(2) .component',
 // ], '.component-example:nth-of-type(2) .component svg.realtime').then(skip('ie11'));
 
-testVariation('Favourite', 'normal');
+// testVariation('Favourite', 'normal');
 // testVariation('Favourite', 'hovered', 1, [], actions => actions.mouseMove(
 //       '.component-example:nth-of-type(1) .component svg'));
 // testVariation('Favourite', 'not-favourite', 2);
@@ -116,7 +116,7 @@ testVariation('TimeNavigationButtons', 'normal');
 //       ).wait(400); // Wait for animation to happen
 // });
 
-testVariation('TimeSelectors');
+// testVariation('TimeSelectors');
 
 // testVariation('RightOffcanvasToggle', 'default');
 // testVariation('RightOffcanvasToggle', 'adjusted', 2);
@@ -132,8 +132,8 @@ testVariation('TimeSelectors');
 // testVariation('RouteScheduleStopSelect');
 // testVariation('RouteScheduleTripRow');
 
-testVariation('AppBarSmall', 'with-back-arrow');
-testVariation('AppBarSmall', 'without-back-arrow', 2);
+// testVariation('AppBarSmall', 'with-back-arrow');
+// testVariation('AppBarSmall', 'without-back-arrow', 2);
 // testVariation('AppBarSmall', 'with-logo', 3);
 
 // testVariation('AppBarLarge');
@@ -142,8 +142,8 @@ testVariation('AppBarSmall', 'without-back-arrow', 2);
 // testVariation('FakeSearchWithButton', 'large', 2);
 
 
-testVariation('FrontPagePanelLarge');
-testVariation('FrontPagePanelSmall');
+// testVariation('FrontPagePanelLarge');
+// testVariation('FrontPagePanelSmall');
 // testVariation('ExternalLink');
 // testVariation('ExternalLink', 'with-icon-and-text', 2);
 testVariation('LangSelect');
@@ -154,14 +154,14 @@ testVariation('LangSelect');
 // ]);
 
 
-testVariation('RouteStop', 'normal', [
-  '.component-example:nth-of-type(1) .component',
-], '.component-example:nth-of-type(1) .component svg.realtime').then(skip('ie11'));
+// testVariation('RouteStop', 'normal', [
+//   '.component-example:nth-of-type(1) .component',
+// ], '.component-example:nth-of-type(1) .component svg.realtime').then(skip('ie11'));
 
 
-testVariation('DepartureRow', 'normal', 1, [
-  '.component-example:nth-of-type(1) .component .realtime-icon',
-]).then(skip('ie11'));
+// testVariation('DepartureRow', 'normal', 1, [
+//   '.component-example:nth-of-type(1) .component .realtime-icon',
+// ]).then(skip('ie11'));
 
 // testVariation('DepartureRow', 'with-cancelation', 2);
 
@@ -180,14 +180,14 @@ testVariation('DepartureRow', 'normal', 1, [
 // testVariation('DepartureListHeader');
 // testVariation('NextDeparturesListHeader');
 // testVariation('SelectedStopPopupContent');
-testVariation('PageFooter');
-
-testVariation('FooterItem', 'basic');
-testVariation('FooterItem', 'with-icon', 2);
-
-
-testVariation('SummaryRow', 'passive-small-today');
-testVariation('SummaryRow', 'active-small-today', 2);
+// testVariation('PageFooter');
+//
+// testVariation('FooterItem', 'basic');
+// testVariation('FooterItem', 'with-icon', 2);
+//
+//
+// testVariation('SummaryRow', 'passive-small-today');
+// testVariation('SummaryRow', 'active-small-today', 2);
 // testVariation('SummaryRow', 'passive-large-today', 3);
 // testVariation('SummaryRow', 'active-large-today', 4);
 // testVariation('SummaryRow', 'passive-small-tomorrow', 5);
@@ -203,32 +203,32 @@ testVariation('SummaryRow', 'active-small-today', 2);
 
 // testVariation('CallAgencyWarning');
 
-testVariation('CurrentPositionSuggestionItem', 'with-position');
-testVariation('CurrentPositionSuggestionItem', 'no-position', 2);
+// testVariation('CurrentPositionSuggestionItem', 'with-position');
+// testVariation('CurrentPositionSuggestionItem', 'no-position', 2);
 
-testVariation('SuggestionItem', 'Favourite');
-testVariation('SuggestionItem', 'Address', 2);
+// testVariation('SuggestionItem', 'Favourite');
+// testVariation('SuggestionItem', 'Address', 2);
 // testVariation('SuggestionItem', 'Route', 3);
 // testVariation('SuggestionItem', 'Stop', 4);
 // testVariation('SuggestionItem', 'Stop-without-timetable', 5);
 
-testVariation('DateWarning', 'tomorrow-show-warning', 2);
+// testVariation('DateWarning', 'tomorrow-show-warning', 2);
 
-testVariation('ViaPointSelector', 'no-via-point');
+// testVariation('ViaPointSelector', 'no-via-point');
 // testVariation('ViaPointSelector', 'with-via-point', 2);
 // testVariation('ViaPointBar', 'with-via-point', 2);
 
 testVariation('WalkLeg', 'walk-start');
 // testVariation('WalkLeg', 'walk-middle', 2);
-testVariation('WaitLeg');
-testVariation('BicycleLeg', 'bicycle-leg-normal');
+// testVariation('WaitLeg');
+// testVariation('BicycleLeg', 'bicycle-leg-normal');
 // testVariation('BicycleLeg', 'bicycle-leg-walking-bike', 2);
 // testVariation('BicycleLeg', 'bicycle-leg-citybike', 3);
 // testVariation('BicycleLeg', 'bicycle-leg-citybike-walking-bike', 4);
-testVariation('EndLeg');
+// testVariation('EndLeg');
 // testVariation('AirportCheckInLeg');
 // testVariation('AirportCollectLuggageLeg');
-testVariation('BusLeg', 'scheduled');
+// testVariation('BusLeg', 'scheduled');
 // testVariation('BusLeg', 'realtime', 2, [
 //   'svg.realtime-icon',
 // ]).then(skip('ie11'));
