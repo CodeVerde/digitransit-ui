@@ -9,8 +9,6 @@ import { isBrowser } from '../../util/browser';
 import { weatherStationMarkerData, weatherStationDetailsData } from './WeatherStationMarkerData';
 
 import Card from '../Card';
-import CardHeader from '../CardHeader';
-import MarkerPopupBottom from './MarkerPopupBottom';
 
 let Popup;
 let Marker;
