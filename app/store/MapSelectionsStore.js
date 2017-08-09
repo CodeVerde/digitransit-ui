@@ -11,6 +11,7 @@ class MapSelectionsStore extends Store {
       showBulletins: false,
       showBusLines: false,
       showCameras: false,
+      showCarMonitoring: false,
       showIncidents: false,
       showMonitoring: false,
       showRoadWeather: false,
@@ -37,6 +38,11 @@ class MapSelectionsStore extends Store {
 
   toggleCamerasState() {
     this.data.showCameras = !this.data.showCameras;
+    this.emitChange();
+  }
+
+  toggleCarMonitoringState() {
+    this.data.showCarMonitoring = !this.data.showCarMonitoring;
     this.emitChange();
   }
 
@@ -77,6 +83,10 @@ class MapSelectionsStore extends Store {
     return this.data.showCameras;
   }
 
+  getCarMonitoringState() {
+    return this.data.showCarMonitoring;
+  }
+
   getIncidentsState() {
     return this.data.showIncidents;
   }
@@ -101,7 +111,8 @@ class MapSelectionsStore extends Store {
     ToggleBulletinsState: 'toggleBulletinsState',
     ToggleBusLinesState: 'toggleBusLinesState',
     ToggleCamerasState: 'toggleCamerasState',
-    TogglIncidentsState: 'toggleIncidentsState',
+    ToggleCarMonitoringState: 'toggleCarMonitoringState',
+    ToggleIncidentsState: 'toggleIncidentsState',
     ToggleMonitoringState: 'toggleMonitoringState',
     ToggleRoadWeatherState: 'toggleRoadWeatherState',
     ToggleTrafficFluencyState: 'toggleTrafficFluencyState',
