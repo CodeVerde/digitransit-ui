@@ -59,8 +59,8 @@ class CarMonitoringContainer extends React.PureComponent {
     super(props);
     this.state = {
       data: null,
-      objs: null,
     };
+    this.objs = null;
   }
 
   componentWillMount() {

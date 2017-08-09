@@ -59,21 +59,14 @@ class WeatherStationMarkerContainer extends React.PureComponent {
     this.state = {
       data: null,
     };
+    this.objs = null;
   }
 
   componentWillMount() {
-    // Fetch data if the related setting is setting
     this.data = parseWeatherStationMessage(weatherStationMarkerData);
-  }
-
-  render() {
-    if (!isBrowser) { return false; }
-
-    if (this.data === null || !this.props.showWeatherStations) { return false; }
-
-    const objs = [];
+    this.objs = [];
     this.data.forEach((element) => {
-      objs.push(
+      this.objs.push(
         <Marker
           key={element.id}
           position={{
@@ -100,8 +93,14 @@ class WeatherStationMarkerContainer extends React.PureComponent {
         </Marker>,
       );
     });
+  }
 
-    return (<div style={{ display: 'none' }}>{objs}</div>);
+  render() {
+    if (!isBrowser) { return false; }
+
+    if (this.data === null || !this.props.showWeatherStations) { return false; }
+
+    return (<div style={{ display: 'none' }}>{this.objs}</div>);
   }
 }
 
