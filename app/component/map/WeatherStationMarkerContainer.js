@@ -8,6 +8,9 @@ import { asString as iconAsString } from '../IconWithTail';
 import { isBrowser } from '../../util/browser';
 import { weatherStationMarkerData, weatherStationDetailsData } from './WeatherStationMarkerData';
 
+import Card from '../Card';
+import CardHeader from '../CardHeader';
+import MarkerPopupBottom from './MarkerPopupBottom';
 
 let Popup;
 let Marker;
@@ -62,6 +65,13 @@ class WeatherStationMarkerContainer extends React.PureComponent {
     this.objs = null;
   }
 
+  // <p><strong>{weatherStationDetailsData.name}</strong><br />
+  //   {weatherStationDetailsData.timestamp}<br />
+  //   {weatherStationDetailsData.airtemperature}<br />
+  //   {weatherStationDetailsData.roadtemperature}<br />
+  //   {weatherStationDetailsData.raintype}<br />
+  //   {weatherStationDetailsData.roadcondition}</p>
+
   componentWillMount() {
     this.data = parseWeatherStationMessage(weatherStationMarkerData);
     this.objs = [];
@@ -83,12 +93,24 @@ class WeatherStationMarkerContainer extends React.PureComponent {
             minWidth={250}
             className="popup"
           >
-            <p><strong>{weatherStationDetailsData.name}</strong><br />
-              {weatherStationDetailsData.timestamp}<br />
-              {weatherStationDetailsData.airtemperature}<br />
-              {weatherStationDetailsData.roadtemperature}<br />
-              {weatherStationDetailsData.raintype}<br />
-              {weatherStationDetailsData.roadcondition}</p>
+            <Card className="padding-small">
+              <div className="card-header">
+                <div className="card-header-wrapper">
+                  <span className="header-primary">
+                    {weatherStationDetailsData.name}
+                  </span>
+                  <div className="card-sub-header">
+                    {weatherStationDetailsData.timestamp}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="departure route-detail-text no-padding no-margin">Ilman lämpötila: {weatherStationDetailsData.airtemperature} °C</p>
+                <p className="departure route-detail-text no-padding no-margin">Tien lämpötila: {weatherStationDetailsData.roadtemperature} °C</p>
+                <p className="departure route-detail-text no-padding no-margin">Sade: {weatherStationDetailsData.raintype}</p>
+                <p className="departure route-detail-text no-padding no-margin">Keli: {weatherStationDetailsData.roadcondition}</p>
+              </div>
+            </Card>
           </Popup>
         </Marker>,
       );
