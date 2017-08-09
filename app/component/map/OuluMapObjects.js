@@ -2,6 +2,7 @@ import React from 'react';
 import BulletinContainer from './BulletinContainer';
 import CamerasContainer from './CamerasContainer';
 import CarMonitoringContainer from './CarMonitoringContainer';
+import CarParkingContainer from './CarParkingContainer';
 import IncidentsContainer from './IncidentsContainer';
 import MonitoringContainer from './MonitoringContainer';
 import RoadWeatherLineContainer from './RoadWeatherLineContainer';
@@ -17,7 +18,10 @@ const OuluMapObjects = [
     key="cameras"
   />,
   <CarMonitoringContainer
-    key="monitoring"
+    key="car-monitoring"
+  />,
+  <CarParkingContainer
+    key="car-parking"
   />,
   <IncidentsContainer
     key="incidents"
