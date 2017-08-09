@@ -6,7 +6,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { asString as iconAsString } from '../IconWithTail';
 
 import { isBrowser } from '../../util/browser';
-import { weatherStationMarkerData, weatherStationDetailsData } from './WeatherStationMarkerData';
+import { bulletinMarkerData, bulletinDetailsData } from './BulletinData';
 
 
 let Popup;
@@ -22,19 +22,22 @@ if (isBrowser) {
 }
 
 
-const parseWeatherStationMessage = (data) => {
+const parseBulletinMessage = (data) => {
   const cleanData = [];
-  data.weatherstation.forEach((element) => {
+  data.forEach((element) => {
     cleanData.push({
-      id: `weather-station-marker-${element.id}`,
+      id: `bulletin-marker-${element.id}`,
       geometry: { lat: element.geom.coordinates[1], lon: element.geom.coordinates[0] },
-      name: element.name,
+      mainClass: element.incidentmainclass,
+      reason: element.incidentmainreason,
+      area: element.area,
     });
   });
+
   return cleanData;
 };
 
-const getWeatherStationMarkerIcon = iconText => (
+const getBulletinIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-icon_tiesaa_marker', iconText }),
     className: 'weather-station-marker',
@@ -43,7 +46,7 @@ const getWeatherStationMarkerIcon = iconText => (
   })
 );
 
-class WeatherStationMarkerContainer extends React.PureComponent {
+class BulletinContainer extends React.PureComponent {
   static contextTypes = {
     getStore: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired,
@@ -51,7 +54,7 @@ class WeatherStationMarkerContainer extends React.PureComponent {
   };
 
   static propTypes = {
-    showWeatherStations: PropTypes.bool.isRequired,
+    showBulletins: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -63,16 +66,20 @@ class WeatherStationMarkerContainer extends React.PureComponent {
 
   componentWillMount() {
     // Fetch data if the related setting is setting
-    this.data = parseWeatherStationMessage(weatherStationMarkerData);
+    this.data = parseBulletinMessage(bulletinMarkerData);
   }
 
   render() {
     if (!isBrowser) { return false; }
 
-    if (this.data === null || !this.props.showWeatherStations) { return false; }
+    if (this.data === null || !this.props.showBulletins) { return false; }
 
     const objs = [];
+
     this.data.forEach((element) => {
+      const titleString = `${bulletinDetailsData.incidentmainclass}
+        , ${bulletinDetailsData.area}
+        , ${bulletinDetailsData.incidentmainreason}`;
       objs.push(
         <Marker
           key={element.id}
@@ -80,8 +87,8 @@ class WeatherStationMarkerContainer extends React.PureComponent {
             lat: element.geometry.lat,
             lng: element.geometry.lon,
           }}
-          icon={getWeatherStationMarkerIcon()}
-          title={element.name}
+          icon={getBulletinIcon()}
+          title={titleString}
         >
           <Popup
             offset={[106, 16]}
@@ -90,12 +97,12 @@ class WeatherStationMarkerContainer extends React.PureComponent {
             minWidth={250}
             className="popup"
           >
-            <p><strong>{weatherStationDetailsData.name}</strong><br />
-              {weatherStationDetailsData.timestamp}<br />
-              {weatherStationDetailsData.airtemperature}<br />
-              {weatherStationDetailsData.roadtemperature}<br />
-              {weatherStationDetailsData.raintype}<br />
-              {weatherStationDetailsData.roadcondition}</p>
+            <p><strong>{titleString}</strong><br />
+              Kesto: {bulletinDetailsData.startdate} toistaiseksi<br />
+              {bulletinDetailsData.information}<br />
+              Lisätiedot:
+              {bulletinDetailsData.incidentadditionalreason1}<br />
+              {bulletinDetailsData.severity}</p>
           </Popup>
         </Marker>,
       );
@@ -105,6 +112,6 @@ class WeatherStationMarkerContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(WeatherStationMarkerContainer, ['SimpleModeStore'], context => ({
-  showWeatherStations: context.getStore('MapSelectionsStore').getWeatherStationsState(),
+export default connectToStores(BulletinContainer, ['SimpleModeStore'], context => ({
+  showBulletins: context.getStore('MapSelectionsStore').getBulletinsState(),
 }));

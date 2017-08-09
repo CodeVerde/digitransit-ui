@@ -6,7 +6,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { asString as iconAsString } from '../IconWithTail';
 
 import { isBrowser } from '../../util/browser';
-import { weatherStationMarkerData, weatherStationDetailsData } from './WeatherStationMarkerData';
+import { carMonitoringMarkerData, carMonitoringDetailsData } from './CarMonitoringData';
 
 
 let Popup;
@@ -22,28 +22,29 @@ if (isBrowser) {
 }
 
 
-const parseWeatherStationMessage = (data) => {
+const parseCarMonitoringMessage = (data) => {
   const cleanData = [];
-  data.weatherstation.forEach((element) => {
+  data.forEach((element) => {
     cleanData.push({
-      id: `weather-station-marker-${element.id}`,
+      id: `carMonitoring-marker-${element.id}`,
       geometry: { lat: element.geom.coordinates[1], lon: element.geom.coordinates[0] },
       name: element.name,
     });
   });
+
   return cleanData;
 };
 
-const getWeatherStationMarkerIcon = iconText => (
+const getCarMonitoringIcon = iconText => (
   L.divIcon({
-    html: iconAsString({ img: 'icon-icon_tiesaa_marker', iconText }),
+    html: iconAsString({ img: 'icon-icon_ajokeli', iconText }),
     className: 'weather-station-marker',
     iconSize: [20, 20],
     iconAnchor: [30, 40],
   })
 );
 
-class WeatherStationMarkerContainer extends React.PureComponent {
+class CarMonitoringContainer extends React.PureComponent {
   static contextTypes = {
     getStore: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired,
@@ -51,36 +52,29 @@ class WeatherStationMarkerContainer extends React.PureComponent {
   };
 
   static propTypes = {
-    showWeatherStations: PropTypes.bool.isRequired,
+    showCarMonitoring: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
       data: null,
+      objs: null,
     };
   }
 
   componentWillMount() {
-    // Fetch data if the related setting is setting
-    this.data = parseWeatherStationMessage(weatherStationMarkerData);
-  }
-
-  render() {
-    if (!isBrowser) { return false; }
-
-    if (this.data === null || !this.props.showWeatherStations) { return false; }
-
-    const objs = [];
+    this.data = parseCarMonitoringMessage(carMonitoringMarkerData);
+    this.objs = [];
     this.data.forEach((element) => {
-      objs.push(
+      this.objs.push(
         <Marker
           key={element.id}
           position={{
             lat: element.geometry.lat,
             lng: element.geometry.lon,
           }}
-          icon={getWeatherStationMarkerIcon()}
+          icon={getCarMonitoringIcon()}
           title={element.name}
         >
           <Popup
@@ -90,21 +84,30 @@ class WeatherStationMarkerContainer extends React.PureComponent {
             minWidth={250}
             className="popup"
           >
-            <p><strong>{weatherStationDetailsData.name}</strong><br />
-              {weatherStationDetailsData.timestamp}<br />
-              {weatherStationDetailsData.airtemperature}<br />
-              {weatherStationDetailsData.roadtemperature}<br />
-              {weatherStationDetailsData.raintype}<br />
-              {weatherStationDetailsData.roadcondition}</p>
+            <p><strong>{carMonitoringDetailsData.name}</strong><br />
+              <small>{carMonitoringDetailsData.timestamp}</small><br />
+              Keskinopeudet:<br />
+              Pohjoiseen: {carMonitoringDetailsData.averagespeed1}<br />
+              Etelään: {carMonitoringDetailsData.averagespeed2}<br />
+              Liikennemäärät (ajon/h):<br />
+              Pohjoiseen: {carMonitoringDetailsData.trafficamount1}<br />
+              Etelään: {carMonitoringDetailsData.trafficamount2}<br />
+            </p>
           </Popup>
         </Marker>,
       );
     });
+  }
 
-    return (<div style={{ display: 'none' }}>{objs}</div>);
+  render() {
+    if (!isBrowser) { return false; }
+
+    if (this.data === null || !this.props.showCarMonitoring) { return false; }
+
+    return (<div style={{ display: 'none' }}>{this.objs}</div>);
   }
 }
 
-export default connectToStores(WeatherStationMarkerContainer, ['SimpleModeStore'], context => ({
-  showWeatherStations: context.getStore('MapSelectionsStore').getWeatherStationsState(),
+export default connectToStores(CarMonitoringContainer, ['SimpleModeStore'], context => ({
+  showCarMonitoring: context.getStore('MapSelectionsStore').getCarMonitoringState(),
 }));

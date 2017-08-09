@@ -50,7 +50,7 @@ WeatherStationsToggle.contextTypes = {
 };
 
 const connected = connectToStores(WeatherStationsToggle, ['MapSelectionsStore'], context => ({
-  showWeatherStations: context.getStore('MapSelectionsStore').getData().showWeatherStations,
+  showWeatherStations: context.getStore('MapSelectionsStore').getWeatherStationsState(),
 }));
 
 export { connected as default, WeatherStationsToggle as Component };

@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 
-export function toggleBusLinesState(actionContext) {
+export function ToggleBusLinesState(actionContext) {
   actionContext.dispatch('ToggleBusLinesState');
 }
 

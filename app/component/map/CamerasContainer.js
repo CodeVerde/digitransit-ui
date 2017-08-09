@@ -6,7 +6,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { asString as iconAsString } from '../IconWithTail';
 
 import { isBrowser } from '../../util/browser';
-import { weatherStationMarkerData, weatherStationDetailsData } from './WeatherStationMarkerData';
+import { camerasMarkerData, camerasDetailsData } from './CamerasData';
 
 
 let Popup;
@@ -22,28 +22,29 @@ if (isBrowser) {
 }
 
 
-const parseWeatherStationMessage = (data) => {
+const parseCamerasMessage = (data) => {
   const cleanData = [];
-  data.weatherstation.forEach((element) => {
+  data.forEach((element) => {
     cleanData.push({
-      id: `weather-station-marker-${element.id}`,
+      id: `cameras-marker-${element.id}`,
       geometry: { lat: element.geom.coordinates[1], lon: element.geom.coordinates[0] },
       name: element.name,
     });
   });
+
   return cleanData;
 };
 
-const getWeatherStationMarkerIcon = iconText => (
+const getCamerasIcon = iconText => (
   L.divIcon({
-    html: iconAsString({ img: 'icon-icon_tiesaa_marker', iconText }),
+    html: iconAsString({ img: 'icon-icon_kunnossapito', iconText }),
     className: 'weather-station-marker',
     iconSize: [20, 20],
     iconAnchor: [30, 40],
   })
 );
 
-class WeatherStationMarkerContainer extends React.PureComponent {
+class CamerasContainer extends React.PureComponent {
   static contextTypes = {
     getStore: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired,
@@ -51,7 +52,7 @@ class WeatherStationMarkerContainer extends React.PureComponent {
   };
 
   static propTypes = {
-    showWeatherStations: PropTypes.bool.isRequired,
+    showCameras: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
@@ -59,28 +60,21 @@ class WeatherStationMarkerContainer extends React.PureComponent {
     this.state = {
       data: null,
     };
+    this.objs = [];
   }
 
   componentWillMount() {
-    // Fetch data if the related setting is setting
-    this.data = parseWeatherStationMessage(weatherStationMarkerData);
-  }
-
-  render() {
-    if (!isBrowser) { return false; }
-
-    if (this.data === null || !this.props.showWeatherStations) { return false; }
-
-    const objs = [];
+    this.data = parseCamerasMessage(camerasMarkerData);
+    this.objs = [];
     this.data.forEach((element) => {
-      objs.push(
+      this.objs.push(
         <Marker
           key={element.id}
           position={{
             lat: element.geometry.lat,
             lng: element.geometry.lon,
           }}
-          icon={getWeatherStationMarkerIcon()}
+          icon={getCamerasIcon()}
           title={element.name}
         >
           <Popup
@@ -90,21 +84,28 @@ class WeatherStationMarkerContainer extends React.PureComponent {
             minWidth={250}
             className="popup"
           >
-            <p><strong>{weatherStationDetailsData.name}</strong><br />
-              {weatherStationDetailsData.timestamp}<br />
-              {weatherStationDetailsData.airtemperature}<br />
-              {weatherStationDetailsData.roadtemperature}<br />
-              {weatherStationDetailsData.raintype}<br />
-              {weatherStationDetailsData.roadcondition}</p>
+            <p><strong>{camerasDetailsData.name}</strong><br />
+              {camerasDetailsData.timestamp}<br />
+              <img
+                src={camerasDetailsData.image}
+                alt={camerasDetailsData.name}
+              />
+            </p>
           </Popup>
         </Marker>,
       );
     });
+  }
 
-    return (<div style={{ display: 'none' }}>{objs}</div>);
+  render() {
+    if (!isBrowser) { return false; }
+
+    if (this.data === null || !this.props.showCameras) { return false; }
+
+    return (<div style={{ display: 'none' }}>{this.objs}</div>);
   }
 }
 
-export default connectToStores(WeatherStationMarkerContainer, ['SimpleModeStore'], context => ({
-  showWeatherStations: context.getStore('MapSelectionsStore').getWeatherStationsState(),
+export default connectToStores(CamerasContainer, ['SimpleModeStore'], context => ({
+  showCameras: context.getStore('MapSelectionsStore').getCamerasState(),
 }));
