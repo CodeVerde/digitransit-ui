@@ -8,6 +8,7 @@ import { asString as iconAsString } from '../IconWithTail';
 import { isBrowser } from '../../util/browser';
 import { carParkingMarkerData, carParkingDetailsData } from './CarParkingData';
 
+import Card from '../Card';
 
 let Popup;
 let Marker;
@@ -85,11 +86,22 @@ class CarParkingContainer extends React.PureComponent {
             minWidth={250}
             className="popup"
           >
-            <p><strong>{element.name}</strong><br />
-              <small>{carParkingDetailsData.timestamp}</small><br />
-              {freeSpaceString}<br />
-              {carParkingDetailsData.address}
-            </p>
+            <Card className="padding-small">
+              <div className="card-header">
+                <div className="card-header-wrapper">
+                  <span className="header-primary">
+                    {element.name}
+                  </span>
+                  <div className="card-sub-header">
+                    {carParkingDetailsData.timestamp}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="departure route-detail-text no-padding no-margin">{freeSpaceString}</p>
+                <p className="departure route-detail-text no-padding no-margin">{carParkingDetailsData.address}</p>
+              </div>
+            </Card>
           </Popup>
         </Marker>,
       );

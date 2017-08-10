@@ -63,13 +63,6 @@ class WeatherStationMarkerContainer extends React.PureComponent {
     this.objs = null;
   }
 
-  // <p><strong>{weatherStationDetailsData.name}</strong><br />
-  //   {weatherStationDetailsData.timestamp}<br />
-  //   {weatherStationDetailsData.airtemperature}<br />
-  //   {weatherStationDetailsData.roadtemperature}<br />
-  //   {weatherStationDetailsData.raintype}<br />
-  //   {weatherStationDetailsData.roadcondition}</p>
-
   componentWillMount() {
     this.data = parseWeatherStationMessage(weatherStationMarkerData);
     this.objs = [];

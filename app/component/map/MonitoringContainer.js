@@ -8,6 +8,7 @@ import { asString as iconAsString } from '../IconWithTail';
 import { isBrowser } from '../../util/browser';
 import { monitoringMarkerData, monitoringDetailsData } from './MonitoringData';
 
+import Card from '../Card';
 
 let Popup;
 let Marker;
@@ -88,9 +89,21 @@ class MonitoringContainer extends React.PureComponent {
             minWidth={250}
             className="popup"
           >
-            <p><strong>{element.name}</strong><br />
-              {contentString}
-            </p>
+            <Card className="padding-small">
+              <div className="card-header">
+                <div className="card-header-wrapper">
+                  <span className="header-primary">
+                    {element.name}
+                  </span>
+                  <div className="card-sub-header">
+                    {monitoringDetailsData[0].weekday} {monitoringDetailsData[0].date}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="departure route-detail-text no-padding no-margin">Määrä: {monitoringDetailsData[0].value}</p>
+              </div>
+            </Card>
           </Popup>
         </Marker>,
       );
