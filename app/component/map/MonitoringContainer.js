@@ -3,6 +3,8 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
+import { Line } from 'react-chartjs-2';
+
 import { asString as iconAsString } from '../IconWithTail';
 
 import { isBrowser } from '../../util/browser';
@@ -64,14 +66,41 @@ class MonitoringContainer extends React.PureComponent {
       data: null,
       objs: null,
     };
+    this.dataLabels = [];
+    this.dataValues = [];
   }
 
   componentWillMount() {
     this.data = parseMonitoringMessage(monitoringMarkerData);
     this.objs = [];
+
+    this.dataLabels = [];
+    this.dataValues = [];
+
+    monitoringDetailsData.forEach((element) => {
+      this.dataLabels.push(element.date);
+      this.dataValues.push(element.value);
+    });
+
+    const myData = {
+      labels: this.dataLabels,
+      datasets: [{
+        data: this.dataValues,
+        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+        borderColor: 'rgba(255,99,132,1)',
+        borderWidth: 1,
+        pointBackgroundColor: 'rgba(255,99,132,1)',
+        pointBorderColor: 'white',
+        pointBorderWidth: 1,
+        pointHitRadius: 8,
+        pointHoverBackgroundColor: 'white',
+        pointHoverBorderColor: 'rgba(255,99,132,1)',
+        pointRadius: 4,
+        pointStyle: 'circle',
+      }],
+    };
+
     this.data.forEach((element) => {
-      const contentString = `${monitoringDetailsData[0].weekday} ${monitoringDetailsData[0].date}
-      : ${monitoringDetailsData[0].value}`;
       this.objs.push(
         <Marker
           key={element.id}
@@ -85,9 +114,8 @@ class MonitoringContainer extends React.PureComponent {
           <Popup
             offset={[106, 16]}
             closeButton={false}
-            maxWidth={250}
-            minWidth={250}
-            className="popup"
+            maxWidth="auto"
+            className="oulu-popup-xlarge"
           >
             <Card className="padding-small">
               <div className="card-header">
@@ -101,8 +129,45 @@ class MonitoringContainer extends React.PureComponent {
                 </div>
               </div>
               <div>
-                <p className="departure route-detail-text no-padding no-margin">Määrä: {monitoringDetailsData[0].value}</p>
+                <p className="departure route-detail-text no-padding no-margin">Vuoden korkein tilastoluku: {monitoringDetailsData[0].weekday} {monitoringDetailsData[0].date}: {monitoringDetailsData[0].value}</p>
+                <p className="departure route-detail-text no-padding no-margin">Tulokset: {monitoringDetailsData[0].weekday} {monitoringDetailsData[0].date}</p>
               </div>
+              <Line
+                data={myData}
+                width={400}
+                height={200}
+                options={{
+                  maintainAspectRatio: true,
+                  scales: {
+                    xAxes: [{
+                      ticks: {
+                        stepSize: 1,
+                        min: 0,
+                        autoSkip: false,
+                      },
+                    }],
+                    yAxes: [{
+                      ticks: {
+                        beginAtZero: true,
+                      },
+                    }],
+                  },
+                  hover: {
+                    animationDuration: 0,
+                  },
+                  legend: {
+                    display: false,
+                  },
+                  tooltips: {
+                    enabled: true,
+                    mode: 'nearest',
+                    displayColors: false,
+                    callbacks: {
+                      label: tooltipItem => (tooltipItem.yLabel),
+                    },
+                  },
+                }}
+              />
             </Card>
           </Popup>
         </Marker>,
