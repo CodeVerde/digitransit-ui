@@ -8,6 +8,7 @@ import { asString as iconAsString } from '../IconWithTail';
 import { isBrowser } from '../../util/browser';
 import { bulletinMarkerData, bulletinDetailsData } from './BulletinData';
 
+import Card from '../Card';
 
 let Popup;
 let Marker;
@@ -97,12 +98,26 @@ class BulletinContainer extends React.PureComponent {
             minWidth={250}
             className="popup"
           >
-            <p><strong>{titleString}</strong><br />
-              Kesto: {bulletinDetailsData.startdate} toistaiseksi<br />
-              {bulletinDetailsData.information}<br />
-              Lisätiedot:
-              {bulletinDetailsData.incidentadditionalreason1}<br />
-              {bulletinDetailsData.severity}</p>
+            <Card className="padding-small">
+              <div className="card-header">
+                <div className="card-header-wrapper">
+                  <span className="header-primary">
+                    {titleString}
+                  </span>
+                  <div className="card-sub-header">
+                    Kesto: {bulletinDetailsData.startdate}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="departure route-detail-text no-padding no-margin">{bulletinDetailsData.information}</p>
+                <p className="departure route-detail-text no-padding no-margin">Lisätiedot:</p>
+                <ul>
+                  <li><p className="departure route-detail-text no-padding no-margin">{bulletinDetailsData.incidentadditionalreason1}</p></li>
+                  <li><p className="departure route-detail-text no-padding no-margin">{bulletinDetailsData.severity}</p></li>
+                </ul>
+              </div>
+            </Card>
           </Popup>
         </Marker>,
       );

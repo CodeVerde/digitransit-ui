@@ -1,0 +1,170 @@
+// Oulunliikenne 2.0 pilot related style changes
+
+.oulu-card-content  {
+  background: $white;
+  line-height: $line-height-normal;
+  position: relative;
+  overflow-y: visible;
+  // white-space: nowrap;
+  margin: 0;
+  .icon {
+    font-size: 1em;
+    vertical-align: -1px;
+  }
+}
+
+.oulu-card-detail-text {
+  color: $black;
+  @include font-narrow-book;
+  font-size: $font-size-normal;
+}
+
+.oulu-card-content > div, .oulu-card-content > span {
+    vertical-align: middle;
+}
+
+.oulu-popup-large {
+  left: -21px !important;
+  .route-header {
+    height:auto;
+    border: none;
+  }
+
+  .leaflet-popup-content-wrapper {
+    border-radius: $border-radius;
+    padding: 0;
+    margin-bottom: 5px;
+  }
+  .leaflet-popup-content {
+    margin: 0;
+    width: 30rem !important;
+  }
+  .card {
+    border: none;
+    >a {
+      display: block;
+    }
+    hr {
+      height: 1px;
+      color: #ddd;
+      background: #ddd;
+      font-size: 0;
+      border: 0;
+    }
+
+    .card-row .no-margin:last-child hr{
+      display: none;
+    }
+  }
+  .card-header {
+    border-radius: $border-radius;
+  }
+
+  .bottom {
+    @include font-medium;
+    font-size: $font-size-small;
+    line-height: $line-height-normal;
+    color: $link-color;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: $background-color;
+    border-top: solid 1px #ddd;
+
+    div, a {
+      display: block;
+      padding: 0.5em 12px;
+      flex-grow: 1;
+      text-align: center;
+      text-decoration: none;
+
+      &:first-child {
+        border-right: 1px solid $light-gray;
+      }
+    }
+  }
+
+  .leaflet-popup-tip-container {
+    margin: -5px 0px;
+    left: 0px;
+    .leaflet-popup-tip  {
+      background: $background-color;
+    }
+  }
+}
+
+.oulu-popup-xlarge {
+  left: -21px !important;
+  .route-header {
+    height:auto;
+    border: none;
+  }
+
+  .leaflet-popup-content-wrapper {
+    border-radius: $border-radius;
+    padding: 0;
+    margin-bottom: 5px;
+  }
+  .leaflet-popup-content {
+    margin: 0;
+    width: 40rem !important;
+  }
+  .card {
+    border: none;
+    >a {
+      display: block;
+    }
+    hr {
+      height: 1px;
+      color: #ddd;
+      background: #ddd;
+      font-size: 0;
+      border: 0;
+    }
+
+    .card-row .no-margin:last-child hr{
+      display: none;
+    }
+  }
+  .card-header {
+    border-radius: $border-radius;
+  }
+
+  .bottom {
+    @include font-medium;
+    font-size: $font-size-small;
+    line-height: $line-height-normal;
+    color: $link-color;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background: $background-color;
+    border-top: solid 1px #ddd;
+
+    div, a {
+      display: block;
+      padding: 0.5em 12px;
+      flex-grow: 1;
+      text-align: center;
+      text-decoration: none;
+
+      &:first-child {
+        border-right: 1px solid $light-gray;
+      }
+    }
+  }
+
+  .leaflet-popup-tip-container {
+    margin: -5px 0px;
+    left: 0px;
+    .leaflet-popup-tip  {
+      background: $background-color;
+    }
+  }
+}

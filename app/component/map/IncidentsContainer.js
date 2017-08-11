@@ -9,6 +9,7 @@ import { asString as iconAsString } from '../IconWithTail';
 import { isBrowser } from '../../util/browser';
 import { incidentsMarkerData, incidentsDetailsData } from './IncidentsData';
 
+import Card from '../Card';
 
 let Popup;
 let Marker;
@@ -86,9 +87,7 @@ class IncidentsContainer extends React.PureComponent {
     this.data = parseIncidentsMessage(incidentsMarkerData);
     this.objs = [];
     this.data.forEach((element) => {
-      const titleString = `${element.incidentMainClass}
-        , ${element.area}
-        , ${element.incidentMainReason}`;
+      const titleString = `${element.incidentMainClass}, ${element.area}, ${element.incidentMainReason}`;
       this.objs.push(
         <Marker
           key={element.id}
@@ -102,19 +101,29 @@ class IncidentsContainer extends React.PureComponent {
           <Popup
             offset={[106, 16]}
             closeButton={false}
-            maxWidth={250}
-            minWidth={250}
-            className="popup"
+            maxWidth="auto"
+            className="oulu-popup-large"
           >
-            <p><strong>{incidentsDetailsData.incidentMainClass},
-              {incidentsDetailsData.area}. {incidentsDetailsData.incidentMainReason}
-            </strong><br />
-              Kesto: {incidentsDetailsData.startDate} - {incidentsDetailsData.endDate}
-              {incidentsDetailsData.information}<br />
-              Lisätiedot:
-              {incidentsDetailsData.incidentadditionalreason1}<br />
-              {incidentsDetailsData.severity}
-            </p>
+            <div className="card padding-small">
+              <div className="card-header">
+                <div className="card-header-wrapper">
+                  <span className="header-primary">
+                    {titleString}
+                  </span>
+                  <div className="card-sub-header">
+                    Kesto: {incidentsDetailsData.startdate} - {incidentsDetailsData.enddate}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{incidentsDetailsData.information}</p>
+                <p className="oulu-card-content oulu-card-detail-text no-padding no-margin">Lisätiedot:</p>
+                <ul>
+                  <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{incidentsDetailsData.incidentadditionalreason1}</p></li>
+                  <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{incidentsDetailsData.severity}</p></li>
+                </ul>
+              </div>
+            </div>
           </Popup>
         </Marker>,
       );
@@ -132,19 +141,29 @@ class IncidentsContainer extends React.PureComponent {
             <Popup
               offset={[106, 16]}
               closeButton={false}
-              maxWidth={250}
-              minWidth={250}
-              className="popup"
+              maxWidth="auto"
+              className="oulu-popup-large"
             >
-              <p><strong>{incidentsDetailsData.incidentMainClass},
-                {incidentsDetailsData.area}. {incidentsDetailsData.incidentMainReason}
-              </strong><br />
-                Kesto: {incidentsDetailsData.startDate} - {incidentsDetailsData.endDate}
-                {incidentsDetailsData.information}<br />
-                Lisätiedot:
-                {incidentsDetailsData.incidentadditionalreason1}<br />
-                {incidentsDetailsData.severity}
-              </p>
+              <Card className="padding-small">
+                <div className="card-header">
+                  <div className="card-header-wrapper">
+                    <span className="header-primary">
+                      {titleString}
+                    </span>
+                    <div className="card-sub-header">
+                      Kesto: {incidentsDetailsData.startdate} - {incidentsDetailsData.enddate}
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{incidentsDetailsData.information}</p>
+                  <p className="oulu-card-content oulu-card-detail-text no-padding no-margin">Lisätiedot:</p>
+                  <ul>
+                    <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{incidentsDetailsData.incidentadditionalreason1}</p></li>
+                    <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{incidentsDetailsData.severity}</p></li>
+                  </ul>
+                </div>
+              </Card>
             </Popup>
           </Marker>,
         );

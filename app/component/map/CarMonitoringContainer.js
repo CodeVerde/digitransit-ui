@@ -8,6 +8,7 @@ import { asString as iconAsString } from '../IconWithTail';
 import { isBrowser } from '../../util/browser';
 import { carMonitoringMarkerData, carMonitoringDetailsData } from './CarMonitoringData';
 
+import Card from '../Card';
 
 let Popup;
 let Marker;
@@ -84,15 +85,30 @@ class CarMonitoringContainer extends React.PureComponent {
             minWidth={250}
             className="popup"
           >
-            <p><strong>{carMonitoringDetailsData.name}</strong><br />
-              <small>{carMonitoringDetailsData.timestamp}</small><br />
-              Keskinopeudet:<br />
-              Pohjoiseen: {carMonitoringDetailsData.averagespeed1}<br />
-              Etelään: {carMonitoringDetailsData.averagespeed2}<br />
-              Liikennemäärät (ajon/h):<br />
-              Pohjoiseen: {carMonitoringDetailsData.trafficamount1}<br />
-              Etelään: {carMonitoringDetailsData.trafficamount2}<br />
-            </p>
+            <Card className="padding-small">
+              <div className="card-header">
+                <div className="card-header-wrapper">
+                  <span className="header-primary">
+                    {carMonitoringDetailsData.name}
+                  </span>
+                  <div className="card-sub-header">
+                    {carMonitoringDetailsData.timestamp}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="departure route-detail-text no-padding no-margin">Keskinopeudet:</p>
+                <ul>
+                  <li><p className="departure route-detail-text no-padding no-margin">Pohjoiseen: {carMonitoringDetailsData.averagespeed1}</p></li>
+                  <li><p className="departure route-detail-text no-padding no-margin">Etelään: {carMonitoringDetailsData.averagespeed2}</p></li>
+                </ul>
+                <p className="departure route-detail-text no-padding no-margin">Liikennemäärät:</p>
+                <ul>
+                  <li><p className="departure route-detail-text no-padding no-margin">Pohjoiseen: {carMonitoringDetailsData.trafficamount1}</p></li>
+                  <li><p className="departure route-detail-text no-padding no-margin">Etelään: {carMonitoringDetailsData.trafficamount2}</p></li>
+                </ul>
+              </div>
+            </Card>
           </Popup>
         </Marker>,
       );
