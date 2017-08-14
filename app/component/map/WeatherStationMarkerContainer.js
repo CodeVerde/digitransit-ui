@@ -4,8 +4,9 @@ import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import { asString as iconAsString } from '../IconWithTail';
-
 import { isBrowser } from '../../util/browser';
+import { getJsonWithHeaders } from '../../util/xhrPromise';
+
 import { weatherStationMarkerData, weatherStationDetailsData } from './WeatherStationMarkerData';
 
 import Card from '../Card';
@@ -106,6 +107,20 @@ class WeatherStationMarkerContainer extends React.PureComponent {
         </Marker>,
       );
     });
+  }
+
+  componentWillReceiveProps() {
+    console.log('WeatherStationMarkerContainer, componentWillReceiveProps');
+    const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadweather/roadweatherstations.php';
+    const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
+    getJsonWithHeaders(url, null, headers)
+    .then(response => console.log(`Requesting road weather stations, data: ${response}`))
+    .catch(err => console.log(`Requesting road weather stations, error: ${err}`));
+
+    const url2 = 'https://it101.infotripla.fi/city_app_traffic_data_rest_api/weathercamera/weathercamerastations.php?imageHistoryInHours=2&minLat=64.6&maxLat=65.7&minLon=25&maxLon=26.4';
+    getJsonWithHeaders(url2, null, headers)
+    .then(response => console.log(`Requesting weather cameras, data: ${response}`))
+    .catch(err => console.log(`Requesting weather cameras, error: ${err}`));
   }
 
   render() {
