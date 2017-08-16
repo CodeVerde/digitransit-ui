@@ -97,6 +97,8 @@ class TerminalMarker extends React.Component {
       return '';
     }
 
+    console.log('TerminalMarker, render');
+
     return (
       <div>
         <Circle

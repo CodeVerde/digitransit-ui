@@ -11,3 +11,7 @@ export function ToggleRoadWeatherState(actionContext) {
 export function ToggleWeatherStationsState(actionContext) {
   actionContext.dispatch('ToggleWeatherStationsState');
 }
+
+export function AddWeatherStationsData(actionContext, data) {
+  actionContext.dispatch('AddWeatherStationsData', data);
+}

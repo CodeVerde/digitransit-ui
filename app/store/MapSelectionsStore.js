@@ -17,6 +17,7 @@ class MapSelectionsStore extends Store {
       showMonitoring: false,
       showRoadWeather: false,
       showTrafficFluency: false,
+      weatherStationsData: [],
       showWeatherStations: false,
     };
   }
@@ -72,6 +73,12 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  addWeatherStationsData(data) {
+    // console.log('Adding data: ', data);
+    this.data.weatherStationsData = data.slice();
+    this.emitChange();
+  }
+
   toggleWeatherStationsState() {
     this.data.showWeatherStations = !this.data.showWeatherStations;
     this.emitChange();
@@ -113,6 +120,10 @@ class MapSelectionsStore extends Store {
     return this.data.showTrafficFluency;
   }
 
+  getWeatherStationsData() {
+    return this.data.weatherStationsData;
+  }
+
   getWeatherStationsState() {
     return this.data.showWeatherStations;
   }
@@ -127,6 +138,7 @@ class MapSelectionsStore extends Store {
     ToggleMonitoringState: 'toggleMonitoringState',
     ToggleRoadWeatherState: 'toggleRoadWeatherState',
     ToggleTrafficFluencyState: 'toggleTrafficFluencyState',
+    AddWeatherStationsData: 'addWeatherStationsData',
     ToggleWeatherStationsState: 'toggleWeatherStationsState',
   };
 }

@@ -116,6 +116,8 @@ class StopMarker extends React.Component {
       return '';
     }
 
+    console.log('StopMarker, render');
+
     return (
       <GenericMarker
         position={{

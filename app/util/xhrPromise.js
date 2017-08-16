@@ -57,8 +57,6 @@ export function getJsonWithHeaders(url, params, newHeaders) {
     ...newHeaders,
   };
 
-  console.log('headers: ', headers);
-
   return fetch(
     encodeURI(url) + (params ? (url.search(/\?/) === -1 ? '?' : '&') + serialize(params) : ''),
     {

@@ -6,6 +6,8 @@ import Card from './Card';
 
 class StopCard extends React.Component {
   render() {
+    console.log('StopCard, render');
+
     if (!this.props.stop || !this.props.children || this.props.children.length === 0) {
       return false;
     }
