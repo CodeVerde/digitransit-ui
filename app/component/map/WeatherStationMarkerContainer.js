@@ -10,19 +10,11 @@ import { cleanJson } from '../../util/ouluJsonUtils';
 
 import { AddWeatherStationsData } from '../../action/mapSelectionsActions';
 
-// import { weatherStationDetailsData } from './WeatherStationMarkerData';
-// import WeatherStationPopupContainer from './WeatherStationPopupContainer';
-
-// import WeatherStationMarker from './WeatherStationMarker';
-// import Card from '../Card';
-
-// let Popup;
 let Marker;
 let L;
 
 if (isBrowser) {
   /* eslint-disable global-require */
-  // Popup = require('react-leaflet/lib/Popup').default;
   Marker = require('react-leaflet/lib/Marker').default;
   L = require('leaflet');
   /* eslint-enable global-require */
@@ -74,15 +66,22 @@ class WeatherStationMarkerContainer extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = {
-      objs: [],
-    };
+    this.objs = [];
   }
 
   componentWillMount() {
     console.log('WeatherStationMarkerContainer, componentWillMount');
-    if (this.props.weatherStationsData.length === 0) {
-    // if (newProps.showWeatherStations && !this.props.showWeatherStations) {
+    if (this.objs.length !== this.props.weatherStationsData.length) {
+      console.log('WeatherStationMarkerContainer, componentWillMount, update');
+      this.updateObjects(this.props.weatherStationsData);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    console.log('WeatherStationMarkerContainer, componentWillReceiveProps: ', newProps.showWeatherStations);
+    console.log('WeatherStationMarkerContainer, componentWillReceiveProps: ', this.props.showWeatherStations);
+    if (newProps.showWeatherStations && !this.props.showWeatherStations) {
+      console.log('WeatherStationMarkerContainer, componentWillReceiveProps, fetch');
       const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadweather/roadweatherstations.php';
       const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
       getJsonWithHeaders(url, null, headers)
@@ -92,14 +91,8 @@ class WeatherStationMarkerContainer extends React.PureComponent {
         parseWeatherStationMessage(cleanResponse),
       ))
       .catch(err => console.log(`Requesting road weather stations, error: ${err}`));
-    } else {
-      this.updateObjects(this.props.weatherStationsData);
-    }
-  }
-
-  componentWillReceiveProps(newProps) {
-    console.log('WeatherStationMarkerContainer, componentWillReceiveProps');
-    if (this.state.objs.length !== newProps.weatherStationsData.length) {
+    } else if (this.objs.length !== newProps.weatherStationsData.length) {
+      console.log('WeatherStationMarkerContainer, componentWillReceiveProps, update');
       this.updateObjects(newProps.weatherStationsData);
     }
   }
@@ -121,17 +114,17 @@ class WeatherStationMarkerContainer extends React.PureComponent {
         />,
       );
     });
-    this.setState({
-      objs: newObjs,
-    });
+    this.objs = newObjs;
   }
 
   render() {
+    console.log('WeatherStationMarkerContainer, render');
     if (!isBrowser) { return false; }
-
-    if (this.state.objs.length === 0 /* || !this.props.showWeatherStations*/) { return false; }
-
-    return (<div style={{ display: 'none' }}>{this.state.objs}</div>);
+    console.log('WeatherStationMarkerContainer, this.state.objs.length: ', this.objs.length);
+    console.log('WeatherStationMarkerContainer, this.props.showWeatherStations: ', this.props.showWeatherStations);
+    if (this.objs.length === 0 || !this.props.showWeatherStations) { return false; }
+    console.log('WeatherStationMarkerContainer, render2');
+    return (<div style={{ display: 'none' }}>{this.objs}</div>);
   }
 }
 

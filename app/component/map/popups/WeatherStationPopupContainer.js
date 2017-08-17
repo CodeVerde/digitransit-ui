@@ -1,65 +1,35 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { intlShape } from 'react-intl';
-import connectToStores from 'fluxible-addons-react/connectToStores';
 
-import { asString as iconAsString } from '../IconWithTail';
-import { isBrowser } from '../../util/browser';
-import { getJsonWithHeaders } from '../../util/xhrPromise';
-import { cleanJson } from '../../util/ouluJsonUtils';
+import { isBrowser } from '../../../util/browser';
+import { getJsonWithHeaders } from '../../../util/xhrPromise';
+import { cleanJson } from '../../../util/ouluJsonUtils';
 
-import { weatherStationDetailsData } from './WeatherStationMarkerData';
+import Card from '../../Card';
 
-import Card from '../Card';
-
-let Popup;
-let Marker;
-let L;
-
-if (isBrowser) {
-  /* eslint-disable global-require */
-  Popup = require('react-leaflet/lib/Popup').default;
-  Marker = require('react-leaflet/lib/Marker').default;
-  L = require('leaflet');
-  /* eslint-enable global-require */
-}
-
-//
-// const getWeatherStationMarkerIcon = iconText => (
-//   L.divIcon({
-//     html: iconAsString({ img: 'icon-icon_tiesaa_marker', iconText }),
-//     className: 'weather-station-marker',
-//     iconSize: [20, 20],
-//     iconAnchor: [30, 40],
-//   })
-// );
-
-const parseWeatherStationDetails = (data) => {
-  console.log('parseWeatherStationDetails: ', data);
-  return {
-    timestamp: data.timestamp,
-    name: data.name,
-    airTemperature: data.airtemperature,
-    roadTemperature: data.roadtemperature,
-    rainType: data.raintype,
-    roadCondition: data.roadcondition,
-  };
-};
+const parseWeatherStationDetails = data => ({
+  timestamp: data.timestamp,
+  name: data.name,
+  airTemperature: data.airtemperature,
+  roadTemperature: data.roadtemperature,
+  rainType: data.raintype,
+  roadCondition: data.roadcondition,
+});
 
 export default class WeatherStationPopupContainer extends React.PureComponent {
   static contextTypes = {
-    map: PropTypes.object.isRequired,
   };
 
   static propTypes = {
     stationId: PropTypes.string.isRequired,
+    loading: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
     console.log('WeatherStationPopupContainer, constructor: ', this.props.stationId);
     this.state = {
-      data: null,
+      popupContent: null,
     };
   }
 
@@ -73,19 +43,8 @@ export default class WeatherStationPopupContainer extends React.PureComponent {
     .catch(err => console.log(`Requesting road weather stations, error: ${err}`));
   }
 
-  componentWillReceiveProps() {
-    console.log('WeatherStationPopupContainer, componentWillReceiveProps: ', this.props.stationId);
-  }
-
-  shouldComponentUpdate() {
-    console.log('WeatherStationPopupContainer, shouldComponentUpdate: ', this.props.stationId);
-    return true;
-  }
-
   updateObjects(data) {
-    const newObj = [];
-
-    newObj.push(
+    const newObj = (
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
@@ -103,23 +62,21 @@ export default class WeatherStationPopupContainer extends React.PureComponent {
           <p className="departure route-detail-text no-padding no-margin">Sade: {data.rainType}</p>
           <p className="departure route-detail-text no-padding no-margin">Keli: {data.roadCondition}</p>
         </div>
-      </Card>,
+      </Card>
     );
-    this.setState({ data: newObj });
+    this.setState({ popupContent: newObj });
   }
 
   render() {
     console.log('WeatherStationPopupContainer, render: ', this.props.stationId);
     if (!isBrowser) { return false; }
 
-    if (this.state.data === null) {
-      return (
-        <p>Loading....</p>
-      );
+    if (this.state.popupContent === null) {
+      return (<Card className="padding-small">{this.props.loading()}</Card>);
     }
 
     return (
-      <div>{this.state.data}</div>
+      <div>{this.state.popupContent}</div>
     );
   }
 }
