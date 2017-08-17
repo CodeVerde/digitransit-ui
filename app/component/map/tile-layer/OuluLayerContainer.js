@@ -56,39 +56,6 @@ class OuluLayerContainer extends FeatureGroup {
     };
   }
 
-  componentWillMount() {
-    super.componentWillMount();
-    console.log('OuluLayerContainer, componentWillMount: ');
-
-    // this.leafletElement = new Layer(omit(this.props, 'map'));
-    this.context.map.addEventParent(this.leafletElement);
-
-    this.leafletElement.on('click contextmenu', this.onClick);
-  }
-
-  componentDidMount() {
-    super.componentDidMount();
-    console.log('OuluLayerContainer, componentDidMount: ');
-    if (this.state.popups.length === 1) {
-      console.log('OuluLayerContainer, componentDidMount, opening popup');
-      this.leafletElement.openPopup();
-    }
-  }
-
-  componentDidUpdate() {
-    super.componentDidUpdate();
-    console.log('OuluLayerContainer, componentDidUpdate: ', this.props.weatherStationsData.length);
-    if (this.context.popupContainer != null) {
-      console.log('OuluLayerContainer, opening popup');
-      this.context.popupContainer.openPopup();
-    }
-  }
-
-  componentWillUnmount() {
-    console.log('OuluLayerContainer, componentWillUnmount: ');
-    this.leafletElement.off('click contextmenu', this.onClick);
-  }
-
   onClick = (e) => {
     console.log('OuluLayerContainer, onClick: ', e);
 
@@ -126,7 +93,7 @@ class OuluLayerContainer extends FeatureGroup {
           {this.props.children}
           <Popup
             {...PopupOptions}
-            key="fg-popup-super"
+            key="oulu-features-popup"
             position={{
               lat: this.state.popups[0].lat,
               lng: this.state.popups[0].lng,
@@ -147,7 +114,7 @@ class OuluLayerContainer extends FeatureGroup {
         {this.props.children}
         <Popup
           {...PopupOptions}
-          key="fg-popup-super"
+          key="oulu-features-popup"
         />
       </FeatureGroup>
     );
