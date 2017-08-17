@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { intlShape } from 'react-intl';
 
 import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
@@ -18,6 +19,7 @@ const parseWeatherStationDetails = data => ({
 
 export default class WeatherStationPopupContainer extends React.PureComponent {
   static contextTypes = {
+    intl: intlShape,
   };
 
   static propTypes = {
@@ -40,7 +42,7 @@ export default class WeatherStationPopupContainer extends React.PureComponent {
     getJsonWithHeaders(url, null, headers)
     .then(response => cleanJson(response))
     .then(cleanResponse => this.updateObjects(parseWeatherStationDetails(cleanResponse)))
-    .catch(err => console.log(`Requesting road weather stations, error: ${err}`));
+    .catch(err => console.error(err));
   }
 
   updateObjects(data) {

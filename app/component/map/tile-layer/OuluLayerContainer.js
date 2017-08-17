@@ -59,9 +59,24 @@ class OuluLayerContainer extends FeatureGroup {
   componentWillMount() {
     super.componentWillMount();
     console.log('OuluLayerContainer, componentWillMount: ');
+
+    // this.leafletElement = new Layer(omit(this.props, 'map'));
+    this.context.map.addEventParent(this.leafletElement);
+
+    this.leafletElement.on('click contextmenu', this.onClick);
+  }
+
+  componentDidMount() {
+    super.componentDidMount();
+    console.log('OuluLayerContainer, componentDidMount: ');
+    if (this.state.popups.length === 1) {
+      console.log('OuluLayerContainer, componentDidMount, opening popup');
+      this.leafletElement.openPopup();
+    }
   }
 
   componentDidUpdate() {
+    super.componentDidUpdate();
     console.log('OuluLayerContainer, componentDidUpdate: ', this.props.weatherStationsData.length);
     if (this.context.popupContainer != null) {
       console.log('OuluLayerContainer, opening popup');
@@ -69,10 +84,10 @@ class OuluLayerContainer extends FeatureGroup {
     }
   }
 
-  // componentWillUnmount() {
-  //   // this.context.getStore('TimeStore').removeChangeListener(this.onTimeChange);
-  //   // this.leafletElement.off('click contextmenu', this.onClick);
-  // }
+  componentWillUnmount() {
+    console.log('OuluLayerContainer, componentWillUnmount: ');
+    this.leafletElement.off('click contextmenu', this.onClick);
+  }
 
   onClick = (e) => {
     console.log('OuluLayerContainer, onClick: ', e);
@@ -103,13 +118,12 @@ class OuluLayerContainer extends FeatureGroup {
     this.setState({ popups: hits.slice() });
   }
 
-  selectRow = option => this.setState({ selectableTargets: [option] })
-
   render() {
     if (this.state.popups.length === 1) {
       console.log('OuluLayerContainer, render, gimme popup: ');
       return (
         <FeatureGroup onClick={this.onClick}>
+          {this.props.children}
           <Popup
             {...PopupOptions}
             key="fg-popup-super"
@@ -124,7 +138,6 @@ class OuluLayerContainer extends FeatureGroup {
               loading={Loading}
             />
           </Popup>
-          {this.props.children}
         </FeatureGroup>
       );
     }
@@ -132,6 +145,10 @@ class OuluLayerContainer extends FeatureGroup {
     return (
       <FeatureGroup onClick={this.onClick}>
         {this.props.children}
+        <Popup
+          {...PopupOptions}
+          key="fg-popup-super"
+        />
       </FeatureGroup>
     );
   }
