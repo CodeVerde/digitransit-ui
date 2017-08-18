@@ -162,7 +162,6 @@ class TileLayerContainer extends MapLayer {
   }
 
   onClick = (e) => {
-    console.log('TileLayerContainer, onClick: ');
     /* eslint-disable no-underscore-dangle */
     Object.keys(this.leafletElement._tiles)
       .filter(key => this.leafletElement._tiles[key].active)
@@ -203,8 +202,6 @@ class TileLayerContainer extends MapLayer {
     let popup = null;
     let contents;
 
-    console.log('TileLayerContainer, render: ');
-
     const loadingPopup = () =>
       <div className="card" style={{ height: '12rem' }}>
         <Loading />
@@ -214,7 +211,6 @@ class TileLayerContainer extends MapLayer {
       if (this.state.selectableTargets.length === 1) {
         let id;
         if (this.state.selectableTargets[0].layer === 'stop') {
-          console.log('TileLayerContainer, this.state.selectableTargets[0].layer === stop');
           id = this.state.selectableTargets[0].feature.properties.gtfsId;
           contents = (
             <Relay.RootContainer

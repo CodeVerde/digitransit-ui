@@ -5,19 +5,31 @@ import { intlShape } from 'react-intl';
 import FeatureGroup from 'react-leaflet/lib/FeatureGroup';
 import L from 'leaflet';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-import provideContext from 'fluxible-addons-react/provideContext';
+// import provideContext from 'fluxible-addons-react/provideContext';
 
-import Loading from '../../Loading';
+// import Loading from '../../Loading';
 
-import WeatherStationPopupContainer from '../popups/WeatherStationPopupContainer';
+// import WeatherStationPopupContainer from '../popups/WeatherStationPopupContainer';
 
-const WeatherStationPopupContainerWithContext = provideContext(WeatherStationPopupContainer, {
-  intl: intlShape.isRequired,
-  router: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-  route: PropTypes.object.isRequired,
-  config: PropTypes.object.isRequired,
-});
+import IncidentsContainer from './IncidentsContainer';
+import WeatherStationsContainer from './WeatherStationsContainer';
+// import { MyWeather } from './WeatherStationsContainer';
+// const WeatherStationPopupContainerWithContext = provideContext(WeatherStationPopupContainer, {
+//   intl: intlShape.isRequired,
+//   router: PropTypes.object.isRequired,
+//   location: PropTypes.object.isRequired,
+//   route: PropTypes.object.isRequired,
+//   config: PropTypes.object.isRequired,
+// });
+
+// const WeatherStationsContainerWithContext = provideContext(WeatherStationsContainer, {
+//   intl: intlShape.isRequired,
+//   router: PropTypes.object.isRequired,
+//   location: PropTypes.object.isRequired,
+//   route: PropTypes.object.isRequired,
+//   config: PropTypes.object.isRequired,
+// });
+
 
 const PopupOptions = {
   offset: [110, 16],
@@ -36,6 +48,7 @@ class OuluLayerContainer extends FeatureGroup {
   static propTypes = {
     children: PropTypes.array,
     weatherStationsData: PropTypes.array.isRequired,
+    mapSelectionsData: PropTypes.object.isRequired,
   }
 
   static contextTypes = {
@@ -51,43 +64,36 @@ class OuluLayerContainer extends FeatureGroup {
 
   constructor(props) {
     super(props);
+    this.ouluObjectsArray = [];
     this.state = {
       popups: [],
     };
   }
 
-  onClick = (e) => {
-    console.log('OuluLayerContainer, onClick: ', e);
 
+  componentWillMount() {
+    super.componentWillMount();
+    this.ouluObjectsArray = [
+      new IncidentsContainer(this.context, this.context.map),
+      new WeatherStationsContainer(this.context, this.context.map),
+    ];
+  }
+
+  onClick = (e) => {
     const hits = [];
     const myPoint = this.context.map.latLngToLayerPoint(e.latlng);
     const halfBox = L.point([10, 10]);
-    const smallCorner = myPoint.subtract(halfBox);
-    const bigCorner = myPoint.add(halfBox);
-    const myBounds = L.bounds(smallCorner, bigCorner);
-    this.props.weatherStationsData.forEach((element) => {
-      const mousePoint = this.context.map.latLngToLayerPoint(
-        L.latLng([
-          element.geometry.lat,
-          element.geometry.lon,
-        ]));
-      if (myBounds.contains(mousePoint)) {
-        console.log('Bounds hit: ', element.geometry.lat, ', ', element.geometry.lon);
-        console.log('Bounds id: ', element.id);
-        hits.push({
-          id: element.id,
-          lat: element.geometry.lat,
-          lng: element.geometry.lon,
-        });
-      }
+    const leftTopCorner = myPoint.subtract(halfBox);
+    const rightBottomCorner = myPoint.add(halfBox);
+    const myBounds = L.bounds(leftTopCorner, rightBottomCorner);
+    this.ouluObjectsArray.forEach((layer) => {
+      hits.push(...layer.getObjectHits(myBounds, this.props.mapSelectionsData));
     });
-    console.log('Amount of hits: ', hits.length);
     this.setState({ popups: hits.slice() });
   }
 
   render() {
     if (this.state.popups.length === 1) {
-      console.log('OuluLayerContainer, render, gimme popup: ');
       return (
         <FeatureGroup onClick={this.onClick}>
           {this.props.children}
@@ -99,16 +105,12 @@ class OuluLayerContainer extends FeatureGroup {
               lng: this.state.popups[0].lng,
             }}
           >
-            <WeatherStationPopupContainerWithContext
-              stationId={this.state.popups[0].id}
-              context={this.context}
-              loading={Loading}
-            />
+            {this.state.popups[0].content}
           </Popup>
         </FeatureGroup>
       );
     }
-    console.log('OuluLayerContainer, render, no popup: ');
+
     return (
       <FeatureGroup onClick={this.onClick}>
         {this.props.children}
@@ -123,4 +125,5 @@ class OuluLayerContainer extends FeatureGroup {
 
 export default connectToStores(OuluLayerContainer, ['MapSelectionsStore'], context => ({
   weatherStationsData: context.getStore('MapSelectionsStore').getWeatherStationsData(),
+  mapSelectionsData: context.getStore('MapSelectionsStore').getData(),
 }));

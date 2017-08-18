@@ -134,23 +134,17 @@ class Map extends React.Component {
 
     const config = this.context.config;
 
-    const klikk = (e) => {
-      console.log('Map, klikk: ', e);
-    };
-
     if (isBrowser) {
       leafletObjs = this.props.leafletObjs.slice() || [];
       ouluLeafletObjs = this.props.ouluLeafletObjs.slice() || [];
 
       if (config.map.useVectorTiles) {
-        console.log('Map, useVectorTiles');
         leafletObjs.push(
           <LazilyLoad key="vector-tiles" modules={this.vectorTileLayerContainerModules}>
             {this.renderVectorTileLayerContainer}
           </LazilyLoad>,
         );
       } else if (this.props.showStops) {
-        console.log('Map, showStops');
         leafletObjs.push(
           <LazilyLoad key="stop-layer" modules={this.stopMarkerContainerModules}>
             {this.renderStopMarkerContainer}

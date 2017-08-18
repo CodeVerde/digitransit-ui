@@ -13,7 +13,8 @@ class MapSelectionsStore extends Store {
       showCameras: false,
       showCarMonitoring: false,
       showCarParking: false,
-      showIncidents: false,
+      incidentsData: [],
+      showIncidents: true,
       showMonitoring: false,
       showRoadWeather: false,
       showTrafficFluency: false,
@@ -53,6 +54,11 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  addIncidentsData(data) {
+    this.data.incidentsData = data.slice();
+    this.emitChange();
+  }
+
   toggleIncidentsState() {
     this.data.showIncidents = !this.data.showIncidents;
     this.emitChange();
@@ -74,7 +80,6 @@ class MapSelectionsStore extends Store {
   }
 
   addWeatherStationsData(data) {
-    // console.log('Adding data: ', data);
     this.data.weatherStationsData = data.slice();
     this.emitChange();
   }
@@ -82,6 +87,10 @@ class MapSelectionsStore extends Store {
   toggleWeatherStationsState() {
     this.data.showWeatherStations = !this.data.showWeatherStations;
     this.emitChange();
+  }
+
+  getData() {
+    return this.data;
   }
 
   getBulletinsState() {
@@ -102,6 +111,10 @@ class MapSelectionsStore extends Store {
 
   getCarParkingState() {
     return this.data.showCarParking;
+  }
+
+  getIncidentsData() {
+    return this.data.incidentsData;
   }
 
   getIncidentsState() {
@@ -134,6 +147,7 @@ class MapSelectionsStore extends Store {
     ToggleCamerasState: 'toggleCamerasState',
     ToggleCarMonitoringState: 'toggleCarMonitoringState',
     ToggleCarParkingState: 'toggleCarParkingState',
+    AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',
     ToggleMonitoringState: 'toggleMonitoringState',
     ToggleRoadWeatherState: 'toggleRoadWeatherState',

@@ -4,8 +4,7 @@ import { intlShape } from 'react-intl';
 
 import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
-import { cleanJson } from '../../../util/ouluJsonUtils';
-
+import { cleanJson } from '../../../util/ouluUtils';
 import Card from '../../Card';
 
 const parseWeatherStationDetails = data => ({
@@ -17,7 +16,7 @@ const parseWeatherStationDetails = data => ({
   roadCondition: data.roadcondition,
 });
 
-export default class WeatherStationPopupContainer extends React.PureComponent {
+export default class WeatherStationPopupContainer extends React.Component {
   static contextTypes = {
     intl: intlShape,
   };
@@ -29,19 +28,18 @@ export default class WeatherStationPopupContainer extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    console.log('WeatherStationPopupContainer, constructor: ', this.props.stationId);
     this.state = {
       popupContent: null,
     };
   }
 
   componentWillMount() {
-    console.log('WeatherStationPopupContainer, componentWillMount: ', this.props.stationId);
     const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadweather/roadweather_details.php?roadweatherid=${this.props.stationId}`;
     const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
     getJsonWithHeaders(url, null, headers)
     .then(response => cleanJson(response))
     .then(cleanResponse => this.updateObjects(parseWeatherStationDetails(cleanResponse)))
+    // eslint-disable-next-line no-console
     .catch(err => console.error(err));
   }
 
@@ -70,15 +68,12 @@ export default class WeatherStationPopupContainer extends React.PureComponent {
   }
 
   render() {
-    console.log('WeatherStationPopupContainer, render: ', this.props.stationId);
     if (!isBrowser) { return false; }
 
     if (this.state.popupContent === null) {
       return (<Card className="padding-small">{this.props.loading()}</Card>);
     }
 
-    return (
-      <div>{this.state.popupContent}</div>
-    );
+    return (<div>{this.state.popupContent}</div>);
   }
 }

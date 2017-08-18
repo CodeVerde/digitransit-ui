@@ -26,8 +26,6 @@ export default function VectorTileLayerContainer(props, { config }) {
     }
   }
 
-  console.log('VectorTileLayerContainer, render');
-
   return (
     <TileLayerContainer
       key="tileLayer"
