@@ -16,6 +16,7 @@ import Icon from '../Icon';
 let LeafletMap;
 let TileLayer;
 let BusLinesLayer;
+let OuluLayerContainer;
 let AttributionControl;
 let ScaleControl;
 let ZoomControl;
@@ -25,6 +26,7 @@ if (isBrowser) {
   LeafletMap = require('react-leaflet/lib/Map').default;
   TileLayer = require('react-leaflet/lib/TileLayer').default;
   BusLinesLayer = require('react-leaflet/lib/TileLayer').default;
+  OuluLayerContainer = require('./tile-layer/OuluLayerContainer').default;
   AttributionControl = require('react-leaflet/lib/AttributionControl').default;
   ScaleControl = require('react-leaflet/lib/ScaleControl').default;
   ZoomControl = require('react-leaflet/lib/ZoomControl').default;
@@ -49,6 +51,7 @@ class Map extends React.Component {
     lon: PropTypes.number,
     leafletEvents: PropTypes.object,
     leafletObjs: PropTypes.array,
+    ouluLeafletObjs: PropTypes.array,
     leafletOptions: PropTypes.object,
     padding: PropTypes.array,
     showStops: PropTypes.bool,
@@ -127,10 +130,13 @@ class Map extends React.Component {
     let zoom;
     let origin;
     let leafletObjs;
+    let ouluLeafletObjs;
+
     const config = this.context.config;
 
     if (isBrowser) {
       leafletObjs = this.props.leafletObjs.slice() || [];
+      ouluLeafletObjs = this.props.ouluLeafletObjs.slice() || [];
 
       if (config.map.useVectorTiles) {
         leafletObjs.push(
@@ -219,6 +225,9 @@ class Map extends React.Component {
             minZoom={this.context.config.map.minZoom}
             maxZoom={this.context.config.map.maxZoom}
           />
+          <OuluLayerContainer>
+            {ouluLeafletObjs}
+          </OuluLayerContainer>
           {this.props.showBusLines && (
             <BusLinesLayer
               url={'{busLinesUrl}'}

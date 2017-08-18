@@ -13,10 +13,12 @@ class MapSelectionsStore extends Store {
       showCameras: false,
       showCarMonitoring: false,
       showCarParking: false,
-      showIncidents: false,
+      incidentsData: [],
+      showIncidents: true,
       showMonitoring: false,
       showRoadWeather: false,
       showTrafficFluency: false,
+      weatherStationsData: [],
       showWeatherStations: false,
     };
   }
@@ -52,6 +54,11 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  addIncidentsData(data) {
+    this.data.incidentsData = data.slice();
+    this.emitChange();
+  }
+
   toggleIncidentsState() {
     this.data.showIncidents = !this.data.showIncidents;
     this.emitChange();
@@ -72,9 +79,18 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  addWeatherStationsData(data) {
+    this.data.weatherStationsData = data.slice();
+    this.emitChange();
+  }
+
   toggleWeatherStationsState() {
     this.data.showWeatherStations = !this.data.showWeatherStations;
     this.emitChange();
+  }
+
+  getData() {
+    return this.data;
   }
 
   getBulletinsState() {
@@ -97,6 +113,10 @@ class MapSelectionsStore extends Store {
     return this.data.showCarParking;
   }
 
+  getIncidentsData() {
+    return this.data.incidentsData;
+  }
+
   getIncidentsState() {
     return this.data.showIncidents;
   }
@@ -113,6 +133,10 @@ class MapSelectionsStore extends Store {
     return this.data.showTrafficFluency;
   }
 
+  getWeatherStationsData() {
+    return this.data.weatherStationsData;
+  }
+
   getWeatherStationsState() {
     return this.data.showWeatherStations;
   }
@@ -123,10 +147,12 @@ class MapSelectionsStore extends Store {
     ToggleCamerasState: 'toggleCamerasState',
     ToggleCarMonitoringState: 'toggleCarMonitoringState',
     ToggleCarParkingState: 'toggleCarParkingState',
+    AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',
     ToggleMonitoringState: 'toggleMonitoringState',
     ToggleRoadWeatherState: 'toggleRoadWeatherState',
     ToggleTrafficFluencyState: 'toggleTrafficFluencyState',
+    AddWeatherStationsData: 'addWeatherStationsData',
     ToggleWeatherStationsState: 'toggleWeatherStationsState',
   };
 }

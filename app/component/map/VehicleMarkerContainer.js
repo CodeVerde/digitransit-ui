@@ -81,7 +81,6 @@ export default class VehicleMarkerContainer extends React.PureComponent {
   }
 
   componentWillMount() {
-    // console.log('VehicleMarkerContainer, componentWillMount: ', this.props.startRealTimeClient);
     this.context.getStore('RealTimeInformationStore').addChangeListener(this.onChange);
 
     if (this.props.startRealTimeClient) {

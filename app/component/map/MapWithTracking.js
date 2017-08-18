@@ -62,6 +62,9 @@ const leafletObjs = [
     tripStart={undefined}
     useSmallIcons={false}
   />,
+];
+
+const ouluLeafletObjs = [
   ...OuluMapObjects,
 ];
 
@@ -157,6 +160,7 @@ const MapWithTracking =
           disableMapTracking,
           children,
           leafletObjs,
+          ouluLeafletObjs,
           showBusLines: context.getStore('MapSelectionsStore').getBusLinesState(),
           showRoadWeather: context.getStore('MapSelectionsStore').getRoadWeatherState(),
           showWeatherStations: context.getStore('MapSelectionsStore').getWeatherStationsState(),
