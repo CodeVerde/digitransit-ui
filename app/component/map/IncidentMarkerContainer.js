@@ -8,8 +8,6 @@ import { asString as iconAsString } from '../IconWithTail';
 
 import { isBrowser } from '../../util/browser';
 import { AddIncidentsData } from '../../action/mapSelectionsActions';
-import { getJsonWithHeaders } from '../../util/xhrPromise';
-import { cleanJson } from '../../util/ouluUtils';
 
 let Marker;
 let Polyline;
@@ -26,6 +24,9 @@ if (isBrowser) {
 
 const parseIncidentsMessage = (data) => {
   const cleanData = [];
+
+  if (!data || !data.notice) { return cleanData; }
+
   data.notice.forEach((element) => {
     const cleanElement = {
       id: element.id,
@@ -93,39 +94,19 @@ class IncidentMarkerContainer extends React.PureComponent {
     if (this.objs.length !== this.props.incidentsData.length) {
       this.updateObjects(this.props.incidentsData);
     } else if (this.props.showIncidents) {
-      const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/incidents.php';
-      // const url2 = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/incidents.php?type=future';
-      // const url3 = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/livi_incidents.php';
-      // const url4 = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/livi_incidents.php?type=future';
-      const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
-      // TODO refactor into actions
-      getJsonWithHeaders(url, null, headers)
-      .then(response => cleanJson(response))
-      .then(cleanResponse => this.context.executeAction(
+      this.context.executeAction(
         AddIncidentsData,
-        parseIncidentsMessage(cleanResponse),
-      ))
-      // eslint-disable-next-line no-console
-      .catch(err => console.error(err));
+        parseIncidentsMessage,
+      );
     }
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.showIncidents && !this.props.showIncidents) {
-      // TODO refactor into actions
-      const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/incidents.php';
-      // const url2 = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/incidents.php?type=future';
-      // const url3 = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/livi_incidents.php';
-      // const url4 = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/livi_incidents.php?type=future';
-      const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
-      getJsonWithHeaders(url, null, headers)
-      .then(response => cleanJson(response))
-      .then(cleanResponse => this.context.executeAction(
+      this.context.executeAction(
         AddIncidentsData,
-        parseIncidentsMessage(cleanResponse),
-      ))
-      // eslint-disable-next-line no-console
-      .catch(err => console.error(err));
+        parseIncidentsMessage,
+      );
     } else if (this.objs.length !== newProps.incidentsData.length) {
       this.updateObjects(newProps.incidentsData);
     }

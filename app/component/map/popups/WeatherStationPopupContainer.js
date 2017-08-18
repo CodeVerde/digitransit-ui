@@ -57,7 +57,9 @@ export default class WeatherStationPopupContainer extends React.Component {
           </div>
         </div>
         <div>
-          <p className="departure route-detail-text no-padding no-margin">Ilman lämpötila: {data.airTemperature} °C</p>
+          <p className="departure route-detail-text no-padding no-margin">
+            {this.context.intl.formatMessage({ id: 'air-temperature', defaultMessage: 'Air temperature' })}: {data.airTemperature} °C
+          </p>
           <p className="departure route-detail-text no-padding no-margin">Tien lämpötila: {data.roadTemperature} °C</p>
           <p className="departure route-detail-text no-padding no-margin">Sade: {data.rainType}</p>
           <p className="departure route-detail-text no-padding no-margin">Keli: {data.roadCondition}</p>

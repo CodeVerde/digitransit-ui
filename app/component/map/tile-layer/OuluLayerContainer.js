@@ -5,30 +5,9 @@ import { intlShape } from 'react-intl';
 import FeatureGroup from 'react-leaflet/lib/FeatureGroup';
 import L from 'leaflet';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-// import provideContext from 'fluxible-addons-react/provideContext';
-
-// import Loading from '../../Loading';
-
-// import WeatherStationPopupContainer from '../popups/WeatherStationPopupContainer';
 
 import IncidentsContainer from './IncidentsContainer';
 import WeatherStationsContainer from './WeatherStationsContainer';
-// import { MyWeather } from './WeatherStationsContainer';
-// const WeatherStationPopupContainerWithContext = provideContext(WeatherStationPopupContainer, {
-//   intl: intlShape.isRequired,
-//   router: PropTypes.object.isRequired,
-//   location: PropTypes.object.isRequired,
-//   route: PropTypes.object.isRequired,
-//   config: PropTypes.object.isRequired,
-// });
-
-// const WeatherStationsContainerWithContext = provideContext(WeatherStationsContainer, {
-//   intl: intlShape.isRequired,
-//   router: PropTypes.object.isRequired,
-//   location: PropTypes.object.isRequired,
-//   route: PropTypes.object.isRequired,
-//   config: PropTypes.object.isRequired,
-// });
 
 
 const PopupOptions = {
