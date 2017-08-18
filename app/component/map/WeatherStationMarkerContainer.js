@@ -61,7 +61,11 @@ class WeatherStationMarkerContainer extends React.PureComponent {
 
   static propTypes = {
     showWeatherStations: PropTypes.bool.isRequired,
-    weatherStationsData: PropTypes.array.isRequired,
+    weatherStationsData: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      geometry: PropTypes.object,
+      name: PropTypes.string,
+    })).isRequired,
   }
 
   constructor(props) {
