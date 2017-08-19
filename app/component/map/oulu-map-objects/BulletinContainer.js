@@ -6,17 +6,14 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { asString as iconAsString } from '../../IconWithTail';
 
 import { isBrowser } from '../../../util/browser';
-import { bulletinMarkerData, bulletinDetailsData } from './BulletinData';
+// import { bulletinMarkerData, bulletinDetailsData } from './BulletinData';
+import { AddBulletinsData } from '../../../action/mapSelectionsActions';
 
-import Card from '../../Card';
-
-let Popup;
 let Marker;
 let L;
 
 if (isBrowser) {
   /* eslint-disable global-require */
-  Popup = require('react-leaflet/lib/Popup').default;
   Marker = require('react-leaflet/lib/Marker').default;
   L = require('leaflet');
   /* eslint-enable global-require */
@@ -25,14 +22,31 @@ if (isBrowser) {
 
 const parseBulletinMessage = (data) => {
   const cleanData = [];
-  data.forEach((element) => {
-    cleanData.push({
-      id: `bulletin-marker-${element.id}`,
+
+  if (!data || !data.notice) { return cleanData; }
+
+  data.notice.forEach((element) => {
+    const cleanElement = {
+      id: element.id,
       geometry: { lat: element.geom.coordinates[1], lon: element.geom.coordinates[0] },
-      mainClass: element.incidentmainclass,
-      reason: element.incidentmainreason,
+      direction: element.direction,
+      incidentMainClass: element.incidentmainclass,
+      incidentMainReason: element.incidentmainreason,
       area: element.area,
-    });
+    };
+
+    if (element.geom2) {
+      cleanElement.geometry2 = {
+        lat: element.geom2.coordinates[1],
+        lon: element.geom2.coordinates[0],
+      };
+    }
+
+    if (element.encoded_linear_geom) {
+      cleanElement.encodedGeometry = element.encoded_linear_geom;
+    }
+
+    cleanData.push(cleanElement);
   });
 
   return cleanData;
@@ -40,7 +54,7 @@ const parseBulletinMessage = (data) => {
 
 const getBulletinIcon = iconText => (
   L.divIcon({
-    html: iconAsString({ img: 'icon-icon_tiesaa_marker', iconText }),
+    html: iconAsString({ img: 'icon-icon_roadwork_1', iconText }),
     className: 'weather-station-marker',
     iconSize: [20, 20],
     iconAnchor: [30, 40],
@@ -52,81 +66,76 @@ class BulletinContainer extends React.PureComponent {
     getStore: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired,
     intl: intlShape.isRequired,
+    executeAction: PropTypes.func.isRequired,
   };
 
   static propTypes = {
     showBulletins: PropTypes.bool.isRequired,
+    bulletinsData: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      geometry: PropTypes.object,
+      mainClass: PropTypes.string,
+      reason: PropTypes.object,
+      area: PropTypes.string,
+    })).isRequired,
   }
 
   constructor(props) {
     super(props);
-    this.state = {
-      data: null,
-    };
+    this.objs = [];
   }
 
   componentWillMount() {
-    // Fetch data if the related setting is setting
-    this.data = parseBulletinMessage(bulletinMarkerData);
+    if (this.objs.length !== this.props.bulletinsData.length) {
+      this.updateObjects(this.props.bulletinsData);
+    } else if (this.props.showBulletins) {
+      this.context.executeAction(
+        AddBulletinsData,
+        parseBulletinMessage,
+      );
+    }
   }
 
-  render() {
-    if (!isBrowser) { return false; }
+  componentWillReceiveProps(newProps) {
+    if (newProps.showBulletins && !this.props.showBulletins) {
+      this.context.executeAction(
+        AddBulletinsData,
+        parseBulletinMessage,
+      );
+    } else if (this.objs.length !== newProps.bulletinsData.length) {
+      this.updateObjects(newProps.bulletinsData);
+    }
+  }
 
-    if (this.data === null || !this.props.showBulletins) { return false; }
-
-    const objs = [];
-
-    this.data.forEach((element) => {
-      const titleString = `${bulletinDetailsData.incidentmainclass}
-        , ${bulletinDetailsData.area}
-        , ${bulletinDetailsData.incidentmainreason}`;
-      objs.push(
+  updateObjects(data) {
+    const newObjs = [];
+    data.forEach((element) => {
+      newObjs.push(
         <Marker
-          key={element.id}
+          id={`bulletin-marker-${element.id}`}
+          key={`bulletin-marker-${element.id}`}
           position={{
             lat: element.geometry.lat,
             lng: element.geometry.lon,
           }}
           icon={getBulletinIcon()}
-          title={titleString}
-        >
-          <Popup
-            offset={[106, 16]}
-            closeButton={false}
-            maxWidth={250}
-            minWidth={250}
-            className="popup"
-          >
-            <Card className="padding-small">
-              <div className="card-header">
-                <div className="card-header-wrapper">
-                  <span className="header-primary">
-                    {titleString}
-                  </span>
-                  <div className="card-sub-header">
-                    Kesto: {bulletinDetailsData.startdate}
-                  </div>
-                </div>
-              </div>
-              <div>
-                <p className="departure route-detail-text no-padding no-margin">{bulletinDetailsData.information}</p>
-                <p className="departure route-detail-text no-padding no-margin">Lisätiedot:</p>
-                <ul>
-                  <li><p className="departure route-detail-text no-padding no-margin">{bulletinDetailsData.incidentadditionalreason1}</p></li>
-                  <li><p className="departure route-detail-text no-padding no-margin">{bulletinDetailsData.severity}</p></li>
-                </ul>
-              </div>
-            </Card>
-          </Popup>
-        </Marker>,
+          title={element.name}
+        />,
       );
     });
+    this.objs = newObjs;
+  }
 
-    return (<div style={{ display: 'none' }}>{objs}</div>);
+  render() {
+    if (!isBrowser) { return false; }
+
+    if (this.objs.length === 0 || !this.props.showBulletins) { return false; }
+
+    return (<div style={{ display: 'none' }}>{this.objs}</div>);
   }
 }
 
 export default connectToStores(BulletinContainer, ['SimpleModeStore'], context => ({
   showBulletins: context.getStore('MapSelectionsStore').getBulletinsState(),
+  bulletinsData: context.getStore('MapSelectionsStore').getBulletinsData(),
 }));

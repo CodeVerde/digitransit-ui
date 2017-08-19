@@ -6,6 +6,7 @@ import FeatureGroup from 'react-leaflet/lib/FeatureGroup';
 import L from 'leaflet';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
+import BulletinsContainer from './BulletinsContainer';
 import IncidentsContainer from './IncidentsContainer';
 import WeatherStationsContainer from './WeatherStationsContainer';
 
@@ -53,6 +54,7 @@ class OuluLayerContainer extends FeatureGroup {
   componentWillMount() {
     super.componentWillMount();
     this.ouluObjectsArray = [
+      new BulletinsContainer(this.context, this.context.map),
       new IncidentsContainer(this.context, this.context.map),
       new WeatherStationsContainer(this.context, this.context.map),
       // new TrafficFluencyContainer(this.context, this.context.map),
