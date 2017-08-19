@@ -10,6 +10,7 @@ import BulletinsContainer from './BulletinsContainer';
 import CamerasContainer from './CamerasContainer';
 import CarMonitorsContainer from './CarMonitorsContainer';
 import IncidentsContainer from './IncidentsContainer';
+import WalkMonitorsContainer from './WalkMonitorsContainer';
 import WeatherStationsContainer from './WeatherStationsContainer';
 
 
@@ -19,9 +20,14 @@ const PopupOptions = {
   minWidth: 260,
   maxWidth: 260,
   autoPanPaddingTopLeft: [5, 125],
-  className: 'popup',
+  // className: 'popup',
+  className: 'oulu-popup-xlarge',
   ref: 'popup',
 };
+
+JATKA TÄSTÄ
+* Siirrä Popup pupup luokkiin, jotta popupin koko voi muuttua
+
 
 // TODO eslint doesn't know that TileLayerContainer is a react component,
 //      because it doesn't inherit it directly. This will force the detection
@@ -59,6 +65,7 @@ class OuluLayerContainer extends FeatureGroup {
       new CamerasContainer(this.context, this.context.map),
       new CarMonitorsContainer(this.context, this.context.map),
       new IncidentsContainer(this.context, this.context.map),
+      new WalkMonitorsContainer(this.context, this.context.map),
       new WeatherStationsContainer(this.context, this.context.map),
       // new TrafficFluencyContainer(this.context, this.context.map),
     ];

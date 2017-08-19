@@ -99,6 +99,17 @@ export function ToggleRoadWeatherState(actionContext) {
   actionContext.dispatch('ToggleRoadWeatherState');
 }
 
+export function AddWalkMonitorsData(actionContext, parser) {
+  const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/eco_traffic/eco_counters.php?type=walking';
+
+  return getJsonWithHeaders(url, null, authHeaders)
+  .then(response => cleanJson(response))
+  .then(cleanResponse => parser(cleanResponse))
+  .then(data => actionContext.dispatch('AddWalkMonitorsData', data))
+  // eslint-disable-next-line no-console
+  .catch(err => console.error(err));
+}
+
 export function AddWeatherStationsData(actionContext, parser) {
   const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadweather/roadweatherstations.php';
 

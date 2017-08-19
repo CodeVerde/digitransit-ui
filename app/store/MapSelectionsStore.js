@@ -14,11 +14,12 @@ class MapSelectionsStore extends Store {
       camerasData: [],
       showCameras: false,
       carMonitorsData: [],
-      showCarMonitors: true,
+      showCarMonitors: false,
       showCarParking: false,
       incidentsData: [],
       showIncidents: false,
-      showMonitoring: false,
+      walkMonitorsData: [],
+      showWalkMonitors: true,
       showRoadWeather: false,
       trafficFluencyData: [],
       showTrafficFluency: false,
@@ -83,8 +84,14 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
-  toggleMonitoringState() {
-    this.data.showMonitoring = !this.data.showMonitoring;
+  addWalkMonitorsData(data) {
+    console.log('addWalkMonitorsData: ', data);
+    this.data.walkMonitorsData = data.slice();
+    this.emitChange();
+  }
+
+  toggleWalkMonitorsState() {
+    this.data.showWalkMonitors = !this.data.showWalkMonitors;
     this.emitChange();
   }
 
@@ -157,8 +164,12 @@ class MapSelectionsStore extends Store {
     return this.data.showIncidents;
   }
 
-  getMonitoringState() {
-    return this.data.showMonitoring;
+  getWalkMonitorsData() {
+    return this.data.walkMonitorsData;
+  }
+
+  getWalkMonitorsState() {
+    return this.data.showWalkMonitors;
   }
 
   getRoadWeatherState() {
@@ -192,7 +203,8 @@ class MapSelectionsStore extends Store {
     ToggleCarParkingState: 'toggleCarParkingState',
     AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',
-    ToggleMonitoringState: 'toggleMonitoringState',
+    AddWalkMonitorsData: 'addWalkMonitorsData',
+    ToggleWalkMonitorsState: 'toggleWalkMonitorsState',
     ToggleRoadWeatherState: 'toggleRoadWeatherState',
     AddTrafficFluencyData: 'addTrafficFluencyData',
     ToggleTrafficFluencyState: 'toggleTrafficFluencyState',
