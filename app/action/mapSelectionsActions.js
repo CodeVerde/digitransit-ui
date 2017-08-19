@@ -57,6 +57,18 @@ export function AddCamerasData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+
+export function AddCarMonitorsData(actionContext, parser) {
+  const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/lam/lams.php';
+
+  return getJsonWithHeaders(url, null, authHeaders)
+  .then(response => cleanJson(response))
+  .then(cleanResponse => parser(cleanResponse))
+  .then(data => actionContext.dispatch('AddCarMonitorsData', data))
+  // eslint-disable-next-line no-console
+  .catch(err => console.error(err));
+}
+
 export function AddIncidentsData(actionContext, parser) {
   const promises = [];
   const urls = [
