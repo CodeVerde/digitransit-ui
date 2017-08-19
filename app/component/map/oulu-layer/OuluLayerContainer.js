@@ -51,7 +51,6 @@ class OuluLayerContainer extends FeatureGroup {
     };
   }
 
-
   componentWillMount() {
     super.componentWillMount();
     this.ouluObjectsArray = [
