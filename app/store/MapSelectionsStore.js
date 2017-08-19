@@ -9,9 +9,10 @@ class MapSelectionsStore extends Store {
     this.config = dispatcher.getContext().config;
     this.data = {
       bulletinsData: [],
-      showBulletins: true,
+      showBulletins: false,
       showBusLines: false,
-      showCameras: false,
+      camerasData: [],
+      showCameras: true,
       showCarMonitoring: false,
       showCarParking: false,
       incidentsData: [],
@@ -43,6 +44,11 @@ class MapSelectionsStore extends Store {
 
   toggleBusLinesState() {
     this.data.showBusLines = !this.data.showBusLines;
+    this.emitChange();
+  }
+
+  addCamerasData(data) {
+    this.data.camerasData = data.slice();
     this.emitChange();
   }
 
@@ -117,6 +123,10 @@ class MapSelectionsStore extends Store {
     return this.data.showBusLines;
   }
 
+  getCamerasData() {
+    return this.data.camerasData;
+  }
+
   getCamerasState() {
     return this.data.showCameras;
   }
@@ -165,6 +175,7 @@ class MapSelectionsStore extends Store {
     AddBulletinsData: 'addBulletinsData',
     ToggleBulletinsState: 'toggleBulletinsState',
     ToggleBusLinesState: 'toggleBusLinesState',
+    AddCamerasData: 'addCamerasData',
     ToggleCamerasState: 'toggleCamerasState',
     ToggleCarMonitoringState: 'toggleCarMonitoringState',
     ToggleCarParkingState: 'toggleCarParkingState',

@@ -46,6 +46,17 @@ export function AddTrafficFluencyData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+export function AddCamerasData(actionContext, parser) {
+  const url = 'https://it101.infotripla.fi/city_app_traffic_data_rest_api/weathercamera/weathercamerastations.php?imageHistoryInHours=2&minLat=64.6&maxLat=65.7&minLon=25&maxLon=26.4';
+
+  return getJsonWithHeaders(url, null, authHeaders)
+  .then(response => cleanJson(response))
+  .then(cleanResponse => parser(cleanResponse))
+  .then(data => actionContext.dispatch('AddCamerasData', data))
+  // eslint-disable-next-line no-console
+  .catch(err => console.error(err));
+}
+
 export function AddIncidentsData(actionContext, parser) {
   const promises = [];
   const urls = [
