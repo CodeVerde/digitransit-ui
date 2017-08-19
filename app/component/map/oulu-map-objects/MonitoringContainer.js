@@ -5,12 +5,12 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import { Line } from 'react-chartjs-2';
 
-import { asString as iconAsString } from '../IconWithTail';
+import { asString as iconAsString } from '../../IconWithTail';
 
-import { isBrowser } from '../../util/browser';
+import { isBrowser } from '../../../util/browser';
 import { monitoringMarkerData, monitoringDetailsData } from './MonitoringData';
 
-import Card from '../Card';
+import Card from '../../Card';
 
 let Popup;
 let Marker;

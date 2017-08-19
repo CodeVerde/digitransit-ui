@@ -7,7 +7,7 @@ import onlyUpdateForKeys from 'recompose/onlyUpdateForKeys';
 import ComponentUsageExample from '../ComponentUsageExample';
 import Map from './Map';
 import ToggleMapTracking from '../ToggleMapTracking';
-import OuluMapObjects from './OuluMapObjects';
+import OuluMapObjects from './oulu-map-objects/OuluMapObjects';
 import VehicleMarkerContainer from './VehicleMarkerContainer';
 
 function mapStateReducer(state, action) {

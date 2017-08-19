@@ -4,10 +4,10 @@ import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import polyline from 'polyline-encoded';
 
-import { asString as iconAsString } from '../IconWithTail';
+import { asString as iconAsString } from '../../IconWithTail';
 
-import { isBrowser } from '../../util/browser';
-import { AddIncidentsData } from '../../action/mapSelectionsActions';
+import { isBrowser } from '../../../util/browser';
+import { AddIncidentsData } from '../../../action/mapSelectionsActions';
 
 let Marker;
 let Polyline;

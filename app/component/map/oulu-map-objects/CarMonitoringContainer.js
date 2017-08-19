@@ -3,12 +3,12 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
-import { asString as iconAsString } from '../IconWithTail';
+import { asString as iconAsString } from '../../IconWithTail';
 
-import { isBrowser } from '../../util/browser';
-import { carParkingMarkerData, carParkingDetailsData } from './CarParkingData';
+import { isBrowser } from '../../../util/browser';
+import { carMonitoringMarkerData, carMonitoringDetailsData } from './CarMonitoringData';
 
-import Card from '../Card';
+import Card from '../../Card';
 
 let Popup;
 let Marker;
@@ -23,11 +23,11 @@ if (isBrowser) {
 }
 
 
-const parseCarParkingMessage = (data) => {
+const parseCarMonitoringMessage = (data) => {
   const cleanData = [];
   data.forEach((element) => {
     cleanData.push({
-      id: `carParking-marker-${element.id}`,
+      id: `carMonitoring-marker-${element.id}`,
       geometry: { lat: element.geom.coordinates[1], lon: element.geom.coordinates[0] },
       name: element.name,
     });
@@ -36,7 +36,7 @@ const parseCarParkingMessage = (data) => {
   return cleanData;
 };
 
-const getCarParkingIcon = iconText => (
+const getCarMonitoringIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-icon_ajokeli', iconText }),
     className: 'weather-station-marker',
@@ -45,7 +45,7 @@ const getCarParkingIcon = iconText => (
   })
 );
 
-class CarParkingContainer extends React.PureComponent {
+class CarMonitoringContainer extends React.PureComponent {
   static contextTypes = {
     getStore: PropTypes.func.isRequired,
     router: PropTypes.object.isRequired,
@@ -53,22 +53,21 @@ class CarParkingContainer extends React.PureComponent {
   };
 
   static propTypes = {
-    showCarParking: PropTypes.bool.isRequired,
+    showCarMonitoring: PropTypes.bool.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
       data: null,
-      objs: null,
     };
+    this.objs = null;
   }
 
   componentWillMount() {
-    this.data = parseCarParkingMessage(carParkingMarkerData);
+    this.data = parseCarMonitoringMessage(carMonitoringMarkerData);
     this.objs = [];
     this.data.forEach((element) => {
-      const freeSpaceString = `Vapaita paikkoja: ${carParkingDetailsData.freespace} / ${carParkingDetailsData.totalspace}`;
       this.objs.push(
         <Marker
           key={element.id}
@@ -76,7 +75,7 @@ class CarParkingContainer extends React.PureComponent {
             lat: element.geometry.lat,
             lng: element.geometry.lon,
           }}
-          icon={getCarParkingIcon()}
+          icon={getCarMonitoringIcon()}
           title={element.name}
         >
           <Popup
@@ -90,16 +89,24 @@ class CarParkingContainer extends React.PureComponent {
               <div className="card-header">
                 <div className="card-header-wrapper">
                   <span className="header-primary">
-                    {element.name}
+                    {carMonitoringDetailsData.name}
                   </span>
                   <div className="card-sub-header">
-                    {carParkingDetailsData.timestamp}
+                    {carMonitoringDetailsData.timestamp}
                   </div>
                 </div>
               </div>
               <div>
-                <p className="departure route-detail-text no-padding no-margin">{freeSpaceString}</p>
-                <p className="departure route-detail-text no-padding no-margin">{carParkingDetailsData.address}</p>
+                <p className="departure route-detail-text no-padding no-margin">Keskinopeudet:</p>
+                <ul>
+                  <li><p className="departure route-detail-text no-padding no-margin">Pohjoiseen: {carMonitoringDetailsData.averagespeed1}</p></li>
+                  <li><p className="departure route-detail-text no-padding no-margin">Etelään: {carMonitoringDetailsData.averagespeed2}</p></li>
+                </ul>
+                <p className="departure route-detail-text no-padding no-margin">Liikennemäärät:</p>
+                <ul>
+                  <li><p className="departure route-detail-text no-padding no-margin">Pohjoiseen: {carMonitoringDetailsData.trafficamount1}</p></li>
+                  <li><p className="departure route-detail-text no-padding no-margin">Etelään: {carMonitoringDetailsData.trafficamount2}</p></li>
+                </ul>
               </div>
             </Card>
           </Popup>
@@ -111,12 +118,12 @@ class CarParkingContainer extends React.PureComponent {
   render() {
     if (!isBrowser) { return false; }
 
-    if (this.data === null || !this.props.showCarParking) { return false; }
+    if (this.data === null || !this.props.showCarMonitoring) { return false; }
 
     return (<div style={{ display: 'none' }}>{this.objs}</div>);
   }
 }
 
-export default connectToStores(CarParkingContainer, ['SimpleModeStore'], context => ({
-  showCarParking: context.getStore('MapSelectionsStore').getCarParkingState(),
+export default connectToStores(CarMonitoringContainer, ['SimpleModeStore'], context => ({
+  showCarMonitoring: context.getStore('MapSelectionsStore').getCarMonitoringState(),
 }));

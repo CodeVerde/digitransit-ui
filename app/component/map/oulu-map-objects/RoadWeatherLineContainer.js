@@ -6,7 +6,7 @@ import React from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import RoadWeatherLine from './RoadWeatherLine';
-import { isBrowser } from '../../util/browser';
+import { isBrowser } from '../../../util/browser';
 import roadWeatherData from './RoadWeatherData';
 
 const parseRoadWeatherMessage = (data) => {

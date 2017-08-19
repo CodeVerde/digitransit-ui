@@ -55,6 +55,7 @@ class OuluLayerContainer extends FeatureGroup {
     this.ouluObjectsArray = [
       new IncidentsContainer(this.context, this.context.map),
       new WeatherStationsContainer(this.context, this.context.map),
+      // new TrafficFluencyContainer(this.context, this.context.map),
     ];
   }
 

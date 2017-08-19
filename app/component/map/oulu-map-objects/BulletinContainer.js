@@ -3,12 +3,12 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
-import { asString as iconAsString } from '../IconWithTail';
+import { asString as iconAsString } from '../../IconWithTail';
 
-import { isBrowser } from '../../util/browser';
+import { isBrowser } from '../../../util/browser';
 import { bulletinMarkerData, bulletinDetailsData } from './BulletinData';
 
-import Card from '../Card';
+import Card from '../../Card';
 
 let Popup;
 let Marker;

@@ -3,9 +3,9 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
-import { asString as iconAsString } from '../IconWithTail';
-import { isBrowser } from '../../util/browser';
-import { AddWeatherStationsData } from '../../action/mapSelectionsActions';
+import { asString as iconAsString } from '../../IconWithTail';
+import { isBrowser } from '../../../util/browser';
+import { AddWeatherStationsData } from '../../../action/mapSelectionsActions';
 
 let Marker;
 let L;

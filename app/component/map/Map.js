@@ -26,7 +26,7 @@ if (isBrowser) {
   LeafletMap = require('react-leaflet/lib/Map').default;
   TileLayer = require('react-leaflet/lib/TileLayer').default;
   BusLinesLayer = require('react-leaflet/lib/TileLayer').default;
-  OuluLayerContainer = require('./tile-layer/OuluLayerContainer').default;
+  OuluLayerContainer = require('./oulu-layer/OuluLayerContainer').default;
   AttributionControl = require('react-leaflet/lib/AttributionControl').default;
   ScaleControl = require('react-leaflet/lib/ScaleControl').default;
   ZoomControl = require('react-leaflet/lib/ZoomControl').default;

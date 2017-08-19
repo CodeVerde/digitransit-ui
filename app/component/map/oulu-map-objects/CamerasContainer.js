@@ -3,9 +3,9 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
-import { asString as iconAsString } from '../IconWithTail';
+import { asString as iconAsString } from '../../IconWithTail';
 
-import { isBrowser } from '../../util/browser';
+import { isBrowser } from '../../../util/browser';
 import { camerasMarkerData, camerasDetailsData } from './CamerasData';
 
 
