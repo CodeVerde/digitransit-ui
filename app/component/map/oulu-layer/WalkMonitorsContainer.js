@@ -15,6 +15,10 @@ const WalkMonitorPopupContainerWithContext = provideContext(WalkMonitorPopupCont
   config: PropTypes.object.isRequired,
 });
 
+const popupOptions = {
+  className: 'oulu-popup-xlarge',
+};
+
 export default class WalkMonitorsContainer {
   constructor(context, map) {
     this.context = context;
@@ -37,6 +41,7 @@ export default class WalkMonitorsContainer {
           id: element.id,
           lat: element.geometry.lat,
           lng: element.geometry.lon,
+          options: popupOptions,
           content: (
             <WalkMonitorPopupContainerWithContext
               stationId={element.id}

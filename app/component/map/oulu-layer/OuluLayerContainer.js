@@ -14,20 +14,15 @@ import WalkMonitorsContainer from './WalkMonitorsContainer';
 import WeatherStationsContainer from './WeatherStationsContainer';
 
 
-const PopupOptions = {
+const defaultPopupOptions = {
   offset: [110, 16],
   closeButton: false,
   minWidth: 260,
   maxWidth: 260,
   autoPanPaddingTopLeft: [5, 125],
-  // className: 'popup',
-  className: 'oulu-popup-xlarge',
+  className: 'popup',
   ref: 'popup',
 };
-
-JATKA TÄSTÄ
-* Siirrä Popup pupup luokkiin, jotta popupin koko voi muuttua
-
 
 // TODO eslint doesn't know that TileLayerContainer is a react component,
 //      because it doesn't inherit it directly. This will force the detection
@@ -86,12 +81,14 @@ class OuluLayerContainer extends FeatureGroup {
 
   render() {
     if (this.state.popups.length === 1) {
+      const myOptions = Object.assign({}, defaultPopupOptions, this.state.popups[0].options);
+
       return (
         <FeatureGroup onClick={this.onClick}>
           {this.props.children}
           <Popup
-            {...PopupOptions}
-            key="oulu-features-popup"
+            {...myOptions}
+            key="oulu-features-popup-with-content"
             position={{
               lat: this.state.popups[0].lat,
               lng: this.state.popups[0].lng,
@@ -99,6 +96,7 @@ class OuluLayerContainer extends FeatureGroup {
           >
             {this.state.popups[0].content}
           </Popup>
+
         </FeatureGroup>
       );
     }
@@ -107,7 +105,7 @@ class OuluLayerContainer extends FeatureGroup {
       <FeatureGroup onClick={this.onClick}>
         {this.props.children}
         <Popup
-          {...PopupOptions}
+          {...defaultPopupOptions}
           key="oulu-features-popup"
         />
       </FeatureGroup>

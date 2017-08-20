@@ -85,7 +85,6 @@ class MapSelectionsStore extends Store {
   }
 
   addWalkMonitorsData(data) {
-    console.log('addWalkMonitorsData: ', data);
     this.data.walkMonitorsData = data.slice();
     this.emitChange();
   }
