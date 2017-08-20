@@ -162,7 +162,7 @@ const MapWithTracking =
           leafletObjs,
           ouluLeafletObjs,
           showBusLines: context.getStore('MapSelectionsStore').getBusLinesState(),
-          showRoadWeather: context.getStore('MapSelectionsStore').getRoadWeatherState(),
+          showRoadWeather: context.getStore('MapSelectionsStore').getRoadConditionsState(),
           showWeatherStations: context.getStore('MapSelectionsStore').getWeatherStationsState(),
         };
       },

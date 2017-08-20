@@ -16,12 +16,13 @@ class MapSelectionsStore extends Store {
       carMonitorsData: [],
       showCarMonitors: false,
       carParksData: [],
-      showCarParks: true,
+      showCarParks: false,
       incidentsData: [],
       showIncidents: false,
       walkMonitorsData: [],
       showWalkMonitors: false,
-      showRoadWeather: false,
+      roadConditionsData: [],
+      showRoadConditions: false,
       trafficFluencyData: [],
       showTrafficFluency: false,
       weatherStationsData: [],
@@ -100,8 +101,13 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
-  toggleRoadWeatherState() {
-    this.data.showRoadWeather = !this.data.showRoadWeather;
+  addRoadConditionsData(data) {
+    this.data.roadConditionsData = data.slice();
+    this.emitChange();
+  }
+
+  toggleRoadConditionsState() {
+    this.data.showRoadConditions = !this.data.showRoadConditions;
     this.emitChange();
   }
 
@@ -173,16 +179,12 @@ class MapSelectionsStore extends Store {
     return this.data.showIncidents;
   }
 
-  getWalkMonitorsData() {
-    return this.data.walkMonitorsData;
+  getRoadConditionsData() {
+    return this.data.roadConditionsData;
   }
 
-  getWalkMonitorsState() {
-    return this.data.showWalkMonitors;
-  }
-
-  getRoadWeatherState() {
-    return this.data.showRoadWeather;
+  getRoadConditionsState() {
+    return this.data.showRoadConditions;
   }
 
   getTrafficFluencyData() {
@@ -191,6 +193,14 @@ class MapSelectionsStore extends Store {
 
   getTrafficFluencyState() {
     return this.data.showTrafficFluency;
+  }
+
+  getWalkMonitorsData() {
+    return this.data.walkMonitorsData;
+  }
+
+  getWalkMonitorsState() {
+    return this.data.showWalkMonitors;
   }
 
   getWeatherStationsData() {
@@ -213,11 +223,12 @@ class MapSelectionsStore extends Store {
     ToggleCarParksState: 'toggleCarParksState',
     AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',
-    AddWalkMonitorsData: 'addWalkMonitorsData',
-    ToggleWalkMonitorsState: 'toggleWalkMonitorsState',
-    ToggleRoadWeatherState: 'toggleRoadWeatherState',
+    AddRoadConditionsData: 'addRoadConditionsData',
+    ToggleRoadConditionsState: 'toggleRoadConditionsState',
     AddTrafficFluencyData: 'addTrafficFluencyData',
     ToggleTrafficFluencyState: 'toggleTrafficFluencyState',
+    AddWalkMonitorsData: 'addWalkMonitorsData',
+    ToggleWalkMonitorsState: 'toggleWalkMonitorsState',
     AddWeatherStationsData: 'addWeatherStationsData',
     ToggleWeatherStationsState: 'toggleWeatherStationsState',
   };

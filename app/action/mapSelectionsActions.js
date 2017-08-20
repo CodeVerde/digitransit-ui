@@ -8,7 +8,6 @@ export function ToggleBusLinesState(actionContext) {
   actionContext.dispatch('ToggleBusLinesState');
 }
 
-
 export function AddBulletinsData(actionContext, parser) {
   const promises = [];
   const urls = [
@@ -106,8 +105,19 @@ export function AddIncidentsData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+export function AddRoadConditionsData(actionContext, parser) {
+  const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadcondition/roadconditions.php';
+
+  return getJsonWithHeaders(url, null, authHeaders)
+  .then(response => cleanJson(response))
+  .then(cleanResponse => parser(cleanResponse))
+  .then(data => actionContext.dispatch('AddRoadConditionsData', data))
+  // eslint-disable-next-line no-console
+  .catch(err => console.error(err));
+}
+
 export function ToggleRoadWeatherState(actionContext) {
-  actionContext.dispatch('ToggleRoadWeatherState');
+  actionContext.dispatch('ToggleRoadConditionsState');
 }
 
 export function AddWalkMonitorsData(actionContext, parser) {

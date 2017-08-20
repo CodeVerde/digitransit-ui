@@ -14,7 +14,6 @@ import IncidentsContainer from './IncidentsContainer';
 import WalkMonitorsContainer from './WalkMonitorsContainer';
 import WeatherStationsContainer from './WeatherStationsContainer';
 
-
 const defaultPopupOptions = {
   offset: [110, 16],
   closeButton: false,
@@ -31,9 +30,8 @@ const defaultPopupOptions = {
 class OuluLayerContainer extends FeatureGroup {
   static propTypes = {
     children: PropTypes.array,
-    weatherStationsData: PropTypes.array.isRequired,
     mapSelectionsData: PropTypes.object.isRequired,
-  }
+  };
 
   static contextTypes = {
     getStore: PropTypes.func.isRequired,
@@ -62,6 +60,7 @@ class OuluLayerContainer extends FeatureGroup {
       new CarMonitorsContainer(this.context, this.context.map),
       new CarParksContainer(this.context, this.context.map),
       new IncidentsContainer(this.context, this.context.map),
+      // new RoadConditionsContainer(this.context, this.context.map),
       new WalkMonitorsContainer(this.context, this.context.map),
       new WeatherStationsContainer(this.context, this.context.map),
       // new TrafficFluencyContainer(this.context, this.context.map),
@@ -115,6 +114,5 @@ class OuluLayerContainer extends FeatureGroup {
 }
 
 export default connectToStores(OuluLayerContainer, ['MapSelectionsStore'], context => ({
-  weatherStationsData: context.getStore('MapSelectionsStore').getWeatherStationsData(),
   mapSelectionsData: context.getStore('MapSelectionsStore').getData(),
 }));

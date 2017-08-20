@@ -14,7 +14,8 @@ if (isBrowser) {
 
 export default class Line extends React.Component {
   static propTypes = {
-    geometry: PropTypes.array.isRequired,
+    lineKey: PropTypes.string.isRequired,
+    geometry: PropTypes.arrayOf(PropTypes.object).isRequired,
     color: PropTypes.string.isRequired,
   }
 
@@ -41,7 +42,7 @@ export default class Line extends React.Component {
     return (
       <div style={{ display: 'none' }}>
         <Polyline
-          key="line"
+          lineKey={`${this.props.lineKey}-polyline`}
           ref={(el) => { this.line = el; }}
           positions={filteredPoints}
           className={`leg ${className}`}
