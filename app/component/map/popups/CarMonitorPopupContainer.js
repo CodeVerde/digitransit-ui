@@ -5,18 +5,19 @@ import { intlShape } from 'react-intl';
 import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
 import { cleanJson } from '../../../util/ouluUtils';
+
 import Card from '../../Card';
 
-const parseWeatherStationDetails = data => ({
-  timestamp: data.timestamp,
+const parseCarMonitorDetails = data => ({
   name: data.name,
-  airTemperature: data.airtemperature,
-  roadTemperature: data.roadtemperature,
-  rainType: data.raintype,
-  roadCondition: data.roadcondition,
+  timestamp: data.timestamp,
+  averageSpeed1: data.averagespeed1,
+  averageSpeed2: data.averagespeed2,
+  trafficAmount1: data.trafficamount1,
+  trafficAmount2: data.trafficamount2,
 });
 
-export default class WeatherStationPopupContainer extends React.Component {
+export default class CarMonitorPopupContainer extends React.Component {
   static contextTypes = {
     intl: intlShape,
   };
@@ -34,11 +35,11 @@ export default class WeatherStationPopupContainer extends React.Component {
   }
 
   componentWillMount() {
-    const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadweather/roadweather_details.php?roadweatherid=${this.props.stationId}`;
+    const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/lam/lam_details.php?lamid=${this.props.stationId}`;
     const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
     getJsonWithHeaders(url, null, headers)
     .then(response => cleanJson(response))
-    .then(cleanResponse => this.updateObjects(parseWeatherStationDetails(cleanResponse)))
+    .then(cleanResponse => this.updateObjects(parseCarMonitorDetails(cleanResponse)))
     // eslint-disable-next-line no-console
     .catch(err => console.error(err));
   }
@@ -57,12 +58,16 @@ export default class WeatherStationPopupContainer extends React.Component {
           </div>
         </div>
         <div>
-          <p className="departure route-detail-text no-padding no-margin">
-            {this.context.intl.formatMessage({ id: 'air-temperature', defaultMessage: 'Air temperature' })}: {data.airTemperature} °C
-          </p>
-          <p className="departure route-detail-text no-padding no-margin">Tien lämpötila: {data.roadTemperature} °C</p>
-          <p className="departure route-detail-text no-padding no-margin">Sade: {data.rainType}</p>
-          <p className="departure route-detail-text no-padding no-margin">Keli: {data.roadCondition}</p>
+          <p className="departure route-detail-text no-padding no-margin">Keskinopeudet:</p>
+          <ul>
+            <li><p className="departure route-detail-text no-padding no-margin">Pohjoiseen: {data.averageSpeed1}</p></li>
+            <li><p className="departure route-detail-text no-padding no-margin">Etelään: {data.averageSpeed2}</p></li>
+          </ul>
+          <p className="departure route-detail-text no-padding no-margin">Liikennemäärät:</p>
+          <ul>
+            <li><p className="departure route-detail-text no-padding no-margin">Pohjoiseen: {data.trafficAmount1}</p></li>
+            <li><p className="departure route-detail-text no-padding no-margin">Etelään: {data.trafficAmount2}</p></li>
+          </ul>
         </div>
       </Card>
     );

@@ -5,33 +5,16 @@ import { intlShape } from 'react-intl';
 import FeatureGroup from 'react-leaflet/lib/FeatureGroup';
 import L from 'leaflet';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-// import provideContext from 'fluxible-addons-react/provideContext';
 
-// import Loading from '../../Loading';
-
-// import WeatherStationPopupContainer from '../popups/WeatherStationPopupContainer';
-
+import BulletinsContainer from './BulletinsContainer';
+import CamerasContainer from './CamerasContainer';
+import CarMonitorsContainer from './CarMonitorsContainer';
+import CarParksContainer from './CarParksContainer';
 import IncidentsContainer from './IncidentsContainer';
+import WalkMonitorsContainer from './WalkMonitorsContainer';
 import WeatherStationsContainer from './WeatherStationsContainer';
-// import { MyWeather } from './WeatherStationsContainer';
-// const WeatherStationPopupContainerWithContext = provideContext(WeatherStationPopupContainer, {
-//   intl: intlShape.isRequired,
-//   router: PropTypes.object.isRequired,
-//   location: PropTypes.object.isRequired,
-//   route: PropTypes.object.isRequired,
-//   config: PropTypes.object.isRequired,
-// });
 
-// const WeatherStationsContainerWithContext = provideContext(WeatherStationsContainer, {
-//   intl: intlShape.isRequired,
-//   router: PropTypes.object.isRequired,
-//   location: PropTypes.object.isRequired,
-//   route: PropTypes.object.isRequired,
-//   config: PropTypes.object.isRequired,
-// });
-
-
-const PopupOptions = {
+const defaultPopupOptions = {
   offset: [110, 16],
   closeButton: false,
   minWidth: 260,
@@ -47,9 +30,8 @@ const PopupOptions = {
 class OuluLayerContainer extends FeatureGroup {
   static propTypes = {
     children: PropTypes.array,
-    weatherStationsData: PropTypes.array.isRequired,
     mapSelectionsData: PropTypes.object.isRequired,
-  }
+  };
 
   static contextTypes = {
     getStore: PropTypes.func.isRequired,
@@ -70,12 +52,18 @@ class OuluLayerContainer extends FeatureGroup {
     };
   }
 
-
   componentWillMount() {
     super.componentWillMount();
     this.ouluObjectsArray = [
+      new BulletinsContainer(this.context, this.context.map),
+      new CamerasContainer(this.context, this.context.map),
+      new CarMonitorsContainer(this.context, this.context.map),
+      new CarParksContainer(this.context, this.context.map),
       new IncidentsContainer(this.context, this.context.map),
+      // new RoadConditionsContainer(this.context, this.context.map),
+      new WalkMonitorsContainer(this.context, this.context.map),
       new WeatherStationsContainer(this.context, this.context.map),
+      // new TrafficFluencyContainer(this.context, this.context.map),
     ];
   }
 
@@ -94,12 +82,14 @@ class OuluLayerContainer extends FeatureGroup {
 
   render() {
     if (this.state.popups.length === 1) {
+      const myOptions = Object.assign({}, defaultPopupOptions, this.state.popups[0].options);
+
       return (
         <FeatureGroup onClick={this.onClick}>
           {this.props.children}
           <Popup
-            {...PopupOptions}
-            key="oulu-features-popup"
+            {...myOptions}
+            key="oulu-features-popup-with-content"
             position={{
               lat: this.state.popups[0].lat,
               lng: this.state.popups[0].lng,
@@ -115,7 +105,7 @@ class OuluLayerContainer extends FeatureGroup {
       <FeatureGroup onClick={this.onClick}>
         {this.props.children}
         <Popup
-          {...PopupOptions}
+          {...defaultPopupOptions}
           key="oulu-features-popup"
         />
       </FeatureGroup>
@@ -124,6 +114,5 @@ class OuluLayerContainer extends FeatureGroup {
 }
 
 export default connectToStores(OuluLayerContainer, ['MapSelectionsStore'], context => ({
-  weatherStationsData: context.getStore('MapSelectionsStore').getWeatherStationsData(),
   mapSelectionsData: context.getStore('MapSelectionsStore').getData(),
 }));

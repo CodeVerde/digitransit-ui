@@ -1,6 +1,8 @@
 import React from 'react';
 
 export function cleanJson(data) {
+  if (!data || data.length === 0) { return ''; }
+
   const strStart = '":{"';
   const strEnd = ']}';
   const data2 = JSON.stringify(data).replace(/\\"/g, '"').replace(/":"\{"/g, strStart).replace(/\]\}"/g, strEnd);

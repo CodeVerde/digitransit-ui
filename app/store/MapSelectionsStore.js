@@ -8,15 +8,22 @@ class MapSelectionsStore extends Store {
     super(dispatcher);
     this.config = dispatcher.getContext().config;
     this.data = {
+      bulletinsData: [],
       showBulletins: false,
       showBusLines: false,
+      camerasData: [],
       showCameras: false,
-      showCarMonitoring: false,
-      showCarParking: false,
+      carMonitorsData: [],
+      showCarMonitors: false,
+      carParksData: [],
+      showCarParks: false,
       incidentsData: [],
-      showIncidents: true,
-      showMonitoring: false,
-      showRoadWeather: false,
+      showIncidents: false,
+      walkMonitorsData: [],
+      showWalkMonitors: false,
+      roadConditionsData: [],
+      showRoadConditions: false,
+      trafficFluencyData: [],
       showTrafficFluency: false,
       weatherStationsData: [],
       showWeatherStations: false,
@@ -29,6 +36,11 @@ class MapSelectionsStore extends Store {
     this.data = data;
   }
 
+  addBulletinsData(data) {
+    this.data.bulletinsData = data.slice();
+    this.emitChange();
+  }
+
   toggleBulletinsState() {
     this.data.showBulletins = !this.data.showBulletins;
     this.emitChange();
@@ -39,18 +51,33 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  addCamerasData(data) {
+    this.data.camerasData = data.slice();
+    this.emitChange();
+  }
+
   toggleCamerasState() {
     this.data.showCameras = !this.data.showCameras;
     this.emitChange();
   }
 
-  toggleCarMonitoringState() {
-    this.data.showCarMonitoring = !this.data.showCarMonitoring;
+  addCarMonitorsData(data) {
+    this.data.carMonitorsData = data.slice();
     this.emitChange();
   }
 
-  toggleCarParkingState() {
-    this.data.showCarParking = !this.data.showCarParking;
+  toggleCarMonitorsState() {
+    this.data.showCarMonitors = !this.data.showCarMonitors;
+    this.emitChange();
+  }
+
+  addCarParksData(data) {
+    this.data.carParksData = data.slice();
+    this.emitChange();
+  }
+
+  toggleCarParksState() {
+    this.data.showCarParks = !this.data.showCarParks;
     this.emitChange();
   }
 
@@ -64,13 +91,28 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
-  toggleMonitoringState() {
-    this.data.showMonitoring = !this.data.showMonitoring;
+  addWalkMonitorsData(data) {
+    this.data.walkMonitorsData = data.slice();
     this.emitChange();
   }
 
-  toggleRoadWeatherState() {
-    this.data.showRoadWeather = !this.data.showRoadWeather;
+  toggleWalkMonitorsState() {
+    this.data.showWalkMonitors = !this.data.showWalkMonitors;
+    this.emitChange();
+  }
+
+  addRoadConditionsData(data) {
+    this.data.roadConditionsData = data.slice();
+    this.emitChange();
+  }
+
+  toggleRoadConditionsState() {
+    this.data.showRoadConditions = !this.data.showRoadConditions;
+    this.emitChange();
+  }
+
+  addTrafficFluencyData(data) {
+    this.data.trafficFluencyData = data.slice();
     this.emitChange();
   }
 
@@ -93,6 +135,10 @@ class MapSelectionsStore extends Store {
     return this.data;
   }
 
+  getBulletinsData() {
+    return this.data.bulletinsData;
+  }
+
   getBulletinsState() {
     return this.data.showBulletins;
   }
@@ -101,16 +147,28 @@ class MapSelectionsStore extends Store {
     return this.data.showBusLines;
   }
 
+  getCamerasData() {
+    return this.data.camerasData;
+  }
+
   getCamerasState() {
     return this.data.showCameras;
   }
 
-  getCarMonitoringState() {
-    return this.data.showCarMonitoring;
+  getCarMonitorsData() {
+    return this.data.carMonitorsData;
   }
 
-  getCarParkingState() {
-    return this.data.showCarParking;
+  getCarMonitorsState() {
+    return this.data.showCarMonitors;
+  }
+
+  getCarParksData() {
+    return this.data.carParksData;
+  }
+
+  getCarParksState() {
+    return this.data.showCarParks;
   }
 
   getIncidentsData() {
@@ -121,16 +179,28 @@ class MapSelectionsStore extends Store {
     return this.data.showIncidents;
   }
 
-  getMonitoringState() {
-    return this.data.showMonitoring;
+  getRoadConditionsData() {
+    return this.data.roadConditionsData;
   }
 
-  getRoadWeatherState() {
-    return this.data.showRoadWeather;
+  getRoadConditionsState() {
+    return this.data.showRoadConditions;
+  }
+
+  getTrafficFluencyData() {
+    return this.data.trafficFluencyData;
   }
 
   getTrafficFluencyState() {
     return this.data.showTrafficFluency;
+  }
+
+  getWalkMonitorsData() {
+    return this.data.walkMonitorsData;
+  }
+
+  getWalkMonitorsState() {
+    return this.data.showWalkMonitors;
   }
 
   getWeatherStationsData() {
@@ -142,16 +212,23 @@ class MapSelectionsStore extends Store {
   }
 
   static handlers = {
+    AddBulletinsData: 'addBulletinsData',
     ToggleBulletinsState: 'toggleBulletinsState',
     ToggleBusLinesState: 'toggleBusLinesState',
+    AddCamerasData: 'addCamerasData',
     ToggleCamerasState: 'toggleCamerasState',
-    ToggleCarMonitoringState: 'toggleCarMonitoringState',
-    ToggleCarParkingState: 'toggleCarParkingState',
+    AddCarMonitorsData: 'addCarMonitorsData',
+    ToggleCarMonitorsState: 'toggleCarMonitorsState',
+    AddCarParksData: 'addCarParksData',
+    ToggleCarParksState: 'toggleCarParksState',
     AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',
-    ToggleMonitoringState: 'toggleMonitoringState',
-    ToggleRoadWeatherState: 'toggleRoadWeatherState',
+    AddRoadConditionsData: 'addRoadConditionsData',
+    ToggleRoadConditionsState: 'toggleRoadConditionsState',
+    AddTrafficFluencyData: 'addTrafficFluencyData',
     ToggleTrafficFluencyState: 'toggleTrafficFluencyState',
+    AddWalkMonitorsData: 'addWalkMonitorsData',
+    ToggleWalkMonitorsState: 'toggleWalkMonitorsState',
     AddWeatherStationsData: 'addWeatherStationsData',
     ToggleWeatherStationsState: 'toggleWeatherStationsState',
   };

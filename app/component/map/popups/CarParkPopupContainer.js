@@ -5,18 +5,18 @@ import { intlShape } from 'react-intl';
 import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
 import { cleanJson } from '../../../util/ouluUtils';
+
 import Card from '../../Card';
 
-const parseWeatherStationDetails = data => ({
-  timestamp: data.timestamp,
+const parseCarParkDetails = data => ({
   name: data.name,
-  airTemperature: data.airtemperature,
-  roadTemperature: data.roadtemperature,
-  rainType: data.raintype,
-  roadCondition: data.roadcondition,
+  timestamp: data.timestamp,
+  address: data.address,
+  freeSpace: data.freespace,
+  totalSpace: data.totalspace,
 });
 
-export default class WeatherStationPopupContainer extends React.Component {
+export default class CarParkPopupContainer extends React.Component {
   static contextTypes = {
     intl: intlShape,
   };
@@ -34,11 +34,11 @@ export default class WeatherStationPopupContainer extends React.Component {
   }
 
   componentWillMount() {
-    const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadweather/roadweather_details.php?roadweatherid=${this.props.stationId}`;
+    const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/parking/parking_details.php?parkingid=${this.props.stationId}`;
     const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
     getJsonWithHeaders(url, null, headers)
     .then(response => cleanJson(response))
-    .then(cleanResponse => this.updateObjects(parseWeatherStationDetails(cleanResponse)))
+    .then(cleanResponse => this.updateObjects(parseCarParkDetails(cleanResponse)))
     // eslint-disable-next-line no-console
     .catch(err => console.error(err));
   }
@@ -57,12 +57,10 @@ export default class WeatherStationPopupContainer extends React.Component {
           </div>
         </div>
         <div>
-          <p className="departure route-detail-text no-padding no-margin">
-            {this.context.intl.formatMessage({ id: 'air-temperature', defaultMessage: 'Air temperature' })}: {data.airTemperature} °C
-          </p>
-          <p className="departure route-detail-text no-padding no-margin">Tien lämpötila: {data.roadTemperature} °C</p>
-          <p className="departure route-detail-text no-padding no-margin">Sade: {data.rainType}</p>
-          <p className="departure route-detail-text no-padding no-margin">Keli: {data.roadCondition}</p>
+          {data.freeSpace && data.totalSpace && <p className="departure route-detail-text no-padding no-margin">
+            Vapaita paikkoja: {data.freeSpace}/{data.totalSpace}
+          </p>}
+          <p className="departure route-detail-text no-padding no-margin">{data.address}</p>
         </div>
       </Card>
     );

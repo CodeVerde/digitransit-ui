@@ -3,11 +3,9 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
-import { asString as iconAsString } from '../IconWithTail';
-import { isBrowser } from '../../util/browser';
-import { getJsonWithHeaders } from '../../util/xhrPromise';
-import { cleanJson } from '../../util/ouluUtils';
-import { AddWeatherStationsData } from '../../action/mapSelectionsActions';
+import { asString as iconAsString } from '../../IconWithTail';
+import { isBrowser } from '../../../util/browser';
+import { AddWeatherStationsData } from '../../../action/mapSelectionsActions';
 
 let Marker;
 let L;
@@ -22,6 +20,9 @@ if (isBrowser) {
 
 const parseWeatherStationMessage = (data) => {
   const cleanData = [];
+
+  if (!data || !data.weatherstation) { return cleanData; }
+
   data.weatherstation.forEach((element) => {
     let exist = false;
     cleanData.forEach((cleanElement) => {
@@ -60,7 +61,11 @@ class WeatherStationMarkerContainer extends React.PureComponent {
 
   static propTypes = {
     showWeatherStations: PropTypes.bool.isRequired,
-    weatherStationsData: PropTypes.array.isRequired,
+    weatherStationsData: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      geometry: PropTypes.object,
+      name: PropTypes.string,
+    })).isRequired,
   }
 
   constructor(props) {
@@ -71,21 +76,20 @@ class WeatherStationMarkerContainer extends React.PureComponent {
   componentWillMount() {
     if (this.objs.length !== this.props.weatherStationsData.length) {
       this.updateObjects(this.props.weatherStationsData);
+    } else if (this.props.showWeatherStations) {
+      this.context.executeAction(
+        AddWeatherStationsData,
+        parseWeatherStationMessage,
+      );
     }
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.showWeatherStations && !this.props.showWeatherStations) {
-      const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadweather/roadweatherstations.php';
-      const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
-      getJsonWithHeaders(url, null, headers)
-      .then(response => cleanJson(response))
-      .then(cleanResponse => this.context.executeAction(
+      this.context.executeAction(
         AddWeatherStationsData,
-        parseWeatherStationMessage(cleanResponse),
-      ))
-      // eslint-disable-next-line no-console
-      .catch(err => console.error(err));
+        parseWeatherStationMessage,
+      );
     } else if (this.objs.length !== newProps.weatherStationsData.length) {
       this.updateObjects(newProps.weatherStationsData);
     }

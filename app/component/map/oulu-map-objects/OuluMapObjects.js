@@ -1,36 +1,36 @@
 import React from 'react';
-import BulletinContainer from './BulletinContainer';
-import CamerasContainer from './CamerasContainer';
-import CarMonitoringContainer from './CarMonitoringContainer';
-import CarParkingContainer from './CarParkingContainer';
+import BulletinMarkerContainer from './BulletinMarkerContainer';
+import CameraMarkerContainer from './CameraMarkerContainer';
+import CarMonitorMarkerContainer from './CarMonitorMarkerContainer';
+import CarParkMarkerContainer from './CarParkMarkerContainer';
 import IncidentMarkerContainer from './IncidentMarkerContainer';
-import MonitoringContainer from './MonitoringContainer';
-import RoadWeatherLineContainer from './RoadWeatherLineContainer';
+import WalkMonitorMarkerContainer from './WalkMonitorMarkerContainer';
+import RoadConditionLineContainer from './RoadConditionLineContainer';
 import TrafficFluencyContainer from './TrafficFluencyContainer';
 import WeatherStationMarkerContainer from './WeatherStationMarkerContainer';
 
 
 const OuluMapObjects = [
-  <BulletinContainer
+  <BulletinMarkerContainer
     key="bulletins"
   />,
-  <CamerasContainer
+  <CameraMarkerContainer
     key="cameras"
   />,
-  <CarMonitoringContainer
+  <CarMonitorMarkerContainer
     key="car-monitoring"
   />,
-  <CarParkingContainer
+  <CarParkMarkerContainer
     key="car-parking"
   />,
   <IncidentMarkerContainer
     key="incident-marker"
   />,
-  <MonitoringContainer
+  <WalkMonitorMarkerContainer
     key="monitoring"
   />,
-  <RoadWeatherLineContainer
-    key="road-weather"
+  <RoadConditionLineContainer
+    key="road-condition"
   />,
   <TrafficFluencyContainer
     key="traffic-fluency"
