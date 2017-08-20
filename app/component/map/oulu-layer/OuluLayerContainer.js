@@ -9,6 +9,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import BulletinsContainer from './BulletinsContainer';
 import CamerasContainer from './CamerasContainer';
 import CarMonitorsContainer from './CarMonitorsContainer';
+import CarParksContainer from './CarParksContainer';
 import IncidentsContainer from './IncidentsContainer';
 import WalkMonitorsContainer from './WalkMonitorsContainer';
 import WeatherStationsContainer from './WeatherStationsContainer';
@@ -59,6 +60,7 @@ class OuluLayerContainer extends FeatureGroup {
       new BulletinsContainer(this.context, this.context.map),
       new CamerasContainer(this.context, this.context.map),
       new CarMonitorsContainer(this.context, this.context.map),
+      new CarParksContainer(this.context, this.context.map),
       new IncidentsContainer(this.context, this.context.map),
       new WalkMonitorsContainer(this.context, this.context.map),
       new WeatherStationsContainer(this.context, this.context.map),
@@ -96,7 +98,6 @@ class OuluLayerContainer extends FeatureGroup {
           >
             {this.state.popups[0].content}
           </Popup>
-
         </FeatureGroup>
       );
     }
