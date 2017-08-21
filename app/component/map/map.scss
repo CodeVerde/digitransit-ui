@@ -132,6 +132,35 @@ div.leaflet-marker-icon.vehicle-icon {
   }
 }
 
+div.leaflet-marker-icon.white-icon-oulu {
+  // background: none;
+  // background-size: 2.0em 2.0em;
+  // font-size: 1.5em;
+  // 0 0 0 1px rgba(0, 0, 0, 0.1), 0 3px 14px rgba(0, 0, 0, 0.4);
+  > span > svg.icon {
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 2.5em;
+    background-color: $oulu-orange;
+    color: $oulu-orange;
+    fill: $white;
+  }
+}
+
+div.card-header-icon {
+  > span > svg.icon {
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 1.7em;
+    background-color: $oulu-orange;
+    color: $oulu-orange;
+    fill: $white;
+    margin-right: 3px;
+  }
+}
+
 div.leaflet-marker-icon.weather-station-marker {
   border: none;
   background: none;

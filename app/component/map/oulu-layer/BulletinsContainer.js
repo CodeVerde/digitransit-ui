@@ -15,6 +15,10 @@ const BulletinPopupContainerWithContext = provideContext(BulletinPopupContainer,
   config: PropTypes.object.isRequired,
 });
 
+const popupOptions = {
+  className: 'oulu-popup-large',
+};
+
 export default class BulletinsContainer {
   constructor(context, map) {
     this.context = context;
@@ -37,6 +41,7 @@ export default class BulletinsContainer {
           id: element.id,
           lat: element.geometry.lat,
           lng: element.geometry.lon,
+          options: popupOptions,
           content: (
             <BulletinPopupContainerWithContext
               stationId={element.id}

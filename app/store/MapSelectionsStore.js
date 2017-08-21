@@ -9,7 +9,7 @@ class MapSelectionsStore extends Store {
     this.config = dispatcher.getContext().config;
     this.data = {
       bulletinsData: [],
-      showBulletins: false,
+      showBulletins: true,
       showBusLines: false,
       camerasData: [],
       showCameras: false,
