@@ -126,7 +126,7 @@ export default class CameraPopupContainer extends React.Component {
                 className="oulu-popup-icon"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
-                Liikennekamera
+                {this.context.intl.formatMessage({ id: 'traffic-camera', defaultMessage: 'Traffic camera' })}
               </span>
             </div>
             <span className="header-primary">
