@@ -5,7 +5,7 @@ import { intlShape } from 'react-intl';
 import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
 import { cleanJson } from '../../../util/ouluUtils';
-
+import Icon from '../../Icon';
 import Card from '../../Card';
 
 const parseCarParkDetails = data => ({
@@ -44,10 +44,21 @@ export default class CarParkPopupContainer extends React.Component {
   }
 
   updateObjects(data) {
+    const parkingIconClass = data.freeSpace && data.totalSpace ? 'icon-green' : '';
     const newObj = (
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
+            <div className="card-header-icon">
+              <Icon
+                id="traffic-camera-popup-icon"
+                img="icon-icon_parking"
+                className={parkingIconClass}
+              />
+              <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
+                {this.context.intl.formatMessage({ id: 'parking', defaultMessage: 'Parking' })}
+              </span>
+            </div>
             <span className="header-primary">
               {data.name}
             </span>
@@ -58,7 +69,7 @@ export default class CarParkPopupContainer extends React.Component {
         </div>
         <div>
           {data.freeSpace && data.totalSpace && <p className="departure route-detail-text no-padding no-margin">
-            Vapaita paikkoja: {data.freeSpace}/{data.totalSpace}
+            {this.context.intl.formatMessage({ id: 'parking-space', defaultMessage: 'Free parking space' })}: {data.freeSpace}/{data.totalSpace}
           </p>}
           <p className="departure route-detail-text no-padding no-margin">{data.address}</p>
         </div>

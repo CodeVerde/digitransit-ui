@@ -159,6 +159,11 @@ div.card-header-icon {
     fill: $white;
     margin-right: 3px;
   }
+  > span > svg.icon-green {
+    background-color: $oulu-green;
+    color: $oulu-green;
+    fill: $white;
+  }
 }
 
 div.leaflet-marker-icon.weather-station-marker {
@@ -177,11 +182,13 @@ div.leaflet-marker-icon.car-park-available-marker {
   border: none;
   background: none;
   > span > svg.icon {
-    color: #43a85c;
-    width: 2em;
-    height: 2em;
-    top:-0.5em;
-    // left:-0.5em;
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 2.5em;
+    background-color: $oulu-green;
+    color: $oulu-green;
+    fill: $white;
   }
 }
 
