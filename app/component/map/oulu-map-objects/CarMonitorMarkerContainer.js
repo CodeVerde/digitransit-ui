@@ -3,7 +3,7 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
-import { asString as iconAsString } from '../../IconWithTail';
+import { asString as iconAsString } from '../../OuluIcon';
 
 import { isBrowser } from '../../../util/browser';
 import { AddCarMonitorsData } from '../../../action/mapSelectionsActions';
@@ -37,8 +37,8 @@ const parseCarMonitorMessage = (data) => {
 
 const getCarMonitorIcon = iconText => (
   L.divIcon({
-    html: iconAsString({ img: 'icon-icon_measurement_1', iconText }),
-    className: 'weather-station-marker',
+    html: iconAsString({ img: 'icon-icon_mittauspisteet_radar_1', iconText }),
+    className: 'white-icon-oulu',
     iconSize: [20, 20],
     iconAnchor: [30, 40],
   })

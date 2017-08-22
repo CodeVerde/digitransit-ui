@@ -5,7 +5,7 @@ import { intlShape } from 'react-intl';
 import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
 import { cleanJson } from '../../../util/ouluUtils';
-
+import Icon from '../../Icon';
 import Card from '../../Card';
 
 const parseCarMonitorDetails = data => ({
@@ -49,6 +49,16 @@ export default class CarMonitorPopupContainer extends React.Component {
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
+            <div className="card-header-icon">
+              <Icon
+                id="car-monitor-popup-icon"
+                img="icon-icon_mittauspisteet_radar_1"
+                className="oulu-popup-icon"
+              />
+              <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
+                {this.context.intl.formatMessage({ id: 'monitoring-point', defaultMessage: 'Monitoring point' })}
+              </span>
+            </div>
             <span className="header-primary">
               {data.name}
             </span>
@@ -58,15 +68,35 @@ export default class CarMonitorPopupContainer extends React.Component {
           </div>
         </div>
         <div>
-          <p className="departure route-detail-text no-padding no-margin">Keskinopeudet:</p>
+          <p className="departure route-detail-text no-padding no-margin">
+            {this.context.intl.formatMessage({ id: 'speed-averages', defaultMessage: 'Average speeds' })}:
+          </p>
           <ul>
-            <li><p className="departure route-detail-text no-padding no-margin">Pohjoiseen: {data.averageSpeed1}</p></li>
-            <li><p className="departure route-detail-text no-padding no-margin">Etelään: {data.averageSpeed2}</p></li>
+            <li>
+              <p className="departure route-detail-text no-padding no-margin">
+                {this.context.intl.formatMessage({ id: 'to-north', defaultMessage: 'To north' })}: {data.averageSpeed1}
+              </p>
+            </li>
+            <li>
+              <p className="departure route-detail-text no-padding no-margin">
+                {this.context.intl.formatMessage({ id: 'to-south', defaultMessage: 'To south' })}: {data.averageSpeed2}
+              </p>
+            </li>
           </ul>
-          <p className="departure route-detail-text no-padding no-margin">Liikennemäärät:</p>
+          <p className="departure route-detail-text no-padding no-margin">
+            {this.context.intl.formatMessage({ id: 'traffic-amount', defaultMessage: 'Traffic amount' })}:
+          </p>
           <ul>
-            <li><p className="departure route-detail-text no-padding no-margin">Pohjoiseen: {data.trafficAmount1}</p></li>
-            <li><p className="departure route-detail-text no-padding no-margin">Etelään: {data.trafficAmount2}</p></li>
+            <li>
+              <p className="departure route-detail-text no-padding no-margin">
+                {this.context.intl.formatMessage({ id: 'to-north', defaultMessage: 'To north' })}: {data.trafficAmount1}
+              </p>
+            </li>
+            <li>
+              <p className="departure route-detail-text no-padding no-margin">
+                {this.context.intl.formatMessage({ id: 'to-south', defaultMessage: 'To south' })}: {data.trafficAmount2}
+              </p>
+            </li>
           </ul>
         </div>
       </Card>

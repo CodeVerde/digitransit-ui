@@ -121,7 +121,7 @@ export default class CameraPopupContainer extends React.Component {
           <div className="card-header-wrapper">
             <div className="card-header-icon">
               <Icon
-                id="bulletin-popup-icon"
+                id="traffic-camera-popup-icon"
                 img="icon-icon_mittauspisteet_radar_1"
                 className="oulu-popup-icon"
               />
