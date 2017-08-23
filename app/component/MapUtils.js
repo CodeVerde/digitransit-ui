@@ -22,7 +22,7 @@ const MapUtils = () => (
 
       <BusLinesMapToggle />
 
-      <div className="" id="toggle-bus-stops" key="toggle-bus-stops">
+      {false && <div className="" id="toggle-bus-stops" key="toggle-bus-stops">
         <div className="map-utils-button active" id="toggle-bus-stops-button">
           <Toggle icons={false} id="BusStopsToggle" />
           <label htmlFor="BusStopsToggle">
@@ -32,9 +32,9 @@ const MapUtils = () => (
             <FormattedMessage id="stops" defaultMessage="Stops" />
           </label>
         </div>
-      </div>
+      </div>}
 
-      <div className="" id="toggle-bus-lines-tool" key="toggle-bus-lines-tool">
+      {false && <div className="" id="toggle-bus-lines-tool" key="toggle-bus-lines-tool">
         <div className="map-utils-button" id="toggle-bus-lines-tool-button">
           <Toggle icons={false} id="BusLinesToggle" />
           <label htmlFor="BusLinesToggle">
@@ -44,7 +44,7 @@ const MapUtils = () => (
             <FormattedMessage id="routes" defaultMessage="Routes" />
           </label>
         </div>
-      </div>
+      </div>}
 
       <div className="" id="toggle-maintenance" key="toggle-maintenance">
         <div className="map-utils-button" id="toggle-maintenance-button">
@@ -58,7 +58,7 @@ const MapUtils = () => (
         </div>
       </div>
 
-      <div className="" id="toggle-rain-areas" key="toggle-rain-areas">
+      {false && <div className="" id="toggle-rain-areas" key="toggle-rain-areas">
         <div className="map-utils-button" id="toggle-rain-areas-button">
           <Toggle icons={false} id="RainAreasToggle" />
           <label htmlFor="RainAreasToggle">
@@ -68,7 +68,7 @@ const MapUtils = () => (
             <FormattedMessage id="rain-areas" defaultMessage="Rain Areas" />
           </label>
         </div>
-      </div>
+      </div>}
 
       <BulletinsToggle />
       <CamerasToggle />
@@ -79,7 +79,7 @@ const MapUtils = () => (
       <TrafficFluencyToggle />
       <WalkMonitorsToggle />
       <WeatherStationsToggle />
-      <RainMap />
+      {false && <RainMap />}
       <WeatherForecast />
 
     </div>
