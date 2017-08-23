@@ -26,7 +26,7 @@ class MapSelectionsStore extends Store {
       trafficFluencyData: [],
       showTrafficFluency: false,
       weatherStationsData: [],
-      showWeatherStations: true,
+      showWeatherStations: false,
     };
   }
 
