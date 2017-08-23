@@ -6,6 +6,7 @@ import Toggle from 'react-toggle';
 import BusLinesMapToggle from './BusLinesMapToggle';
 import RainMap from './RainMap';
 import BulletinsToggle from './toggles/BulletinsToggle';
+import CamerasToggle from './toggles/CamerasToggle';
 import RoadWeatherToggle from './toggles/RoadWeatherToggle';
 import WeatherStationsToggle from './toggles/WeatherStationsToggle';
 import WeatherForecast from './WeatherForecast';
@@ -65,6 +66,7 @@ const MapUtils = () => (
       </div>
 
       <BulletinsToggle />
+      <CamerasToggle />
       <RoadWeatherToggle />
       <WeatherStationsToggle />
       <RainMap />
