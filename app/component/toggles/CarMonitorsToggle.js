@@ -18,7 +18,7 @@ const CarMonitorsToggle = ({ showCarMonitors }, { executeAction }) => (
         <svg className="icon" viewBox="0 0 283.46 283.46">
           <use xlinkHref="#icon-icon_mittauspisteet_radar_1" />
         </svg>
-        <FormattedMessage id="toggle-car-monitors" defaultMessage="Incidents" />
+        <FormattedMessage id="toggle-car-monitors" defaultMessage="Monitoring" />
       </label>
     </div>
   </div>
