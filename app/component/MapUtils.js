@@ -1,72 +1,71 @@
 import React from 'react';
 
+import { FormattedMessage } from 'react-intl';
+import Toggle from 'react-toggle';
+
 import BusLinesMapToggle from './BusLinesMapToggle';
-import WeatherForecast from './WeatherForecast';
 import RainMap from './RainMap';
 import RoadWeatherToggle from './RoadWeatherToggle';
 import WeatherStationsToggle from './WeatherStationsToggle';
+import WeatherForecast from './WeatherForecast';
 
 const MapUtils = () => (
   <div className="map-utils-float">
     <div className="MapUtils">
-      {/* <button className="map-utils-button">
-        <svg
-          className="icon"
-          viewBox="0 0 283.46 283.46"
-        >
-          <use xlinkHref="#icon-icon_linjakartta" />
-        </svg>
-        <span>Linjakartta</span>
-      </button> */}
 
       <BusLinesMapToggle />
 
-      <button className="map-utils-button">
-        <svg
-          className="icon"
-          viewBox="0 0 283.46 283.46"
-        >
-          <use xlinkHref="#icon-icon_bus_stops" />
-        </svg>
-        <span>Pysäkit</span>
-      </button>
+      <div className="" id="toggle-bus-stops" key="toggle-bus-stops">
+        <div className="map-utils-button active" id="toggle-bus-stops-button">
+          <Toggle icons={false} id="BusStopsToggle" />
+          <label htmlFor="BusStopsToggle">
+            <svg className="icon" viewBox="0 0 283.46 283.46">
+              <use xlinkHref="#icon-icon_bus_stops" />
+            </svg>
+            <FormattedMessage id="stops" defaultMessage="Stops" />
+          </label>
+        </div>
+      </div>
 
-      <button className="map-utils-button">
-        <svg
-          className="icon"
-          viewBox="0 0 283.46 283.46"
-        >
-          <use xlinkHref="#icon-icon_bus_lines" />
-        </svg>
-        <span>Bussilinjat</span>
-      </button>
+      <div className="" id="toggle-bus-lines-tool" key="toggle-bus-lines-tool">
+        <div className="map-utils-button" id="toggle-bus-lines-tool-button">
+          <Toggle icons={false} id="BusLinesToggle" />
+          <label htmlFor="BusLinesToggle">
+            <svg className="icon" viewBox="0 0 283.46 283.46">
+              <use xlinkHref="#icon-icon_bus_lines" />
+            </svg>
+            <FormattedMessage id="routes" defaultMessage="Routes" />
+          </label>
+        </div>
+      </div>
 
-      <button className="map-utils-button">
-        <svg
-          className="icon"
-          viewBox="0 0 283.46 283.46"
-        >
-          <use xlinkHref="#icon-icon_kunnossapito" />
-        </svg>
-        <span>Kunnossapito</span>
-      </button>
+      <div className="" id="toggle-maintenance" key="toggle-maintenance">
+        <div className="map-utils-button" id="toggle-maintenance-button">
+          <Toggle icons={false} id="MaintenanceToggle" />
+          <label htmlFor="MaintenanceToggle">
+            <svg className="icon" viewBox="0 0 283.46 283.46">
+              <use xlinkHref="#icon-icon_kunnossapito" />
+            </svg>
+            <FormattedMessage id="maintenance" defaultMessage="Maintenance" />
+          </label>
+        </div>
+      </div>
 
-      <button className="map-utils-button">
-        <svg
-          className="icon"
-          viewBox="0 0 283.46 283.46"
-        >
-          <use xlinkHref="#icon-icon_sadealueet" />
-        </svg>
-        <span>Sadealueet</span>
-      </button>
+      <div className="" id="toggle-rain-areas" key="toggle-rain-areas">
+        <div className="map-utils-button" id="toggle-rain-areas-button">
+          <Toggle icons={false} id="RainAreasToggle" />
+          <label htmlFor="RainAreasToggle">
+            <svg className="icon" viewBox="0 0 283.46 283.46">
+              <use xlinkHref="#icon-icon_sadealueet" />
+            </svg>
+            <FormattedMessage id="rain-areas" defaultMessage="Rain Areas" />
+          </label>
+        </div>
+      </div>
 
       <RoadWeatherToggle />
-
       <WeatherStationsToggle />
-
       <RainMap />
-
       <WeatherForecast />
 
     </div>

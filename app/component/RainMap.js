@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import { FormattedMessage } from 'react-intl';
 
 class RainMap extends React.Component {
   constructor() {
@@ -33,7 +34,7 @@ class RainMap extends React.Component {
           >
             <use xlinkHref="#icon-icon_sadekartta" />
           </svg>
-          <span>Sadekartta</span>
+          <span><FormattedMessage id="rain-map" defaultMessage="Rain Map" /></span>
         </button>
         <ReactModal
           isOpen={this.state.showModal}
@@ -45,7 +46,7 @@ class RainMap extends React.Component {
             },
             content: {
               left: 'auto',
-              right: '200px',
+              right: '250px',
               width: '620px',
               zIndex: 10001,
             },
@@ -58,7 +59,7 @@ class RainMap extends React.Component {
                 margin: 0,
               }}
             >
-              <span>Sadekartta</span>
+              <span><FormattedMessage id="rain-map" defaultMessage="Rain Map" /></span>
             </h2>
             <div
               className="small-1 columns right text-right modal-top-nav"
@@ -81,12 +82,14 @@ class RainMap extends React.Component {
               </a>
             </div>
           </div>
+          {/*
           <iframe
             frameBorder="0"
             height="670"
             src="//http.foreca.com/xfer/infotripla/fin/fca_fin-precip-inline-fi.html"
             width="580"
           />
+          */}
         </ReactModal>
       </div>
     );
