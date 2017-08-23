@@ -133,13 +133,15 @@ export function ToggleMaintenanceState(actionContext) {
 }
 
 export function AddMaintenanceData(actionContext, parser) {
-  const url = 'https://www.oulunliikenne.fi/php/list_route_points_parameters_hrs.php?class=274,275&fromhrs=1';
+  // TODO take the proper data into use
+  // const url = 'https://www.oulunliikenne.fi/php/list_route_points_parameters_hrs.php?class=274,275&fromhrs=1';
+  const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/fluencylines_encoded/fluencies.php?zoom=15';
 
   return getJsonWithHeaders(url, null, authHeaders)
-  .then(response => cleanJson(response))
-  .then(data => console.log('AddMaintenanceData: ', data))
-  // .then(cleanResponse => parser(cleanResponse))
-  // .then(data => actionContext.dispatch('AddRoadConditionsData', data))
+  // .then(response => cleanJson(response))
+  // .then(data => console.log('AddMaintenanceData: ', data))
+  .then(cleanResponse => parser(cleanResponse))
+  .then(data => actionContext.dispatch('AddMaintenanceData', data))
   // eslint-disable-next-line no-console
   .catch(err => console.error(err));
 }
