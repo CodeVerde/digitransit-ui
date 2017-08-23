@@ -27,7 +27,32 @@ const parseIncidentsMessage = (data) => {
 
   if (!data || !data.notice) { return cleanData; }
 
-  data.notice.forEach((element) => {
+  if (Array.isArray(data.notice)) {
+    data.notice.forEach((element) => {
+      const cleanElement = {
+        id: element.id,
+        geometry: { lat: element.geom.coordinates[1], lon: element.geom.coordinates[0] },
+        direction: element.direction,
+        incidentMainClass: element.incidentmainclass,
+        incidentMainReason: element.incidentmainreason,
+        area: element.area,
+      };
+
+      if (element.geom2) {
+        cleanElement.geometry2 = {
+          lat: element.geom2.coordinates[1],
+          lon: element.geom2.coordinates[0],
+        };
+      }
+
+      if (element.encoded_linear_geom) {
+        cleanElement.encodedGeometry = element.encoded_linear_geom;
+      }
+
+      cleanData.push(cleanElement);
+    });
+  } else {
+    const element = data.notice;
     const cleanElement = {
       id: element.id,
       geometry: { lat: element.geom.coordinates[1], lon: element.geom.coordinates[0] },
@@ -49,7 +74,7 @@ const parseIncidentsMessage = (data) => {
     }
 
     cleanData.push(cleanElement);
-  });
+  }
 
   return cleanData;
 };
