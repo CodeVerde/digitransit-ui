@@ -6,7 +6,7 @@ import { Line } from 'react-chartjs-2';
 import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
 import { cleanJson } from '../../../util/ouluUtils';
-
+import Icon from '../../Icon';
 import Card from '../../Card';
 
 const parseCarMonitorDetails = (data) => {
@@ -93,6 +93,15 @@ export default class CarMonitorPopupContainer extends React.Component {
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
+            <div className="card-header-icon">
+              <Icon
+                id="car-monitor-popup-icon"
+                img="icon-icon_measurement_1"
+              />
+              <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
+                {this.context.intl.formatMessage({ id: 'monitoring-point', defaultMessage: 'Monitoring point' })}
+              </span>
+            </div>
             <span className="header-primary">
               {data.resultTitle}
             </span>
@@ -102,7 +111,7 @@ export default class CarMonitorPopupContainer extends React.Component {
           </div>
         </div>
         <div>
-          <p className="departure route-detail-text no-padding no-margin">Vuoden korkein tilastoluku: {data.yearMaxWeekday} {data.yearMaxDate}: {data.yearMaxValue.value}</p>
+          <p className="departure route-detail-text no-padding no-margin">Vuoden korkein tilastoluku, {data.yearMaxWeekday} {data.yearMaxDate}: {data.yearMaxValue}</p>
         </div>
         <Line
           data={myData}
