@@ -19,6 +19,8 @@ class MapSelectionsStore extends Store {
       showCarParks: false,
       incidentsData: [],
       showIncidents: false,
+      maintenanceData: [],
+      showMaintenance: true,
       walkMonitorsData: [],
       showWalkMonitors: false,
       roadConditionsData: [],
@@ -89,6 +91,16 @@ class MapSelectionsStore extends Store {
 
   toggleIncidentsState() {
     this.data.showIncidents = !this.data.showIncidents;
+    this.emitChange();
+  }
+
+  addMaintenanceData(data) {
+    this.data.maintenanceData = data.slice();
+    this.emitChange();
+  }
+
+  toggleMaintenanceState() {
+    this.data.showMaintenance = !this.data.showMaintenance;
     this.emitChange();
   }
 
@@ -180,6 +192,14 @@ class MapSelectionsStore extends Store {
     return this.data.showIncidents;
   }
 
+  getMaintenanceData() {
+    return this.data.maintenanceData;
+  }
+
+  getMaintenanceState() {
+    return this.data.showMaintenance;
+  }
+
   getRoadConditionsData() {
     return this.data.roadConditionsData;
   }
@@ -224,6 +244,8 @@ class MapSelectionsStore extends Store {
     ToggleCarParksState: 'toggleCarParksState',
     AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',
+    AddMaintenanceData: 'addMaintenanceData',
+    ToggleMaintenanceState: 'toggleMaintenanceState',
     AddRoadConditionsData: 'addRoadConditionsData',
     ToggleRoadConditionsState: 'toggleRoadConditionsState',
     AddTrafficFluencyData: 'addTrafficFluencyData',
