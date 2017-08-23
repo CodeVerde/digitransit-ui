@@ -8,6 +8,10 @@ export function ToggleBusLinesState(actionContext) {
   actionContext.dispatch('ToggleBusLinesState');
 }
 
+export function ToggleBulletinsState(actionContext) {
+  actionContext.dispatch('ToggleBulletinsState');
+}
+
 export function AddBulletinsData(actionContext, parser) {
   const promises = [];
   const urls = [
@@ -34,6 +38,10 @@ export function AddBulletinsData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+export function ToggleTrafficFluencyState(actionContext) {
+  actionContext.dispatch('ToggleTrafficFluencyState');
+}
+
 export function AddTrafficFluencyData(actionContext, parser) {
   const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/fluencylines_encoded/fluencies.php?zoom=15';
 
@@ -43,6 +51,10 @@ export function AddTrafficFluencyData(actionContext, parser) {
   .then(data => actionContext.dispatch('AddTrafficFluencyData', data))
   // eslint-disable-next-line no-console
   .catch(err => console.error(err));
+}
+
+export function ToggleCamerasState(actionContext) {
+  actionContext.dispatch('ToggleCamerasState');
 }
 
 export function AddCamerasData(actionContext, parser) {
@@ -56,6 +68,9 @@ export function AddCamerasData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+export function ToggleCarMonitorsState(actionContext) {
+  actionContext.dispatch('ToggleCarMonitorsState');
+}
 
 export function AddCarMonitorsData(actionContext, parser) {
   const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/lam/lams.php';
@@ -68,6 +83,10 @@ export function AddCarMonitorsData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+export function ToggleCarParksState(actionContext) {
+  actionContext.dispatch('ToggleCarParksState');
+}
+
 export function AddCarParksData(actionContext, parser) {
   const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/parking/parkingstations.php';
 
@@ -77,6 +96,10 @@ export function AddCarParksData(actionContext, parser) {
   .then(data => actionContext.dispatch('AddCarParksData', data))
   // eslint-disable-next-line no-console
   .catch(err => console.error(err));
+}
+
+export function ToggleIncidentsState(actionContext) {
+  actionContext.dispatch('ToggleIncidentsState');
 }
 
 export function AddIncidentsData(actionContext, parser) {
@@ -105,6 +128,10 @@ export function AddIncidentsData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+export function ToggleRoadConditionsState(actionContext) {
+  actionContext.dispatch('ToggleRoadConditionsState');
+}
+
 export function AddRoadConditionsData(actionContext, parser) {
   const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadcondition/roadconditions.php';
 
@@ -116,8 +143,8 @@ export function AddRoadConditionsData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
-export function ToggleRoadWeatherState(actionContext) {
-  actionContext.dispatch('ToggleRoadConditionsState');
+export function ToggleWalkMonitorsState(actionContext) {
+  actionContext.dispatch('ToggleWalkMonitorsState');
 }
 
 export function AddWalkMonitorsData(actionContext, parser) {
