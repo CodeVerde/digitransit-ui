@@ -6,7 +6,6 @@ import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
 import { cleanJson, parseBreaks } from '../../../util/ouluUtils';
 import Icon from '../../Icon';
-
 import Card from '../../Card';
 
 const parseBulletinDetails = data => ({

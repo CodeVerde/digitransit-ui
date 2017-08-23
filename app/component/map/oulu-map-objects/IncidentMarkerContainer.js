@@ -4,7 +4,7 @@ import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import polyline from 'polyline-encoded';
 
-import { asString as iconAsString } from '../../IconWithTail';
+import { asString as iconAsString } from '../../OuluIcon';
 
 import { isBrowser } from '../../../util/browser';
 import { AddIncidentsData } from '../../../action/mapSelectionsActions';
@@ -54,14 +54,15 @@ const parseIncidentsMessage = (data) => {
   return cleanData;
 };
 
-const getIncidentsIcon = iconText => (
-  L.divIcon({
-    html: iconAsString({ img: 'icon-icon_sadealueet', iconText }),
-    className: 'weather-station-marker',
-    iconSize: [20, 20],
+const getIncidentsIcon = (mainClass, iconText) => {
+  const iconName = mainClass === 'Tietyö' ? 'icon-icon_roadwork_1' : 'icon-icon_caution';
+  return L.divIcon({
+    html: iconAsString({ img: iconName, iconText }),
+    className: 'white-icon-oulu',
+    iconSize: [10, 10],
     iconAnchor: [30, 40],
-  })
-);
+  });
+};
 
 class IncidentMarkerContainer extends React.PureComponent {
   static contextTypes = {
@@ -124,7 +125,7 @@ class IncidentMarkerContainer extends React.PureComponent {
             lat: element.geometry.lat,
             lng: element.geometry.lon,
           }}
-          icon={getIncidentsIcon()}
+          icon={getIncidentsIcon(element.incidentMainClass)}
           title={titleString}
         />,
       );
@@ -137,7 +138,7 @@ class IncidentMarkerContainer extends React.PureComponent {
               lat: element.geometry2.lat,
               lng: element.geometry2.lon,
             }}
-            icon={getIncidentsIcon()}
+            icon={getIncidentsIcon(element.incidentMainClass)}
             title={titleString}
           />,
         );

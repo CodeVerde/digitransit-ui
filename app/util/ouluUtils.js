@@ -10,11 +10,13 @@ export function cleanJson(data) {
 }
 
 export function parseBreaks(text) {
+  if (!text) { return ''; }
+
   const br = React.createElement('br');
   const regex = /(<br \/>)/g;
   const noBreaksText = text.replace(/(\r\n|\n|\r)/gm, '');
   return noBreaksText.split(regex).map((line, index) => (
     // eslint-disable-next-line react/no-array-index-key
-     line.match(regex) ? <br key={`key_${index}`} /> : line
+     line.match(regex) ? <br key={`parse-break-key_${index}`} /> : line
   ));
 }
