@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { FormattedMessage } from 'react-intl';
+import Toggle from 'react-toggle';
 
 import ComponentUsageExample from './ComponentUsageExample';
 import { ToggleWeatherStationsState } from '../action/mapSelectionsActions';
@@ -10,20 +11,16 @@ const toggleWeatherStations = executeAction =>
   () => executeAction(ToggleWeatherStationsState);
 
 const WeatherStationsToggle = ({ showWeatherStations }, { executeAction }) => (
-  <div key="toggle-weather-stations" id="toggle-weather-stations" className="">
-    <button
-      className={showWeatherStations ? 'map-utils-button active' : 'map-utils-button'}
-      id="toggle-weather-stations-button"
-      onClick={toggleWeatherStations(executeAction)}
-    >
-      <svg
-        className="icon"
-        viewBox="0 0 283.46 283.46"
-      >
-        <use xlinkHref="#icon-icon_tiesaa_marker" />
-      </svg>
-      <span><FormattedMessage id="toggle-weather-stations" defaultMessage="Road Weather" /></span>
-    </button>
+  <div className="" id="toggle-weather-stations" key="toggle-weather-stations">
+    <div className={showWeatherStations ? 'map-utils-button active' : 'map-utils-button'} id="toggle-weather-stations-button">
+      <Toggle defaultChecked={showWeatherStations} icons={false} id="WeatherStationsToggle" onChange={toggleWeatherStations(executeAction)} />
+      <label htmlFor="WeatherStationsToggle">
+        <svg className="icon" viewBox="0 0 283.46 283.46">
+          <use xlinkHref="#icon-icon_tiesaa_marker" />
+        </svg>
+        <FormattedMessage id="toggle-weather-stations" defaultMessage="Road Weather" />
+      </label>
+    </div>
   </div>
 );
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactModal from 'react-modal';
+import { FormattedMessage } from 'react-intl';
 
 class WeatherForecast extends React.Component {
   constructor() {
@@ -33,7 +34,7 @@ class WeatherForecast extends React.Component {
           >
             <use xlinkHref="#icon-icon_weather" />
           </svg>
-          <span>Sääennuste</span>
+          <span><FormattedMessage id="weather-forecast" defaultMessage="Weather Forecast" /></span>
         </button>
         <ReactModal
           isOpen={this.state.showModal}
@@ -44,9 +45,9 @@ class WeatherForecast extends React.Component {
               zIndex: 10000,
             },
             content: {
-              height: '250px',
+              height: '300px',
               left: 'auto',
-              right: '200px',
+              right: '250px',
               top: '250px',
               width: '320px',
               zIndex: 10001,
@@ -60,7 +61,7 @@ class WeatherForecast extends React.Component {
                 margin: 0,
               }}
             >
-              <span>Sääennuste</span>
+              <span><FormattedMessage id="weather-forecast" defaultMessage="Weather Forecast" /></span>
             </h2>
             <div
               className="small-1 columns right text-right modal-top-nav"
@@ -85,7 +86,7 @@ class WeatherForecast extends React.Component {
           </div>
           <iframe
             frameBorder="0"
-            height="190"
+            height="240"
             src="//www.oulunliikenne.fi/php/oulun_saa_simple.php"
             width="280"
           />

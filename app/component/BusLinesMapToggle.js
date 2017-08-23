@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { FormattedMessage } from 'react-intl';
+import Toggle from 'react-toggle';
 
 import ComponentUsageExample from './ComponentUsageExample';
 import { ToggleBusLinesState } from '../action/mapSelectionsActions';
@@ -10,20 +11,16 @@ const toggleBusLinesMap = executeAction =>
   () => executeAction(ToggleBusLinesState);
 
 const BusLinesMapToggle = ({ showBusLinesMap }, { executeAction }) => (
-  <div key="toggle-bus-lines-map" id="toggle-bus-lines-map" className="">
-    <button
-      className={showBusLinesMap ? 'map-utils-button active' : 'map-utils-button'}
-      id="toggle-bus-lines-map-button"
-      onClick={toggleBusLinesMap(executeAction)}
-    >
-      <svg
-        className="icon"
-        viewBox="0 0 283.46 283.46"
-      >
-        <use xlinkHref="#icon-icon_linjakartta" />
-      </svg>
-      <span><FormattedMessage id="toggle-bus-lines-map" defaultMessage="Driving Weather" /></span>
-    </button>
+  <div className="" id="toggle-bus-lines-map" key="toggle-bus-lines-map">
+    <div className={showBusLinesMap ? 'map-utils-button active' : 'map-utils-button'} id="toggle-bus-lines-map-button">
+      <Toggle defaultChecked={showBusLinesMap} icons={false} id="BusLinesMapToggle" onChange={toggleBusLinesMap(executeAction)} />
+      <label htmlFor="BusLinesMapToggle">
+        <svg className="icon" viewBox="0 0 283.46 283.46">
+          <use xlinkHref="#icon-icon_linjakartta" />
+        </svg>
+        <FormattedMessage id="toggle-bus-lines-map" defaultMessage="Bus Lines Map" />
+      </label>
+    </div>
   </div>
 );
 
