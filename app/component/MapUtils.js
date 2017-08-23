@@ -11,6 +11,7 @@ import CarMonitorsToggle from './toggles/CarMonitorsToggle';
 import CarParksToggle from './toggles/CarParksToggle';
 import IncidentsToggle from './toggles/IncidentsToggle';
 import RoadConditionsToggle from './toggles/RoadConditionsToggle';
+import TrafficFluencyToggle from './toggles/TrafficFluencyToggle';
 import WalkMonitorsToggle from './toggles/WalkMonitorsToggle';
 import WeatherStationsToggle from './toggles/WeatherStationsToggle';
 import WeatherForecast from './WeatherForecast';
@@ -75,6 +76,7 @@ const MapUtils = () => (
       <CarParksToggle />
       <IncidentsToggle />
       <RoadConditionsToggle />
+      <TrafficFluencyToggle />
       <WalkMonitorsToggle />
       <WeatherStationsToggle />
       <RainMap />
