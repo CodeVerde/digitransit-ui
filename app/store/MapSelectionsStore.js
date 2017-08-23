@@ -20,13 +20,13 @@ class MapSelectionsStore extends Store {
       incidentsData: [],
       showIncidents: false,
       walkMonitorsData: [],
-      showWalkMonitors: true,
+      showWalkMonitors: false,
       roadConditionsData: [],
       showRoadConditions: false,
       trafficFluencyData: [],
       showTrafficFluency: false,
       weatherStationsData: [],
-      showWeatherStations: false,
+      showWeatherStations: true,
     };
   }
 

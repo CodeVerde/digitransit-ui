@@ -10,10 +10,10 @@ const toggleRoadWeather = executeAction =>
   () => executeAction(ToggleRoadWeatherState);
 
 const RoadWeatherToggle = ({ showRoadWeather }, { executeAction }) => (
-  <div key="toggle-road-weather" id="toggle-road-weather" className="">
+  <div key="toggle-road-conditions" id="toggle-road-conditions" className="">
     <button
       className={showRoadWeather ? 'map-utils-button active' : 'map-utils-button'}
-      id="toggle-road-weather-button"
+      id="toggle-road-conditions-button"
       onClick={toggleRoadWeather(executeAction)}
     >
       <svg
@@ -22,7 +22,7 @@ const RoadWeatherToggle = ({ showRoadWeather }, { executeAction }) => (
       >
         <use xlinkHref="#icon-icon_ajokeli" />
       </svg>
-      <span><FormattedMessage id="toggle-road-weather" defaultMessage="Driving Weather" /></span>
+      <span><FormattedMessage id="toggle-road-conditions" defaultMessage="Driving Weather" /></span>
     </button>
   </div>
 );

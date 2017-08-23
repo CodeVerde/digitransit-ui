@@ -3,7 +3,7 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
-import { asString as iconAsString } from '../../IconWithTail';
+import { asString as iconAsString } from '../../OuluIcon';
 import { isBrowser } from '../../../util/browser';
 import { AddWeatherStationsData } from '../../../action/mapSelectionsActions';
 
@@ -45,7 +45,7 @@ const parseWeatherStationMessage = (data) => {
 const getWeatherStationMarkerIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-icon_tiesaa_marker', iconText }),
-    className: 'weather-station-marker',
+    className: 'white-icon-oulu',
     iconSize: [20, 20],
     iconAnchor: [30, 40],
   })
