@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import { FormattedMessage } from 'react-intl';
+import Toggle from 'react-toggle';
 
 import ComponentUsageExample from './ComponentUsageExample';
 import { ToggleRoadWeatherState } from '../action/mapSelectionsActions';
@@ -10,20 +11,16 @@ const toggleRoadWeather = executeAction =>
   () => executeAction(ToggleRoadWeatherState);
 
 const RoadWeatherToggle = ({ showRoadWeather }, { executeAction }) => (
-  <div key="toggle-road-weather" id="toggle-road-weather" className="">
-    <button
-      className={showRoadWeather ? 'map-utils-button active' : 'map-utils-button'}
-      id="toggle-road-weather-button"
-      onClick={toggleRoadWeather(executeAction)}
-    >
-      <svg
-        className="icon"
-        viewBox="0 0 283.46 283.46"
-      >
-        <use xlinkHref="#icon-icon_ajokeli" />
-      </svg>
-      <span><FormattedMessage id="toggle-road-weather" defaultMessage="Driving Weather" /></span>
-    </button>
+  <div className="" id="toggle-road-weather" key="toggle-road-weather">
+    <div className={showRoadWeather ? 'map-utils-button active' : 'map-utils-button'} id="toggle-road-weather-button">
+      <Toggle defaultChecked={showRoadWeather} icons={false} id="RoadWeatherToggle" onChange={toggleRoadWeather(executeAction)} />
+      <label htmlFor="RoadWeatherToggle">
+        <svg className="icon" viewBox="0 0 283.46 283.46">
+          <use xlinkHref="#icon-icon_ajokeli" />
+        </svg>
+        <FormattedMessage id="toggle-road-weather" defaultMessage="Driving Weather" />
+      </label>
+    </div>
   </div>
 );
 
