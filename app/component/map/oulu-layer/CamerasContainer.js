@@ -15,6 +15,10 @@ const CameraPopupContainerWithContext = provideContext(CameraPopupContainer, {
   config: PropTypes.object.isRequired,
 });
 
+const popupOptions = {
+  className: 'oulu-popup-large',
+};
+
 export default class CamerasContainer {
   constructor(context, map) {
     this.context = context;
@@ -37,6 +41,7 @@ export default class CamerasContainer {
           id: element.id,
           lat: element.geometry.lat,
           lng: element.geometry.lon,
+          options: popupOptions,
           content: (
             <CameraPopupContainerWithContext
               stationId={element.id}

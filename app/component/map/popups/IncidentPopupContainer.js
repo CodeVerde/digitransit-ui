@@ -3,9 +3,12 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 
 import { isBrowser } from '../../../util/browser';
-import { getJsonWithHeaders } from '../../../util/xhrPromise';
-import { cleanJson, parseBreaks } from '../../../util/ouluUtils';
-
+import { getJsonWithHeaders, getTextWithHeaders } from '../../../util/xhrPromise';
+import {
+  cleanJson,
+  parseBreaks,
+} from '../../../util/ouluUtils';
+import Icon from '../../Icon';
 import Card from '../../Card';
 
 const parseIncidentDetails = data => ({
@@ -13,7 +16,6 @@ const parseIncidentDetails = data => ({
   detour: data.detour,
   detourGeometry: data.detour_encoded_linear_geom,
   information: parseBreaks(data.information),
-  // information: data.information,
   incidentMainClass: data.incidentmainclass,
   incidentMainReason: data.incidentmainreason,
   incidentAdditionalReason1: data.incidentdditionalreason1,
@@ -42,20 +44,52 @@ export default class IncidentPopupContainer extends React.Component {
   }
 
   componentWillMount() {
-    const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/incident_details.php?noticeid=${this.props.stationId}`;
     const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
-    getJsonWithHeaders(url, null, headers)
-    .then(response => cleanJson(response))
-    .then(cleanResponse => this.updateObjects(parseIncidentDetails(cleanResponse)))
-    // eslint-disable-next-line no-console
-    .catch(err => console.error(err));
+
+    // Complete hack, it seems incidents from livi use big numbers
+    // as id consistently (at the moment)
+    if (Number(this.props.stationId) < 1000000) {
+      const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/incident_details.php?noticeid=${this.props.stationId}`;
+      getJsonWithHeaders(url, null, headers)
+      .then(response => cleanJson(response))
+      .then(cleanResponse => this.updateObjects(parseIncidentDetails(cleanResponse)))
+      // eslint-disable-next-line no-console
+      .catch(err => console.error(err));
+    } else {
+      const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/livi_incident_details.php?noticeid=${this.props.stationId}`;
+      getTextWithHeaders(url, null, headers)
+      .then(textResponse => this.updateObjects(textResponse))
+      // eslint-disable-next-line no-console
+      .catch(err => console.error(err));
+    }
   }
 
   updateObjects(data) {
+    if (typeof data === 'string') {
+      // The content from LiVi API comes as preformatted html text
+      const liViObj = (
+        <Card className="padding-small">
+          <div dangerouslySetInnerHTML={{ __html: data }} />
+        </Card>
+      );
+      this.setState({ popupContent: liViObj });
+      return;
+    }
+
     const newObj = (
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
+            <div className="card-header-icon">
+              <Icon
+                id="bulletin-popup-icon"
+                img={data.incidentMainClass === 'Tietyö' ? 'icon-icon_roadwork_1' : 'icon-icon_caution'}
+                className="oulu-popup-icon"
+              />
+              <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
+                {data.incidentMainClass}
+              </span>
+            </div>
             <span className="header-primary">
               {`${data.incidentMainClass}, ${data.area}, ${data.incidentMainReason}`}
             </span>

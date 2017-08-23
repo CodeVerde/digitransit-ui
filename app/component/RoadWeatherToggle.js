@@ -5,20 +5,20 @@ import { FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 
 import ComponentUsageExample from './ComponentUsageExample';
-import { ToggleRoadWeatherState } from '../action/mapSelectionsActions';
+import { ToggleWeatherStationsState } from '../action/mapSelectionsActions';
 
 const toggleRoadWeather = executeAction =>
-  () => executeAction(ToggleRoadWeatherState);
+  () => executeAction(ToggleWeatherStationsState);
 
 const RoadWeatherToggle = ({ showRoadWeather }, { executeAction }) => (
-  <div className="" id="toggle-road-weather" key="toggle-road-weather">
-    <div className={showRoadWeather ? 'map-utils-button active' : 'map-utils-button'} id="toggle-road-weather-button">
+  <div className="" id="toggle-road-conditions" key="toggle-road-conditions">
+    <div className={showRoadWeather ? 'map-utils-button active' : 'map-utils-button'} id="toggle-road-conditions-button">
       <Toggle defaultChecked={showRoadWeather} icons={false} id="RoadWeatherToggle" onChange={toggleRoadWeather(executeAction)} />
       <label htmlFor="RoadWeatherToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
           <use xlinkHref="#icon-icon_ajokeli" />
         </svg>
-        <FormattedMessage id="toggle-road-weather" defaultMessage="Driving Weather" />
+        <FormattedMessage id="toggle-road-conditions" defaultMessage="Driving Weather" />
       </label>
     </div>
   </div>

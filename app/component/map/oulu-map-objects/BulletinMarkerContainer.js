@@ -3,7 +3,7 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
-import { asString as iconAsString } from '../../IconWithTail';
+import { asString as iconAsString } from '../../OuluIcon';
 
 import { isBrowser } from '../../../util/browser';
 import { AddBulletinsData } from '../../../action/mapSelectionsActions';
@@ -29,6 +29,7 @@ const parseBulletinMessage = (data) => {
       id: element.id,
       geometry: { lat: element.geom.coordinates[1], lon: element.geom.coordinates[0] },
       direction: element.direction,
+      incidentIcon: element.incidentIcon,
       incidentMainClass: element.incidentmainclass,
       incidentMainReason: element.incidentmainreason,
       area: element.area,
@@ -51,14 +52,15 @@ const parseBulletinMessage = (data) => {
   return cleanData;
 };
 
-const getBulletinIcon = iconText => (
-  L.divIcon({
-    html: iconAsString({ img: 'icon-icon_roadwork_1', iconText }),
-    className: 'weather-station-marker',
-    iconSize: [20, 20],
+const getBulletinIcon = (mainClass, iconText) => {
+  const iconName = mainClass === 'Tietyö' ? 'icon-icon_roadwork_1' : 'icon-icon_caution';
+  return L.divIcon({
+    html: iconAsString({ img: iconName, iconText }),
+    className: 'white-icon-oulu',
+    iconSize: [10, 10],
     iconAnchor: [30, 40],
-  })
-);
+  });
+};
 
 class BulletinContainer extends React.PureComponent {
   static contextTypes = {
@@ -73,8 +75,9 @@ class BulletinContainer extends React.PureComponent {
     bulletinsData: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       geometry: PropTypes.object,
-      mainClass: PropTypes.string,
-      reason: PropTypes.object,
+      incidentIcon: PropTypes.string,
+      incidentMainClass: PropTypes.string,
+      incidentMainReason: PropTypes.string,
       area: PropTypes.string,
     })).isRequired,
   }
@@ -117,7 +120,7 @@ class BulletinContainer extends React.PureComponent {
             lat: element.geometry.lat,
             lng: element.geometry.lon,
           }}
-          icon={getBulletinIcon()}
+          icon={getBulletinIcon(element.incidentMainClass)}
           title={element.name}
         />,
       );

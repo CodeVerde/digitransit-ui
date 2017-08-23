@@ -5,7 +5,7 @@ import { intlShape } from 'react-intl';
 import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
 import { cleanJson, parseBreaks } from '../../../util/ouluUtils';
-
+import Icon from '../../Icon';
 import Card from '../../Card';
 
 const parseBulletinDetails = data => ({
@@ -51,15 +51,27 @@ export default class BulletinPopupContainer extends React.Component {
   }
 
   updateObjects(data) {
+    const headerString = `${data.bulletinMainClass}, ${data.area}, ${data.bulletinMainReason}`;
+    const endDateString = data.endDate ? `- ${data.endDate}` : 'toistaiseksi';
     const newObj = (
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
+            <div className="card-header-icon">
+              <Icon
+                id="bulletin-popup-icon"
+                img={data.bulletinMainClass === 'Tietyö' ? 'icon-icon_roadwork_1' : 'icon-icon_caution'}
+                className="oulu-popup-icon"
+              />
+              <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
+                {data.bulletinMainClass}
+              </span>
+            </div>
             <span className="header-primary">
-              {`${data.bulletinMainClass}, ${data.area}, ${data.bulletinMainReason}`}
+              {headerString}
             </span>
             <div className="card-sub-header">
-              Kesto: {data.startDate} - {data.endDate}
+              Kesto: {data.startDate} {endDateString}
             </div>
           </div>
         </div>
@@ -69,9 +81,10 @@ export default class BulletinPopupContainer extends React.Component {
           <ul>
             {data.bulletinAdditionalReason1 && <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{data.bulletinAdditionalReason1}</p></li>}
             {data.speedLimit && <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">Nopeusrajoitus: {data.speedLimit}</p></li>}
-            <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">Haitta-aste: {data.severity}</p></li>
+            {data.severity && <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">Haitta-aste: {data.severity}</p></li>}
             {data.detour && <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">Kiertotie: Kyllä</p></li>}
           </ul>
+          {data.imageLink && <img src={data.imageLink} alt={headerString} width="100%" />}
         </div>
       </Card>
     );

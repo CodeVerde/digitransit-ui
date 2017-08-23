@@ -66,3 +66,21 @@ export function getJsonWithHeaders(url, params, newHeaders) {
     },
   ).then(res => res.json());
 }
+
+export function getTextWithHeaders(url, params, newHeaders) {
+  const defaultHeaders = { Accept: 'application/text' };
+
+  const headers = {
+    ...defaultHeaders,
+    ...newHeaders,
+  };
+
+  return fetch(
+    encodeURI(url) + (params ? (url.search(/\?/) === -1 ? '?' : '&') + serialize(params) : ''),
+    {
+      timeout: 10000,
+      method: 'GET',
+      headers,
+    },
+  ).then(res => res.text());
+}

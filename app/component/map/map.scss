@@ -132,6 +132,40 @@ div.leaflet-marker-icon.vehicle-icon {
   }
 }
 
+div.leaflet-marker-icon.white-icon-oulu {
+  // background: none;
+  // background-size: 2.0em 2.0em;
+  // font-size: 1.5em;
+  // 0 0 0 1px rgba(0, 0, 0, 0.1), 0 3px 14px rgba(0, 0, 0, 0.4);
+  > span > svg.icon {
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 2.5em;
+    background-color: $oulu-orange;
+    color: $oulu-orange;
+    fill: $white;
+  }
+}
+
+div.card-header-icon {
+  > span > svg.icon {
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 1.7em;
+    background-color: $oulu-orange;
+    color: $oulu-orange;
+    fill: $white;
+    margin-right: 3px;
+  }
+  > span > svg.icon-green {
+    background-color: $oulu-green;
+    color: $oulu-green;
+    fill: $white;
+  }
+}
+
 div.leaflet-marker-icon.weather-station-marker {
   border: none;
   background: none;
@@ -148,11 +182,13 @@ div.leaflet-marker-icon.car-park-available-marker {
   border: none;
   background: none;
   > span > svg.icon {
-    color: #43a85c;
-    width: 2em;
-    height: 2em;
-    top:-0.5em;
-    // left:-0.5em;
+    border: none;
+    border-radius: 5px;
+    padding: 3px;
+    font-size: 2.5em;
+    background-color: $oulu-green;
+    color: $oulu-green;
+    fill: $white;
   }
 }
 
@@ -529,4 +565,99 @@ div.map-click-prevent-overlay {
   height:4px;
   background: none;
   cursor: grab;
+}
+
+// For css carousel
+
+// * {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+.slideshow-mySlides {
+    display: none;
+}
+
+/* Next & previous buttons */
+.slideshow-prev, .slideshow-next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+}
+
+/* Position the "next button" to the right */
+.slideshow-next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.slideshow-prev:hover, .slideshow-next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.slideshow-numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 18px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.slideshow-dot {
+  cursor:pointer;
+  height: 13px;
+  width: 13px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.slideshow-active, .slideshow-dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.slideshow-fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes slideshow-fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes slideshow-fade {
+  from {opacity: .4}
+  to {opacity: 1}
 }

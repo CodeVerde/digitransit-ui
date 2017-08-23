@@ -5,6 +5,7 @@ import { intlShape } from 'react-intl';
 import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
 import { cleanJson } from '../../../util/ouluUtils';
+import Icon from '../../Icon';
 import Card from '../../Card';
 
 const parseWeatherStationDetails = data => ({
@@ -48,6 +49,15 @@ export default class WeatherStationPopupContainer extends React.Component {
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
+            <div className="card-header-icon">
+              <Icon
+                id="car-monitor-popup-icon"
+                img="icon-icon_tiesaa_marker"
+              />
+              <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
+                {this.context.intl.formatMessage({ id: 'road-weather', defaultMessage: 'Road weather' })}
+              </span>
+            </div>
             <span className="header-primary">
               {data.name}
             </span>
@@ -58,11 +68,17 @@ export default class WeatherStationPopupContainer extends React.Component {
         </div>
         <div>
           <p className="departure route-detail-text no-padding no-margin">
-            {this.context.intl.formatMessage({ id: 'air-temperature', defaultMessage: 'Air temperature' })}: {data.airTemperature} °C
+            {this.context.intl.formatMessage({ id: 'temperature-air', defaultMessage: 'Air temperature' })}: {data.airTemperature} °C
           </p>
-          <p className="departure route-detail-text no-padding no-margin">Tien lämpötila: {data.roadTemperature} °C</p>
-          <p className="departure route-detail-text no-padding no-margin">Sade: {data.rainType}</p>
-          <p className="departure route-detail-text no-padding no-margin">Keli: {data.roadCondition}</p>
+          <p className="departure route-detail-text no-padding no-margin">
+            {this.context.intl.formatMessage({ id: 'temperature-road', defaultMessage: 'Road temperature' })}: {data.roadTemperature} °C
+          </p>
+          <p className="departure route-detail-text no-padding no-margin">
+            {this.context.intl.formatMessage({ id: 'weather-air', defaultMessage: 'Rain' })}: {data.rainType}
+          </p>
+          <p className="departure route-detail-text no-padding no-margin">
+            {this.context.intl.formatMessage({ id: 'weather-road', defaultMessage: 'Weather' })}: {data.roadCondition}
+          </p>
         </div>
       </Card>
     );
