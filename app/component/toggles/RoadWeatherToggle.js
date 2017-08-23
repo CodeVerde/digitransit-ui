@@ -4,8 +4,8 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 
-import ComponentUsageExample from './ComponentUsageExample';
-import { ToggleWeatherStationsState } from '../action/mapSelectionsActions';
+import ComponentUsageExample from '../ComponentUsageExample';
+import { ToggleWeatherStationsState } from '../../action/mapSelectionsActions';
 
 const toggleRoadWeather = executeAction =>
   () => executeAction(ToggleWeatherStationsState);
