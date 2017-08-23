@@ -10,6 +10,7 @@ import CamerasToggle from './toggles/CamerasToggle';
 import CarMonitorsToggle from './toggles/CarMonitorsToggle';
 import CarParksToggle from './toggles/CarParksToggle';
 import IncidentsToggle from './toggles/IncidentsToggle';
+import MaintenanceToggle from './toggles/MaintenanceToggle';
 import RoadConditionsToggle from './toggles/RoadConditionsToggle';
 import TrafficFluencyToggle from './toggles/TrafficFluencyToggle';
 import WalkMonitorsToggle from './toggles/WalkMonitorsToggle';
@@ -46,17 +47,7 @@ const MapUtils = () => (
         </div>
       </div>}
 
-      <div className="" id="toggle-maintenance" key="toggle-maintenance">
-        <div className="map-utils-button" id="toggle-maintenance-button">
-          <Toggle icons={false} id="MaintenanceToggle" />
-          <label htmlFor="MaintenanceToggle">
-            <svg className="icon" viewBox="0 0 283.46 283.46">
-              <use xlinkHref="#icon-icon_kunnossapito" />
-            </svg>
-            <FormattedMessage id="maintenance" defaultMessage="Maintenance" />
-          </label>
-        </div>
-      </div>
+      <MaintenanceToggle />
 
       {false && <div className="" id="toggle-rain-areas" key="toggle-rain-areas">
         <div className="map-utils-button" id="toggle-rain-areas-button">
