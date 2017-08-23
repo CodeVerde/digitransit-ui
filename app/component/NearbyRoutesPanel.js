@@ -15,7 +15,10 @@ import SearchMainContainer from './SearchMainContainer';
 import SimpleModeFilterContainer from './SimpleModeFilterContainer';
 
 
-function NearbyRoutesPanel({ location, currentTime, modes, placeTypes }, context) {
+function NearbyRoutesPanel({
+    location, currentTime, modes,
+    placeTypes, selectedSimpleMode,
+  }, context) {
   //   console.log('clickSearch');
   // };
 
@@ -48,11 +51,11 @@ function NearbyRoutesPanel({ location, currentTime, modes, placeTypes }, context
           />
         </div>
       </div>
-      <div className="flex-vertical">
+      {selectedSimpleMode === 'BUS' && <div className="flex-vertical">
         <div className="row small-12 small-centered columns">
           <BusLineSelector />
         </div>
-      </div>
+      </div>}
       <SearchMainContainer
         searchModalIsOpen={searchModalIsOpen}
         selectedTab={selectedSearchTab}
@@ -63,8 +66,8 @@ function NearbyRoutesPanel({ location, currentTime, modes, placeTypes }, context
             <ModeFilterContainer id="nearby-routes-mode" />
           </div>
         </div>)}
-      <NextDeparturesListHeader />
-      <div
+      {selectedSimpleMode === 'BUS' && <NextDeparturesListHeader />}
+      {selectedSimpleMode === 'BUS' && <div
         className="scrollable momentum-scroll nearby"
         id="scrollable-routes"
       >
@@ -78,7 +81,7 @@ function NearbyRoutesPanel({ location, currentTime, modes, placeTypes }, context
           maxResults={context.config.nearbyRoutes.results || 50}
           timeRange={context.config.nearbyRoutes.timeRange || 7200}
         />
-      </div>
+      </div>}
     </div>
   );
 }
@@ -91,6 +94,7 @@ NearbyRoutesPanel.propTypes = {
   currentTime: PropTypes.number.isRequired,
   modes: PropTypes.array.isRequired,
   placeTypes: PropTypes.array.isRequired,
+  selectedSimpleMode: PropTypes.string.isRequired,
 };
 
 NearbyRoutesPanel.contextTypes = {
@@ -103,7 +107,7 @@ NearbyRoutesPanel.contextTypes = {
 
 export default connectToStores(
   NearbyRoutesPanel,
-  ['EndpointStore', 'TimeStore', 'ModeStore'],
+  ['EndpointStore', 'TimeStore', 'ModeStore', 'SimpleModeStore'],
   (context) => {
     const position = context.getStore('PositionStore').getLocationState();
     const origin = context.getStore('EndpointStore').getOrigin();
@@ -123,6 +127,7 @@ export default connectToStores(
       currentTime: context.getStore('TimeStore').getCurrentTime().unix(),
       modes: modeFilter,
       placeTypes: placeTypeFilter,
+      selectedSimpleMode: context.getStore('SimpleModeStore').getModeString(),
     };
   },
 );
