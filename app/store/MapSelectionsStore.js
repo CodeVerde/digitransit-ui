@@ -77,6 +77,7 @@ class MapSelectionsStore extends Store {
   }
 
   toggleCarParksState() {
+    console.log('prkl');
     this.data.showCarParks = !this.data.showCarParks;
     this.emitChange();
   }
