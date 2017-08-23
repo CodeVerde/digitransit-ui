@@ -73,7 +73,7 @@ const onlyUpdateCoordChanges = onlyUpdateForKeys(
   // when those props change (in large view tabs are inside map)
   ['breakpoint', 'lat', 'lon', 'zoom', 'mapTracking', 'lang', 'tab',
     'searchModalIsOpen', 'selectedTab',
-    'showBusLines', 'showRoadWeather', 'showWeatherStations']);
+    'showBusLines', 'showRoadConditions', 'showWeatherStations']);
 
 const MapWithTracking =
   withMapStateTracking(
@@ -162,7 +162,7 @@ const MapWithTracking =
           leafletObjs,
           ouluLeafletObjs,
           showBusLines: context.getStore('MapSelectionsStore').getBusLinesState(),
-          showRoadWeather: context.getStore('MapSelectionsStore').getRoadConditionsState(),
+          showRoadConditions: context.getStore('MapSelectionsStore').getRoadConditionsState(),
           showWeatherStations: context.getStore('MapSelectionsStore').getWeatherStationsState(),
         };
       },

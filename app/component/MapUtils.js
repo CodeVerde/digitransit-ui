@@ -5,8 +5,15 @@ import Toggle from 'react-toggle';
 
 import BusLinesMapToggle from './BusLinesMapToggle';
 import RainMap from './RainMap';
-import RoadWeatherToggle from './RoadWeatherToggle';
-import WeatherStationsToggle from './WeatherStationsToggle';
+import BulletinsToggle from './toggles/BulletinsToggle';
+import CamerasToggle from './toggles/CamerasToggle';
+import CarMonitorsToggle from './toggles/CarMonitorsToggle';
+import CarParksToggle from './toggles/CarParksToggle';
+import IncidentsToggle from './toggles/IncidentsToggle';
+import RoadConditionsToggle from './toggles/RoadConditionsToggle';
+import TrafficFluencyToggle from './toggles/TrafficFluencyToggle';
+import WalkMonitorsToggle from './toggles/WalkMonitorsToggle';
+import WeatherStationsToggle from './toggles/WeatherStationsToggle';
 import WeatherForecast from './WeatherForecast';
 
 const MapUtils = () => (
@@ -15,7 +22,7 @@ const MapUtils = () => (
 
       <BusLinesMapToggle />
 
-      <div className="" id="toggle-bus-stops" key="toggle-bus-stops">
+      {false && <div className="" id="toggle-bus-stops" key="toggle-bus-stops">
         <div className="map-utils-button active" id="toggle-bus-stops-button">
           <Toggle icons={false} id="BusStopsToggle" />
           <label htmlFor="BusStopsToggle">
@@ -25,9 +32,9 @@ const MapUtils = () => (
             <FormattedMessage id="stops" defaultMessage="Stops" />
           </label>
         </div>
-      </div>
+      </div>}
 
-      <div className="" id="toggle-bus-lines-tool" key="toggle-bus-lines-tool">
+      {false && <div className="" id="toggle-bus-lines-tool" key="toggle-bus-lines-tool">
         <div className="map-utils-button" id="toggle-bus-lines-tool-button">
           <Toggle icons={false} id="BusLinesToggle" />
           <label htmlFor="BusLinesToggle">
@@ -37,7 +44,7 @@ const MapUtils = () => (
             <FormattedMessage id="routes" defaultMessage="Routes" />
           </label>
         </div>
-      </div>
+      </div>}
 
       <div className="" id="toggle-maintenance" key="toggle-maintenance">
         <div className="map-utils-button" id="toggle-maintenance-button">
@@ -51,7 +58,7 @@ const MapUtils = () => (
         </div>
       </div>
 
-      <div className="" id="toggle-rain-areas" key="toggle-rain-areas">
+      {false && <div className="" id="toggle-rain-areas" key="toggle-rain-areas">
         <div className="map-utils-button" id="toggle-rain-areas-button">
           <Toggle icons={false} id="RainAreasToggle" />
           <label htmlFor="RainAreasToggle">
@@ -61,11 +68,18 @@ const MapUtils = () => (
             <FormattedMessage id="rain-areas" defaultMessage="Rain Areas" />
           </label>
         </div>
-      </div>
+      </div>}
 
-      <RoadWeatherToggle />
+      <BulletinsToggle />
+      <CamerasToggle />
+      <CarMonitorsToggle />
+      <CarParksToggle />
+      <IncidentsToggle />
+      <RoadConditionsToggle />
+      <TrafficFluencyToggle />
+      <WalkMonitorsToggle />
       <WeatherStationsToggle />
-      <RainMap />
+      {false && <RainMap />}
       <WeatherForecast />
 
     </div>
