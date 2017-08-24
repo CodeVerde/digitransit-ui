@@ -42,8 +42,17 @@ export function ToggleTrafficFluencyState(actionContext) {
   actionContext.dispatch('ToggleTrafficFluencyState');
 }
 
+export function SetTrafficFluencyState(actionContext, payload) {
+  actionContext.dispatch('SetTrafficFluencyState', payload);
+}
+
 export function AddTrafficFluencyData(actionContext, parser) {
-  const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/fluencylines_encoded/fluencies.php?zoom=15';
+  let url;
+  if (actionContext.getStore('MapSelectionsStore').getTrafficFluencyState() === 2) {
+    url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/fluencylines_encoded/fluencies.php?type=forecast&zoom=15';
+  } else {
+    url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/fluencylines_encoded/fluencies.php?zoom=15';
+  }
 
   return getJsonWithHeaders(url, null, authHeaders)
   // .then(response => cleanJson(response))

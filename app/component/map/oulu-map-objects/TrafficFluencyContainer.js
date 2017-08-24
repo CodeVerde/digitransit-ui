@@ -4,22 +4,14 @@ import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import polyline from 'polyline-encoded';
 
-// import { asString as iconAsString } from '../IconWithTail';
-
 import { isBrowser } from '../../../util/browser';
-// import { TrafficFluencyData } from './TrafficFluencyData';
 import { AddTrafficFluencyData } from '../../../action/mapSelectionsActions';
-// import { AddWeatherStationsData } from '../../../action/mapSelectionsActions';
 
 
-// let Popup;
-// let Marker;
 let Polyline;
-// let L;
 
 if (isBrowser) {
   /* eslint-disable global-require */
-  // Popup = require('react-leaflet/lib/Popup').default;
   Polyline = require('react-leaflet/lib/Polyline').default;
   /* eslint-enable global-require */
 }
@@ -55,7 +47,7 @@ class TrafficFluencyContainer extends React.PureComponent {
   };
 
   static propTypes = {
-    showTrafficFluency: PropTypes.bool.isRequired,
+    trafficFluencyState: PropTypes.number.isRequired,
     trafficFluencyData: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       encodedGeometry: PropTypes.string,
@@ -76,7 +68,7 @@ class TrafficFluencyContainer extends React.PureComponent {
   componentWillMount() {
     if (this.objs.length !== this.props.trafficFluencyData.length) {
       this.updateObjects(this.props.trafficFluencyData);
-    } else if (this.props.showTrafficFluency) {
+    } else if (this.props.trafficFluencyState) {
       this.context.executeAction(
         AddTrafficFluencyData,
         parseTrafficFluencyMessage,
@@ -85,7 +77,7 @@ class TrafficFluencyContainer extends React.PureComponent {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.showTrafficFluency && !this.props.showTrafficFluency) {
+    if (newProps.trafficFluencyState && !this.props.trafficFluencyState) {
       this.context.executeAction(
         AddTrafficFluencyData,
         parseTrafficFluencyMessage,
@@ -112,13 +104,13 @@ class TrafficFluencyContainer extends React.PureComponent {
   render() {
     if (!isBrowser) { return false; }
 
-    if (this.data === null || !this.props.showTrafficFluency) { return false; }
+    if (this.data === null || !this.props.trafficFluencyState) { return false; }
 
     return (<div style={{ display: 'none' }}>{this.objs}</div>);
   }
 }
 
 export default connectToStores(TrafficFluencyContainer, ['SimpleModeStore'], context => ({
-  showTrafficFluency: context.getStore('MapSelectionsStore').getTrafficFluencyState(),
+  trafficFluencyState: context.getStore('MapSelectionsStore').getTrafficFluencyState(),
   trafficFluencyData: context.getStore('MapSelectionsStore').getTrafficFluencyData(),
 }));

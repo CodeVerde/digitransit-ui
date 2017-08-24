@@ -5,21 +5,61 @@ import { FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 
 import ComponentUsageExample from '../ComponentUsageExample';
-import { ToggleTrafficFluencyState } from '../../action/mapSelectionsActions';
+import { ToggleTrafficFluencyState, SetTrafficFluencyState } from '../../action/mapSelectionsActions';
 
 const toggleTrafficFluency = executeAction =>
   () => executeAction(ToggleTrafficFluencyState);
 
-const TrafficFluencyToggle = ({ showTrafficFluency }, { executeAction }) => (
+const setTrafficFluency = (executeAction, state) =>
+  () => executeAction(SetTrafficFluencyState, state);
+
+const modes = [
+  'traffic-fluency-now',
+  'traffic-fluency-30',
+];
+
+const renderList = (trafficFluencyState, executeAction) => {
+  const items = [];
+  modes.forEach((element, index) => {
+    const iconClass = trafficFluencyState === index + 1 ? 'icon' : 'icon icon-not-selected';
+    items.push(
+      <li key={`traffic-fluency-list-${element}`}>
+        <div htmlFor="SetTrafficFluency" onClick={setTrafficFluency(executeAction, index + 1)}>
+          <svg className={iconClass} viewBox="0 0 283.46 283.46">
+            <use xlinkHref="#icon-icon_check_1" />
+          </svg>
+          <FormattedMessage id={element} defaultMessage={`Fluency option ${index}`} />
+        </div>
+      </li>,
+    );
+  });
+
+  return (
+    <ul className="submenu">
+      {items}
+    </ul>
+  );
+};
+
+const TrafficFluencyToggle = ({ trafficFluencyState }, { executeAction }) => (
   <div className="" id="toggle-traffic-fluency" key="toggle-traffic-fluency">
-    <div className={showTrafficFluency ? 'map-utils-button active' : 'map-utils-button'} id="toggle-traffic-fluency-button">
-      <Toggle defaultChecked={showTrafficFluency} icons={false} id="TrafficFluencyToggle" onChange={toggleTrafficFluency(executeAction)} />
-      <label htmlFor="TrafficFluencyToggle">
-        <svg className="icon" viewBox="0 0 283.46 283.46">
-          <use xlinkHref="#icon-icon_change_direction_1" />
-        </svg>
-        <FormattedMessage id="toggle-traffic-fluency" defaultMessage="Monitoring" />
-      </label>
+    <div className={trafficFluencyState > 0 ? 'map-utils-button active' : 'map-utils-button'} id="toggle-traffic-fluency-button">
+      <Toggle
+        checked={!!trafficFluencyState}
+        icons={false}
+        id="TrafficFluencyToggle"
+        onChange={toggleTrafficFluency(executeAction)}
+      />
+      <div className="react-toggle-menu">
+        <input type="checkbox" id="checkbox-toggle" />
+        <label htmlFor="checkbox-toggle">
+          <svg className="icon" viewBox="0 0 283.46 283.46">
+            <use xlinkHref="#icon-icon_change_direction_1" />
+          </svg>
+          <FormattedMessage id="toggle-traffic-fluency" defaultMessage="Monitoring" />
+        </label>
+        {renderList(trafficFluencyState, executeAction)}
+      </div>
     </div>
   </div>
 );
@@ -39,7 +79,7 @@ TrafficFluencyToggle.description = () => (
   </div>);
 
 TrafficFluencyToggle.propTypes = {
-  showTrafficFluency: PropTypes.bool.isRequired,
+  trafficFluencyState: PropTypes.number.isRequired,
 };
 
 TrafficFluencyToggle.contextTypes = {
@@ -47,7 +87,7 @@ TrafficFluencyToggle.contextTypes = {
 };
 
 const connected = connectToStores(TrafficFluencyToggle, ['MapSelectionsStore'], context => ({
-  showTrafficFluency: context.getStore('MapSelectionsStore').getTrafficFluencyState(),
+  trafficFluencyState: context.getStore('MapSelectionsStore').getTrafficFluencyState(),
 }));
 
 export { connected as default, TrafficFluencyToggle as Component };
