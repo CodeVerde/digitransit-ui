@@ -63,6 +63,7 @@ class Map extends React.Component {
   static defaultProps ={
     showScaleBar: false,
     showBusLines: false,
+    ouluLeafletObjs: [],
   }
 
   static contextTypes = {
@@ -136,7 +137,7 @@ class Map extends React.Component {
 
     if (isBrowser) {
       leafletObjs = this.props.leafletObjs.slice() || [];
-      ouluLeafletObjs = this.props.ouluLeafletObjs.slice() || [];
+      ouluLeafletObjs = this.props.ouluLeafletObjs.slice();
 
       if (config.map.useVectorTiles) {
         leafletObjs.push(
