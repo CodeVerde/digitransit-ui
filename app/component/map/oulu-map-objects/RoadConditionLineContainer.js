@@ -48,7 +48,7 @@ class RoadConditionLineContainer extends React.Component {
   };
 
   static propTypes = {
-    showRoadConditions: PropTypes.bool.isRequired,
+    roadConditionsState: PropTypes.number.isRequired,
     roadConditionsData: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.string,
       geometry: PropTypes.arrayOf(PropTypes.object),
@@ -64,7 +64,7 @@ class RoadConditionLineContainer extends React.Component {
   componentWillMount() {
     if (this.objs.length !== this.props.roadConditionsData.length) {
       this.updateObjects(this.props.roadConditionsData);
-    } else if (this.props.showRoadConditions) {
+    } else if (this.props.roadConditionsState) {
       this.context.executeAction(
         AddRoadConditionsData,
         parseRoadConditionMessage,
@@ -73,7 +73,7 @@ class RoadConditionLineContainer extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.showRoadConditions && !this.props.showRoadConditions) {
+    if (newProps.roadConditionsState && !this.props.roadConditionsState) {
       this.context.executeAction(
         AddRoadConditionsData,
         parseRoadConditionMessage,
@@ -85,13 +85,14 @@ class RoadConditionLineContainer extends React.Component {
 
   updateObjects(data) {
     const newObjs = [];
+    const forecastIndex = Math.max(0, this.props.roadConditionsState - 1);
     data.forEach((element) => {
       newObjs.push(
         <RoadConditionLine
           key={element.id}
           lineKey={element.id}
           geometry={element.geometry}
-          color={element.forecasts[0].forecastColor}
+          color={element.forecasts[forecastIndex].forecastColor}
         />,
       );
     });
@@ -101,13 +102,13 @@ class RoadConditionLineContainer extends React.Component {
   render() {
     if (!isBrowser) { return false; }
 
-    if (this.objs.length === 0 || !this.props.showRoadConditions) { return false; }
+    if (this.objs.length === 0 || !this.props.roadConditionsState) { return false; }
 
     return (<div style={{ display: 'none' }}>{this.objs}</div>);
   }
 }
 
 export default connectToStores(RoadConditionLineContainer, ['SimpleModeStore'], context => ({
-  showRoadConditions: context.getStore('MapSelectionsStore').getRoadConditionsState(),
+  roadConditionsState: context.getStore('MapSelectionsStore').getRoadConditionsState(),
   roadConditionsData: context.getStore('MapSelectionsStore').getRoadConditionsData(),
 }));

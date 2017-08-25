@@ -24,7 +24,7 @@ const renderList = (trafficFluencyState, executeAction) => {
     const iconClass = trafficFluencyState === index + 1 ? 'icon' : 'icon icon-not-selected';
     items.push(
       <li key={`traffic-fluency-list-${element}`}>
-        <div htmlFor="SetTrafficFluency" onClick={setTrafficFluency(executeAction, index + 1)}>
+        <div role="button" htmlFor="SetTrafficFluency" onClick={setTrafficFluency(executeAction, index + 1)}>
           <svg className={iconClass} viewBox="0 0 283.46 283.46">
             <use xlinkHref="#icon-icon_check_1" />
           </svg>
@@ -51,8 +51,8 @@ const TrafficFluencyToggle = ({ trafficFluencyState }, { executeAction }) => (
         onChange={toggleTrafficFluency(executeAction)}
       />
       <div className="react-toggle-menu">
-        <input type="checkbox" id="checkbox-toggle" />
-        <label htmlFor="checkbox-toggle">
+        <input type="checkbox" id="traffic-fluency-checkbox-toggle" />
+        <label htmlFor="traffic-fluency-checkbox-toggle">
           <svg className="icon" viewBox="0 0 283.46 283.46">
             <use xlinkHref="#icon-icon_change_direction_1" />
           </svg>
