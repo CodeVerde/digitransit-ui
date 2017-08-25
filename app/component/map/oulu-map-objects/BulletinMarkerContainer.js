@@ -137,7 +137,7 @@ class BulletinContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(BulletinContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(BulletinContainer, ['MapSelectionsStore'], context => ({
   showBulletins: context.getStore('MapSelectionsStore').getBulletinsState(),
   bulletinsData: context.getStore('MapSelectionsStore').getBulletinsData(),
 }));

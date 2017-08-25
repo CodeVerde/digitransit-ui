@@ -190,7 +190,7 @@ class IncidentMarkerContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(IncidentMarkerContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(IncidentMarkerContainer, ['MapSelectionsStore'], context => ({
   showIncidents: context.getStore('MapSelectionsStore').getIncidentsState(),
   incidentsData: context.getStore('MapSelectionsStore').getIncidentsData(),
 }));

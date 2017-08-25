@@ -24,7 +24,7 @@ class MapSelectionsStore extends Store {
       walkMonitorsData: [],
       showWalkMonitors: false,
       roadConditionsData: [],
-      showRoadConditions: false,
+      roadConditionsState: 0,
       trafficFluencyData: [],
       trafficFluencyState: 0,
       weatherStationsData: [],
@@ -119,7 +119,12 @@ class MapSelectionsStore extends Store {
   }
 
   toggleRoadConditionsState() {
-    this.data.showRoadConditions = !this.data.showRoadConditions;
+    this.data.roadConditionsState = this.data.roadConditionsState === 0 ? 1 : 0;
+    this.emitChange();
+  }
+
+  setRoadConditionsState(newState) {
+    this.data.roadConditionsState = this.data.roadConditionsState === newState ? 0 : newState;
     this.emitChange();
   }
 
@@ -209,7 +214,7 @@ class MapSelectionsStore extends Store {
   }
 
   getRoadConditionsState() {
-    return this.data.showRoadConditions;
+    return this.data.roadConditionsState;
   }
 
   getTrafficFluencyData() {
@@ -252,6 +257,7 @@ class MapSelectionsStore extends Store {
     ToggleMaintenanceState: 'toggleMaintenanceState',
     AddRoadConditionsData: 'addRoadConditionsData',
     ToggleRoadConditionsState: 'toggleRoadConditionsState',
+    SetRoadConditionsState: 'setRoadConditionsState',
     AddTrafficFluencyData: 'addTrafficFluencyData',
     ToggleTrafficFluencyState: 'toggleTrafficFluencyState',
     SetTrafficFluencyState: 'setTrafficFluencyState',

@@ -109,7 +109,7 @@ class MaintenanceContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(MaintenanceContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(MaintenanceContainer, ['MapSelectionsStore'], context => ({
   showMaintenance: context.getStore('MapSelectionsStore').getMaintenanceState(),
   maintenanceData: context.getStore('MapSelectionsStore').getMaintenanceData(),
 }));

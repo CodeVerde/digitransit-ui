@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
-
 import { FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
+import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import BusLinesMapToggle from './BusLinesMapToggle';
 import RainMap from './RainMap';
@@ -17,11 +18,61 @@ import WalkMonitorsToggle from './toggles/WalkMonitorsToggle';
 import WeatherStationsToggle from './toggles/WeatherStationsToggle';
 import WeatherForecast from './WeatherForecast';
 
-const MapUtils = () => (
+const getToggles = (selectedSimpleMode) => {
+  const modes = [];
+  switch (selectedSimpleMode) {
+    case 'BUS':
+      modes.push(<BusLinesMapToggle />);
+      modes.push(<MaintenanceToggle />);
+      modes.push(<RoadConditionsToggle />);
+
+      // modes.push(<WeatherForecast />);
+      modes.push(<WeatherStationsToggle />);
+      modes.push(<MaintenanceToggle />);
+      break;
+    case 'KAVELY':
+      modes.push(<BulletinsToggle />);
+      modes.push(<WalkMonitorsToggle />);
+
+      // modes.push(<WeatherForecast />);
+      modes.push(<WeatherStationsToggle />);
+      modes.push(<MaintenanceToggle />);
+      break;
+    case 'POLKUPYORA':
+      modes.push(<BulletinsToggle />);
+      modes.push(<WalkMonitorsToggle />);
+
+      // modes.push(<WeatherForecast />);
+      modes.push(<WeatherStationsToggle />);
+      modes.push(<MaintenanceToggle />);
+      break;
+    case 'KAARA':
+      modes.push(<IncidentsToggle />);
+      modes.push(<TrafficFluencyToggle />);
+      modes.push(<CarMonitorsToggle />);
+      modes.push(<CarParksToggle />);
+      modes.push(<CamerasToggle />);
+
+      // modes.push(<WeatherForecast />);
+      modes.push(<RoadConditionsToggle />);
+      modes.push(<WeatherStationsToggle />);
+      modes.push(<MaintenanceToggle />);
+      break;
+    default:
+      break;
+  }
+  return modes;
+};
+
+const MapUtils = ({ selectedSimpleMode }) => (
   <div className="map-utils-float">
     <div className="MapUtils">
 
-      <BusLinesMapToggle />
+      {getToggles(selectedSimpleMode)}
+
+      <WeatherForecast />
+
+      {false && <RainMap />}
 
       {false && <div className="" id="toggle-bus-stops" key="toggle-bus-stops">
         <div className="map-utils-button active" id="toggle-bus-stops-button">
@@ -47,8 +98,6 @@ const MapUtils = () => (
         </div>
       </div>}
 
-      <MaintenanceToggle />
-
       {false && <div className="" id="toggle-rain-areas" key="toggle-rain-areas">
         <div className="map-utils-button" id="toggle-rain-areas-button">
           <Toggle icons={false} id="RainAreasToggle" />
@@ -61,22 +110,16 @@ const MapUtils = () => (
         </div>
       </div>}
 
-      <BulletinsToggle />
-      <CamerasToggle />
-      <CarMonitorsToggle />
-      <CarParksToggle />
-      <IncidentsToggle />
-      <RoadConditionsToggle />
-      <TrafficFluencyToggle />
-      <WalkMonitorsToggle />
-      <WeatherStationsToggle />
-      {false && <RainMap />}
-      <WeatherForecast />
-
     </div>
   </div>
 );
 
+MapUtils.propTypes = {
+  selectedSimpleMode: PropTypes.string.isRequired,
+};
+
 MapUtils.displayName = 'MapUtils';
 
-export default MapUtils;
+export default connectToStores(MapUtils, ['SimpleModeStore'], context => ({
+  selectedSimpleMode: context.getStore('SimpleModeStore').getModeString(),
+}));
