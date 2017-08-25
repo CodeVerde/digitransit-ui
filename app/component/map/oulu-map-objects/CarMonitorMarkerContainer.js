@@ -116,7 +116,7 @@ class CarMonitorMarkerContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(CarMonitorMarkerContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(CarMonitorMarkerContainer, ['MapSelectionsStore'], context => ({
   showCarMonitors: context.getStore('MapSelectionsStore').getCarMonitorsState(),
   carMonitorsData: context.getStore('MapSelectionsStore').getCarMonitorsData(),
 }));

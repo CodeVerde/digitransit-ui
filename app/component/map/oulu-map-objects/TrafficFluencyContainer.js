@@ -110,7 +110,7 @@ class TrafficFluencyContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(TrafficFluencyContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(TrafficFluencyContainer, ['MapSelectionsStore'], context => ({
   trafficFluencyState: context.getStore('MapSelectionsStore').getTrafficFluencyState(),
   trafficFluencyData: context.getStore('MapSelectionsStore').getTrafficFluencyData(),
 }));

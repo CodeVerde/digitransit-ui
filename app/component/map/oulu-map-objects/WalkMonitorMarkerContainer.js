@@ -120,7 +120,7 @@ class WalkMonitorMarkerContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(WalkMonitorMarkerContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(WalkMonitorMarkerContainer, ['MapSelectionsStore'], context => ({
   showWalkMonitors: context.getStore('MapSelectionsStore').getWalkMonitorsState(),
   walkMonitorsData: context.getStore('MapSelectionsStore').getWalkMonitorsData(),
 }));

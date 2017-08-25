@@ -117,7 +117,7 @@ class CameraMarkerContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(CameraMarkerContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(CameraMarkerContainer, ['MapSelectionsStore'], context => ({
   showCameras: context.getStore('MapSelectionsStore').getCamerasState(),
   camerasData: context.getStore('MapSelectionsStore').getCamerasData(),
 }));

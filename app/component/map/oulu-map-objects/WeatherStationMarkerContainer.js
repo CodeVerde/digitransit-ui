@@ -123,7 +123,7 @@ class WeatherStationMarkerContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(WeatherStationMarkerContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(WeatherStationMarkerContainer, ['MapSelectionsStore'], context => ({
   showWeatherStations: context.getStore('MapSelectionsStore').getWeatherStationsState(),
   weatherStationsData: context.getStore('MapSelectionsStore').getWeatherStationsData(),
 }));

@@ -129,7 +129,7 @@ class CarParkMarkerContainer extends React.PureComponent {
   }
 }
 
-export default connectToStores(CarParkMarkerContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(CarParkMarkerContainer, ['MapSelectionsStore'], context => ({
   showCarParks: context.getStore('MapSelectionsStore').getCarParksState(),
   carParksData: context.getStore('MapSelectionsStore').getCarParksData(),
 }));

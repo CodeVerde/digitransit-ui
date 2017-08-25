@@ -108,7 +108,7 @@ class RoadConditionLineContainer extends React.Component {
   }
 }
 
-export default connectToStores(RoadConditionLineContainer, ['SimpleModeStore'], context => ({
+export default connectToStores(RoadConditionLineContainer, ['MapSelectionsStore'], context => ({
   roadConditionsState: context.getStore('MapSelectionsStore').getRoadConditionsState(),
   roadConditionsData: context.getStore('MapSelectionsStore').getRoadConditionsData(),
 }));
