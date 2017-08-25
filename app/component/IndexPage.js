@@ -7,9 +7,10 @@ import LazilyLoad, { importLazy } from './LazilyLoad';
 import FrontPagePanelLarge from './FrontPagePanelLarge';
 import FrontPagePanelSmall from './FrontPagePanelSmall';
 import MapWithTracking from '../component/map/MapWithTracking';
-// import SearchMainContainer from './SearchMainContainer';
+import SearchMainContainer from './SearchMainContainer';
 import MapUtils from './MapUtils';
 import PageFooter from './PageFooter';
+import SimpleModeFilterContainer from './SimpleModeFilterContainer';
 
 const feedbackPanelMudules = { Panel: () => importLazy(System.import('./FeedbackPanel')) };
 
@@ -81,7 +82,9 @@ class IndexPage extends React.Component {
     if (props.routes && props.routes.length > 0) {
       const routePath = props.routes[props.routes.length - 1].path;
 
-      if (routePath === 'suosikit') {
+      if (routePath === 'toiminnot') {
+        return 3;
+      } else if (routePath === 'suosikit') {
         return 2;
       } else if (routePath === 'lahellasi') {
         return 1;
@@ -133,6 +136,22 @@ class IndexPage extends React.Component {
     }
   };
 
+  clickUtils = () => {
+    // tab click logic is different in large vs the rest!
+    if (this.props.breakpoint !== 'large') {
+      const selected = this.getSelectedTab();
+      if (selected === 3) {
+        this.closeTab();
+      } else {
+        this.openUtils(selected === 1);
+      }
+      this.trackEvent('Front page tabs', 'Utils', selected === 3 ? 'close' : 'open');
+    } else {
+      this.openUtils(true);
+      this.trackEvent('Front page tabs', 'Utils', 'open');
+    }
+  };
+
   openFavourites = (replace) => {
     if (replace) {
       this.context.router.replace('/suosikit');
@@ -146,6 +165,14 @@ class IndexPage extends React.Component {
       this.context.router.replace('/lahellasi');
     } else {
       this.context.router.push('/lahellasi');
+    }
+  }
+
+  openUtils = (replace) => {
+    if (replace) {
+      this.context.router.replace('/toiminnot');
+    } else {
+      this.context.router.push('/toiminnot');
     }
   }
 
@@ -210,10 +237,26 @@ class IndexPage extends React.Component {
             selectedTab={selectedSearchTab}
           >
             {messageBar}
-            {/* <SearchMainContainer
+            <div
+              style={{
+                height: '53px',
+                position: 'absolute',
+                width: '100%',
+                zIndex: 900,
+              }}
+            >
+              <div className="flex-vertical">
+                <div className="row btn-simple-bar">
+                  <SimpleModeFilterContainer
+                    buttonClass="mode-icon"
+                  />
+                </div>
+              </div>
+            </div>
+            <SearchMainContainer
               searchModalIsOpen={searchModalIsOpen}
               selectedTab={selectedSearchTab}
-            /> */}
+            />
           </MapWithTracking>
         </div>
         <div>
@@ -221,6 +264,7 @@ class IndexPage extends React.Component {
             selectedPanel={selectedMainTab}
             nearbyClicked={this.clickNearby}
             favouritesClicked={this.clickFavourites}
+            utilsClicked={this.clickUtils}
             closePanel={this.closeTab}
           >{this.props.content}</FrontPagePanelSmall>
           {feedbackPanel}
