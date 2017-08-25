@@ -247,6 +247,13 @@ export default (config) => {
               .then(getDefault).then(content => cb(null, { content })).catch(errorLoading)
           }
         />
+        <Route
+          path="toiminnot"
+          getComponents={(location, cb) =>
+            System.import('./component/UtilsPanel')
+              .then(getDefault).then(content => cb(null, { content })).catch(errorLoading)
+          }
+        />
       </Route>
       <Route
         path="/?mock" topBarOptions={{ disableBackButton: true }} components={{
@@ -265,6 +272,13 @@ export default (config) => {
           path="suosikit"
           getComponents={(location, cb) =>
             System.import('./component/FavouritesPanel')
+              .then(getDefault).then(content => cb(null, { content })).catch(errorLoading)
+          }
+        />
+        <Route
+          path="toiminnot"
+          getComponents={(location, cb) =>
+            System.import('./component/UtilsPanel')
               .then(getDefault).then(content => cb(null, { content })).catch(errorLoading)
           }
         />

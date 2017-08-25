@@ -7,13 +7,16 @@ import Icon from './Icon';
 import ComponentUsageExample from './ComponentUsageExample';
 import NearbyTabLabel from './NearbyTabLabel';
 import FavouritesTabLabelContainer from './FavouritesTabLabelContainer';
+import UtilsTabLabel from './UtilsTabLabel';
 
 const FrontPagePanelSmall = ({ selectedPanel, nearbyClicked,
-   favouritesClicked, closePanel, children }) => {
+   favouritesClicked, utilsClicked, closePanel, children }) => {
   let heading;
   const tabClasses = ['hover'];
   const nearbyClasses = ['nearby-routes', 'h4'];
   const favouritesClasses = ['favourites', 'h4'];
+  const utilsClasses = ['utils', 'h4'];
+  const panelClasses = ['frontpage-panel-wrapper'];
 
   if (selectedPanel === 1) {
     heading = <FormattedMessage id="near-you" defaultMessage="Near you" />;
@@ -21,6 +24,10 @@ const FrontPagePanelSmall = ({ selectedPanel, nearbyClicked,
   } else if (selectedPanel === 2) {
     heading = <FormattedMessage id="your-favourites" defaultMessage="Your favourites" />;
     favouritesClasses.push('selected');
+  } else if (selectedPanel === 3) {
+    heading = <FormattedMessage id="utils" defaultMessage="Utils" />;
+    utilsClasses.push('selected');
+    panelClasses.push('utils-panel');
   }
 
   const top = (
@@ -35,7 +42,7 @@ const FrontPagePanelSmall = ({ selectedPanel, nearbyClicked,
   );
 
   const content = selectedPanel ?
-    <div className="frontpage-panel-wrapper" key="panel">{top}{children}</div> : undefined;
+    <div className={cx(panelClasses)} key="panel">{top}{children}</div> : undefined;
 
   return (
     <div className="frontpage-panel-container no-select">
@@ -54,6 +61,10 @@ const FrontPagePanelSmall = ({ selectedPanel, nearbyClicked,
         <FavouritesTabLabelContainer
           classes={cx(tabClasses, favouritesClasses)}
           onClick={favouritesClicked}
+        />
+        <UtilsTabLabel
+          classes={cx(tabClasses, utilsClasses)}
+          onClick={utilsClicked}
         />
       </ul>
     </div>
@@ -78,6 +89,7 @@ FrontPagePanelSmall.propTypes = {
   selectedPanel: PropTypes.number,
   nearbyClicked: PropTypes.func.isRequired,
   favouritesClicked: PropTypes.func.isRequired,
+  utilsClicked: PropTypes.func.isRequired,
   closePanel: PropTypes.func.isRequired,
   children: PropTypes.node,
 };
