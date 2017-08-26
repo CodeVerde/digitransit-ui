@@ -1,4 +1,5 @@
 import Store from 'fluxible/addons/BaseStore';
+import { setMapSelectionsStorage, getMapSelectionsStorage } from './localStorage';
 
 class MapSelectionsStore extends Store {
 
@@ -6,36 +7,89 @@ class MapSelectionsStore extends Store {
 
   constructor(dispatcher) {
     super(dispatcher);
+    const localData = getMapSelectionsStorage();
     this.config = dispatcher.getContext().config;
-    this.data = {
-      bulletinsData: [],
-      showBulletins: false,
-      showBusLines: false,
-      camerasData: [],
-      showCameras: false,
-      carMonitorsData: [],
-      showCarMonitors: false,
-      carParksData: [],
-      showCarParks: false,
-      incidentsData: [],
-      showIncidents: false,
-      maintenanceData: [],
-      showMaintenance: false,
-      walkMonitorsData: [],
-      showWalkMonitors: false,
-      roadConditionsData: [],
-      roadConditionsState: 0,
-      trafficFluencyData: [],
-      trafficFluencyState: 0,
-      weatherStationsData: [],
-      showWeatherStations: false,
-    };
+    if (localData && localData.showBulletins !== undefined) {
+      this.data = localData;
+    } else {
+      this.data = this.resetAll();
+    }
+  }
+
+  resetAll = () => ({
+    bulletinsData: [],
+    showBulletins: false,
+    showBusLines: false,
+    camerasData: [],
+    showCameras: false,
+    carMonitorsData: [],
+    showCarMonitors: false,
+    carParksData: [],
+    showCarParks: false,
+    incidentsData: [],
+    showIncidents: false,
+    maintenanceData: [],
+    showMaintenance: false,
+    walkMonitorsData: [],
+    showWalkMonitors: false,
+    roadConditionsData: [],
+    roadConditionsState: 0,
+    trafficFluencyData: [],
+    trafficFluencyState: 0,
+    weatherStationsData: [],
+    showWeatherStations: false,
+  });
+
+  setDefaults(mode) {
+    this.data.showBulletins = false;
+    this.data.showBusLines = false;
+    this.data.showCameras = false;
+    this.data.showCarMonitors = false;
+    this.data.showCarParks = false;
+    this.data.showIncidents = false;
+    this.data.showMaintenance = false;
+    this.data.showWalkMonitors = false;
+    this.data.roadConditionsState = 0;
+    this.data.trafficFluencyState = 0;
+    this.data.showWeatherStations = false;
+
+    switch (mode) {
+      case 'Bus':
+        // Nothing on purpose
+        break;
+      case 'Walk':
+        this.data.showBulletins = true;
+        this.data.showWalkMonitors = true;
+        break;
+      case 'Bicycle':
+        this.data.showBulletins = true;
+        this.data.showWalkMonitors = true;
+        // TODO should be bicycle monitors instead
+        break;
+      case 'Car':
+        this.data.showIncidents = true;
+        this.data.trafficFluencyState = 1;
+        this.data.showCameras = true;
+        break;
+      default:
+        break;
+    }
+  }
+
+  storeMode = () => {
+    setMapSelectionsStorage(this.data);
   }
 
   dehydrate = () => this.data;
 
   rehydrate = (data) => {
     this.data = data;
+  }
+
+  setMapSelectionsDefaults(mode) {
+    this.setDefaults(mode);
+    this.storeMode();
+    this.emitChange();
   }
 
   addBulletinsData(data) {
@@ -242,6 +296,7 @@ class MapSelectionsStore extends Store {
   }
 
   static handlers = {
+    SetMapSelectionsDefaults: 'setMapSelectionsDefaults',
     AddBulletinsData: 'addBulletinsData',
     ToggleBulletinsState: 'toggleBulletinsState',
     ToggleBusLinesState: 'toggleBusLinesState',

@@ -13,7 +13,7 @@ const toggleWalkMonitors = executeAction =>
 const WalkMonitorsToggle = ({ showWalkMonitors }, { executeAction }) => (
   <div className="" id="toggle-walk-monitors" key="toggle-walk-monitors">
     <div className={showWalkMonitors ? 'map-utils-button active' : 'map-utils-button'} id="toggle-walk-monitors-button">
-      <Toggle defaultChecked={showWalkMonitors} icons={false} id="WalkMonitorsToggle" onChange={toggleWalkMonitors(executeAction)} />
+      <Toggle checked={showWalkMonitors} icons={false} id="WalkMonitorsToggle" onChange={toggleWalkMonitors(executeAction)} />
       <label htmlFor="WalkMonitorsToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
           <use xlinkHref="#icon-icon_measurement_1" />
