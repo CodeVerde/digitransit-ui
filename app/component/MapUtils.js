@@ -22,41 +22,40 @@ const getToggles = (selectedSimpleMode) => {
   const modes = [];
   switch (selectedSimpleMode) {
     case 'BUS':
-      modes.push(<BusLinesMapToggle />);
-      modes.push(<MaintenanceToggle />);
-      modes.push(<RoadConditionsToggle />);
+      modes.push(<BusLinesMapToggle key="bus-lines-map-toggle" />);
+      modes.push(<RoadConditionsToggle key="road-conditions-toggle" />);
 
       // modes.push(<WeatherForecast />);
-      modes.push(<WeatherStationsToggle />);
-      modes.push(<MaintenanceToggle />);
+      modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
+      modes.push(<MaintenanceToggle key="maintenance-toggle" />);
       break;
     case 'KAVELY':
-      modes.push(<BulletinsToggle />);
-      modes.push(<WalkMonitorsToggle />);
+      modes.push(<BulletinsToggle key="bulletins-toggle" />);
+      modes.push(<WalkMonitorsToggle key="walk-monitor-toggle" />);
 
       // modes.push(<WeatherForecast />);
-      modes.push(<WeatherStationsToggle />);
-      modes.push(<MaintenanceToggle />);
+      modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
+      modes.push(<MaintenanceToggle key="maintenance-toggle" />);
       break;
     case 'POLKUPYORA':
-      modes.push(<BulletinsToggle />);
-      modes.push(<WalkMonitorsToggle />);
+      modes.push(<BulletinsToggle key="bulletins-toggle" />);
+      modes.push(<WalkMonitorsToggle key="walk-monitor-toggle" />);
 
       // modes.push(<WeatherForecast />);
-      modes.push(<WeatherStationsToggle />);
-      modes.push(<MaintenanceToggle />);
+      modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
+      modes.push(<MaintenanceToggle key="maintenance-toggle" />);
       break;
     case 'KAARA':
-      modes.push(<IncidentsToggle />);
-      modes.push(<TrafficFluencyToggle />);
-      modes.push(<CarMonitorsToggle />);
-      modes.push(<CarParksToggle />);
-      modes.push(<CamerasToggle />);
+      modes.push(<IncidentsToggle key="incidents-toggle" />);
+      modes.push(<TrafficFluencyToggle key="traffic-fluency-toggle" />);
+      modes.push(<CarMonitorsToggle key="car-monitors-toggle" />);
+      modes.push(<CarParksToggle key="car-parks-toggle" />);
+      modes.push(<CamerasToggle key="cameras-toggle" />);
 
       // modes.push(<WeatherForecast />);
-      modes.push(<RoadConditionsToggle />);
-      modes.push(<WeatherStationsToggle />);
-      modes.push(<MaintenanceToggle />);
+      modes.push(<RoadConditionsToggle key="road-conditions-toggle" />);
+      modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
+      modes.push(<MaintenanceToggle key="maintenance-toggle" />);
       break;
     default:
       break;

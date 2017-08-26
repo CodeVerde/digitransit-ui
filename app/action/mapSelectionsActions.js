@@ -4,6 +4,10 @@ import { cleanJson } from '../util/ouluUtils';
 
 const authHeaders = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
 
+export function SetMapSelectionsDefaults(actionContext, mode) {
+  actionContext.dispatch('SetMapSelectionsDefaults', mode);
+}
+
 export function ToggleBusLinesState(actionContext) {
   actionContext.dispatch('ToggleBusLinesState');
 }

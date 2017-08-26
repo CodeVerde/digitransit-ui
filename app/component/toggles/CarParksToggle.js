@@ -13,7 +13,7 @@ const toggleCarParks = executeAction =>
 const CarParksToggle = ({ showCarParks }, { executeAction }) => (
   <div className="" id="toggle-car-parks" key="toggle-car-parks">
     <div className={showCarParks ? 'map-utils-button active' : 'map-utils-button'} id="toggle-car-parks-button">
-      <Toggle defaultChecked={showCarParks} icons={false} id="CarParksToggle" onChange={toggleCarParks(executeAction)} />
+      <Toggle checked={showCarParks} icons={false} id="CarParksToggle" onChange={toggleCarParks(executeAction)} />
       <label htmlFor="CarParksToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
           <use xlinkHref="#icon-icon_parking" />

@@ -13,7 +13,7 @@ const toggleMaintenance = executeAction =>
 const MaintenanceToggle = ({ showMaintenance }, { executeAction }) => (
   <div className="" id="toggle-maintenance" key="toggle-maintenance">
     <div className={showMaintenance ? 'map-utils-button active' : 'map-utils-button'} id="toggle-maintenance-button">
-      <Toggle defaultChecked={showMaintenance} icons={false} id="MaintenanceToggle" onChange={toggleMaintenance(executeAction)} />
+      <Toggle checked={showMaintenance} icons={false} id="MaintenanceToggle" onChange={toggleMaintenance(executeAction)} />
       <label htmlFor="MaintenanceToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
           <use xlinkHref="#icon-icon_kunnossapito" />
