@@ -39,7 +39,7 @@ export default class TrafficFluencyPopupContainer extends React.Component {
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
-            <span className="header-primary">
+            <span className="oulu-card-header-primary">
               {this.props.popupData.name}
             </span>
             <div className="card-sub-header">

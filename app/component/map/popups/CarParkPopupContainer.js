@@ -59,7 +59,7 @@ export default class CarParkPopupContainer extends React.Component {
                 {this.context.intl.formatMessage({ id: 'parking', defaultMessage: 'Parking' })}
               </span>
             </div>
-            <span className="header-primary">
+            <span className="oulu-card-header-primary">
               {data.name}
             </span>
             <div className="card-sub-header">

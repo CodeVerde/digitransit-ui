@@ -1,5 +1,12 @@
 // Oulunliikenne 2.0 pilot related style changes
 
+.oulu-card-header-primary {
+  @include font-bold;
+  font-size: $font-size-small;
+  text-transform: uppercase;
+  color: $black;
+}
+
 .oulu-card-content  {
   background: $white;
   line-height: $line-height-normal;
