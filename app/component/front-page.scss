@@ -108,7 +108,7 @@ $heading-color: #858585;
   .icon {
     margin-top: 8px;
     color: $white;
-    fill: $primary-color;
+    fill: $gray;
   }
 
   span {
@@ -121,7 +121,19 @@ $heading-color: #858585;
 .map-utils-button:hover,
 .map-utils-button.active {
   background: transparent;
-  color: #9d0051;
+
+  span {
+    margin-left: 4px;
+    color: $primary-color;
+  }
+
+  label {
+    .icon {
+      margin-top: 8px;
+      color: $white;
+      fill: $primary-color;
+    }
+  }
 }
 
 .fpcfloat {
