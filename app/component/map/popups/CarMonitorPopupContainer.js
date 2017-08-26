@@ -59,7 +59,7 @@ export default class CarMonitorPopupContainer extends React.Component {
                 {this.context.intl.formatMessage({ id: 'monitoring-point', defaultMessage: 'Monitoring point' })}
               </span>
             </div>
-            <span className="header-primary">
+            <span className="oulu-card-header-primary">
               {data.name}
             </span>
             <div className="card-sub-header">

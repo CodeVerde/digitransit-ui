@@ -129,7 +129,7 @@ export default class CameraPopupContainer extends React.Component {
                 {this.context.intl.formatMessage({ id: 'traffic-camera', defaultMessage: 'Traffic camera' })}
               </span>
             </div>
-            <span className="header-primary">
+            <span className="oulu-card-header-primary">
               {this.data[this.slideIndex].name}
             </span>
             <div className="card-sub-header">

@@ -90,7 +90,7 @@ export default class IncidentPopupContainer extends React.Component {
                 {data.incidentMainClass}
               </span>
             </div>
-            <span className="header-primary">
+            <span className="oulu-card-header-primary">
               {`${data.incidentMainClass}, ${data.area}, ${data.incidentMainReason}`}
             </span>
             <div className="card-sub-header">

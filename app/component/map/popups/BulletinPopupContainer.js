@@ -67,7 +67,7 @@ export default class BulletinPopupContainer extends React.Component {
                 {data.bulletinMainClass}
               </span>
             </div>
-            <span className="header-primary">
+            <span className="oulu-card-header-primary">
               {headerString}
             </span>
             <div className="card-sub-header">
