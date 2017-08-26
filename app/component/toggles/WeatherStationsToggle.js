@@ -13,7 +13,7 @@ const toggleWeatherStations = executeAction =>
 const WeatherStationsToggle = ({ showWeatherStations }, { executeAction }) => (
   <div className="" id="toggle-weather-stations" key="toggle-weather-stations">
     <div className={showWeatherStations ? 'map-utils-button active' : 'map-utils-button'} id="toggle-weather-stations-button">
-      <Toggle defaultChecked={showWeatherStations} icons={false} id="WeatherStationsToggle" onChange={toggleWeatherStations(executeAction)} />
+      <Toggle checked={showWeatherStations} icons={false} id="WeatherStationsToggle" onChange={toggleWeatherStations(executeAction)} />
       <label htmlFor="WeatherStationsToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
           <use xlinkHref="#icon-icon_tiesaa_marker" />

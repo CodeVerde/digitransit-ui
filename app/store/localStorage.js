@@ -117,6 +117,14 @@ export function setFavouriteRoutesStorage(data) {
   setItem('favouriteRoutes', data);
 }
 
+export function getMapSelectionsStorage() {
+  return getItemAsJson('mapSelections', '{}');
+}
+
+export function setMapSelectionsStorage(data) {
+  setItem('mapSelections', data);
+}
+
 export function getMessagesStorage() {
   return getItemAsJson('messages');
 }

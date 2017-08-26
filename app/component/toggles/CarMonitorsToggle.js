@@ -13,7 +13,7 @@ const toggleCarMonitors = executeAction =>
 const CarMonitorsToggle = ({ showCarMonitors }, { executeAction }) => (
   <div className="" id="toggle-car-monitors" key="toggle-car-monitors">
     <div className={showCarMonitors ? 'map-utils-button active' : 'map-utils-button'} id="toggle-car-monitors-button">
-      <Toggle defaultChecked={showCarMonitors} icons={false} id="CarMonitorsToggle" onChange={toggleCarMonitors(executeAction)} />
+      <Toggle checked={showCarMonitors} icons={false} id="CarMonitorsToggle" onChange={toggleCarMonitors(executeAction)} />
       <label htmlFor="CarMonitorsToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
           <use xlinkHref="#icon-icon_mittauspisteet_radar_1" />

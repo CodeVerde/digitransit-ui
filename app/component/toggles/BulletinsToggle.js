@@ -13,7 +13,7 @@ const toggleBulletins = executeAction =>
 const BulletinsToggle = ({ showBulletins }, { executeAction }) => (
   <div className="" id="toggle-bulletins" key="toggle-bulletins">
     <div className={showBulletins ? 'map-utils-button active' : 'map-utils-button'} id="toggle-bulletins-button">
-      <Toggle defaultChecked={showBulletins} icons={false} id="BulletinsToggle" onChange={toggleBulletins(executeAction)} />
+      <Toggle checked={showBulletins} icons={false} id="BulletinsToggle" onChange={toggleBulletins(executeAction)} />
       <label htmlFor="BulletinsToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
           <use xlinkHref="#icon-icon_caution" />

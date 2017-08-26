@@ -13,7 +13,7 @@ const toggleCameras = executeAction =>
 const CamerasToggle = ({ showCameras }, { executeAction }) => (
   <div className="" id="toggle-cameras" key="toggle-cameras">
     <div className={showCameras ? 'map-utils-button active' : 'map-utils-button'} id="toggle-cameras-button">
-      <Toggle defaultChecked={showCameras} icons={false} id="CamerasToggle" onChange={toggleCameras(executeAction)} />
+      <Toggle checked={showCameras} icons={false} id="CamerasToggle" onChange={toggleCameras(executeAction)} />
       <label htmlFor="CamerasToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
           <use xlinkHref="#icon-icon_traffic_cam_1" />
