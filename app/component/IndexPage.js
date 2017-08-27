@@ -253,10 +253,12 @@ class IndexPage extends React.Component {
                 </div>
               </div>
             </div>
-            <SearchMainContainer
-              searchModalIsOpen={searchModalIsOpen}
-              selectedTab={selectedSearchTab}
-            />
+            <div className="search-mobile">
+              <SearchMainContainer
+                searchModalIsOpen={searchModalIsOpen}
+                selectedTab={selectedSearchTab}
+              />
+            </div>
           </MapWithTracking>
         </div>
         <div>

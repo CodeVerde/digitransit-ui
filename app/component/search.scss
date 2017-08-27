@@ -486,9 +486,16 @@ ul.react-autowhatever__items-list {
   z-index: 802;
   padding-left: 10px;
   padding-right: 10px;
-  padding-top: 53px;
+  //padding-top: 53px;
   //background: #EEF1F3;
+  //position: absolute;
+}
+
+.search-mobile .search-form-map-overlay {
+  padding-top: 53px;
   position: absolute;
+  width: 100%;
+  z-index: 802;
 }
 
 .search-modal-overlay {
