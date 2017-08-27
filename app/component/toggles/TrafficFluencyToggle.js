@@ -10,8 +10,12 @@ import { ToggleTrafficFluencyState, SetTrafficFluencyState } from '../../action/
 const toggleTrafficFluency = executeAction =>
   () => executeAction(ToggleTrafficFluencyState);
 
-const setTrafficFluency = (executeAction, state) =>
-  () => executeAction(SetTrafficFluencyState, state);
+const setTrafficFluency = (executeAction, state) => (
+  () => {
+    document.getElementById('traffic-fluency-checkbox-toggle').checked = false;
+    executeAction(SetTrafficFluencyState, state);
+  }
+);
 
 const modes = [
   'traffic-fluency-now',
