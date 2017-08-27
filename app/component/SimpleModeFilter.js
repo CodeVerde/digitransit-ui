@@ -5,6 +5,150 @@ import pure from 'recompose/pure';
 import SimpleToggleButton from './SimpleToggleButton';
 import ComponentUsageExample from './ComponentUsageExample';
 
+class ShowMoreButton extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      showMore: false,
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange() {
+    if (this.state.showMore === true) {
+      this.setState({ showMore: false });
+    } else {
+      this.setState({ showMore: true });
+    }
+  }
+
+  render() {
+    return (this.state.showMore === true ? (
+      <div
+        className="cursor-pointer btn-simple mode-icon"
+        onClick={this.handleChange}
+        style={{
+          position: 'relative',
+          width: '20%',
+          zIndex: '2000',
+        }}
+      >
+        <div className="icon-holder">
+          <span ariaHidden="true">
+            <svg
+              className="icon"
+              viewBox="0 0 40 40"
+            >
+              <use xlinkHref="#icon-icon_arrow-collapse" />
+            </svg>
+          </span>
+        </div>
+        <div />
+        <div
+          style={{
+            backgroundColor: '#fff',
+            border: '1px solid #999',
+            position: 'absolute',
+            width: '100%',
+          }}
+        >
+          <a
+            className="btn-simple icon-holder"
+            href="http://www.finavia.fi/fi/oulu/"
+            style={{
+              display: 'block',
+              width: '100%',
+            }}
+          >
+            <span ariaHidden="true">
+              <svg
+                className="icon"
+                viewBox="0 0 40 40"
+              >
+                <use xlinkHref="#icon-icon_plane_1" />
+              </svg>
+            </span>
+          </a>
+          <a
+            className="btn-simple icon-holder"
+            href="https://shop.vr.fi/vrmobiili/ParseLocationDataForStation.do?query.stationName=Oulu"
+            style={{
+              display: 'block',
+              width: '100%',
+            }}
+          >
+            <span ariaHidden="true">
+              <svg
+                className="icon"
+                viewBox="0 0 40 40"
+              >
+                <use xlinkHref="#icon-icon_juna_1" />
+              </svg>
+            </span>
+          </a>
+          <a
+            className="btn-simple icon-holder"
+            href="http://oulu2.ouka.fi/pds/"
+            style={{
+              display: 'block',
+              width: '100%',
+            }}
+          >
+            <span ariaHidden="true">
+              <svg
+                className="icon"
+                viewBox="0 0 40 40"
+              >
+                <use xlinkHref="#icon-icon_boat_1" />
+              </svg>
+            </span>
+          </a>
+          <a
+            className="btn-simple icon-holder"
+            href="http://www.finferries.fi/lauttaliikenne/lauttapaikat-ja-aikataulut/hailuoto.html"
+            style={{
+              display: 'block',
+              width: '100%',
+            }}
+          >
+            <span ariaHidden="true">
+              <svg
+                className="icon"
+                viewBox="0 0 40 40"
+              >
+                <use xlinkHref="#icon-icon_ferry_1" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    ) : (
+      <div
+        className="cursor-pointer btn-simple mode-icon"
+        onClick={this.handleChange}
+        style={{
+          width: '20%',
+        }}
+      >
+        <div className="icon-holder">
+          <span ariaHidden="true">
+            <svg
+              className="icon"
+              viewBox="0 0 40 40"
+            >
+              <use xlinkHref="#icon-icon_arrow-collapse" />
+            </svg>
+          </span>
+        </div>
+        <div />
+      </div>
+      )
+    );
+  }
+
+}
+
 const SimpleModeFilter = (props, context) => {
 // class SimpleModeFilter extends React.Component {
 
@@ -41,7 +185,10 @@ const SimpleModeFilter = (props, context) => {
     <ModeToggleButton type="bus" />
     <ModeToggleButton type="kavely" />
     <ModeToggleButton type="polkupyora" />
+    <ShowMoreButton />
+    {/*
     <ModeToggleButton type="rail" />
+    */}
   </div>);
 };
 

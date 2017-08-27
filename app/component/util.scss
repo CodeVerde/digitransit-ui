@@ -326,7 +326,7 @@ $btn-simple-rail-active-background-color: $primary-color;
   cursor: pointer;
 
   &:hover {
-    opacity: $btn-simple-highlight-opacity;
+    //opacity: $btn-simple-highlight-opacity;
   }
   &.kaara {
     background-color: $btn-simple-kaara-active-background-color;
