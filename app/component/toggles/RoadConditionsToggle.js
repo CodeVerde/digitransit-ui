@@ -11,7 +11,10 @@ const toggleRoadConditions = executeAction =>
   () => executeAction(ToggleRoadConditionsState);
 
 const setRoadConditions = (executeAction, state) =>
-  () => executeAction(SetRoadConditionsState, state);
+  () => {
+    document.getElementById('road-conditions-checkbox-toggle').checked = false;
+    executeAction(SetRoadConditionsState, state);
+  };
 
 const modes = [
   'road-conditions-now',
