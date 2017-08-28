@@ -123,9 +123,9 @@ class OuluLayerContainer extends FeatureGroup {
   }
 
   render() {
-    if (this.state.popups.length === 1) {
-      // const myOptions = Object.assign({}, defaultPopupOptions, this.state.popups[0].options);
-      console.log('OuluLayerContainer render, with popup: ', this.state.popups[0].id);
+    if (this.state.popups.length > 0) {
+      const myOptions = Object.assign({}, defaultPopupOptions, this.state.popups[0].options);
+
       return (
         <FeatureGroup>
           {this.props.children}
