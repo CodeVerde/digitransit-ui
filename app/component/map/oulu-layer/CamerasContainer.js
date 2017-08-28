@@ -29,6 +29,8 @@ export default class CamerasContainer {
   getObjectHits(myBounds, mapSelectionsData) {
     if (!mapSelectionsData.showCameras) { return []; }
 
+    console.log('CamerasContainer, getObjectHits');
+
     const hits = [];
     mapSelectionsData.camerasData.forEach((element) => {
       const mousePoint = this.map.latLngToLayerPoint(
@@ -36,12 +38,14 @@ export default class CamerasContainer {
           element.geometry.lat,
           element.geometry.lon,
         ]));
+      console.log('CamerasContainer, mousePoint: ', mousePoint);
       if (myBounds.contains(mousePoint)) {
         hits.push({
           id: element.id,
           lat: element.geometry.lat,
           lng: element.geometry.lon,
           options: popupOptions,
+          layer: 'oulu',
           content: (
             <CameraPopupContainerWithContext
               stationId={element.id}

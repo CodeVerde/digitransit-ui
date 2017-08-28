@@ -67,8 +67,8 @@ class MapSelectionsStore extends Store {
         // TODO should be bicycle monitors instead
         break;
       case 'Car':
-        this.data.showIncidents = true;
-        this.data.trafficFluencyState = 1;
+        this.data.showIncidents = false;
+        this.data.trafficFluencyState = 0;
         this.data.showCameras = true;
         break;
       default:

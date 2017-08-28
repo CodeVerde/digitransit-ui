@@ -9,6 +9,7 @@ import provideContext from 'fluxible-addons-react/provideContext';
 import SphericalMercator from '@mapbox/sphericalmercator';
 import lodashFilter from 'lodash/filter';
 import L from 'leaflet';
+import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import StopRoute from '../../../route/StopRoute';
 import TerminalRoute from '../../../route/TerminalRoute';
@@ -24,6 +25,14 @@ import TicketSalesPopup from '../popups/TicketSalesPopup';
 import LocationPopup from '../popups/LocationPopup';
 import TileContainer from './TileContainer';
 import Loading from '../../Loading';
+
+import BulletinsContainer from '../oulu-layer/BulletinsContainer';
+import CamerasContainer from '../oulu-layer/CamerasContainer';
+import CarMonitorsContainer from '../oulu-layer/CarMonitorsContainer';
+import CarParksContainer from '../oulu-layer/CarParksContainer';
+import IncidentsContainer from '../oulu-layer/IncidentsContainer';
+import WalkMonitorsContainer from '../oulu-layer/WalkMonitorsContainer';
+import WeatherStationsContainer from '../oulu-layer/WeatherStationsContainer';
 
 const StopMarkerPopupWithContext = provideContext(StopMarkerPopup, {
   intl: intlShape.isRequired,
@@ -102,6 +111,7 @@ class TileLayerContainer extends MapLayer {
     tileSize: PropTypes.number,
     zoomOffset: PropTypes.number,
     disableMapTracking: PropTypes.func,
+    mapSelectionsData: PropTypes.object.isRequired,
   }
 
   static contextTypes = {
@@ -131,6 +141,18 @@ class TileLayerContainer extends MapLayer {
     this.context.map.addEventParent(this.leafletElement);
 
     this.leafletElement.on('click contextmenu', this.onClick);
+
+    this.ouluObjectsArray = [
+      new BulletinsContainer(this.context, this.context.map),
+      new CamerasContainer(this.context, this.context.map),
+      new CarMonitorsContainer(this.context, this.context.map),
+      new CarParksContainer(this.context, this.context.map),
+      new IncidentsContainer(this.context, this.context.map),
+      // new RoadConditionsContainer(this.context, this.context.map),
+      new WalkMonitorsContainer(this.context, this.context.map),
+      new WeatherStationsContainer(this.context, this.context.map),
+      // new TrafficFluencyContainer(this.context, this.context.map),
+    ];
   }
 
   componentDidUpdate() {
@@ -173,6 +195,27 @@ class TileLayerContainer extends MapLayer {
       ),
     );
     /* eslint-enable no-underscore-dangle */
+
+    const hits = [];
+    const myPoint = this.context.map.latLngToLayerPoint(e.latlng);
+    console.log('TileLayerContainer, myPoint: ', myPoint);
+    const halfBox = L.point([10, 10]);
+    const leftTopCorner = myPoint.subtract(halfBox);
+    const rightBottomCorner = myPoint.add(halfBox);
+    const myBounds = L.bounds(leftTopCorner, rightBottomCorner);
+    this.ouluObjectsArray.forEach((layer) => {
+      hits.push(...layer.getObjectHits(myBounds, this.props.mapSelectionsData));
+    });
+    console.log('this.props.mapSelectionsData: ', this.props.mapSelectionsData);
+    console.log('OuluObjectHits: ', hits);
+    if (hits.length > 0) {
+      // this.setState({ popups: hits.slice() });
+      this.setState({
+        selectableTargets: hits,
+        coords: e.latlng,
+      });
+    }
+    // this.setState({ popups: hits.slice() });
   }
 
   merc = new SphericalMercator({
@@ -201,6 +244,8 @@ class TileLayerContainer extends MapLayer {
   render() {
     let popup = null;
     let contents;
+
+    console.log('TileLayerContainer, render');
 
     const loadingPopup = () =>
       <div className="card" style={{ height: '12rem' }}>
@@ -302,6 +347,11 @@ class TileLayerContainer extends MapLayer {
               context={this.context}
             />
           );
+        } else if (this.state.selectableTargets[0].layer === 'oulu') {
+          // id = this.state.selectableTargets[0].id;
+          console.log('Rendering Oulu popup');
+          id = `oulu-features-popup-with-content-${this.state.selectableTargets[0].id}`;
+          contents = this.state.selectableTargets[0].content;
         }
         popup = (
           <Popup
@@ -350,4 +400,8 @@ class TileLayerContainer extends MapLayer {
   }
 }
 
-export default TileLayerContainer;
+// export default TileLayerContainer;
+
+export default connectToStores(TileLayerContainer, ['MapSelectionsStore'], context => ({
+  mapSelectionsData: context.getStore('MapSelectionsStore').getData(),
+}));

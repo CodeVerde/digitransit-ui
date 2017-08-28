@@ -25,6 +25,8 @@ export default function StopMarkerContainer({ hilightedStops }, { map, config })
     maxLon = bounds.getEast();
   }
 
+  console.log('StopMarkerContainer, render');
+
   return (
     <Relay.RootContainer
       Component={StopMarkerLayer}

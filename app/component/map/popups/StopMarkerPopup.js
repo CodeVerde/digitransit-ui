@@ -12,6 +12,7 @@ function StopMarkerPopup(props) {
   const stop = props.stop || props.terminal;
   const terminal = props.terminal !== null;
 
+  console.log('StopMarkerPopup render');
   return (
     <div className="card">
       <StopCardContainer

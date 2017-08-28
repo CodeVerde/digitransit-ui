@@ -100,9 +100,9 @@ class Map extends React.Component {
     () => importLazy(System.import('./tile-layer/VectorTileLayerContainer')),
   })
 
-  stopMarkerContainerModules = { StopMarkerContainer:
-    () => importLazy(System.import('./non-tile-layer/StopMarkerContainer')),
-  }
+  // stopMarkerContainerModules = { StopMarkerContainer:
+  //   () => importLazy(System.import('./non-tile-layer/StopMarkerContainer')),
+  // }
 
   cityBikeMarkerContainerModules = { CityBikeMarkerContainer:
     () => importLazy(System.import('./non-tile-layer/CityBikeMarkerContainer')),
@@ -146,6 +146,7 @@ class Map extends React.Component {
           </LazilyLoad>,
         );
       } else if (this.props.showStops) {
+        console.log('Map, show stops');
         leafletObjs.push(
           <LazilyLoad key="stop-layer" modules={this.stopMarkerContainerModules}>
             {this.renderStopMarkerContainer}
