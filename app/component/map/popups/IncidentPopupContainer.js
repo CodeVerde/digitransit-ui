@@ -75,7 +75,7 @@ export default class IncidentPopupContainer extends React.Component {
       this.setState({ popupContent: liViObj });
       return;
     }
-
+    const endDateString = data.endDate ? `- ${data.endDate}` : this.context.intl.formatMessage({ id: 'for-now', defaultMessage: 'For now' });
     const newObj = (
       <Card className="padding-small">
         <div className="card-header">
@@ -94,18 +94,18 @@ export default class IncidentPopupContainer extends React.Component {
               {`${data.incidentMainClass}, ${data.area}, ${data.incidentMainReason}`}
             </span>
             <div className="card-sub-header">
-              Kesto: {data.startDate} - {data.endDate}
+              {this.context.intl.formatMessage({ id: 'duration', defaultMessage: 'Duration' })}: {data.startDate} {endDateString}
             </div>
           </div>
         </div>
         <div>
           <p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{data.information}</p>
-          <p className="oulu-card-content oulu-card-detail-text no-padding no-margin">Lisätiedot:</p>
+          <p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{this.context.intl.formatMessage({ id: 'extra-info', defaultMessage: 'Extra info' })}:</p>
           <ul>
             {data.incidentAdditionalReason1 && <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{data.incidentAdditionalReason1}</p></li>}
-            {data.speedLimit && <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">Nopeusrajoitus: {data.speedLimit}</p></li>}
-            <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">Haitta-aste: {data.severity}</p></li>
-            {data.detour && <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">Kiertotie: Kyllä</p></li>}
+            {data.speedLimit && <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{this.context.intl.formatMessage({ id: 'speed-limit', defaultMessage: 'Speed limit' })}: {data.speedLimit}</p></li>}
+            <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{this.context.intl.formatMessage({ id: 'severity', defaultMessage: 'Severity' })}: {data.severity}</p></li>
+            {data.detour && <li><p className="oulu-card-content oulu-card-detail-text no-padding no-margin">{this.context.intl.formatMessage({ id: 'detour', defaultMessage: 'Detour' })}: {this.context.intl.formatMessage({ id: 'yes', defaultMessage: 'Yes' })}</p></li>}
           </ul>
         </div>
       </Card>
