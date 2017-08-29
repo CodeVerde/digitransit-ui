@@ -16,6 +16,7 @@ class MapSelectionsStore extends Store {
     }
   }
 
+  // Reset to bus/public transport
   resetAll = () => ({
     bulletinsData: [],
     showBulletins: false,
@@ -67,8 +68,8 @@ class MapSelectionsStore extends Store {
         // TODO should be bicycle monitors instead
         break;
       case 'Car':
-        this.data.showIncidents = false;
-        this.data.trafficFluencyState = 0;
+        this.data.showIncidents = true;
+        this.data.trafficFluencyState = 1;
         this.data.showCameras = true;
         break;
       default:
@@ -76,8 +77,17 @@ class MapSelectionsStore extends Store {
     }
   }
 
-  storeMode = () => {
-    setMapSelectionsStorage(this.data);
+  storeMapSelections = () => {
+    // Let's not store the actual data
+    const storedData = {};
+    Object.keys(this.data).forEach((element) => {
+      if (Array.isArray(this.data[element])) {
+        storedData[element] = [];
+      } else {
+        storedData[element] = this.data[element];
+      }
+    });
+    setMapSelectionsStorage(storedData);
   }
 
   dehydrate = () => this.data;
@@ -88,7 +98,7 @@ class MapSelectionsStore extends Store {
 
   setMapSelectionsDefaults(mode) {
     this.setDefaults(mode);
-    this.storeMode();
+    this.storeMapSelections();
     this.emitChange();
   }
 

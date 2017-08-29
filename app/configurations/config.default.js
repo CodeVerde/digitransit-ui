@@ -260,7 +260,7 @@ export default {
 
     kavely: {
       availableForSelection: true,
-      defaultValue: true,
+      defaultValue: false,
     },
 
     polkupyora: {
@@ -270,7 +270,7 @@ export default {
 
     bus: {
       availableForSelection: true,
-      defaultValue: false,
+      defaultValue: true,
     },
 
     rail: {
