@@ -9,7 +9,7 @@ import { cleanJson } from '../../../util/ouluUtils';
 import Icon from '../../Icon';
 import Card from '../../Card';
 
-const parseCarMonitorDetails = (data) => {
+const parseWalkMonitorDetails = (data) => {
   const cleanData = {};
 
   if (!data || !data.ecoCounterDayResults) { return cleanData; }
@@ -38,30 +38,35 @@ export default class CarMonitorPopupContainer extends React.Component {
   };
 
   static propTypes = {
-    stationId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     loading: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      popupContent: null,
+      data: null,
     };
     this.dataLabels = [];
     this.dataValues = [];
   }
 
   componentWillMount() {
-    const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/eco_traffic/eco_counter_daydata.php?daysFromHistory=31&measurementPointId=${this.props.stationId}`;
+    const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/eco_traffic/eco_counter_daydata.php?daysFromHistory=31&measurementPointId=${this.props.id}`;
     const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
     getJsonWithHeaders(url, null, headers)
     .then(response => cleanJson(response))
-    .then(cleanResponse => this.updateObjects(parseCarMonitorDetails(cleanResponse)))
+    .then(cleanResponse => this.setState({ data: (parseWalkMonitorDetails(cleanResponse)) }))
     // eslint-disable-next-line no-console
     .catch(err => console.error(err));
   }
 
-  updateObjects(data) {
+  renderObjects() {
+    const data = this.state.data;
+    if (data === null) {
+      return (<Card className="padding-small">{this.props.loading()}</Card>);
+    }
+
     const dataLabels = [];
     const dataValues = [];
 
@@ -89,7 +94,7 @@ export default class CarMonitorPopupContainer extends React.Component {
     };
 
 
-    const newObj = (
+    return (
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
@@ -151,16 +156,11 @@ export default class CarMonitorPopupContainer extends React.Component {
         />
       </Card>
     );
-    this.setState({ popupContent: newObj });
   }
 
   render() {
     if (!isBrowser) { return false; }
 
-    if (this.state.popupContent === null) {
-      return (<Card className="padding-small">{this.props.loading()}</Card>);
-    }
-
-    return (<div>{this.state.popupContent}</div>);
+    return (<div>{this.renderObjects()}</div>);
   }
 }

@@ -16,7 +16,6 @@ import Icon from '../Icon';
 let LeafletMap;
 let TileLayer;
 let BusLinesLayer;
-let OuluLayerContainer;
 let AttributionControl;
 let ScaleControl;
 let ZoomControl;
@@ -26,7 +25,6 @@ if (isBrowser) {
   LeafletMap = require('react-leaflet/lib/Map').default;
   TileLayer = require('react-leaflet/lib/TileLayer').default;
   BusLinesLayer = require('react-leaflet/lib/TileLayer').default;
-  OuluLayerContainer = require('./oulu-layer/OuluLayerContainer').default;
   AttributionControl = require('react-leaflet/lib/AttributionControl').default;
   ScaleControl = require('react-leaflet/lib/ScaleControl').default;
   ZoomControl = require('react-leaflet/lib/ZoomControl').default;
@@ -100,9 +98,9 @@ class Map extends React.Component {
     () => importLazy(System.import('./tile-layer/VectorTileLayerContainer')),
   })
 
-  // stopMarkerContainerModules = { StopMarkerContainer:
-  //   () => importLazy(System.import('./non-tile-layer/StopMarkerContainer')),
-  // }
+  stopMarkerContainerModules = { StopMarkerContainer:
+    () => importLazy(System.import('./non-tile-layer/StopMarkerContainer')),
+  }
 
   cityBikeMarkerContainerModules = { CityBikeMarkerContainer:
     () => importLazy(System.import('./non-tile-layer/CityBikeMarkerContainer')),
@@ -146,7 +144,6 @@ class Map extends React.Component {
           </LazilyLoad>,
         );
       } else if (this.props.showStops) {
-        console.log('Map, show stops');
         leafletObjs.push(
           <LazilyLoad key="stop-layer" modules={this.stopMarkerContainerModules}>
             {this.renderStopMarkerContainer}
@@ -227,9 +224,7 @@ class Map extends React.Component {
             minZoom={this.context.config.map.minZoom}
             maxZoom={this.context.config.map.maxZoom}
           />
-          <OuluLayerContainer>
-            {ouluLeafletObjs}
-          </OuluLayerContainer>
+          {ouluLeafletObjs}
           {this.props.showBusLines && (
             <BusLinesLayer
               url={'{busLinesUrl}'}

@@ -38,15 +38,12 @@ export default class CameraPopupContainer extends React.Component {
   };
 
   static propTypes = {
-    stationId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     loading: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
-    this.state = {
-      popupContent: null,
-    };
 
     this.data = [];
     this.slideIndex = 0;
@@ -59,7 +56,7 @@ export default class CameraPopupContainer extends React.Component {
   }
 
   componentWillMount() {
-    const url = `https://it101.infotripla.fi/city_app_traffic_data_rest_api/weathercamera/weathercamera_details.php?weathercameraid=${this.props.stationId}`;
+    const url = `https://it101.infotripla.fi/city_app_traffic_data_rest_api/weathercamera/weathercamera_details.php?weathercameraid=${this.props.id}`;
     const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
     getJsonWithHeaders(url, null, headers)
     .then(response => cleanJson(response))
@@ -91,9 +88,15 @@ export default class CameraPopupContainer extends React.Component {
   }
 
   updateObjects() {
-    let newObjs = {};
+    this.forceUpdate();
+  }
 
-    if (this.data.length === 0) { return; }
+  render() {
+    if (!isBrowser) { return false; }
+
+    if (this.data.length === 0) {
+      return (<Card className="padding-small">{this.props.loading()}</Card>);
+    }
 
     this.slideIndex = this.slideIndex % this.data.length;
     if (this.slideIndex < 0) { this.slideIndex = this.data.length - 1; }
@@ -115,7 +118,7 @@ export default class CameraPopupContainer extends React.Component {
       );
     });
 
-    newObjs = (
+    return (
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
@@ -148,18 +151,6 @@ export default class CameraPopupContainer extends React.Component {
             {this.data.length > 1 && dotItems}
           </div>
         </div>
-      </Card>
-    );
-    this.setState({ popupContent: newObjs });
-  }
-
-  render() {
-    if (!isBrowser) { return false; }
-
-    if (this.state.popupContent === null) {
-      return (<Card className="padding-small">{this.props.loading()}</Card>);
-    }
-
-    return (<div>{this.state.popupContent}</div>);
+      </Card>);
   }
 }

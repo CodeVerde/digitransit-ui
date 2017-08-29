@@ -23,29 +23,34 @@ export default class CarMonitorPopupContainer extends React.Component {
   };
 
   static propTypes = {
-    stationId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     loading: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      popupContent: null,
+      data: null,
     };
   }
 
   componentWillMount() {
-    const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/lam/lam_details.php?lamid=${this.props.stationId}`;
+    const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/lam/lam_details.php?lamid=${this.props.id}`;
     const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
     getJsonWithHeaders(url, null, headers)
     .then(response => cleanJson(response))
-    .then(cleanResponse => this.updateObjects(parseCarMonitorDetails(cleanResponse)))
+    .then(cleanResponse => this.setState({ data: (parseCarMonitorDetails(cleanResponse)) }))
     // eslint-disable-next-line no-console
     .catch(err => console.error(err));
   }
 
-  updateObjects(data) {
-    const newObj = (
+  renderObjects() {
+    const data = this.state.data;
+    if (data === null) {
+      return (<Card className="padding-small">{this.props.loading()}</Card>);
+    }
+
+    return (
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
@@ -101,16 +106,11 @@ export default class CarMonitorPopupContainer extends React.Component {
         </div>
       </Card>
     );
-    this.setState({ popupContent: newObj });
   }
 
   render() {
     if (!isBrowser) { return false; }
 
-    if (this.state.popupContent === null) {
-      return (<Card className="padding-small">{this.props.loading()}</Card>);
-    }
-
-    return (<div>{this.state.popupContent}</div>);
+    return (<div>{this.renderObjects()}</div>);
   }
 }

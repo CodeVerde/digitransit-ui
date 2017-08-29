@@ -32,14 +32,14 @@ export default class IncidentPopupContainer extends React.Component {
   };
 
   static propTypes = {
-    stationId: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     loading: PropTypes.func.isRequired,
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      popupContent: null,
+      data: null,
     };
   }
 
@@ -48,35 +48,38 @@ export default class IncidentPopupContainer extends React.Component {
 
     // Complete hack, it seems incidents from livi use big numbers
     // as id consistently (at the moment)
-    if (Number(this.props.stationId) < 1000000) {
-      const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/incident_details.php?noticeid=${this.props.stationId}`;
+    if (Number(this.props.id) < 1000000) {
+      const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/incident_details.php?noticeid=${this.props.id}`;
       getJsonWithHeaders(url, null, headers)
       .then(response => cleanJson(response))
-      .then(cleanResponse => this.updateObjects(parseIncidentDetails(cleanResponse)))
+      .then(cleanResponse => this.setState({ data: (parseIncidentDetails(cleanResponse)) }))
       // eslint-disable-next-line no-console
       .catch(err => console.error(err));
     } else {
-      const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/livi_incident_details.php?noticeid=${this.props.stationId}`;
+      const url = `https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/incident/livi_incident_details.php?noticeid=${this.props.id}`;
       getTextWithHeaders(url, null, headers)
-      .then(textResponse => this.updateObjects(textResponse))
+      .then(textResponse => this.setState({ data: textResponse }))
       // eslint-disable-next-line no-console
       .catch(err => console.error(err));
     }
   }
 
-  updateObjects(data) {
+  renderObjects() {
+    const data = this.state.data;
+    if (data === null) {
+      return (<Card className="padding-small">{this.props.loading()}</Card>);
+    }
+
     if (typeof data === 'string') {
       // The content from LiVi API comes as preformatted html text
-      const liViObj = (
+      return (
         <Card className="padding-small">
           <div dangerouslySetInnerHTML={{ __html: data }} />
         </Card>
       );
-      this.setState({ popupContent: liViObj });
-      return;
     }
     const endDateString = data.endDate ? `- ${data.endDate}` : this.context.intl.formatMessage({ id: 'for-now', defaultMessage: 'For now' });
-    const newObj = (
+    return (
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
@@ -110,16 +113,11 @@ export default class IncidentPopupContainer extends React.Component {
         </div>
       </Card>
     );
-    this.setState({ popupContent: newObj });
   }
 
   render() {
     if (!isBrowser) { return false; }
 
-    if (this.state.popupContent === null) {
-      return (<Card className="padding-small">{this.props.loading()}</Card>);
-    }
-
-    return (<div>{this.state.popupContent}</div>);
+    return (<div>{this.renderObjects()}</div>);
   }
 }
