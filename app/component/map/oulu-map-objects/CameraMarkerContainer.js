@@ -40,8 +40,8 @@ const getCameraIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-icon_traffic_cam_1', iconText }),
     className: 'white-icon-oulu',
-    iconSize: [20, 20],
-    iconAnchor: [30, 40],
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
   })
 );
 
@@ -102,6 +102,7 @@ class CameraMarkerContainer extends React.PureComponent {
           }}
           icon={getCameraIcon()}
           title={element.name}
+          interactive={false}
         />,
       );
     });

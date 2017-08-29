@@ -16,6 +16,7 @@ class MapSelectionsStore extends Store {
     }
   }
 
+  // Reset to bus/public transport
   resetAll = () => ({
     bulletinsData: [],
     showBulletins: false,
@@ -28,8 +29,6 @@ class MapSelectionsStore extends Store {
     showCarParks: false,
     incidentsData: [],
     showIncidents: false,
-    maintenanceData: [],
-    showMaintenance: false,
     walkMonitorsData: [],
     showWalkMonitors: false,
     roadConditionsData: [],
@@ -47,7 +46,6 @@ class MapSelectionsStore extends Store {
     this.data.showCarMonitors = false;
     this.data.showCarParks = false;
     this.data.showIncidents = false;
-    this.data.showMaintenance = false;
     this.data.showWalkMonitors = false;
     this.data.roadConditionsState = 0;
     this.data.trafficFluencyState = 0;
@@ -76,8 +74,17 @@ class MapSelectionsStore extends Store {
     }
   }
 
-  storeMode = () => {
-    setMapSelectionsStorage(this.data);
+  storeMapSelections = () => {
+    // Let's not store the actual data
+    const storedData = {};
+    Object.keys(this.data).forEach((element) => {
+      if (Array.isArray(this.data[element])) {
+        storedData[element] = [];
+      } else {
+        storedData[element] = this.data[element];
+      }
+    });
+    setMapSelectionsStorage(storedData);
   }
 
   dehydrate = () => this.data;
@@ -88,7 +95,7 @@ class MapSelectionsStore extends Store {
 
   setMapSelectionsDefaults(mode) {
     this.setDefaults(mode);
-    this.storeMode();
+    this.storeMapSelections();
     this.emitChange();
   }
 
@@ -144,16 +151,6 @@ class MapSelectionsStore extends Store {
 
   toggleIncidentsState() {
     this.data.showIncidents = !this.data.showIncidents;
-    this.emitChange();
-  }
-
-  addMaintenanceData(data) {
-    this.data.maintenanceData = data.slice();
-    this.emitChange();
-  }
-
-  toggleMaintenanceState() {
-    this.data.showMaintenance = !this.data.showMaintenance;
     this.emitChange();
   }
 
@@ -255,14 +252,6 @@ class MapSelectionsStore extends Store {
     return this.data.showIncidents;
   }
 
-  getMaintenanceData() {
-    return this.data.maintenanceData;
-  }
-
-  getMaintenanceState() {
-    return this.data.showMaintenance;
-  }
-
   getRoadConditionsData() {
     return this.data.roadConditionsData;
   }
@@ -308,8 +297,6 @@ class MapSelectionsStore extends Store {
     ToggleCarParksState: 'toggleCarParksState',
     AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',
-    AddMaintenanceData: 'addMaintenanceData',
-    ToggleMaintenanceState: 'toggleMaintenanceState',
     AddRoadConditionsData: 'addRoadConditionsData',
     ToggleRoadConditionsState: 'toggleRoadConditionsState',
     SetRoadConditionsState: 'setRoadConditionsState',

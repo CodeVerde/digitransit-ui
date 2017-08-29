@@ -95,6 +95,7 @@ class TrafficFluencyContainer extends React.PureComponent {
           key={`${element.id}-poly`}
           positions={polyline.decode(element.encodedGeometry)}
           color={element.color}
+          interactive={false}
         />,
       );
     });

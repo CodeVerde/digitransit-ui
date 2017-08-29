@@ -41,16 +41,16 @@ const getCarParkIcon = (icon, iconText) => {
     return L.divIcon({
       html: iconAsString({ img: 'icon-icon_parking', iconText }),
       className: 'car-park-available-marker',
-      iconSize: [20, 20],
-      iconAnchor: [30, 40],
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
     });
   }
 
   return L.divIcon({
     html: iconAsString({ img: 'icon-icon_parking', iconText }),
     className: 'white-icon-oulu',
-    iconSize: [20, 20],
-    iconAnchor: [30, 40],
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
   });
 };
 
@@ -114,6 +114,7 @@ class CarParkMarkerContainer extends React.PureComponent {
           }}
           icon={getCarParkIcon(element.icon)}
           title={element.name}
+          interactive={false}
         />,
       );
     });

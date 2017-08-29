@@ -11,7 +11,6 @@ import CamerasToggle from './toggles/CamerasToggle';
 import CarMonitorsToggle from './toggles/CarMonitorsToggle';
 import CarParksToggle from './toggles/CarParksToggle';
 import IncidentsToggle from './toggles/IncidentsToggle';
-import MaintenanceToggle from './toggles/MaintenanceToggle';
 import RoadConditionsToggle from './toggles/RoadConditionsToggle';
 import TrafficFluencyToggle from './toggles/TrafficFluencyToggle';
 import WalkMonitorsToggle from './toggles/WalkMonitorsToggle';
@@ -27,7 +26,6 @@ const getToggles = (selectedSimpleMode) => {
 
       // modes.push(<WeatherForecast />);
       modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
-      modes.push(<MaintenanceToggle key="maintenance-toggle" />);
       break;
     case 'KAVELY':
       modes.push(<BulletinsToggle key="bulletins-toggle" />);
@@ -35,7 +33,6 @@ const getToggles = (selectedSimpleMode) => {
 
       // modes.push(<WeatherForecast />);
       modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
-      modes.push(<MaintenanceToggle key="maintenance-toggle" />);
       break;
     case 'POLKUPYORA':
       modes.push(<BulletinsToggle key="bulletins-toggle" />);
@@ -43,7 +40,6 @@ const getToggles = (selectedSimpleMode) => {
 
       // modes.push(<WeatherForecast />);
       modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
-      modes.push(<MaintenanceToggle key="maintenance-toggle" />);
       break;
     case 'KAARA':
       modes.push(<IncidentsToggle key="incidents-toggle" />);
@@ -55,7 +51,6 @@ const getToggles = (selectedSimpleMode) => {
       // modes.push(<WeatherForecast />);
       modes.push(<RoadConditionsToggle key="road-conditions-toggle" />);
       modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
-      modes.push(<MaintenanceToggle key="maintenance-toggle" />);
       break;
     default:
       break;

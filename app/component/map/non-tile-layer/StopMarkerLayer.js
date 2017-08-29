@@ -95,6 +95,7 @@ class StopMarkerLayer extends React.Component {
   }
 
   render() {
+    console.log('StopMarkerLayer, render');
     return (
       <div>
         {this.context.map.getZoom() >= this.context.config.stopsMinZoom ? this.getStops() : false}

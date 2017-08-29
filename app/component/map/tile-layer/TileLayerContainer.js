@@ -9,6 +9,7 @@ import provideContext from 'fluxible-addons-react/provideContext';
 import SphericalMercator from '@mapbox/sphericalmercator';
 import lodashFilter from 'lodash/filter';
 import L from 'leaflet';
+import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import StopRoute from '../../../route/StopRoute';
 import TerminalRoute from '../../../route/TerminalRoute';
@@ -24,6 +25,13 @@ import TicketSalesPopup from '../popups/TicketSalesPopup';
 import LocationPopup from '../popups/LocationPopup';
 import TileContainer from './TileContainer';
 import Loading from '../../Loading';
+
+import {
+  getOuluObjectHits,
+  getOuluPopup,
+  getOuluPopupOptions,
+ } from '../oulu-layer/OuluPopupHelper';
+
 
 const StopMarkerPopupWithContext = provideContext(StopMarkerPopup, {
   intl: intlShape.isRequired,
@@ -102,6 +110,7 @@ class TileLayerContainer extends MapLayer {
     tileSize: PropTypes.number,
     zoomOffset: PropTypes.number,
     disableMapTracking: PropTypes.func,
+    mapSelectionsData: PropTypes.object.isRequired,
   }
 
   static contextTypes = {
@@ -173,6 +182,15 @@ class TileLayerContainer extends MapLayer {
       ),
     );
     /* eslint-enable no-underscore-dangle */
+    const hits = getOuluObjectHits(e, this.props.mapSelectionsData, this.context);
+
+    console.log('OuluObjectHits: ', hits);
+    if (hits.length > 0) {
+      this.setState({
+        selectableTargets: hits,
+        coords: e.latlng,
+      });
+    }
   }
 
   merc = new SphericalMercator({
@@ -201,6 +219,8 @@ class TileLayerContainer extends MapLayer {
   render() {
     let popup = null;
     let contents;
+    let customOptions;
+
 
     const loadingPopup = () =>
       <div className="card" style={{ height: '12rem' }}>
@@ -302,10 +322,19 @@ class TileLayerContainer extends MapLayer {
               context={this.context}
             />
           );
+        } else if (this.state.selectableTargets[0].layer.startsWith('oulu-')) {
+          console.log('Rendering Oulu popup');
+          id = this.state.selectableTargets[0].FID;
+          contents = getOuluPopup(
+            this.state.selectableTargets[0].layer,
+            this.state.selectableTargets[0].id,
+            this.context);
+          customOptions = getOuluPopupOptions(this.state.selectableTargets[0].layer);
         }
+        const myOptions = Object.assign({}, PopupOptions, customOptions);
         popup = (
           <Popup
-            {...PopupOptions}
+            {...myOptions}
             key={id}
             position={this.state.coords}
           >
@@ -350,4 +379,8 @@ class TileLayerContainer extends MapLayer {
   }
 }
 
-export default TileLayerContainer;
+// export default TileLayerContainer;
+
+export default connectToStores(TileLayerContainer, ['MapSelectionsStore'], context => ({
+  mapSelectionsData: context.getStore('MapSelectionsStore').getData(),
+}));

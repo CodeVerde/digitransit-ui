@@ -57,8 +57,8 @@ const getBulletinIcon = (mainClass, iconText) => {
   return L.divIcon({
     html: iconAsString({ img: iconName, iconText }),
     className: 'white-icon-oulu',
-    iconSize: [10, 10],
-    iconAnchor: [30, 40],
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
   });
 };
 
@@ -122,6 +122,7 @@ class BulletinContainer extends React.PureComponent {
           }}
           icon={getBulletinIcon(element.incidentMainClass)}
           title={element.name}
+          interactive={false}
         />,
       );
     });

@@ -16,7 +16,6 @@ import Icon from '../Icon';
 let LeafletMap;
 let TileLayer;
 let BusLinesLayer;
-let OuluLayerContainer;
 let AttributionControl;
 let ScaleControl;
 let ZoomControl;
@@ -26,7 +25,6 @@ if (isBrowser) {
   LeafletMap = require('react-leaflet/lib/Map').default;
   TileLayer = require('react-leaflet/lib/TileLayer').default;
   BusLinesLayer = require('react-leaflet/lib/TileLayer').default;
-  OuluLayerContainer = require('./oulu-layer/OuluLayerContainer').default;
   AttributionControl = require('react-leaflet/lib/AttributionControl').default;
   ScaleControl = require('react-leaflet/lib/ScaleControl').default;
   ZoomControl = require('react-leaflet/lib/ZoomControl').default;
@@ -226,9 +224,7 @@ class Map extends React.Component {
             minZoom={this.context.config.map.minZoom}
             maxZoom={this.context.config.map.maxZoom}
           />
-          <OuluLayerContainer>
-            {ouluLeafletObjs}
-          </OuluLayerContainer>
+          {ouluLeafletObjs}
           {this.props.showBusLines && (
             <BusLinesLayer
               url={'{busLinesUrl}'}
