@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import provideContext from 'fluxible-addons-react/provideContext';
 import { intlShape } from 'react-intl';
+import L from 'leaflet';
 
 import Loading from '../../Loading';
 
@@ -77,8 +78,12 @@ const WeatherStationPopupContainerWithContext = provideContext(WeatherStationPop
   config: PropTypes.object.isRequired,
 });
 
-export const getOuluObjectHits = (hitBounds, mapSelectionsData, context) => (
-  [
+export const getOuluObjectHits = (e, mapSelectionsData, context) => {
+  const clickPoint = context.map.latLngToLayerPoint(e.latlng);
+  const leftTopCorner = clickPoint.subtract(L.point([16, 0]));
+  const rightBottomCorner = clickPoint.add(L.point([16, 32]));
+  const hitBounds = L.bounds(leftTopCorner, rightBottomCorner);
+  return [
     ...getBulletinObjectHits(hitBounds, mapSelectionsData, context),
     ...getCameraObjectHits(hitBounds, mapSelectionsData, context),
     ...getCarMonitorObjectHits(hitBounds, mapSelectionsData, context),
@@ -86,8 +91,8 @@ export const getOuluObjectHits = (hitBounds, mapSelectionsData, context) => (
     ...getIncidentObjectHits(hitBounds, mapSelectionsData, context),
     ...getWalkMonitorObjectHits(hitBounds, mapSelectionsData, context),
     ...getWeatherStationObjectHits(hitBounds, mapSelectionsData, context),
-  ]
-);
+  ];
+};
 
 export const getOuluPopup = (layer, id, context) => {
   let popup;

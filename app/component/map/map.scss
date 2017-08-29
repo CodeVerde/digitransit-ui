@@ -133,15 +133,11 @@ div.leaflet-marker-icon.vehicle-icon {
 }
 
 div.leaflet-marker-icon.white-icon-oulu {
-  // background: none;
-  // background-size: 2.0em 2.0em;
-  // font-size: 1.5em;
-  // 0 0 0 1px rgba(0, 0, 0, 0.1), 0 3px 14px rgba(0, 0, 0, 0.4);
   > span > svg.icon {
     border: none;
     border-radius: 5px;
     padding: 3px;
-    font-size: 2.5em;
+    font-size: 30px;
     background-color: $oulu-orange;
     color: $oulu-orange;
     fill: $white;
@@ -166,18 +162,6 @@ div.card-header-icon {
   }
 }
 
-div.leaflet-marker-icon.weather-station-marker {
-  border: none;
-  background: none;
-  > span > svg.icon {
-    color: $hilight-color;
-    width: 2em;
-    height: 2em;
-    top:-0.5em;
-    // left:-0.5em;
-  }
-}
-
 div.leaflet-marker-icon.car-park-available-marker {
   border: none;
   background: none;
@@ -185,7 +169,7 @@ div.leaflet-marker-icon.car-park-available-marker {
     border: none;
     border-radius: 5px;
     padding: 3px;
-    font-size: 2.5em;
+    font-size: 30px;
     background-color: $oulu-green;
     color: $oulu-green;
     fill: $white;

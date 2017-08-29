@@ -41,8 +41,8 @@ const getWalkMonitorIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-icon_measurement_1', iconText }),
     className: 'white-icon-oulu',
-    iconSize: [20, 20],
-    iconAnchor: [30, 40],
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
   })
 );
 
@@ -105,6 +105,7 @@ class WalkMonitorMarkerContainer extends React.PureComponent {
           }}
           icon={getWalkMonitorIcon()}
           title={element.name}
+          interactive={false}
         />,
       );
     });

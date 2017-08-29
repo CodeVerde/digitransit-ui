@@ -39,8 +39,8 @@ const getCarMonitorIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-icon_mittauspisteet_radar_1', iconText }),
     className: 'white-icon-oulu',
-    iconSize: [20, 20],
-    iconAnchor: [30, 40],
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
   })
 );
 
@@ -101,6 +101,7 @@ class CarMonitorMarkerContainer extends React.PureComponent {
           }}
           icon={getCarMonitorIcon()}
           title={element.name}
+          interactive={false}
         />,
       );
     });

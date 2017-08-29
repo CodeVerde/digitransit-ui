@@ -84,8 +84,8 @@ const getIncidentsIcon = (mainClass, iconText) => {
   return L.divIcon({
     html: iconAsString({ img: iconName, iconText }),
     className: 'white-icon-oulu',
-    iconSize: [10, 10],
-    iconAnchor: [30, 40],
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
   });
 };
 
@@ -152,6 +152,7 @@ class IncidentMarkerContainer extends React.PureComponent {
           }}
           icon={getIncidentsIcon(element.incidentMainClass)}
           title={titleString}
+          interactive={false}
         />,
       );
       if (element.geometry2) {
@@ -165,6 +166,7 @@ class IncidentMarkerContainer extends React.PureComponent {
             }}
             icon={getIncidentsIcon(element.incidentMainClass)}
             title={titleString}
+            interactive={false}
           />,
         );
       }
@@ -174,6 +176,7 @@ class IncidentMarkerContainer extends React.PureComponent {
             id={`incident-marker-${element.id}-poly`}
             key={`incident-marker-${element.id}-poly`}
             positions={polyline.decode(element.encodedGeometry)}
+            interactive={false}
           />,
         );
       }

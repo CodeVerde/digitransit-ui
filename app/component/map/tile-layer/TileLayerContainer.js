@@ -182,14 +182,7 @@ class TileLayerContainer extends MapLayer {
       ),
     );
     /* eslint-enable no-underscore-dangle */
-
-    const myPoint = this.context.map.latLngToLayerPoint(e.latlng);
-    console.log('TileLayerContainer, myPoint: ', myPoint);
-    const halfBox = L.point([10, 10]);
-    const leftTopCorner = myPoint.subtract(halfBox);
-    const rightBottomCorner = myPoint.add(halfBox);
-    const myBounds = L.bounds(leftTopCorner, rightBottomCorner);
-    const hits = getOuluObjectHits(myBounds, this.props.mapSelectionsData, this.context);
+    const hits = getOuluObjectHits(e, this.props.mapSelectionsData, this.context);
 
     console.log('OuluObjectHits: ', hits);
     if (hits.length > 0) {
