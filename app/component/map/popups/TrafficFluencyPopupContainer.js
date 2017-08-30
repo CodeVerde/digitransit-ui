@@ -3,8 +3,7 @@ import React from 'react';
 import { intlShape } from 'react-intl';
 
 import { isBrowser } from '../../../util/browser';
-// import { getJsonWithHeaders } from '../../../util/xhrPromise';
-// import { cleanJson } from '../../../util/ouluUtils';
+import Icon from '../../Icon';
 import Card from '../../Card';
 
 export default class TrafficFluencyPopupContainer extends React.Component {
@@ -13,60 +12,58 @@ export default class TrafficFluencyPopupContainer extends React.Component {
   };
 
   static propTypes = {
-    // lineId: PropTypes.string.isRequired,
     loading: PropTypes.func.isRequired,
-    popupData: PropTypes.shape({
-      name: PropTypes.string,
-      timestamp: PropTypes.string,
-      description: PropTypes.string,
-      fluencyText: PropTypes.string,
+    content: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      timestamp: PropTypes.string.isRequired,
+      fluencyText: PropTypes.string.isRequired,
     }).isRequired,
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      popupContent: null,
-    };
-  }
+  renderObjects() {
+    const data = this.props.content;
+    if (data === null) {
+      return (<Card className="padding-small">{this.props.loading()}</Card>);
+    }
 
-  componentWillMount() {
-    this.updateObjects();
-  }
-
-  updateObjects() {
-    const newObj = (
+    return (
       <Card className="padding-small">
         <div className="card-header">
           <div className="card-header-wrapper">
+            <div className="card-header-icon">
+              <Icon
+                id="traffic-fluency-popup-icon"
+                img="icon-icon_change_direction_1"
+              />
+              <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
+                {this.context.intl.formatMessage({ id: 'traffic-fluency', defaultMessage: 'Congestion' })}
+              </span>
+            </div>
             <span className="oulu-card-header-primary">
-              {this.props.popupData.name}
+              {data.name}
             </span>
             <div className="card-sub-header">
-              Kesto: {this.props.popupData.timestamp}
+              {data.timestamp}
             </div>
           </div>
         </div>
         <div>
           <p className="departure route-detail-text no-padding no-margin">
-            {this.props.popupData.description}
+            {data.description}
           </p>
           <p className="departure route-detail-text no-padding no-margin">
-            {this.props.popupData.fluencyText}
+            {data.fluencyText}
           </p>
         </div>
       </Card>
     );
-    this.setState({ popupContent: newObj });
   }
 
   render() {
     if (!isBrowser) { return false; }
 
-    if (this.state.popupContent === null) {
-      return (<Card className="padding-small">{this.props.loading()}</Card>);
-    }
-
-    return (<div>{this.state.popupContent}</div>);
+    return (<div>{this.renderObjects()}</div>);
   }
 }

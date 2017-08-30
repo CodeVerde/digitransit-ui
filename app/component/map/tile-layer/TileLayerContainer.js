@@ -323,12 +323,13 @@ class TileLayerContainer extends MapLayer {
             />
           );
         } else if (this.state.selectableTargets[0].layer.startsWith('oulu-')) {
-          console.log('Rendering Oulu popup');
           id = this.state.selectableTargets[0].FID;
           contents = getOuluPopup(
             this.state.selectableTargets[0].layer,
             this.state.selectableTargets[0].id,
-            this.context);
+            this.context,
+            this.state.selectableTargets[0].content,
+          );
           customOptions = getOuluPopupOptions(this.state.selectableTargets[0].layer);
         }
         const myOptions = Object.assign({}, PopupOptions, customOptions);
@@ -342,20 +343,47 @@ class TileLayerContainer extends MapLayer {
           </Popup>
           );
       } else if (this.state.selectableTargets.length > 1) {
-        popup = (
-          <Popup
-            key={this.state.coords.toString()}
-            {...PopupOptions}
-            maxHeight={220}
-            position={this.state.coords}
-          >
-            <MarkerSelectPopupWithContext
-              selectRow={this.selectRow}
-              options={this.state.selectableTargets}
-              context={this.context}
-            />
-          </Popup>
-        );
+        // Single Oulu popup is always shown if it's found
+        this.state.selectableTargets.every((element) => {
+          if (element.layer.startsWith('oulu-')) {
+            const id = element.FID;
+            contents = getOuluPopup(
+              element.layer,
+              element.id,
+              this.context,
+              element.content,
+            );
+            customOptions = getOuluPopupOptions(element.layer);
+            const myOptions = Object.assign({}, PopupOptions, customOptions);
+            popup = (
+              <Popup
+                {...myOptions}
+                key={id}
+                position={this.state.coords}
+              >
+                {contents}
+              </Popup>);
+            return false;
+          }
+          return true;
+        });
+
+        if (!popup) {
+          popup = (
+            <Popup
+              key={this.state.coords.toString()}
+              {...PopupOptions}
+              maxHeight={220}
+              position={this.state.coords}
+            >
+              <MarkerSelectPopupWithContext
+                selectRow={this.selectRow}
+                options={this.state.selectableTargets}
+                context={this.context}
+              />
+            </Popup>
+          );
+        }
       } else if (this.state.selectableTargets.length === 0) {
         popup = (
           <Popup
