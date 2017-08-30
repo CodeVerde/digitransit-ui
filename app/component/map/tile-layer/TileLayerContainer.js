@@ -328,7 +328,9 @@ class TileLayerContainer extends MapLayer {
           contents = getOuluPopup(
             this.state.selectableTargets[0].layer,
             this.state.selectableTargets[0].id,
-            this.context);
+            this.context,
+            this.state.selectableTargets[0].content,
+          );
           customOptions = getOuluPopupOptions(this.state.selectableTargets[0].layer);
         }
         const myOptions = Object.assign({}, PopupOptions, customOptions);
