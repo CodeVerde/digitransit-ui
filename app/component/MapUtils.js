@@ -4,6 +4,7 @@ import { FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
+import BicycleMonitorsToggle from './toggles/BicycleMonitorsToggle';
 import BusLinesMapToggle from './BusLinesMapToggle';
 import RainMap from './RainMap';
 import BulletinsToggle from './toggles/BulletinsToggle';
@@ -24,21 +25,18 @@ const getToggles = (selectedSimpleMode) => {
       modes.push(<BusLinesMapToggle key="bus-lines-map-toggle" />);
       modes.push(<RoadConditionsToggle key="road-conditions-toggle" />);
 
-      // modes.push(<WeatherForecast />);
       modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
       break;
     case 'KAVELY':
       modes.push(<BulletinsToggle key="bulletins-toggle" />);
       modes.push(<WalkMonitorsToggle key="walk-monitor-toggle" />);
 
-      // modes.push(<WeatherForecast />);
       modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
       break;
     case 'POLKUPYORA':
       modes.push(<BulletinsToggle key="bulletins-toggle" />);
-      modes.push(<WalkMonitorsToggle key="walk-monitor-toggle" />);
+      modes.push(<BicycleMonitorsToggle key="bicycle-monitor-toggle" />);
 
-      // modes.push(<WeatherForecast />);
       modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
       break;
     case 'KAARA':
@@ -48,7 +46,6 @@ const getToggles = (selectedSimpleMode) => {
       modes.push(<CarParksToggle key="car-parks-toggle" />);
       modes.push(<CamerasToggle key="cameras-toggle" />);
 
-      // modes.push(<WeatherForecast />);
       modes.push(<RoadConditionsToggle key="road-conditions-toggle" />);
       modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
       break;

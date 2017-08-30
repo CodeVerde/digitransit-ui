@@ -9,7 +9,7 @@ import { cleanJson } from '../../../util/ouluUtils';
 import Icon from '../../Icon';
 import Card from '../../Card';
 
-const parseWalkMonitorDetails = (data) => {
+const parseBicycleMonitorDetails = (data) => {
   const cleanData = {};
 
   if (!data || !data.ecoCounterDayResults) { return cleanData; }
@@ -32,7 +32,7 @@ const parseWalkMonitorDetails = (data) => {
   return cleanData;
 };
 
-export default class WalkMonitorPopupContainer extends React.Component {
+export default class BicycleMonitorPopupContainer extends React.Component {
   static contextTypes = {
     intl: intlShape,
   };
@@ -56,7 +56,7 @@ export default class WalkMonitorPopupContainer extends React.Component {
     const headers = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
     getJsonWithHeaders(url, null, headers)
     .then(response => cleanJson(response))
-    .then(cleanResponse => this.setState({ data: (parseWalkMonitorDetails(cleanResponse)) }))
+    .then(cleanResponse => this.setState({ data: (parseBicycleMonitorDetails(cleanResponse)) }))
     // eslint-disable-next-line no-console
     .catch(err => console.error(err));
   }

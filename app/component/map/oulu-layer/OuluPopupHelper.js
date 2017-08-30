@@ -6,6 +6,7 @@ import L from 'leaflet';
 
 import Loading from '../../Loading';
 
+import BicycleMonitorPopupContainer from '../popups/BicycleMonitorPopupContainer';
 import BulletinPopupContainer from '../popups/BulletinPopupContainer';
 import CameraPopupContainer from '../popups/CameraPopupContainer';
 import CarMonitorPopupContainer from '../popups/CarMonitorPopupContainer';
@@ -16,6 +17,7 @@ import TrafficFluencyPopupContainer from '../popups/TrafficFluencyPopupContainer
 import WalkMonitorPopupContainer from '../popups/WalkMonitorPopupContainer';
 import WeatherStationPopupContainer from '../popups/WeatherStationPopupContainer';
 
+import getBicycleMonitorObjectHits from './getBicycleMonitorObjectHits';
 import getBulletinObjectHits from './getBulletinObjectHits';
 import getCameraObjectHits from './getCameraObjectHits';
 import getCarMonitorObjectHits from './getCarMonitorObjectHits';
@@ -25,6 +27,14 @@ import getRoadConditionObjectHits from './getRoadConditionObjectHits';
 import getTrafficFluencyObjectHits from './getTrafficFluencyObjectHits';
 import getWalkMonitorObjectHits from './getWalkMonitorObjectHits';
 import getWeatherStationObjectHits from './getWeatherStationObjectHits';
+
+const BicycleMonitorPopupContainerWithContext = provideContext(BicycleMonitorPopupContainer, {
+  intl: intlShape.isRequired,
+  router: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+  config: PropTypes.object.isRequired,
+});
 
 const BulletinPopupContainerWithContext = provideContext(BulletinPopupContainer, {
   intl: intlShape.isRequired,
@@ -104,6 +114,7 @@ export const getOuluObjectHits = (e, mapSelectionsData, context) => {
   const rightBottomCorner = clickPoint.add(L.point([16, 32]));
   const hitBounds = L.bounds(leftTopCorner, rightBottomCorner);
   return [
+    ...getBicycleMonitorObjectHits(hitBounds, mapSelectionsData, context),
     ...getBulletinObjectHits(hitBounds, mapSelectionsData, context),
     ...getCameraObjectHits(hitBounds, mapSelectionsData, context),
     ...getCarMonitorObjectHits(hitBounds, mapSelectionsData, context),
@@ -121,6 +132,14 @@ export const getOuluPopup = (layer, id, context, content) => {
   let popup;
 
   switch (layer) {
+    case 'oulu-bicycle-monitor':
+      popup = (
+        <BicycleMonitorPopupContainerWithContext
+          id={id}
+          context={context}
+          loading={Loading}
+        />);
+      break;
     case 'oulu-bulletin':
       popup = (
         <BulletinPopupContainerWithContext
@@ -211,6 +230,7 @@ export const getOuluPopupOptions = (layer) => {
         className: 'oulu-popup-large',
       };
       break;
+    case 'oulu-bicycle-monitor':
     case 'oulu-walk-monitor':
       options = {
         className: 'oulu-popup-xlarge',

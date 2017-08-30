@@ -8,6 +8,21 @@ export function SetMapSelectionsDefaults(actionContext, mode) {
   actionContext.dispatch('SetMapSelectionsDefaults', mode);
 }
 
+export function ToggleBicycleMonitorsState(actionContext) {
+  actionContext.dispatch('ToggleBicycleMonitorsState');
+}
+
+export function AddBicycleMonitorsData(actionContext, parser) {
+  const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/eco_traffic/eco_counters.php?type=biking';
+
+  return getJsonWithHeaders(url, null, authHeaders)
+  .then(response => cleanJson(response))
+  .then(cleanResponse => parser(cleanResponse))
+  .then(data => actionContext.dispatch('AddBicycleMonitorsData', data))
+  // eslint-disable-next-line no-console
+  .catch(err => console.error(err));
+}
+
 export function ToggleBusLinesState(actionContext) {
   actionContext.dispatch('ToggleBusLinesState');
 }

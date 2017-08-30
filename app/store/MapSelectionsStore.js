@@ -18,6 +18,8 @@ class MapSelectionsStore extends Store {
 
   // Reset to bus/public transport
   resetAll = () => ({
+    bicycleMonitorsData: [],
+    showBicycleMonitors: false,
     bulletinsData: [],
     showBulletins: false,
     showBusLines: false,
@@ -40,6 +42,7 @@ class MapSelectionsStore extends Store {
   });
 
   setDefaults(mode) {
+    this.data.showBicycleMonitors = false;
     this.data.showBulletins = false;
     this.data.showBusLines = false;
     this.data.showCameras = false;
@@ -61,8 +64,7 @@ class MapSelectionsStore extends Store {
         break;
       case 'Bicycle':
         this.data.showBulletins = true;
-        this.data.showWalkMonitors = true;
-        // TODO should be bicycle monitors instead
+        this.data.showBicycleMonitors = true;
         break;
       case 'Car':
         this.data.showIncidents = true;
@@ -96,6 +98,16 @@ class MapSelectionsStore extends Store {
   setMapSelectionsDefaults(mode) {
     this.setDefaults(mode);
     this.storeMapSelections();
+    this.emitChange();
+  }
+
+  addBicycleMonitorsData(data) {
+    this.data.bicycleMonitorsData = data.slice();
+    this.emitChange();
+  }
+
+  toggleBicycleMonitorsState() {
+    this.data.showBicycleMonitors = !this.data.showBicycleMonitors;
     this.emitChange();
   }
 
@@ -208,6 +220,14 @@ class MapSelectionsStore extends Store {
     return this.data;
   }
 
+  getBicycleMonitorsData() {
+    return this.data.bicycleMonitorsData;
+  }
+
+  getBicycleMonitorsState() {
+    return this.data.showBicycleMonitors;
+  }
+
   getBulletinsData() {
     return this.data.bulletinsData;
   }
@@ -286,6 +306,8 @@ class MapSelectionsStore extends Store {
 
   static handlers = {
     SetMapSelectionsDefaults: 'setMapSelectionsDefaults',
+    AddBicycleMonitorsData: 'addBicycleMonitorsData',
+    ToggleBicycleMonitorsState: 'toggleBicycleMonitorsState',
     AddBulletinsData: 'addBulletinsData',
     ToggleBulletinsState: 'toggleBulletinsState',
     ToggleBusLinesState: 'toggleBusLinesState',

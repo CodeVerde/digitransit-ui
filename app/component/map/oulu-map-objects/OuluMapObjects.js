@@ -1,4 +1,5 @@
 import React from 'react';
+import BicycleMonitorMarkerContainer from './BicycleMonitorMarkerContainer';
 import BulletinMarkerContainer from './BulletinMarkerContainer';
 import CameraMarkerContainer from './CameraMarkerContainer';
 import CarMonitorMarkerContainer from './CarMonitorMarkerContainer';
@@ -11,6 +12,9 @@ import WeatherStationMarkerContainer from './WeatherStationMarkerContainer';
 
 
 const OuluMapObjects = [
+  <BicycleMonitorMarkerContainer
+    key="bicycle-monitoring"
+  />,
   <BulletinMarkerContainer
     key="bulletins"
   />,
