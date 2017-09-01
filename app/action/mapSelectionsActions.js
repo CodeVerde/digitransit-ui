@@ -126,6 +126,10 @@ export function AddCarParksData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+export function ToggleEventsState(actionContext) {
+  actionContext.dispatch('ToggleEventsState');
+}
+
 export function ToggleIncidentsState(actionContext) {
   actionContext.dispatch('ToggleIncidentsState');
 }

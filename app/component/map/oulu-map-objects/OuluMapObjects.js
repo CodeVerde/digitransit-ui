@@ -4,6 +4,7 @@ import BulletinMarkerContainer from './BulletinMarkerContainer';
 import CameraMarkerContainer from './CameraMarkerContainer';
 import CarMonitorMarkerContainer from './CarMonitorMarkerContainer';
 import CarParkMarkerContainer from './CarParkMarkerContainer';
+import EventMarkerContainer from './EventMarkerContainer';
 import IncidentMarkerContainer from './IncidentMarkerContainer';
 import OutdoorGymMarkerContainer from './OutdoorGymMarkerContainer';
 import WalkMonitorMarkerContainer from './WalkMonitorMarkerContainer';
@@ -27,6 +28,9 @@ const OuluMapObjects = [
   />,
   <CarParkMarkerContainer
     key="car-parking"
+  />,
+  <EventMarkerContainer
+    key="event-marker"
   />,
   <IncidentMarkerContainer
     key="incident-marker"

@@ -1,5 +1,6 @@
 import Store from 'fluxible/addons/BaseStore';
 import { setMapSelectionsStorage, getMapSelectionsStorage } from './localStorage';
+import EventsData from './EventsData';
 import OutdoorGymsData from './OutdoorGymsData';
 
 class MapSelectionsStore extends Store {
@@ -10,7 +11,7 @@ class MapSelectionsStore extends Store {
     super(dispatcher);
     const localData = getMapSelectionsStorage();
     this.config = dispatcher.getContext().config;
-    if (localData && localData.showBulletins !== undefined) {
+    if (localData && localData.showEvents !== undefined) {
       this.data = localData;
     } else {
       this.data = this.resetAll();
@@ -30,6 +31,8 @@ class MapSelectionsStore extends Store {
     showCarMonitors: false,
     carParksData: [],
     showCarParks: false,
+    eventsData: EventsData,
+    showEvents: false,
     incidentsData: [],
     showIncidents: false,
     outdoorGymData: OutdoorGymsData,
@@ -51,6 +54,7 @@ class MapSelectionsStore extends Store {
     this.data.showCameras = false;
     this.data.showCarMonitors = false;
     this.data.showCarParks = false;
+    this.data.showEvents = false;
     this.data.showIncidents = false;
     this.data.showOutDoorGyms = false;
     this.data.showWalkMonitors = false;
@@ -157,6 +161,11 @@ class MapSelectionsStore extends Store {
 
   toggleCarParksState() {
     this.data.showCarParks = !this.data.showCarParks;
+    this.emitChange();
+  }
+
+  toggleEventsState() {
+    this.data.showEvents = !this.data.showEvents;
     this.emitChange();
   }
 
@@ -273,6 +282,14 @@ class MapSelectionsStore extends Store {
     return this.data.showCarParks;
   }
 
+  getEventsData() {
+    return this.data.eventsData;
+  }
+
+  getEventsState() {
+    return this.data.showEvents;
+  }
+
   getIncidentsData() {
     return this.data.incidentsData;
   }
@@ -334,6 +351,7 @@ class MapSelectionsStore extends Store {
     ToggleCarMonitorsState: 'toggleCarMonitorsState',
     AddCarParksData: 'addCarParksData',
     ToggleCarParksState: 'toggleCarParksState',
+    ToggleEventsState: 'toggleEventsState',
     AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',
     ToggleOutdoorGymsState: 'toggleOutdoorGymsState',

@@ -11,6 +11,7 @@ import BulletinsToggle from './toggles/BulletinsToggle';
 import CamerasToggle from './toggles/CamerasToggle';
 import CarMonitorsToggle from './toggles/CarMonitorsToggle';
 import CarParksToggle from './toggles/CarParksToggle';
+import EventsToggle from './toggles/EventsToggle';
 import IncidentsToggle from './toggles/IncidentsToggle';
 import OutdoorGymsToggle from './toggles/OutdoorGymsToggle';
 import RoadConditionsToggle from './toggles/RoadConditionsToggle';
@@ -48,6 +49,7 @@ const getToggles = (selectedSimpleMode) => {
 
   modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
   modes.push(<OutdoorGymsToggle key="outdoor-gyms-toggle" />);
+  modes.push(<EventsToggle key="events-toggle" />);
   return modes;
 };
 
