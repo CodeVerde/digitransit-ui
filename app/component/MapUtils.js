@@ -11,7 +11,9 @@ import BulletinsToggle from './toggles/BulletinsToggle';
 import CamerasToggle from './toggles/CamerasToggle';
 import CarMonitorsToggle from './toggles/CarMonitorsToggle';
 import CarParksToggle from './toggles/CarParksToggle';
+import EventsToggle from './toggles/EventsToggle';
 import IncidentsToggle from './toggles/IncidentsToggle';
+import OutdoorGymsToggle from './toggles/OutdoorGymsToggle';
 import RoadConditionsToggle from './toggles/RoadConditionsToggle';
 import TrafficFluencyToggle from './toggles/TrafficFluencyToggle';
 import WalkMonitorsToggle from './toggles/WalkMonitorsToggle';
@@ -24,20 +26,14 @@ const getToggles = (selectedSimpleMode) => {
     case 'BUS':
       modes.push(<BusLinesMapToggle key="bus-lines-map-toggle" />);
       modes.push(<RoadConditionsToggle key="road-conditions-toggle" />);
-
-      modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
       break;
     case 'KAVELY':
       modes.push(<BulletinsToggle key="bulletins-toggle" />);
       modes.push(<WalkMonitorsToggle key="walk-monitor-toggle" />);
-
-      modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
       break;
     case 'POLKUPYORA':
       modes.push(<BulletinsToggle key="bulletins-toggle" />);
       modes.push(<BicycleMonitorsToggle key="bicycle-monitor-toggle" />);
-
-      modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
       break;
     case 'KAARA':
       modes.push(<IncidentsToggle key="incidents-toggle" />);
@@ -45,13 +41,15 @@ const getToggles = (selectedSimpleMode) => {
       modes.push(<CarMonitorsToggle key="car-monitors-toggle" />);
       modes.push(<CarParksToggle key="car-parks-toggle" />);
       modes.push(<CamerasToggle key="cameras-toggle" />);
-
       modes.push(<RoadConditionsToggle key="road-conditions-toggle" />);
-      modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
       break;
     default:
       break;
   }
+
+  modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
+  modes.push(<OutdoorGymsToggle key="outdoor-gyms-toggle" />);
+  modes.push(<EventsToggle key="events-toggle" />);
   return modes;
 };
 

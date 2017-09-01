@@ -1,5 +1,7 @@
 import Store from 'fluxible/addons/BaseStore';
 import { setMapSelectionsStorage, getMapSelectionsStorage } from './localStorage';
+import EventsData from './EventsData';
+import OutdoorGymsData from './OutdoorGymsData';
 
 class MapSelectionsStore extends Store {
 
@@ -9,7 +11,7 @@ class MapSelectionsStore extends Store {
     super(dispatcher);
     const localData = getMapSelectionsStorage();
     this.config = dispatcher.getContext().config;
-    if (localData && localData.showBulletins !== undefined) {
+    if (localData && localData.showEvents !== undefined) {
       this.data = localData;
     } else {
       this.data = this.resetAll();
@@ -29,8 +31,12 @@ class MapSelectionsStore extends Store {
     showCarMonitors: false,
     carParksData: [],
     showCarParks: false,
+    eventsData: EventsData,
+    showEvents: false,
     incidentsData: [],
     showIncidents: false,
+    outdoorGymData: OutdoorGymsData,
+    showOutdoorGyms: false,
     walkMonitorsData: [],
     showWalkMonitors: false,
     roadConditionsData: [],
@@ -48,7 +54,9 @@ class MapSelectionsStore extends Store {
     this.data.showCameras = false;
     this.data.showCarMonitors = false;
     this.data.showCarParks = false;
+    this.data.showEvents = false;
     this.data.showIncidents = false;
+    this.data.showOutDoorGyms = false;
     this.data.showWalkMonitors = false;
     this.data.roadConditionsState = 0;
     this.data.trafficFluencyState = 0;
@@ -156,6 +164,11 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  toggleEventsState() {
+    this.data.showEvents = !this.data.showEvents;
+    this.emitChange();
+  }
+
   addIncidentsData(data) {
     this.data.incidentsData = data.slice();
     this.emitChange();
@@ -163,6 +176,11 @@ class MapSelectionsStore extends Store {
 
   toggleIncidentsState() {
     this.data.showIncidents = !this.data.showIncidents;
+    this.emitChange();
+  }
+
+  toggleOutdoorGymsState() {
+    this.data.showOutdoorGyms = !this.data.showOutdoorGyms;
     this.emitChange();
   }
 
@@ -264,12 +282,28 @@ class MapSelectionsStore extends Store {
     return this.data.showCarParks;
   }
 
+  getEventsData() {
+    return this.data.eventsData;
+  }
+
+  getEventsState() {
+    return this.data.showEvents;
+  }
+
   getIncidentsData() {
     return this.data.incidentsData;
   }
 
   getIncidentsState() {
     return this.data.showIncidents;
+  }
+
+  getOutdoorGymsData() {
+    return this.data.outdoorGymData;
+  }
+
+  getOutdoorGymsState() {
+    return this.data.showOutdoorGyms;
   }
 
   getRoadConditionsData() {
@@ -317,8 +351,10 @@ class MapSelectionsStore extends Store {
     ToggleCarMonitorsState: 'toggleCarMonitorsState',
     AddCarParksData: 'addCarParksData',
     ToggleCarParksState: 'toggleCarParksState',
+    ToggleEventsState: 'toggleEventsState',
     AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',
+    ToggleOutdoorGymsState: 'toggleOutdoorGymsState',
     AddRoadConditionsData: 'addRoadConditionsData',
     ToggleRoadConditionsState: 'toggleRoadConditionsState',
     SetRoadConditionsState: 'setRoadConditionsState',

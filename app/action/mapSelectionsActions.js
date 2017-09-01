@@ -126,6 +126,10 @@ export function AddCarParksData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+export function ToggleEventsState(actionContext) {
+  actionContext.dispatch('ToggleEventsState');
+}
+
 export function ToggleIncidentsState(actionContext) {
   actionContext.dispatch('ToggleIncidentsState');
 }
@@ -154,6 +158,10 @@ export function AddIncidentsData(actionContext, parser) {
   })
   // eslint-disable-next-line no-console
   .catch(err => console.error(err));
+}
+
+export function ToggleOutdoorGymsState(actionContext) {
+  actionContext.dispatch('ToggleOutdoorGymsState');
 }
 
 export function ToggleRoadConditionsState(actionContext) {
