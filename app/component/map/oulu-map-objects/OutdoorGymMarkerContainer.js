@@ -54,7 +54,6 @@ class OutdoorGymMarkerContainer extends React.PureComponent {
   updateObjects(data) {
     const newObjs = [];
     data.forEach((element) => {
-      console.log('element: ', element);
       newObjs.push(
         <Marker
           key={`outdoor-gym-marker-${element.name}`}
@@ -76,7 +75,6 @@ class OutdoorGymMarkerContainer extends React.PureComponent {
 
     if (this.objs.length === 0 || !this.props.showOutdoorGyms) { return false; }
 
-    console.log('render');
     return (<div style={{ display: 'none' }}>{this.objs}</div>);
   }
 }
