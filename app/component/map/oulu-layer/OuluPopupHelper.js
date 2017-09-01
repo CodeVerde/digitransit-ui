@@ -110,9 +110,12 @@ const WeatherStationPopupContainerWithContext = provideContext(WeatherStationPop
 
 export const getOuluObjectHits = (e, mapSelectionsData, context) => {
   const clickPoint = context.map.latLngToLayerPoint(e.latlng);
-  const leftTopCorner = clickPoint.subtract(L.point([16, 0]));
-  const rightBottomCorner = clickPoint.add(L.point([16, 32]));
+  let leftTopCorner = clickPoint.subtract(L.point([16, 0]));
+  let rightBottomCorner = clickPoint.add(L.point([16, 32]));
   const hitBounds = L.bounds(leftTopCorner, rightBottomCorner);
+  leftTopCorner = clickPoint.subtract(L.point([5, 5]));
+  rightBottomCorner = clickPoint.add(L.point([5, 5]));
+  const smallHitBounds = L.bounds(leftTopCorner, rightBottomCorner);
   return [
     ...getBicycleMonitorObjectHits(hitBounds, mapSelectionsData, context),
     ...getBulletinObjectHits(hitBounds, mapSelectionsData, context),
@@ -123,8 +126,8 @@ export const getOuluObjectHits = (e, mapSelectionsData, context) => {
     ...getWalkMonitorObjectHits(hitBounds, mapSelectionsData, context),
     ...getWeatherStationObjectHits(hitBounds, mapSelectionsData, context),
     // Road objects are checked last
-    ...getRoadConditionObjectHits(hitBounds, mapSelectionsData, context, e.latlng),
-    ...getTrafficFluencyObjectHits(hitBounds, mapSelectionsData, context, e.latlng),
+    ...getRoadConditionObjectHits(smallHitBounds, mapSelectionsData, context, e.latlng),
+    ...getTrafficFluencyObjectHits(smallHitBounds, mapSelectionsData, context, e.latlng),
   ];
 };
 

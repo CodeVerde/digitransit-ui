@@ -184,7 +184,6 @@ class TileLayerContainer extends MapLayer {
     /* eslint-enable no-underscore-dangle */
     const hits = getOuluObjectHits(e, this.props.mapSelectionsData, this.context);
 
-    console.log('OuluObjectHits: ', hits);
     if (hits.length > 0) {
       this.setState({
         selectableTargets: hits,
@@ -406,8 +405,6 @@ class TileLayerContainer extends MapLayer {
     return popup;
   }
 }
-
-// export default TileLayerContainer;
 
 export default connectToStores(TileLayerContainer, ['MapSelectionsStore'], context => ({
   mapSelectionsData: context.getStore('MapSelectionsStore').getData(),
