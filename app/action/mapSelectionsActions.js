@@ -156,6 +156,10 @@ export function AddIncidentsData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+export function ToggleOutdoorGymsState(actionContext) {
+  actionContext.dispatch('ToggleOutdoorGymsState');
+}
+
 export function ToggleRoadConditionsState(actionContext) {
   actionContext.dispatch('ToggleRoadConditionsState');
 }
