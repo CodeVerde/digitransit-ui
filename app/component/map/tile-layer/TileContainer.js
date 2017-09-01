@@ -117,6 +117,8 @@ class TileContainer {
       L.DomEvent.stopPropagation(e);
       return this.onSelectableTargetClicked(nearest, e.latlng); // open menu for a list of stops
     }
+     // hack, oulu popup logic needs this in low zoom levels
+    this.onSelectableTargetClicked(false, false);
     return false;
   }
 }

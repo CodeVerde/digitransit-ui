@@ -6,6 +6,12 @@
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@mapbox/sphericalmercator/-/sphericalmercator-1.0.5.tgz#70237b9774095ed1cfdbcea7a8fd1fc82b2691f2"
 
+"@turf/intersect@^4.6.0":
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/@turf/intersect/-/intersect-4.6.0.tgz#b9c21f81f258002c7c31756bb86cdde97865130e"
+  dependencies:
+    jsts "1.3.0"
+
 Base64@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/Base64/-/Base64-1.0.1.tgz#def45cc50c961bcc9bf2321d0f52bcbfec1f1bb1"
@@ -4744,6 +4750,10 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.3.6"
 
+jsts@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/jsts/-/jsts-1.3.0.tgz#e93a76f97ac9bda7d4625d9d6470f0d60ac80e45"
+
 jsx-ast-utils@^1.0.0, jsx-ast-utils@^1.3.4:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/jsx-ast-utils/-/jsx-ast-utils-1.4.1.tgz#3867213e8dd79bf1e8f2300c0cfc1efb182c0df1"
@@ -8832,6 +8842,14 @@ tunnel-agent@^0.6.0:
 tunnel-agent@~0.4.0, tunnel-agent@~0.4.1:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.4.3.tgz#6373db76909fe570e08d73583365ed828a74eeeb"
+
+turf-linestring@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/turf-linestring/-/turf-linestring-1.0.2.tgz#604a63a7c54c9346ab9f39f273bbb7ece05a3096"
+
+turf-polygon@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/turf-polygon/-/turf-polygon-1.0.3.tgz#671dd34849864509281af18e236f67a7448c6363"
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"

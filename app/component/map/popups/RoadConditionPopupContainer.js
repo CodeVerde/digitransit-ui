@@ -70,7 +70,7 @@ export default class RoadConditionPopupContainer extends React.Component {
     const data = this.state.data;
     const rows = [];
     rows.push(
-      <div className="row weather-popup-row">
+      <div className="row weather-popup-row" key="oulu-weather-popup-heading">
         <div className="small-2 columns">
           {this.context.intl.formatMessage({ id: 'road-weather-time', defaultMessage: 'Time' })}
         </div>
@@ -94,7 +94,7 @@ export default class RoadConditionPopupContainer extends React.Component {
 
     data.forecasts.forEach((element, index) => (
       rows.push(
-        <div className="row weather-popup-row">
+        <div className="row weather-popup-row" key={forecastTexts[index]}>
           <div className="small-2 columns">
             {this.context.intl.formatMessage({ id: forecastTexts[index], defaultMessage: 'Now' })}
           </div>
@@ -138,11 +138,9 @@ export default class RoadConditionPopupContainer extends React.Component {
           </div>
         </div>
         <div>
-          <p className="no-padding no-margin">
-            <div>
-              {this.renderWeatherRows()}
-            </div>
-          </p>
+          <div className="no-padding no-margin">
+            {this.renderWeatherRows()}
+          </div>
         </div>
       </Card>
     );
