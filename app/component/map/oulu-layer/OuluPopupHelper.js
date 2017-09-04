@@ -226,21 +226,41 @@ export const getOuluPopupOptions = (layer) => {
   let options;
 
   switch (layer) {
+    case 'oulu-car-monitor':
+      options = {
+        autoPanPaddingTopLeft: [5, 235],
+        autoPanPaddingBottomRight: [10, 5],
+      };
+      break;
     case 'oulu-camera':
     case 'oulu-bulletin':
     case 'oulu-incident':
       options = {
+        autoPanPaddingTopLeft: [0, 465],
+        autoPanPaddingBottomRight: [110, 5],
+        className: 'oulu-popup-large',
+      };
+      break;
+    case 'oulu-road-condition':
+      options = {
+        autoPanPaddingTopLeft: [0, 210],
+        autoPanPaddingBottomRight: [110, 5],
         className: 'oulu-popup-large',
       };
       break;
     case 'oulu-bicycle-monitor':
     case 'oulu-walk-monitor':
       options = {
+        autoPanPaddingTopLeft: [0, 350],
+        autoPanPaddingBottomRight: [145, 5],
         className: 'oulu-popup-xlarge',
       };
       break;
     default:
-      options = {};
+      options = {
+        autoPanPaddingTopLeft: [5, 150],
+        autoPanPaddingBottomRight: [10, 5],
+      };
       break;
   }
   return options;

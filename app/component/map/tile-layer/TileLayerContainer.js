@@ -94,7 +94,7 @@ const LocationPopupWithContext = provideContext(LocationPopup, {
 
 const PopupOptions = {
   offset: [110, 16],
-  closeButton: false,
+  closeButton: true,
   minWidth: 260,
   maxWidth: 260,
   autoPanPaddingTopLeft: [5, 125],
