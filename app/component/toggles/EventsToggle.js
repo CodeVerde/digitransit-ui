@@ -16,7 +16,7 @@ const EventsToggle = ({ showEvents }, { executeAction }) => (
       <Toggle checked={showEvents} icons={false} id="EventsToggle" onChange={toggleEvents(executeAction)} />
       <label htmlFor="EventsToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
-          <use xlinkHref="#icon-icon_boat_1" />
+          <use xlinkHref="#icon-icon_boat-withoutBox" />
         </svg>
         <FormattedMessage id="toggle-events" defaultMessage="Events" />
       </label>

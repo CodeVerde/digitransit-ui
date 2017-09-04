@@ -1,7 +1,11 @@
 @import '../../base/waltti';
 
 /* main theme colors */
-$primary-color: #c40065;
+// $ouluColor: #c40065;
+$ouluColor: #E10069;
+
+$primary-color: $ouluColor;
+
 $secondary-color: darken($primary-color, 20%);
 $hilight-color: $primary-color;
 $action-color: $primary-color;
