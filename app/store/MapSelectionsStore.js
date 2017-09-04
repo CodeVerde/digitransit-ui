@@ -35,7 +35,7 @@ class MapSelectionsStore extends Store {
     showEvents: false,
     incidentsData: [],
     showIncidents: false,
-    outdoorGymData: OutdoorGymsData,
+    outdoorGymsData: OutdoorGymsData,
     showOutdoorGyms: false,
     walkMonitorsData: [],
     showWalkMonitors: false,
@@ -56,7 +56,7 @@ class MapSelectionsStore extends Store {
     this.data.showCarParks = false;
     this.data.showEvents = false;
     this.data.showIncidents = false;
-    this.data.showOutDoorGyms = false;
+    this.data.showOutdoorGyms = false;
     this.data.showWalkMonitors = false;
     this.data.roadConditionsState = 0;
     this.data.trafficFluencyState = 0;
@@ -299,7 +299,7 @@ class MapSelectionsStore extends Store {
   }
 
   getOutdoorGymsData() {
-    return this.data.outdoorGymData;
+    return this.data.outdoorGymsData;
   }
 
   getOutdoorGymsState() {
