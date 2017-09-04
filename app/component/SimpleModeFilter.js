@@ -66,7 +66,7 @@ class ShowMoreButton extends React.Component {
                 className="icon"
                 viewBox="0 0 40 40"
               >
-                <use xlinkHref="#icon-icon_plane_1" />
+                <use xlinkHref="#icon-icon_airplane-withoutBox" />
               </svg>
             </span>
           </a>
@@ -83,7 +83,7 @@ class ShowMoreButton extends React.Component {
                 className="icon"
                 viewBox="0 0 40 40"
               >
-                <use xlinkHref="#icon-icon_juna_1" />
+                <use xlinkHref="#icon_rail-withoutBox" />
               </svg>
             </span>
           </a>
@@ -100,7 +100,7 @@ class ShowMoreButton extends React.Component {
                 className="icon"
                 viewBox="0 0 40 40"
               >
-                <use xlinkHref="#icon-icon_boat_1" />
+                <use xlinkHref="#icon-icon_boat-withoutBox" />
               </svg>
             </span>
           </a>
@@ -117,7 +117,7 @@ class ShowMoreButton extends React.Component {
                 className="icon"
                 viewBox="0 0 40 40"
               >
-                <use xlinkHref="#icon-icon_ferry_1" />
+                <use xlinkHref="#icon-icon_ferry-withoutBox" />
               </svg>
             </span>
           </a>
