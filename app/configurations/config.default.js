@@ -263,7 +263,7 @@ export default {
       defaultValue: false,
     },
 
-    polkupyora: {
+    bicycle: {
       availableForSelection: true,
       defaultValue: false,
     },

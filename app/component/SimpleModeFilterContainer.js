@@ -7,7 +7,7 @@ import SimpleModeFilter from './SimpleModeFilter';
 import {
   toggleSimpleModeCarState,
   toggleSimpleModeWalkState,
-  toggleSimpleModePolkupyoraState,
+  toggleSimpleModeBicycleState,
   toggleSimpleModeBusState,
   toggleSimpleModeRailState,
 } from '../action/simpleModeSelectedActions';
@@ -67,7 +67,7 @@ class SimpleModeFilterContainer extends React.Component {
   actions = {
     toggleCarState: () => this.toggleTransportMode('car', toggleSimpleModeCarState),
     toggleWalkState: () => this.toggleTransportMode('walk', toggleSimpleModeWalkState),
-    togglePolkupyoraState: () => this.toggleTransportMode('polkupyora', toggleSimpleModePolkupyoraState),
+    toggleBicycleState: () => this.toggleTransportMode('bicycle', toggleSimpleModeBicycleState),
     toggleBusState: () => this.toggleTransportMode('bus', toggleSimpleModeBusState),
     toggleRailState: () => this.toggleTransportMode('rail', toggleSimpleModeRailState),
   }

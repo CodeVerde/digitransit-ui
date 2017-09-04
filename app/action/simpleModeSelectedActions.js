@@ -10,8 +10,8 @@ export function toggleSimpleModeWalkState(actionContext) {
   actionContext.executeAction(SetMapSelectionsDefaults, 'Walk');
 }
 
-export function toggleSimpleModePolkupyoraState(actionContext) {
-  actionContext.dispatch('ToggleSimpleModePolkupyoraState');
+export function toggleSimpleModeBicycleState(actionContext) {
+  actionContext.dispatch('ToggleSimpleModeBicycleState');
   actionContext.executeAction(SetMapSelectionsDefaults, 'Bicycle');
 }
 

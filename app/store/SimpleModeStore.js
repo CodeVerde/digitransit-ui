@@ -9,7 +9,7 @@ class SimpleModeStore extends Store {
     super(dispatcher);
     const localData = getSimpleModeStorage();
     this.config = dispatcher.getContext().config;
-    if (localData && localData.busState !== undefined) {
+    if (localData && localData.bicycleState !== undefined) {
       this.data = localData;
     } else {
       this.data = this.resetAll();
@@ -20,7 +20,7 @@ class SimpleModeStore extends Store {
   resetAll = () => ({
     carState: this.config.simpleTransportModes.car.defaultValue,
     walkState: this.config.simpleTransportModes.walk.defaultValue,
-    polkupyoraState: this.config.simpleTransportModes.polkupyora.defaultValue,
+    bicycleState: this.config.simpleTransportModes.bicycle.defaultValue,
     busState: this.config.simpleTransportModes.bus.defaultValue,
     railState: this.config.simpleTransportModes.rail.defaultValue,
     selected: 'busState',
@@ -42,7 +42,7 @@ class SimpleModeStore extends Store {
       mode.push('WALK');
     }
 
-    if (this.getPolkupyoraState()) {
+    if (this.getBicycleState()) {
       mode.push('POLKUPYORA');
     }
 
@@ -70,8 +70,8 @@ class SimpleModeStore extends Store {
     return this.data.walkState;
   }
 
-  getPolkupyoraState() {
-    return this.data.polkupyoraState;
+  getBicycleState() {
+    return this.data.bicycleState;
   }
 
   getBusState() {
@@ -85,7 +85,7 @@ class SimpleModeStore extends Store {
   clearState = () => {
     this.data.carState = false;
     this.data.walkState = false;
-    this.data.polkupyoraState = false;
+    this.data.bicycleState = false;
     this.data.railState = false;
     this.data.busState = false;
   }
@@ -109,8 +109,8 @@ class SimpleModeStore extends Store {
     this.doToggle('walkState');
   }
 
-  togglePolkupyoraState() {
-    this.doToggle('polkupyoraState');
+  toggleBicycleState() {
+    this.doToggle('bicycleState');
   }
 
   toggleBusState() {
@@ -134,7 +134,7 @@ class SimpleModeStore extends Store {
   static handlers = {
     ToggleSimpleModeCarState: 'toggleCarState',
     ToggleSimpleModeWalkState: 'toggleWalkState',
-    ToggleSimpleModePolkupyoraState: 'togglePolkupyoraState',
+    ToggleSimpleModeBicycleState: 'toggleBicycleState',
     ToggleSimpleModeBusState: 'toggleBusState',
     ToggleSimpleModeRailState: 'toggleRailState',
   };
