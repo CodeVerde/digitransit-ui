@@ -253,7 +253,7 @@ export default {
   },
 
   simpleTransportModes: {
-    kaara: {
+    car: {
       availableForSelection: true,
       defaultValue: false,
     },

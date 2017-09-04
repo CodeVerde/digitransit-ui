@@ -1,7 +1,7 @@
 import { SetMapSelectionsDefaults } from './mapSelectionsActions';
 
-export function toggleSimpleModeKaaraState(actionContext) {
-  actionContext.dispatch('ToggleSimpleModeKaaraState');
+export function toggleSimpleModeCarState(actionContext) {
+  actionContext.dispatch('ToggleSimpleModeCarState');
   actionContext.executeAction(SetMapSelectionsDefaults, 'Car');
 }
 

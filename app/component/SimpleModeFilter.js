@@ -184,7 +184,7 @@ const SimpleModeFilter = (props, context) => {
     <ModeToggleButton type="bus" />
     <ModeToggleButton type="polkupyora" />
     <ModeToggleButton type="kavely" />
-    <ModeToggleButton type="kaara" />
+    <ModeToggleButton type="car" />
     <ShowMoreButton />
   </div>);
 };

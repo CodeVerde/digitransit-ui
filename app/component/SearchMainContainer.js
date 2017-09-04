@@ -88,7 +88,7 @@ class SearchMainContainer extends React.Component {
 
   getModes() {
     let simpleModeBasedDefaults = '';
-    if (this.props.simpleModeData.kaaraState === true) {
+    if (this.props.simpleModeData.carState === true) {
       simpleModeBasedDefaults = 'CAR';
     } else if (this.props.simpleModeData.polkupyoraState === true) {
       simpleModeBasedDefaults = 'BICYCLE';

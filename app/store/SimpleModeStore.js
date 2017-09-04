@@ -18,7 +18,7 @@ class SimpleModeStore extends Store {
   }
 
   resetAll = () => ({
-    kaaraState: this.config.simpleTransportModes.kaara.defaultValue,
+    carState: this.config.simpleTransportModes.car.defaultValue,
     kavelyState: this.config.simpleTransportModes.kavely.defaultValue,
     polkupyoraState: this.config.simpleTransportModes.polkupyora.defaultValue,
     busState: this.config.simpleTransportModes.bus.defaultValue,
@@ -34,8 +34,8 @@ class SimpleModeStore extends Store {
   generateMode = () => {
     const mode = [];
 
-    if (this.getKaaraState()) {
-      mode.push('KAARA');
+    if (this.getCarState()) {
+      mode.push('CAR');
     }
 
     if (this.getKavelyState()) {
@@ -62,8 +62,8 @@ class SimpleModeStore extends Store {
 
   getModeString = () => this.modeString
 
-  getKaaraState() {
-    return this.data.kaaraState;
+  getCarState() {
+    return this.data.carState;
   }
 
   getKavelyState() {
@@ -83,7 +83,7 @@ class SimpleModeStore extends Store {
   }
 
   clearState = () => {
-    this.data.kaaraState = false;
+    this.data.carState = false;
     this.data.kavelyState = false;
     this.data.polkupyoraState = false;
     this.data.railState = false;
@@ -101,8 +101,8 @@ class SimpleModeStore extends Store {
     }
   }
 
-  toggleKaaraState() {
-    this.doToggle('kaaraState');
+  toggleCarState() {
+    this.doToggle('carState');
   }
 
   toggleKavelyState() {
@@ -132,7 +132,7 @@ class SimpleModeStore extends Store {
   }
 
   static handlers = {
-    ToggleSimpleModeKaaraState: 'toggleKaaraState',
+    ToggleSimpleModeCarState: 'toggleCarState',
     ToggleSimpleModeKavelyState: 'toggleKavelyState',
     ToggleSimpleModePolkupyoraState: 'togglePolkupyoraState',
     ToggleSimpleModeBusState: 'toggleBusState',

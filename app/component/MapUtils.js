@@ -35,7 +35,7 @@ const getToggles = (selectedSimpleMode) => {
       modes.push(<BulletinsToggle key="bulletins-toggle" />);
       modes.push(<BicycleMonitorsToggle key="bicycle-monitor-toggle" />);
       break;
-    case 'KAARA':
+    case 'CAR':
       modes.push(<IncidentsToggle key="incidents-toggle" />);
       modes.push(<TrafficFluencyToggle key="traffic-fluency-toggle" />);
       modes.push(<CarMonitorsToggle key="car-monitors-toggle" />);

@@ -136,7 +136,7 @@ $thumb-color-pink: $favourite-color;
 $btn-highlight-opacity: 0.9;
 
 $btn-inactive-background-color: $dark-gray;
-$btn-kaara-active-background-color: $car-color;
+$btn-car-active-background-color: $car-color;
 $btn-kavely-active-background-color: $walk-color;
 $btn-polkupyora-active-background-color: $bicycle-color;
 $btn-bus-active-background-color: $bus-color;
@@ -312,7 +312,7 @@ $btn-simple-inactive-background-color: $white;
 $btn-simple-icon-color-active: $white;
 $btn-simple-icon-color-inactive: $dark-gray;
 
-$btn-simple-kaara-active-background-color: $primary-color;
+$btn-simple-car-active-background-color: $primary-color;
 $btn-simple-kavely-active-background-color: $primary-color;
 $btn-simple-polkupyora-active-background-color: $primary-color;
 $btn-simple-bus-active-background-color: $bus-color;
@@ -328,8 +328,8 @@ $btn-simple-rail-active-background-color: $primary-color;
   &:hover {
     //opacity: $btn-simple-highlight-opacity;
   }
-  &.kaara {
-    background-color: $btn-simple-kaara-active-background-color;
+  &.car {
+    background-color: $btn-simple-car-active-background-color;
   }
   &.kavely {
     background-color: $btn-simple-kavely-active-background-color;
@@ -343,7 +343,7 @@ $btn-simple-rail-active-background-color: $primary-color;
   &.rail {
     background-color: $btn-simple-rail-active-background-color;
   }
-  &.kaara, &.kavely, &.polkupyora, &.bus, &.rail {
+  &.car, &.kavely, &.polkupyora, &.bus, &.rail {
     .icon{
       color:$btn-simple-icon-color-active;
     }
