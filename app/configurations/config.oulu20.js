@@ -25,7 +25,7 @@ export default configMerger(walttiConfig, {
   sprites: 'svg-sprite.oulu20.svg',
 
   colors: {
-    primary: '#c40065',
+    primary: '#E10069',
   },
 
   socialMedia: {
