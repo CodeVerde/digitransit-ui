@@ -27,7 +27,7 @@ const getToggles = (selectedSimpleMode) => {
       modes.push(<BusLinesMapToggle key="bus-lines-map-toggle" />);
       modes.push(<RoadConditionsToggle key="road-conditions-toggle" />);
       break;
-    case 'KAVELY':
+    case 'WALK':
       modes.push(<BulletinsToggle key="bulletins-toggle" />);
       modes.push(<WalkMonitorsToggle key="walk-monitor-toggle" />);
       break;
@@ -35,7 +35,7 @@ const getToggles = (selectedSimpleMode) => {
       modes.push(<BulletinsToggle key="bulletins-toggle" />);
       modes.push(<BicycleMonitorsToggle key="bicycle-monitor-toggle" />);
       break;
-    case 'KAARA':
+    case 'CAR':
       modes.push(<IncidentsToggle key="incidents-toggle" />);
       modes.push(<TrafficFluencyToggle key="traffic-fluency-toggle" />);
       modes.push(<CarMonitorsToggle key="car-monitors-toggle" />);

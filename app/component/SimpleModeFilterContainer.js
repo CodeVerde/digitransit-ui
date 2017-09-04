@@ -5,9 +5,9 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { getCustomizedSettings } from '../store/localStorage';
 import SimpleModeFilter from './SimpleModeFilter';
 import {
-  toggleSimpleModeKaaraState,
-  toggleSimpleModeKavelyState,
-  toggleSimpleModePolkupyoraState,
+  toggleSimpleModeCarState,
+  toggleSimpleModeWalkState,
+  toggleSimpleModeBicycleState,
   toggleSimpleModeBusState,
   toggleSimpleModeRailState,
 } from '../action/simpleModeSelectedActions';
@@ -65,9 +65,9 @@ class SimpleModeFilterContainer extends React.Component {
   }
 
   actions = {
-    toggleKaaraState: () => this.toggleTransportMode('kaara', toggleSimpleModeKaaraState),
-    toggleKavelyState: () => this.toggleTransportMode('kavely', toggleSimpleModeKavelyState),
-    togglePolkupyoraState: () => this.toggleTransportMode('polkupyora', toggleSimpleModePolkupyoraState),
+    toggleCarState: () => this.toggleTransportMode('car', toggleSimpleModeCarState),
+    toggleWalkState: () => this.toggleTransportMode('walk', toggleSimpleModeWalkState),
+    toggleBicycleState: () => this.toggleTransportMode('bicycle', toggleSimpleModeBicycleState),
     toggleBusState: () => this.toggleTransportMode('bus', toggleSimpleModeBusState),
     toggleRailState: () => this.toggleTransportMode('rail', toggleSimpleModeRailState),
   }

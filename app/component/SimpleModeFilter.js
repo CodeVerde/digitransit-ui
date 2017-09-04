@@ -182,9 +182,9 @@ const SimpleModeFilter = (props, context) => {
   // TODO we could build the filter strictly based on config
   return (<div className="simple-btn-bar mode-filter no-select">
     <ModeToggleButton type="bus" />
-    <ModeToggleButton type="polkupyora" />
-    <ModeToggleButton type="kavely" />
-    <ModeToggleButton type="kaara" />
+    <ModeToggleButton type="bicycle" />
+    <ModeToggleButton type="walk" />
+    <ModeToggleButton type="car" />
     <ShowMoreButton />
   </div>);
 };

@@ -9,7 +9,7 @@ class SimpleModeStore extends Store {
     super(dispatcher);
     const localData = getSimpleModeStorage();
     this.config = dispatcher.getContext().config;
-    if (localData && localData.busState !== undefined) {
+    if (localData && localData.bicycleState !== undefined) {
       this.data = localData;
     } else {
       this.data = this.resetAll();
@@ -18,9 +18,9 @@ class SimpleModeStore extends Store {
   }
 
   resetAll = () => ({
-    kaaraState: this.config.simpleTransportModes.kaara.defaultValue,
-    kavelyState: this.config.simpleTransportModes.kavely.defaultValue,
-    polkupyoraState: this.config.simpleTransportModes.polkupyora.defaultValue,
+    carState: this.config.simpleTransportModes.car.defaultValue,
+    walkState: this.config.simpleTransportModes.walk.defaultValue,
+    bicycleState: this.config.simpleTransportModes.bicycle.defaultValue,
     busState: this.config.simpleTransportModes.bus.defaultValue,
     railState: this.config.simpleTransportModes.rail.defaultValue,
     selected: 'busState',
@@ -34,15 +34,15 @@ class SimpleModeStore extends Store {
   generateMode = () => {
     const mode = [];
 
-    if (this.getKaaraState()) {
-      mode.push('KAARA');
+    if (this.getCarState()) {
+      mode.push('CAR');
     }
 
-    if (this.getKavelyState()) {
-      mode.push('KAVELY');
+    if (this.getWalkState()) {
+      mode.push('WALK');
     }
 
-    if (this.getPolkupyoraState()) {
+    if (this.getBicycleState()) {
       mode.push('POLKUPYORA');
     }
 
@@ -62,16 +62,16 @@ class SimpleModeStore extends Store {
 
   getModeString = () => this.modeString
 
-  getKaaraState() {
-    return this.data.kaaraState;
+  getCarState() {
+    return this.data.carState;
   }
 
-  getKavelyState() {
-    return this.data.kavelyState;
+  getWalkState() {
+    return this.data.walkState;
   }
 
-  getPolkupyoraState() {
-    return this.data.polkupyoraState;
+  getBicycleState() {
+    return this.data.bicycleState;
   }
 
   getBusState() {
@@ -83,9 +83,9 @@ class SimpleModeStore extends Store {
   }
 
   clearState = () => {
-    this.data.kaaraState = false;
-    this.data.kavelyState = false;
-    this.data.polkupyoraState = false;
+    this.data.carState = false;
+    this.data.walkState = false;
+    this.data.bicycleState = false;
     this.data.railState = false;
     this.data.busState = false;
   }
@@ -101,16 +101,16 @@ class SimpleModeStore extends Store {
     }
   }
 
-  toggleKaaraState() {
-    this.doToggle('kaaraState');
+  toggleCarState() {
+    this.doToggle('carState');
   }
 
-  toggleKavelyState() {
-    this.doToggle('kavelyState');
+  toggleWalkState() {
+    this.doToggle('walkState');
   }
 
-  togglePolkupyoraState() {
-    this.doToggle('polkupyoraState');
+  toggleBicycleState() {
+    this.doToggle('bicycleState');
   }
 
   toggleBusState() {
@@ -132,9 +132,9 @@ class SimpleModeStore extends Store {
   }
 
   static handlers = {
-    ToggleSimpleModeKaaraState: 'toggleKaaraState',
-    ToggleSimpleModeKavelyState: 'toggleKavelyState',
-    ToggleSimpleModePolkupyoraState: 'togglePolkupyoraState',
+    ToggleSimpleModeCarState: 'toggleCarState',
+    ToggleSimpleModeWalkState: 'toggleWalkState',
+    ToggleSimpleModeBicycleState: 'toggleBicycleState',
     ToggleSimpleModeBusState: 'toggleBusState',
     ToggleSimpleModeRailState: 'toggleRailState',
   };

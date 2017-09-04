@@ -1,17 +1,17 @@
 import { SetMapSelectionsDefaults } from './mapSelectionsActions';
 
-export function toggleSimpleModeKaaraState(actionContext) {
-  actionContext.dispatch('ToggleSimpleModeKaaraState');
+export function toggleSimpleModeCarState(actionContext) {
+  actionContext.dispatch('ToggleSimpleModeCarState');
   actionContext.executeAction(SetMapSelectionsDefaults, 'Car');
 }
 
-export function toggleSimpleModeKavelyState(actionContext) {
-  actionContext.dispatch('ToggleSimpleModeKavelyState');
+export function toggleSimpleModeWalkState(actionContext) {
+  actionContext.dispatch('ToggleSimpleModeWalkState');
   actionContext.executeAction(SetMapSelectionsDefaults, 'Walk');
 }
 
-export function toggleSimpleModePolkupyoraState(actionContext) {
-  actionContext.dispatch('ToggleSimpleModePolkupyoraState');
+export function toggleSimpleModeBicycleState(actionContext) {
+  actionContext.dispatch('ToggleSimpleModeBicycleState');
   actionContext.executeAction(SetMapSelectionsDefaults, 'Bicycle');
 }
 

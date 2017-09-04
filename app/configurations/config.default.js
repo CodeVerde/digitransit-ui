@@ -253,17 +253,17 @@ export default {
   },
 
   simpleTransportModes: {
-    kaara: {
+    car: {
       availableForSelection: true,
       defaultValue: false,
     },
 
-    kavely: {
+    walk: {
       availableForSelection: true,
       defaultValue: false,
     },
 
-    polkupyora: {
+    bicycle: {
       availableForSelection: true,
       defaultValue: false,
     },
