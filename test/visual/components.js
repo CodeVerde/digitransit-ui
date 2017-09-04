@@ -80,7 +80,7 @@ testVariation('PlatformNumber');
 
 // testVariation('FavouriteLocation', 'normal', 1,
 //       '.component-example:nth-of-type(1) .component .realtime-icon').then(skip('ie11'));
-testVariation('NoFavouriteLocations');
+// testVariation('NoFavouriteLocations');
 
 // testVariation('EmptyFavouriteLocationSlot');
 
@@ -108,7 +108,7 @@ testVariation('NoFavouriteLocations');
 // testVariation('IconWithIcon', 'customStyle', 1);
 // testVariation('IconWithIcon', 'normal', 2);
 
-testVariation('TimeNavigationButtons', 'normal');
+// testVariation('TimeNavigationButtons', 'normal');
 // testVariation('TimeNavigationButtons', 'hovered', 1, [], (actions) => {
 //   actions.mouseMove(
 //          // eslint-disable-next-line comma-dangle
