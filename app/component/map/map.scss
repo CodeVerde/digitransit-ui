@@ -52,6 +52,23 @@ div.leaflet-bottom.leaflet-left div.leaflet-control-zoom {
   }
 }
 
+div.leaflet-bottom.leaflet-right div.leaflet-control-zoom {
+  color: $gray-blue;
+  border: none;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+  margin-bottom: 14px;
+  margin-right: 20px;
+  .icon {
+    font-size: 17px;
+  }
+  a {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 22px;
+  }
+}
+
 div.leaflet-container {
   position: absolute;
   width: 100%;
