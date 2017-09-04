@@ -6,7 +6,7 @@ import { getCustomizedSettings } from '../store/localStorage';
 import SimpleModeFilter from './SimpleModeFilter';
 import {
   toggleSimpleModeCarState,
-  toggleSimpleModeKavelyState,
+  toggleSimpleModeWalkState,
   toggleSimpleModePolkupyoraState,
   toggleSimpleModeBusState,
   toggleSimpleModeRailState,
@@ -66,7 +66,7 @@ class SimpleModeFilterContainer extends React.Component {
 
   actions = {
     toggleCarState: () => this.toggleTransportMode('car', toggleSimpleModeCarState),
-    toggleKavelyState: () => this.toggleTransportMode('kavely', toggleSimpleModeKavelyState),
+    toggleWalkState: () => this.toggleTransportMode('walk', toggleSimpleModeWalkState),
     togglePolkupyoraState: () => this.toggleTransportMode('polkupyora', toggleSimpleModePolkupyoraState),
     toggleBusState: () => this.toggleTransportMode('bus', toggleSimpleModeBusState),
     toggleRailState: () => this.toggleTransportMode('rail', toggleSimpleModeRailState),

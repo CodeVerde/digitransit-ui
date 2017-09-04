@@ -5,8 +5,8 @@ export function toggleSimpleModeCarState(actionContext) {
   actionContext.executeAction(SetMapSelectionsDefaults, 'Car');
 }
 
-export function toggleSimpleModeKavelyState(actionContext) {
-  actionContext.dispatch('ToggleSimpleModeKavelyState');
+export function toggleSimpleModeWalkState(actionContext) {
+  actionContext.dispatch('ToggleSimpleModeWalkState');
   actionContext.executeAction(SetMapSelectionsDefaults, 'Walk');
 }
 

@@ -183,7 +183,7 @@ const SimpleModeFilter = (props, context) => {
   return (<div className="simple-btn-bar mode-filter no-select">
     <ModeToggleButton type="bus" />
     <ModeToggleButton type="polkupyora" />
-    <ModeToggleButton type="kavely" />
+    <ModeToggleButton type="walk" />
     <ModeToggleButton type="car" />
     <ShowMoreButton />
   </div>);

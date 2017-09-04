@@ -258,7 +258,7 @@ export default {
       defaultValue: false,
     },
 
-    kavely: {
+    walk: {
       availableForSelection: true,
       defaultValue: false,
     },

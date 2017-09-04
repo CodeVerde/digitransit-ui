@@ -19,7 +19,7 @@ class SimpleModeStore extends Store {
 
   resetAll = () => ({
     carState: this.config.simpleTransportModes.car.defaultValue,
-    kavelyState: this.config.simpleTransportModes.kavely.defaultValue,
+    walkState: this.config.simpleTransportModes.walk.defaultValue,
     polkupyoraState: this.config.simpleTransportModes.polkupyora.defaultValue,
     busState: this.config.simpleTransportModes.bus.defaultValue,
     railState: this.config.simpleTransportModes.rail.defaultValue,
@@ -38,8 +38,8 @@ class SimpleModeStore extends Store {
       mode.push('CAR');
     }
 
-    if (this.getKavelyState()) {
-      mode.push('KAVELY');
+    if (this.getWalkState()) {
+      mode.push('WALK');
     }
 
     if (this.getPolkupyoraState()) {
@@ -66,8 +66,8 @@ class SimpleModeStore extends Store {
     return this.data.carState;
   }
 
-  getKavelyState() {
-    return this.data.kavelyState;
+  getWalkState() {
+    return this.data.walkState;
   }
 
   getPolkupyoraState() {
@@ -84,7 +84,7 @@ class SimpleModeStore extends Store {
 
   clearState = () => {
     this.data.carState = false;
-    this.data.kavelyState = false;
+    this.data.walkState = false;
     this.data.polkupyoraState = false;
     this.data.railState = false;
     this.data.busState = false;
@@ -105,8 +105,8 @@ class SimpleModeStore extends Store {
     this.doToggle('carState');
   }
 
-  toggleKavelyState() {
-    this.doToggle('kavelyState');
+  toggleWalkState() {
+    this.doToggle('walkState');
   }
 
   togglePolkupyoraState() {
@@ -133,7 +133,7 @@ class SimpleModeStore extends Store {
 
   static handlers = {
     ToggleSimpleModeCarState: 'toggleCarState',
-    ToggleSimpleModeKavelyState: 'toggleKavelyState',
+    ToggleSimpleModeWalkState: 'toggleWalkState',
     ToggleSimpleModePolkupyoraState: 'togglePolkupyoraState',
     ToggleSimpleModeBusState: 'toggleBusState',
     ToggleSimpleModeRailState: 'toggleRailState',

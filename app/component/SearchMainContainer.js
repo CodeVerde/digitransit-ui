@@ -92,7 +92,7 @@ class SearchMainContainer extends React.Component {
       simpleModeBasedDefaults = 'CAR';
     } else if (this.props.simpleModeData.polkupyoraState === true) {
       simpleModeBasedDefaults = 'BICYCLE';
-    } else if (this.props.simpleModeData.kavelyState === true) {
+    } else if (this.props.simpleModeData.walkState === true) {
       simpleModeBasedDefaults = 'WALK';
     } else {
       simpleModeBasedDefaults = 'BUS,WALK';

@@ -137,7 +137,7 @@ $btn-highlight-opacity: 0.9;
 
 $btn-inactive-background-color: $dark-gray;
 $btn-car-active-background-color: $car-color;
-$btn-kavely-active-background-color: $walk-color;
+$btn-walk-active-background-color: $walk-color;
 $btn-polkupyora-active-background-color: $bicycle-color;
 $btn-bus-active-background-color: $bus-color;
 $btn-tram-active-background-color: $tram-color;
@@ -313,7 +313,7 @@ $btn-simple-icon-color-active: $white;
 $btn-simple-icon-color-inactive: $dark-gray;
 
 $btn-simple-car-active-background-color: $primary-color;
-$btn-simple-kavely-active-background-color: $primary-color;
+$btn-simple-walk-active-background-color: $primary-color;
 $btn-simple-polkupyora-active-background-color: $primary-color;
 $btn-simple-bus-active-background-color: $bus-color;
 $btn-simple-rail-active-background-color: $primary-color;
@@ -331,8 +331,8 @@ $btn-simple-rail-active-background-color: $primary-color;
   &.car {
     background-color: $btn-simple-car-active-background-color;
   }
-  &.kavely {
-    background-color: $btn-simple-kavely-active-background-color;
+  &.walk {
+    background-color: $btn-simple-walk-active-background-color;
   }
   &.polkupyora {
     background-color: $btn-simple-polkupyora-active-background-color;
@@ -343,7 +343,7 @@ $btn-simple-rail-active-background-color: $primary-color;
   &.rail {
     background-color: $btn-simple-rail-active-background-color;
   }
-  &.car, &.kavely, &.polkupyora, &.bus, &.rail {
+  &.car, &.walk, &.polkupyora, &.bus, &.rail {
     .icon{
       color:$btn-simple-icon-color-active;
     }
