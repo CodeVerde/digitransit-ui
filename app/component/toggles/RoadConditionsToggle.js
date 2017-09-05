@@ -4,6 +4,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 
+import Icon from '../Icon';
 import ComponentUsageExample from '../ComponentUsageExample';
 import { ToggleRoadConditionsState, SetRoadConditionsState } from '../../action/mapSelectionsActions';
 
@@ -66,9 +67,19 @@ const RoadConditionsToggle = ({ roadConditionsState }, { executeAction }) => (
         </label>
         {renderList(roadConditionsState, executeAction)}
       </div>
+      <Icon className="fake-select-arrow" img="icon-icon_arrow-dropdown" />
     </div>
   </div>
 );
+
+// <div className="bus-line-selector small-12 columns">
+//   <div className="select-wrapper">
+//     <select className="lines" onChange={this.selectLine}>
+//       {selectOptions}
+//     </select>
+//     <Icon className="fake-select-arrow" img="icon-icon_arrow-dropdown" />
+//   </div>
+// </div>
 
 RoadConditionsToggle.displayName = 'RoadConditionsToggle';
 
