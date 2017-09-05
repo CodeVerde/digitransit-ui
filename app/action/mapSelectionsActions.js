@@ -2,6 +2,8 @@
 import { getJsonWithHeaders } from '../util/xhrPromise';
 import { cleanJson } from '../util/ouluUtils';
 import EventsData from './EventsData';
+import OutdoorGymsData from './OutdoorGymsData';
+
 
 const authHeaders = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
 
@@ -167,6 +169,10 @@ export function AddIncidentsData(actionContext, parser) {
 
 export function ToggleOutdoorGymsState(actionContext) {
   actionContext.dispatch('ToggleOutdoorGymsState');
+}
+
+export function AddOutdoorGymsData(actionContext) {
+  actionContext.dispatch('AddOutdoorGymsData', OutdoorGymsData);
 }
 
 export function ToggleRoadConditionsState(actionContext) {
