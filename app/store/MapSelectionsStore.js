@@ -1,6 +1,5 @@
 import Store from 'fluxible/addons/BaseStore';
 import { setMapSelectionsStorage, getMapSelectionsStorage } from './localStorage';
-import EventsData from './EventsData';
 import OutdoorGymsData from './OutdoorGymsData';
 
 class MapSelectionsStore extends Store {
@@ -31,7 +30,7 @@ class MapSelectionsStore extends Store {
     showCarMonitors: false,
     carParksData: [],
     showCarParks: false,
-    eventsData: EventsData,
+    eventsData: [],
     showEvents: false,
     incidentsData: [],
     showIncidents: false,
@@ -161,6 +160,11 @@ class MapSelectionsStore extends Store {
 
   toggleCarParksState() {
     this.data.showCarParks = !this.data.showCarParks;
+    this.emitChange();
+  }
+
+  addEventsData(data) {
+    this.data.eventsData = data.slice();
     this.emitChange();
   }
 
@@ -351,6 +355,7 @@ class MapSelectionsStore extends Store {
     ToggleCarMonitorsState: 'toggleCarMonitorsState',
     AddCarParksData: 'addCarParksData',
     ToggleCarParksState: 'toggleCarParksState',
+    AddEventsData: 'addEventsData',
     ToggleEventsState: 'toggleEventsState',
     AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',

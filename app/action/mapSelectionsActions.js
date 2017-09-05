@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 import { getJsonWithHeaders } from '../util/xhrPromise';
 import { cleanJson } from '../util/ouluUtils';
+import EventsData from './EventsData';
 
 const authHeaders = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
 
@@ -128,6 +129,10 @@ export function AddCarParksData(actionContext, parser) {
 
 export function ToggleEventsState(actionContext) {
   actionContext.dispatch('ToggleEventsState');
+}
+
+export function AddEventsData(actionContext, parser) {
+  actionContext.dispatch('AddEventsData', parser(EventsData));
 }
 
 export function ToggleIncidentsState(actionContext) {

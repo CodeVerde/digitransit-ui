@@ -11,8 +11,8 @@ const toggleEvents = executeAction =>
   () => executeAction(ToggleEventsState);
 
 const EventsToggle = ({ showEvents }, { executeAction }) => (
-  <div className="" id="toggle-outdoor-gyms" key="toggle-outdoor-gyms">
-    <div className={showEvents ? 'map-utils-button active' : 'map-utils-button'} id="toggle-outdoor-gyms-button">
+  <div className="" id="toggle-events" key="toggle-events">
+    <div className={showEvents ? 'map-utils-button active' : 'map-utils-button'} id="toggle-events-button">
       <Toggle checked={showEvents} icons={false} id="EventsToggle" onChange={toggleEvents(executeAction)} />
       <label htmlFor="EventsToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
