@@ -4,6 +4,7 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 import { FormattedMessage } from 'react-intl';
 import Toggle from 'react-toggle';
 
+import Icon from '../Icon';
 import ComponentUsageExample from '../ComponentUsageExample';
 import { ToggleTrafficFluencyState, SetTrafficFluencyState } from '../../action/mapSelectionsActions';
 
@@ -61,6 +62,7 @@ const TrafficFluencyToggle = ({ trafficFluencyState }, { executeAction }) => (
             <use xlinkHref="#icon-icon_change_direction_1" />
           </svg>
           <FormattedMessage id="toggle-traffic-fluency" defaultMessage="Monitoring" />
+          <Icon className="fake-select-arrow" img="icon-icon_arrow-dropdown" />
         </label>
         {renderList(trafficFluencyState, executeAction)}
       </div>

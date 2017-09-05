@@ -64,10 +64,10 @@ const RoadConditionsToggle = ({ roadConditionsState }, { executeAction }) => (
             <use xlinkHref="#icon-icon_ajokeli" />
           </svg>
           <FormattedMessage id="toggle-road-conditions" defaultMessage="Road conditions" />
+          <Icon className="fake-select-arrow" img="icon-icon_arrow-dropdown" />
         </label>
         {renderList(roadConditionsState, executeAction)}
       </div>
-      <Icon className="fake-select-arrow" img="icon-icon_arrow-dropdown" />
     </div>
   </div>
 );
