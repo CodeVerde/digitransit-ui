@@ -4,8 +4,9 @@ import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import { asString as iconAsString } from '../../OuluIcon';
-
 import { isBrowser } from '../../../util/browser';
+
+import { AddOutdoorGymsData } from '../../../action/mapSelectionsActions';
 
 let Marker;
 let L;
@@ -48,7 +49,19 @@ class OutdoorGymMarkerContainer extends React.PureComponent {
   }
 
   componentWillMount() {
-    this.updateObjects(this.props.outdoorGymsData);
+    if (this.objs.length !== this.props.outdoorGymsData.length) {
+      this.updateObjects(this.props.outdoorGymsData);
+    } else if (this.props.showOutdoorGyms) {
+      this.context.executeAction(AddOutdoorGymsData);
+    }
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.showOutdoorGyms && !this.props.showOutdoorGyms) {
+      this.context.executeAction(AddOutdoorGymsData);
+    } else if (this.objs.length !== newProps.outdoorGymsData.length) {
+      this.updateObjects(newProps.outdoorGymsData);
+    }
   }
 
   updateObjects(data) {

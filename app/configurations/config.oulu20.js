@@ -87,4 +87,15 @@ export default configMerger(walttiConfig, {
     ],
   },
 
+  map: {
+    controls: {
+      zoom: {
+        // available controls positions: 'topleft', 'topright', 'bottomleft, 'bottomright'
+        position: 'bottomright',
+      },
+      scale: {
+        position: 'bottomright',
+      },
+    },
+  },
 });

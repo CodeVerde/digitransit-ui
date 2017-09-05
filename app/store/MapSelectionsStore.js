@@ -1,7 +1,5 @@
 import Store from 'fluxible/addons/BaseStore';
 import { setMapSelectionsStorage, getMapSelectionsStorage } from './localStorage';
-import EventsData from './EventsData';
-import OutdoorGymsData from './OutdoorGymsData';
 
 class MapSelectionsStore extends Store {
 
@@ -31,11 +29,11 @@ class MapSelectionsStore extends Store {
     showCarMonitors: false,
     carParksData: [],
     showCarParks: false,
-    eventsData: EventsData,
+    eventsData: [],
     showEvents: false,
     incidentsData: [],
     showIncidents: false,
-    outdoorGymsData: OutdoorGymsData,
+    outdoorGymsData: [],
     showOutdoorGyms: false,
     walkMonitorsData: [],
     showWalkMonitors: false,
@@ -164,6 +162,11 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  addEventsData(data) {
+    this.data.eventsData = data.slice();
+    this.emitChange();
+  }
+
   toggleEventsState() {
     this.data.showEvents = !this.data.showEvents;
     this.emitChange();
@@ -176,6 +179,11 @@ class MapSelectionsStore extends Store {
 
   toggleIncidentsState() {
     this.data.showIncidents = !this.data.showIncidents;
+    this.emitChange();
+  }
+
+  addOutdoorGymsData(data) {
+    this.data.outdoorGymsData = data.slice();
     this.emitChange();
   }
 
@@ -351,9 +359,11 @@ class MapSelectionsStore extends Store {
     ToggleCarMonitorsState: 'toggleCarMonitorsState',
     AddCarParksData: 'addCarParksData',
     ToggleCarParksState: 'toggleCarParksState',
+    AddEventsData: 'addEventsData',
     ToggleEventsState: 'toggleEventsState',
     AddIncidentsData: 'addIncidentsData',
     ToggleIncidentsState: 'toggleIncidentsState',
+    AddOutdoorGymsData: 'addOutdoorGymsData',
     ToggleOutdoorGymsState: 'toggleOutdoorGymsState',
     AddRoadConditionsData: 'addRoadConditionsData',
     ToggleRoadConditionsState: 'toggleRoadConditionsState',

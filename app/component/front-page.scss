@@ -112,6 +112,15 @@ $heading-color: #858585;
     margin-left: 4px;
   }
 
+  .fake-select-arrow {
+    font-size: 0.5rem;
+    width: 2em;
+    color: $link-color;
+    pointer-events: none;
+    // position: absolute;
+    right: 16px;
+    top: 14px;
+  }
 }
 
 .map-utils-button:focus,
@@ -507,6 +516,10 @@ svg.icon.footer-icon {
 
 .front-page.bp-large div.leaflet-bottom.leaflet-left div.leaflet-control-zoom {
   margin-bottom: 80px;
+}
+
+.front-page.bp-large div.leaflet-bottom.leaflet-right div.leaflet-control-zoom {
+  margin-bottom: 40px;
 }
 
 .front-page.bp-large .leaflet-container .leaflet-control-attribution {

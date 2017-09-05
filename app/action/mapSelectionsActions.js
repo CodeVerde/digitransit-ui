@@ -1,6 +1,9 @@
 /* eslint-disable import/prefer-default-export */
 import { getJsonWithHeaders } from '../util/xhrPromise';
 import { cleanJson } from '../util/ouluUtils';
+import EventsData from './EventsData';
+import OutdoorGymsData from './OutdoorGymsData';
+
 
 const authHeaders = { Authorization: 'Basic cmVzdGFwaXVzZXI6cXVpUDJhZVc=' };
 
@@ -130,6 +133,10 @@ export function ToggleEventsState(actionContext) {
   actionContext.dispatch('ToggleEventsState');
 }
 
+export function AddEventsData(actionContext, parser) {
+  actionContext.dispatch('AddEventsData', parser(EventsData));
+}
+
 export function ToggleIncidentsState(actionContext) {
   actionContext.dispatch('ToggleIncidentsState');
 }
@@ -162,6 +169,10 @@ export function AddIncidentsData(actionContext, parser) {
 
 export function ToggleOutdoorGymsState(actionContext) {
   actionContext.dispatch('ToggleOutdoorGymsState');
+}
+
+export function AddOutdoorGymsData(actionContext) {
+  actionContext.dispatch('AddOutdoorGymsData', OutdoorGymsData);
 }
 
 export function ToggleRoadConditionsState(actionContext) {

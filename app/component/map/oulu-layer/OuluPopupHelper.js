@@ -11,6 +11,7 @@ import BulletinPopupContainer from '../popups/BulletinPopupContainer';
 import CameraPopupContainer from '../popups/CameraPopupContainer';
 import CarMonitorPopupContainer from '../popups/CarMonitorPopupContainer';
 import CarParkPopupContainer from '../popups/CarParkPopupContainer';
+import EventPopupContainer from '../popups/EventPopupContainer';
 import IncidentPopupContainer from '../popups/IncidentPopupContainer';
 import RoadConditionPopupContainer from '../popups/RoadConditionPopupContainer';
 import TrafficFluencyPopupContainer from '../popups/TrafficFluencyPopupContainer';
@@ -22,6 +23,7 @@ import getBulletinObjectHits from './getBulletinObjectHits';
 import getCameraObjectHits from './getCameraObjectHits';
 import getCarMonitorObjectHits from './getCarMonitorObjectHits';
 import getCarParkObjectHits from './getCarParkObjectHits';
+import getEventObjectHits from './getEventObjectHits';
 import getIncidentObjectHits from './getIncidentObjectHits';
 import getRoadConditionObjectHits from './getRoadConditionObjectHits';
 import getTrafficFluencyObjectHits from './getTrafficFluencyObjectHits';
@@ -61,6 +63,14 @@ const CarMonitorPopupContainerWithContext = provideContext(CarMonitorPopupContai
 });
 
 const CarParkPopupContainerWithContext = provideContext(CarParkPopupContainer, {
+  intl: intlShape.isRequired,
+  router: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+  config: PropTypes.object.isRequired,
+});
+
+const EventPopupContainerWithContext = provideContext(EventPopupContainer, {
   intl: intlShape.isRequired,
   router: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
@@ -122,6 +132,7 @@ export const getOuluObjectHits = (e, mapSelectionsData, context) => {
     ...getCameraObjectHits(hitBounds, mapSelectionsData, context),
     ...getCarMonitorObjectHits(hitBounds, mapSelectionsData, context),
     ...getCarParkObjectHits(hitBounds, mapSelectionsData, context),
+    ...getEventObjectHits(hitBounds, mapSelectionsData, context),
     ...getIncidentObjectHits(hitBounds, mapSelectionsData, context),
     ...getWalkMonitorObjectHits(hitBounds, mapSelectionsData, context),
     ...getWeatherStationObjectHits(hitBounds, mapSelectionsData, context),
@@ -173,6 +184,15 @@ export const getOuluPopup = (layer, id, context, content) => {
           id={id}
           context={context}
           loading={Loading}
+        />);
+      break;
+    case 'oulu-event':
+      popup = (
+        <EventPopupContainerWithContext
+          id={id}
+          context={context}
+          loading={Loading}
+          content={content}
         />);
       break;
     case 'oulu-incident':
@@ -234,6 +254,7 @@ export const getOuluPopupOptions = (layer) => {
       break;
     case 'oulu-camera':
     case 'oulu-bulletin':
+    case 'oulu-event':
     case 'oulu-incident':
       options = {
         autoPanPaddingTopLeft: [0, 465],
