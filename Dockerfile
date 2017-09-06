@@ -25,6 +25,24 @@ ENV \
 WORKDIR ${WORK}
 ADD . ${WORK}
 
+RUN wget http://www.yr.no/place/Finland/Oulu/Oulu/forecast.xml -O ${WORK}/static/xml/forecast.xml
+
+RUN \
+  apt-get update && \
+  apt-get -y install cron
+
+# Add crontab file in the cron directory
+ADD forecast-cron /etc/cron.d/forecast-cron
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/forecast-cron
+
+# Create the log file to be able to run tail
+RUN touch /var/log/cron.log
+
+# Give execution rights on the cron job
+RUN chmod +x scripts/startup.sh
+
 RUN \
   yarn install --silent && \
   yarn add --force node-sass && \
@@ -32,4 +50,9 @@ RUN \
   rm -rf static docs test /tmp/* && \
   yarn cache clean
 
-CMD yarn run start
+# Run the command on container startup
+# CMD cron && tail -f /var/log/cron.log
+
+# CMD yarn run start
+
+CMD ["scripts/startup.sh"]
