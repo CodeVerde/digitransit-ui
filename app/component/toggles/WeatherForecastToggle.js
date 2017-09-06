@@ -6,7 +6,7 @@ import moment from 'moment';
 import { isBrowser } from '../../util/browser';
 import { getTextWithHeaders } from '../../util/xhrPromise';
 
-import Icon from '../Icon';
+// import Icon from '../Icon';
 import ComponentUsageExample from '../ComponentUsageExample';
 
 const parseWeatherXml = (rawData) => {
@@ -169,7 +169,8 @@ class WeatherForecastToggle extends React.Component {
 //     const iconClass = trafficFluencyState === index + 1 ? 'icon' : 'icon icon-not-selected';
 //     items.push(
 //       <li key={`weather-forecast-list-${element}`}>
-//         <div role="button" htmlFor="SetWeatherForecast" onClick={setWeatherForecast(executeAction, index + 1)}>
+//         <div role="button" htmlFor="SetWeatherForecast"
+// onClick={setWeatherForecast(executeAction, index + 1)}>
 //           <svg className={iconClass} viewBox="0 0 283.46 283.46">
 //             <use xlinkHref="#icon-icon_check_1" />
 //           </svg>
