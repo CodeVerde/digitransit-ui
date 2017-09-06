@@ -6,7 +6,6 @@ import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import BicycleMonitorsToggle from './toggles/BicycleMonitorsToggle';
 import BusLinesMapToggle from './BusLinesMapToggle';
-import RainMap from './RainMap';
 import BulletinsToggle from './toggles/BulletinsToggle';
 import CamerasToggle from './toggles/CamerasToggle';
 import CarMonitorsToggle from './toggles/CarMonitorsToggle';
@@ -18,7 +17,7 @@ import RoadConditionsToggle from './toggles/RoadConditionsToggle';
 import TrafficFluencyToggle from './toggles/TrafficFluencyToggle';
 import WalkMonitorsToggle from './toggles/WalkMonitorsToggle';
 import WeatherStationsToggle from './toggles/WeatherStationsToggle';
-import WeatherForecast from './WeatherForecast';
+import WeatherForecastToggle from './toggles/WeatherForecastToggle';
 
 const getToggles = (selectedSimpleMode) => {
   const modes = [];
@@ -50,6 +49,7 @@ const getToggles = (selectedSimpleMode) => {
   modes.push(<WeatherStationsToggle key="weather-stations-toggle" />);
   modes.push(<OutdoorGymsToggle key="outdoor-gyms-toggle" />);
   modes.push(<EventsToggle key="events-toggle" />);
+  modes.push(<WeatherForecastToggle key="weather-forecast-toggle" />);
   return modes;
 };
 
@@ -58,10 +58,6 @@ const MapUtils = ({ selectedSimpleMode }) => (
     <div className="MapUtils">
 
       {getToggles(selectedSimpleMode)}
-
-      <WeatherForecast />
-
-      {false && <RainMap />}
 
       {false && <div className="" id="toggle-bus-stops" key="toggle-bus-stops">
         <div className="map-utils-button active" id="toggle-bus-stops-button">
@@ -83,18 +79,6 @@ const MapUtils = ({ selectedSimpleMode }) => (
               <use xlinkHref="#icon-icon_bus_lines" />
             </svg>
             <FormattedMessage id="routes" defaultMessage="Routes" />
-          </label>
-        </div>
-      </div>}
-
-      {false && <div className="" id="toggle-rain-areas" key="toggle-rain-areas">
-        <div className="map-utils-button" id="toggle-rain-areas-button">
-          <Toggle icons={false} id="RainAreasToggle" />
-          <label htmlFor="RainAreasToggle">
-            <svg className="icon" viewBox="0 0 283.46 283.46">
-              <use xlinkHref="#icon-icon_sadealueet" />
-            </svg>
-            <FormattedMessage id="rain-areas" defaultMessage="Rain Areas" />
           </label>
         </div>
       </div>}

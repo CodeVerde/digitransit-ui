@@ -36,6 +36,12 @@ export default configMerger(walttiConfig, {
     },
   },
 
+  weather: {
+    xml: {
+      url: '/xml/forecast.xml',
+    },
+  },
+
   availableLanguages: ['fi', 'en'],
   defaultLanguage: 'fi',
 

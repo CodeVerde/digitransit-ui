@@ -1,0 +1,1 @@
+5 */1 * * * root wget http://www.yr.no/place/Finland/Oulu/Oulu/forecast.xml -O /opt/digitransit-ui/_static/xml/forecast.xml
