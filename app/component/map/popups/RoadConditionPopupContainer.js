@@ -5,6 +5,7 @@ import { intlShape } from 'react-intl';
 import { isBrowser } from '../../../util/browser';
 import { getJsonWithHeaders } from '../../../util/xhrPromise';
 import { cleanJson } from '../../../util/ouluUtils';
+import { mapForecaWeatherIcon } from '../../../util/weatherIconMapper';
 import Icon from '../../Icon';
 import Card from '../../Card';
 
@@ -92,21 +93,48 @@ export default class RoadConditionPopupContainer extends React.Component {
       </div>,
     );
 
-    data.forecasts.forEach((element, index) => (
+    data.forecasts.forEach((element, index) => {
+      let conditionClass;
+      let conditionText;
+
+      switch (element.forecastConditionSymbol) {
+        case 'keli_green.png':
+          conditionClass = 'condition-green';
+          conditionText = 'Hyvä';
+          break;
+        case 'keli_red.png':
+          conditionClass = 'condition-red';
+          conditionText = 'Huono';
+          break;
+        case 'keli_yellow.png':
+          conditionClass = 'condition-yellow';
+          conditionText = 'Välttävä';
+          break;
+        default:
+          conditionClass = 'condition-yellow';
+          conditionText = 'Epävarma';
+          break;
+      }
+
       rows.push(
         <div className="row weather-popup-row" key={forecastTexts[index]}>
           <div className="small-2 columns">
             {this.context.intl.formatMessage({ id: forecastTexts[index], defaultMessage: 'Now' })}
           </div>
-          <div className="small-2 columns">{element.forecastWeatherSymbol}</div>
+          <div className="small-2 columns">
+            <Icon
+              id="road-condition-popup-icon"
+              img={mapForecaWeatherIcon(element.forecastWeatherSymbol)}
+            />
+          </div>
           <div className="small-2 columns">{element.forecastWindSpeed}</div>
           {false && <div className="small-2 columns">{element.forecastWindDirectionSymbol}</div>}
           <div className="small-2 columns">{element.forecastAirTemp} °C</div>
           <div className="small-2 columns">{element.forecastRoadTemp} °C</div>
-          <div className="small-2 columns condition-green">{element.forecastConditionSymbol}</div>
+          <div className={`small-2 columns ${conditionClass}`}>{conditionText}</div>
         </div>,
-      )
-    ));
+      );
+    });
     return rows;
   }
 

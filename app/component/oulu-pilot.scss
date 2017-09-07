@@ -177,27 +177,41 @@
 }
 
 .weather-popup-row {
-  // parent class for time, vehicle-number, destination
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: $black;
   @include font-narrow-book;
   font-size: $font-size-normal;
   background: $white;
   line-height: $line-height-normal;
   position: relative;
-  // overflow-y: hidden;
   overflow-y: visible;
   white-space: nowrap;
   margin: 0;
   padding: 0;
-  align-content: left;
-  text-align: left;
   .icon {
-    font-size: 1em;
-    vertical-align: -1px;
+    font-size: 2em;
+    margin: 0px;
+    color: $white;
+    fill: $black;
   }
   .condition-green {
     background: green;
-    // padding: 2px;
+    color: green;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $white;
+    height: 100%;
+  }
+  .condition-red {
+    background: red;
+    border-style: solid;
+    border-width: 2px;
+    border-color: $white;
+  }
+  .condition-yellow {
+    background: yellow;
     border-style: solid;
     border-width: 2px;
     border-color: $white;
@@ -206,5 +220,91 @@
   :last-child {
     float: left !important;
     text-align: left;
+  }
+}
+
+/**
+    Styles for the weather forecast popup menu
+*/
+
+.weather-forecast-popup > input[type=checkbox] {
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+
+.weather-forecast-popup {
+  display: inline-block;
+
+  & input[type=checkbox] {
+    & ~ label {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    &:checked ~ div {
+      display: block;
+    }
+  }
+}
+
+.weather-forecast-popup > div {
+  left: -270px;
+  bottom: -50px;
+  position: absolute;
+  display: none;
+  list-style: none;
+  text-align: left;
+  z-index: 1;
+  margin: 0px;
+  padding: 10px;
+  -webkit-box-shadow: 2px 2px 2px $oulu-light-gray;
+  -moz-box-shadow: 2px 2px 2px $oulu-light-gray;
+  box-shadow: 2px 2px 2px $oulu-light-gray;
+  background-color: $white;
+  border-radius: 5px;
+  color: $black;
+  overflow: hidden;
+  float: left;
+  font-family: $font-family;
+}
+
+.weather-forecast-header {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  width: 250px;
+  padding: 0.4em 0 0.5em;
+
+  span {
+    margin-left: 4px;
+    color: $primary-color;
+  }
+
+  h2 {
+    display: flex;
+    margin: 0px;
+  }
+
+  .weather-forecast-sub-header {
+    display: flex;
+    margin-left: 4px;
+    font-family: $font-family;
+    font-size: $font-size-xxsmall;
+    font-weight: 400;
+  }
+}
+
+.weather-forecast-footer {
+  display: flex;
+  flex-direction: row;
+  margin-left: 4px;
+  font-size: $font-size-xxsmall;
+  padding: 0.4em 0 0.5em;
+
+  > span {
+    margin-left: 4px;
+    margin-right: 3px;
+    color: $black !important;
   }
 }
