@@ -145,7 +145,7 @@ class WeatherForecastToggle extends React.Component {
             values={{ city }}
             defaultMessage="Weather forecast provided by "
           />
-          <a href="https://www.yr.no">yr.no</a>
+          <a href="http://www.yr.no/place/Finland/Oulu/Oulu/">yr.no</a>
         </div>
       </div>
     );
