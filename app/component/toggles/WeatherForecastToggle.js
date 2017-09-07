@@ -5,8 +5,9 @@ import moment from 'moment';
 
 import { isBrowser } from '../../util/browser';
 import { getTextWithHeaders } from '../../util/xhrPromise';
+import { mapYrWeatherIcon } from '../../util/weatherIconMapper';
 
-// import Icon from '../Icon';
+import Icon from '../Icon';
 import ComponentUsageExample from '../ComponentUsageExample';
 
 const parseWeatherXml = (rawData) => {
@@ -52,7 +53,12 @@ class WeatherForecastToggle extends React.Component {
   }
 
   componentWillMount() {
-    getTextWithHeaders(this.context.config.weather.xml.url, null, {})
+    const customHeaders = {
+      pragma: 'no-cache',
+      'cache-control': 'no-cache',
+    };
+
+    getTextWithHeaders(this.context.config.weather.xml.url, null, customHeaders)
     .then(rawData => parseWeatherXml(rawData))
     .then(result => this.setState({ weatherData: result }))
     // eslint-disable-next-line no-console
@@ -72,14 +78,14 @@ class WeatherForecastToggle extends React.Component {
     const rows = [];
     rows.push(
       <div className="row weather-popup-row" key="oulu-weather-popup-heading">
-        <div className="small-2 columns">
+        <div className="small-4 columns">
           {this.context.intl.formatMessage({ id: 'road-weather-time', defaultMessage: 'Time' })}
         </div>
-        <div className="small-2 columns">
-          {this.context.intl.formatMessage({ id: 'road-weather-weather', defaultMessage: 'Weather' })}
+        <div className="small-4 columns">
+          {this.context.intl.formatMessage({ id: 'weather', defaultMessage: 'Weather' })}
         </div>
-        <div className="small-2 columns">
-          {this.context.intl.formatMessage({ id: 'road-weather-air', defaultMessage: 'Air' })}
+        <div className="small-4 columns">
+          {this.context.intl.formatMessage({ id: 'weather-temperature', defaultMessage: 'Temperature' })}
         </div>
       </div>,
     );
@@ -87,11 +93,16 @@ class WeatherForecastToggle extends React.Component {
     data.forEach(element => (
       rows.push(
         <div className="row weather-popup-row" key={`weather-popup-row-${moment(element.forecastTime).format('HH')}`}>
-          <div className="small-2 columns">
+          <div className="small-4 columns">
             {moment(element.forecastTime).format('HH:mm')}
           </div>
-          <div className="small-2 columns">{element.forecastWeatherSymbol}</div>
-          <div className="small-2 columns">{element.forecastTemperature} °C</div>
+          <div className="small-4 columns">
+            <Icon
+              id="weather-forecast-icon"
+              img={mapYrWeatherIcon(element.forecastWeatherSymbol)}
+            />
+          </div>
+          <div className="small-4 columns">{element.forecastTemperature} °C</div>
         </div>,
       )
     ));
@@ -105,12 +116,18 @@ class WeatherForecastToggle extends React.Component {
       return (<div className="padding-small">{}</div>);
     }
 
+    const city = this.state.weatherData[0].forecastLocation;
+
     return (
       <div>
         <div className="weather-forecast-header">
           <div>
             <h2>
-              <FormattedMessage id="weather-forecast" defaultMessage="Weather Forecast" /> {this.state.weatherData[0].forecastLocation}
+              <FormattedMessage
+                id="weather-forecast"
+                values={{ city }}
+                defaultMessage="Weather Forecast {city}"
+              />
             </h2>
           </div>
           <div className="weather-forecast-sub-header">
@@ -121,6 +138,14 @@ class WeatherForecastToggle extends React.Component {
           <div className="no-padding no-margin">
             {this.renderWeatherRows()}
           </div>
+        </div>
+        <div className="weather-forecast-footer">
+          <FormattedMessage
+            id="weather-forecast-provider"
+            values={{ city }}
+            defaultMessage="Weather forecast provided by "
+          />
+          <a href="https://www.yr.no">yr.no</a>
         </div>
       </div>
     );
@@ -200,13 +225,5 @@ WeatherForecastToggle.description = () => (
       </div>
     </ComponentUsageExample>
   </div>);
-
-// WeatherForecastToggle.propTypes = {
-//   trafficFluencyState: PropTypes.number.isRequired,
-// };
-//
-// WeatherForecastToggle.contextTypes = {
-//   executeAction: PropTypes.func.isRequired,
-// };
 
 export default WeatherForecastToggle;
