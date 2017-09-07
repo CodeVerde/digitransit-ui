@@ -52,7 +52,12 @@ class WeatherForecastToggle extends React.Component {
   }
 
   componentWillMount() {
-    getTextWithHeaders(this.context.config.weather.xml.url, null, {})
+    const customHeaders = {
+      pragma: 'no-cache',
+      'cache-control': 'no-cache',
+    };
+
+    getTextWithHeaders(this.context.config.weather.xml.url, null, customHeaders)
     .then(rawData => parseWeatherXml(rawData))
     .then(result => this.setState({ weatherData: result }))
     // eslint-disable-next-line no-console
