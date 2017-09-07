@@ -161,9 +161,9 @@ class WeatherForecastToggle extends React.Component {
             <input type="checkbox" id="weather-forecast-checkbox-toggle" />
             <label htmlFor="weather-forecast-checkbox-toggle">
               <svg className="icon" viewBox="0 0 283.46 283.46">
-                <use xlinkHref="#icon-icon_weather" />
+                <use xlinkHref="#weather-icon-d000" />
               </svg>
-              <FormattedMessage id="toggle-weather-forecast" defaultMessage="Sääennuste" />
+              <FormattedMessage id="toggle-weather-forecast" defaultMessage="Weather forecast" />
             </label>
             {this.renderObjects()}
           </div>
