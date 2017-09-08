@@ -72,6 +72,12 @@
   }
 }
 
+.oulu-popup-content {
+  line-height: $line-height-normal;
+  position: relative;
+  margin: 0;
+}
+
 .oulu-popup-large {
   left: -21px !important;
   .route-header {

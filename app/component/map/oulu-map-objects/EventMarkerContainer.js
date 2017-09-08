@@ -35,6 +35,7 @@ const parseEventMessage = (data) => {
           geometry: venue.geometry,
           venueName: venue.name,
           infoLink: event.infoLink,
+          extraInfo: event.extraInfo,
           id: event.id,
           name: event.name,
           description: event.description,

@@ -21,6 +21,7 @@ const getEventObjectHits = (hitBounds, mapSelectionsData, context) => {
         content: {
           venueName: element.venueName,
           infoLink: element.infoLink,
+          extraInfo: element.extraInfo,
           id: element.id,
           name: element.name,
           description: element.description,

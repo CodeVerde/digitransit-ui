@@ -10,8 +10,14 @@ export default [
       {
         id: 11,
         name: 'Useita tilaisuuksia',
-        description: 'Welcome to Oulu theatre! Here are some of the plays you can enjoy this fall:<br />-Rautatie Ilosia aikoja<br />-Mielensäpahoittaja<br />-Saituri ja Lasse-Maijan etsivätoimisto<br />And much more...',
+        description: 'Tervetuloa Oulun Kaupungin Teatteriin! Ohjelmistossa tänä syksynä:<br />-Rautatie Ilosia aikoja<br />-Mielensäpahoittaja<br />-Saituri ja Lasse-Maijan etsivätoimisto<br />...ja paljon muuta<br /><br />Lue lisää syksyn ohjelmistosta lisätietojen linkeistä.',
         infoLink: 'http://teatteri.ouka.fi/ohjelmisto/nyt-ohjelmistossa',
+        extraInfo: [
+          {
+            linkText: 'Ohjelmakalenteri ja lipunvaraus',
+            url: 'http://teatteri.ouka.fi/esityskalenteri',
+          },
+        ],
         startDate: '2017-09-02',
         endDate: '2017-12-31',
         tags: ['theatre'],
@@ -29,8 +35,14 @@ export default [
       {
         id: 21,
         name: 'Beethoven konsertti 1',
-        description: 'Unohtumatonta musiikkia, vaikuttavaa virtuositeettia ja sydämeenkäyviä tulkintoja on luvassa Brautigam plays Beethoven -minifestivaalilla, jossa aikamme ylistetyimpiin pianisteihin lukeutuva Ronald Brautigam ja Oulu Sinfonia esittävät säveltäjän kuusi pianokonserttoa peräkkäisinä päivinä Madetojan salissa. Osa Brautigam plays Beethoven -minifestivaalia.',
+        description: 'Unohtumatonta musiikkia, vaikuttavaa virtuositeettia ja sydämeenkäyviä tulkintoja on luvassa Brautigam plays Beethoven -minifestivaalilla, jossa aikamme ylistetyimpiin pianisteihin lukeutuva Ronald Brautigam ja Oulu Sinfonia esittävät säveltäjän kuusi pianokonserttoa peräkkäisinä päivinä Madetojan salissa.<br /><br />Osa Brautigam plays Beethoven -minifestivaalia.',
         infoLink: 'http://www.oulusinfonia.fi/konserttipohja/beethoven-konsertti-1.html',
+        extraInfo: [
+          {
+            linkText: 'Ohjelmakalenteri ja lipunvaraus',
+            url: 'http://www.oulusinfonia.fi/konsertit.html',
+          },
+        ],
         startDate: '2017-10-05',
         endDate: '2017-10-05',
         startTime: '19:00',
@@ -40,8 +52,14 @@ export default [
       {
         id: 22,
         name: 'Beethoven konsertti 1',
-        description: 'Unohtumatonta musiikkia, vaikuttavaa virtuositeettia ja sydämeenkäyviä tulkintoja on luvassa Brautigam plays Beethoven -minifestivaalilla, jossa aikamme ylistetyimpiin pianisteihin lukeutuva Ronald Brautigam ja Oulu Sinfonia esittävät säveltäjän kuusi pianokonserttoa peräkkäisinä päivinä Madetojan salissa. Osa Brautigam plays Beethoven -minifestivaalia.',
+        description: 'Unohtumatonta musiikkia, vaikuttavaa virtuositeettia ja sydämeenkäyviä tulkintoja on luvassa Brautigam plays Beethoven -minifestivaalilla, jossa aikamme ylistetyimpiin pianisteihin lukeutuva Ronald Brautigam ja Oulu Sinfonia esittävät säveltäjän kuusi pianokonserttoa peräkkäisinä päivinä Madetojan salissa.<br /><br />Osa Brautigam plays Beethoven -minifestivaalia.',
         infoLink: 'http://www.oulusinfonia.fi/konserttipohja/beethoven-konsertti-2.html',
+        extraInfo: [
+          {
+            linkText: 'Ohjelmakalenteri ja lipunvaraus',
+            url: 'http://www.oulusinfonia.fi/konsertit.html',
+          },
+        ],
         startDate: '2017-10-06',
         endDate: '2017-10-06',
         startTime: '18:00',
@@ -51,8 +69,14 @@ export default [
       {
         id: 23,
         name: 'Beethoven konsertti 3',
-        description: 'Unohtumatonta musiikkia, vaikuttavaa virtuositeettia ja sydämeenkäyviä tulkintoja on luvassa Brautigam plays Beethoven -minifestivaalilla, jossa aikamme ylistetyimpiin pianisteihin lukeutuva Ronald Brautigam ja Oulu Sinfonia esittävät säveltäjän kuusi pianokonserttoa peräkkäisinä päivinä Madetojan salissa. Osa Brautigam plays Beethoven -minifestivaalia.',
+        description: 'Unohtumatonta musiikkia, vaikuttavaa virtuositeettia ja sydämeenkäyviä tulkintoja on luvassa Brautigam plays Beethoven -minifestivaalilla, jossa aikamme ylistetyimpiin pianisteihin lukeutuva Ronald Brautigam ja Oulu Sinfonia esittävät säveltäjän kuusi pianokonserttoa peräkkäisinä päivinä Madetojan salissa.<br /><br />Osa Brautigam plays Beethoven -minifestivaalia.',
         infoLink: 'http://www.oulusinfonia.fi/konserttipohja/beethoven-konsertti-3.html',
+        extraInfo: [
+          {
+            linkText: 'Ohjelmakalenteri ja lipunvaraus',
+            url: 'http://www.oulusinfonia.fi/konsertit.html',
+          },
+        ],
         startDate: '2017-10-07',
         endDate: '2017-10-07',
         startTime: '15:00',
@@ -62,8 +86,14 @@ export default [
       {
         id: 24,
         name: 'Tapio – perhekonsertti',
-        description: 'Lastenkonsertti Tapio vie yleisön kiehtovalle matkalle suomalaiseen mytologiaan ja kansantarustoon. Tarinan runkona toimivat lasten suosikeiksi nousseet kappaleet Jussi Rasinkankaan kokoelmasta ”Toiseen maailmaan”. Tomi Valon ottamat upeat luontokuvat ja Annamari Kessin kekseliäs koreografia tukevat tarinaa visuaalisesti. Tapio on osoitus oululaisen musiikkikasvatuksen mahtivoimasta ja musiikkitoimijoiden yhteistyöstä, jonka hedelmistä pääsevät nauttimaan kaikki alueen asukkaat. Perhekonsertti Tapio on osa Suomen itsenäisyyden satavuotisjuhlavuoden ohjelmaa. Konsertti on suunnattu erityisesti 5–12 -vuotiaille lapsille ja heidän vanhemmilleen.',
+        description: 'Lastenkonsertti Tapio vie yleisön kiehtovalle matkalle suomalaiseen mytologiaan ja kansantarustoon. Tarinan runkona toimivat lasten suosikeiksi nousseet kappaleet Jussi Rasinkankaan kokoelmasta ”Toiseen maailmaan”. Tomi Valon ottamat upeat luontokuvat ja Annamari Kessin kekseliäs koreografia tukevat tarinaa visuaalisesti.<br /><br />Tapio on osoitus oululaisen musiikkikasvatuksen mahtivoimasta ja musiikkitoimijoiden yhteistyöstä, jonka hedelmistä pääsevät nauttimaan kaikki alueen asukkaat. Perhekonsertti Tapio on osa Suomen itsenäisyyden satavuotisjuhlavuoden ohjelmaa. Konsertti on suunnattu erityisesti 5–12 -vuotiaille lapsille ja heidän vanhemmilleen.',
         infoLink: 'http://www.oulusinfonia.fi/konserttipohja/tapio-perhekonsertti.html',
+        extraInfo: [
+          {
+            linkText: 'Ohjelmakalenteri ja lipunvaraus',
+            url: 'http://www.oulusinfonia.fi/konsertit.html',
+          },
+        ],
         startDate: '2017-10-12',
         endDate: '2017-10-12',
         startTime: '18:00',
@@ -73,8 +103,14 @@ export default [
       {
         id: 25,
         name: 'WE COME IN PEACE - Orchestral Science Fiction Music',
-        description: 'Kiinnitä turvavyö ja valmistaudu matkaamaan valon nopeudella läpi syksyn suosituimman kulttuurikokemuksen. WE COME IN PEACE etsii kaukaisilta planeetoilta älyllistä elämää ja vie eeppisille sotatantereille sekä taisteluihin galaktisten hirviöiden keskelle. Konsertin isäntänä toimii mediapersoona ja scifi-rakastaja Orvar Säfström ja solistina itseoikeutetusti harvinaislaatuisen ja aavemaisen thereminin taituri Kristoffer Eng. Läpileikkaus scifi-maailmaan kattaa aikakaudet 50-luvulta tähän päivään sisältäen musiikkia mm. Star Warsista, Star Trekistä, Avataresta, Halosta ja Taisteluplaneetta Galacticasta. Tämä kokemus on omistettu kaikille, jotka ovat koskaan suunnanneet kaihoisan katseen kaukaisille tähtitaivaille.',
+        description: 'Kiinnitä turvavyö ja valmistaudu matkaamaan valon nopeudella läpi syksyn suosituimman kulttuurikokemuksen. WE COME IN PEACE etsii kaukaisilta planeetoilta älyllistä elämää ja vie eeppisille sotatantereille sekä taisteluihin galaktisten hirviöiden keskelle. Konsertin isäntänä toimii mediapersoona ja scifi-rakastaja Orvar Säfström ja solistina itseoikeutetusti harvinaislaatuisen ja aavemaisen thereminin taituri Kristoffer Eng.<br /><br />Läpileikkaus scifi-maailmaan kattaa aikakaudet 50-luvulta tähän päivään sisältäen musiikkia mm. Star Warsista, Star Trekistä, Avataresta, Halosta ja Taisteluplaneetta Galacticasta. Tämä kokemus on omistettu kaikille, jotka ovat koskaan suunnanneet kaihoisan katseen kaukaisille tähtitaivaille.',
         infoLink: 'http://www.oulusinfonia.fi/konserttipohja/we-come-in-peace-orchestral-science-fiction-music.html',
+        extraInfo: [
+          {
+            linkText: 'Ohjelmakalenteri ja lipunvaraus',
+            url: 'http://www.oulusinfonia.fi/konsertit.html',
+          },
+        ],
         startDate: '2017-11-15',
         endDate: '2017-11-15',
         startTime: '19:00',
@@ -84,8 +120,14 @@ export default [
       {
         id: 26,
         name: 'WE COME IN PEACE - Orchestral Science Fiction Music',
-        description: 'Kiinnitä turvavyö ja valmistaudu matkaamaan valon nopeudella läpi syksyn suosituimman kulttuurikokemuksen. WE COME IN PEACE etsii kaukaisilta planeetoilta älyllistä elämää ja vie eeppisille sotatantereille sekä taisteluihin galaktisten hirviöiden keskelle. Konsertin isäntänä toimii mediapersoona ja scifi-rakastaja Orvar Säfström ja solistina itseoikeutetusti harvinaislaatuisen ja aavemaisen thereminin taituri Kristoffer Eng. Läpileikkaus scifi-maailmaan kattaa aikakaudet 50-luvulta tähän päivään sisältäen musiikkia mm. Star Warsista, Star Trekistä, Avataresta, Halosta ja Taisteluplaneetta Galacticasta. Tämä kokemus on omistettu kaikille, jotka ovat koskaan suunnanneet kaihoisan katseen kaukaisille tähtitaivaille.',
+        description: 'Kiinnitä turvavyö ja valmistaudu matkaamaan valon nopeudella läpi syksyn suosituimman kulttuurikokemuksen. WE COME IN PEACE etsii kaukaisilta planeetoilta älyllistä elämää ja vie eeppisille sotatantereille sekä taisteluihin galaktisten hirviöiden keskelle. Konsertin isäntänä toimii mediapersoona ja scifi-rakastaja Orvar Säfström ja solistina itseoikeutetusti harvinaislaatuisen ja aavemaisen thereminin taituri Kristoffer Eng.<br /><br />Läpileikkaus scifi-maailmaan kattaa aikakaudet 50-luvulta tähän päivään sisältäen musiikkia mm. Star Warsista, Star Trekistä, Avataresta, Halosta ja Taisteluplaneetta Galacticasta. Tämä kokemus on omistettu kaikille, jotka ovat koskaan suunnanneet kaihoisan katseen kaukaisille tähtitaivaille.',
         infoLink: 'http://www.oulusinfonia.fi/konserttipohja/we-come-in-peace-orchestral-science-fiction-music-2.html',
+        extraInfo: [
+          {
+            linkText: 'Ohjelmakalenteri ja lipunvaraus',
+            url: 'http://www.oulusinfonia.fi/konsertit.html',
+          },
+        ],
         startDate: '2017-11-16',
         endDate: '2017-11-16',
         startTime: '19:00',
@@ -95,8 +137,14 @@ export default [
       {
         id: 27,
         name: 'Suomalaisen elokuvan 100 vuotta',
-        description: 'Aivan kuten musiikki, myös kotimainen elokuva on käsitellyt maamme historian käänteitä ja ilmentänyt kansalaisten tuntoja monin tavoin. Itsenäisyyspäivän konsertissa nautitaan suomalaisen elokuvan valittuja paloja herkullisten musiikkiesitysten ja projisointien kautta. Sadan vuoden aikajänteeseen mahtuu musiikkia iskelmän kulta-ajalta taidemusiikin massiivisempiin numeroihin unohtamatta kaikille tuttuja koskettavia klassikoita. Konsertti toteutetaan yhteistyössä Oulun Elokuvakeskus ry:n kanssa.',
+        description: 'Aivan kuten musiikki, myös kotimainen elokuva on käsitellyt maamme historian käänteitä ja ilmentänyt kansalaisten tuntoja monin tavoin. Itsenäisyyspäivän konsertissa nautitaan suomalaisen elokuvan valittuja paloja herkullisten musiikkiesitysten ja projisointien kautta.<br /><br />Sadan vuoden aikajänteeseen mahtuu musiikkia iskelmän kulta-ajalta taidemusiikin massiivisempiin numeroihin unohtamatta kaikille tuttuja koskettavia klassikoita. Konsertti toteutetaan yhteistyössä Oulun Elokuvakeskus ry:n kanssa.',
         infoLink: 'http://www.oulusinfonia.fi/konserttipohja/suomalaisen-elokuvan-100-vuotta.html',
+        extraInfo: [
+          {
+            linkText: 'Ohjelmakalenteri ja lipunvaraus',
+            url: 'http://www.oulusinfonia.fi/konsertit.html',
+          },
+        ],
         startDate: '2017-12-06',
         endDate: '2017-12-06',
         startTime: '13:00',
@@ -106,8 +154,14 @@ export default [
       {
         id: 28,
         name: 'Joulukonsertti Leifin kanssa',
-        description: 'Oulu Sinfonian juhlavuosi päättyy itsensä Leif Segerstamin harppukonserton kantaesitykseen joulun tunnelmaa pulppuilevassa konsertissa. Nykymusiikin vastapainona kuullaan vanhaan ranskalaiseen joululauluun perustuva joulupastoraali sekä perinteisiä, tuttuja joululauluja Madetojan musiikkilukion lippulaivana toimivan tyttökuoron ja Oulu Sinfonian esittämänä.',
+        description: 'Oulu Sinfonian juhlavuosi päättyy itsensä Leif Segerstamin harppukonserton kantaesitykseen joulun tunnelmaa pulppuilevassa konsertissa.<br /><br />Nykymusiikin vastapainona kuullaan vanhaan ranskalaiseen joululauluun perustuva joulupastoraali sekä perinteisiä, tuttuja joululauluja Madetojan musiikkilukion lippulaivana toimivan tyttökuoron ja Oulu Sinfonian esittämänä.',
         infoLink: 'http://www.oulusinfonia.fi/konserttipohja/joulukonsertti-leifin-kanssa.html',
+        extraInfo: [
+          {
+            linkText: 'Ohjelmakalenteri ja lipunvaraus',
+            url: 'http://www.oulusinfonia.fi/konsertit.html',
+          },
+        ],
         startDate: '2017-12-14',
         endDate: '2017-12-14',
         startTime: '19:00',
@@ -127,7 +181,7 @@ export default [
       {
         id: 31,
         name: 'Pikkujoulu Piknik Ouluhallissa',
-        description: 'Kahdeksatta kertaa järjestettävä Pohjois-Suomen suurin pikkujoulutapahtuma Pikkujoulu Piknik esittää jälleen kerran ainutlaatuisen ja huikean ohjelman. Esiintyjinä LAURI TÄHKÄ, DINGO huippuvuosien alkuperäiskokoonpanolla, ERIN sekä ensimmäistä kertaansa viihdemusiikin pariin asteleva oululainen PETRUS SCHRODERUS ORKESTEREINEEN',
+        description: 'Kahdeksatta kertaa järjestettävä Pohjois-Suomen suurin pikkujoulutapahtuma Pikkujoulu Piknik esittää jälleen kerran ainutlaatuisen ja huikean ohjelman.<br /><br />Esiintyjinä LAURI TÄHKÄ, DINGO huippuvuosien alkuperäiskokoonpanolla, ERIN sekä ensimmäistä kertaansa viihdemusiikin pariin asteleva oululainen PETRUS SCHRODERUS ORKESTEREINEEN.',
         infoLink: 'http://www.piknik.fi/pikkujoulu-piknik-2017/',
         startDate: '2017-11-25',
         endDate: '2017-11-25',
@@ -146,7 +200,7 @@ export default [
       {
         id: 41,
         name: 'Oulun kansainvälinen lasten- ja nuortenelokuvien festivaali',
-        description: 'Oulun kansainvälinen lasten- ja nuortenelokuvien festivaali on Pohjoismaiden vanhin lastenelokuvien festivaali, joka kerää vuosittain n. 30 000 kävijää. Viikon kestävän tapahtuman aikana Oulu täyttyy sadoista tarinoista, kun festivaali levittäytyy valkokankaille, seminaarisaleihin ja näyttelytiloihin. Marraskuisella festivaalilla esitetään aamusta iltaan taiteellisesti korkeatasoisia lasten- ja nuortenelokuvia eri puolilta maailmaa. Pienille lapsille suunnatut elokuvat joko mikrofonitulkataan tai tekstitetään suomeksi.',
+        description: 'Oulun kansainvälinen lasten- ja nuortenelokuvien festivaali on Pohjoismaiden vanhin lastenelokuvien festivaali, joka kerää vuosittain n. 30 000 kävijää. Viikon kestävän tapahtuman aikana Oulu täyttyy sadoista tarinoista, kun festivaali levittäytyy valkokankaille, seminaarisaleihin ja näyttelytiloihin.<br /><br />Marraskuisella festivaalilla esitetään aamusta iltaan taiteellisesti korkeatasoisia lasten- ja nuortenelokuvia eri puolilta maailmaa. Pienille lapsille suunnatut elokuvat joko mikrofonitulkataan tai tekstitetään suomeksi.',
         infoLink: 'http://www.oulunelokuvakeskus.fi/lef/fi/etusivu',
         startDate: '2017-11-13',
         endDate: '2017-11-19',
@@ -365,7 +419,7 @@ export default [
       {
         id: 1001,
         name: 'LIITOS – Luonto uudessa tarkastelussa',
-        description: 'OULUN TAIDEMUSEO | Suomen Biotaiteen Seura ry:n ja Oulun taidemuseon tuottama kansainvälinen nykytaidenäyttely tarkentaa katseen ihmisen luontosuhteeseen ja muuttuvaan ympäristöön.',
+        description: 'Suomen Biotaiteen Seura ry:n ja Oulun taidemuseon tuottama kansainvälinen nykytaidenäyttely tarkentaa katseen ihmisen luontosuhteeseen ja muuttuvaan ympäristöön.',
         infoLink: 'https://www.ouka.fi/oulu/luuppi/liitos',
         startDate: '2017-05-11',
         endDate: '2017-11-12',
@@ -393,7 +447,7 @@ export default [
       {
         id: 1101,
         name: 'Comics Effects',
-        description: 'Sarjakuva- ja kuvitustaide ovat päivittäin läsnä jokaisen suomalaisen elämässä, mutta sarjakuva on myös oma taidemuotonsa, jolla on ollut ja on vaikutusta kuvataiteeseen ja taiteen tekijöihin. Oulun sarjakuvakeskuksen tuottamassa moni-ilmeisessä kokonaisuudessa nähdään mm. Veikko ”Joonas” Savolaisen, JP Ahosen, Kaisa Lekan ja Harri Filpan näyttelyt.',
+        description: 'Sarjakuva- ja kuvitustaide ovat päivittäin läsnä jokaisen suomalaisen elämässä, mutta sarjakuva on myös oma taidemuotonsa, jolla on ollut ja on vaikutusta kuvataiteeseen ja taiteen tekijöihin.<br /><br />Oulun sarjakuvakeskuksen tuottamassa moni-ilmeisessä kokonaisuudessa nähdään mm. Veikko ”Joonas” Savolaisen, JP Ahosen, Kaisa Lekan ja Harri Filpan näyttelyt.',
         infoLink: 'https://www.ouka.fi/oulu/luuppi/comics-effects',
         startDate: '2017-12-02',
         endDate: '2018-01-07',
