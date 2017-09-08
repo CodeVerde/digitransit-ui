@@ -260,6 +260,7 @@ export const getOuluPopupOptions = (layer) => {
         autoPanPaddingTopLeft: [0, 465],
         autoPanPaddingBottomRight: [110, 5],
         className: 'oulu-popup-large',
+        mobilePopup: true,
       };
       break;
     case 'oulu-road-condition':
@@ -267,6 +268,7 @@ export const getOuluPopupOptions = (layer) => {
         autoPanPaddingTopLeft: [0, 210],
         autoPanPaddingBottomRight: [110, 5],
         className: 'oulu-popup-large',
+        mobilePopup: true,
       };
       break;
     case 'oulu-bicycle-monitor':
@@ -275,6 +277,7 @@ export const getOuluPopupOptions = (layer) => {
         autoPanPaddingTopLeft: [0, 350],
         autoPanPaddingBottomRight: [145, 5],
         className: 'oulu-popup-xlarge',
+        mobilePopup: true,
       };
       break;
     default:
