@@ -111,6 +111,10 @@ class SearchMainContainer extends React.Component {
     this.openDialog(hasOrigin ? 'destination' : 'origin');
   }
 
+  clickOrigin = () => {
+    this.openDialog('origin');
+  }
+
   openDialog = (tab) => {
     this.context.router.push({
       ...this.context.location,
@@ -160,20 +164,35 @@ class SearchMainContainer extends React.Component {
   );
 
   render() {
+    const origin = this.context.getStore('EndpointStore').getOrigin();
     const destinationPlaceholder = this.context.intl.formatMessage({
       id: 'destination-placeholder',
       defaultMessage: 'Enter destination, route or stop',
     });
+    const originPlaceholder = origin.address;
+    /* const originPlaceholder = this.context.intl.formatMessage({
+      id: 'origin-placeholder',
+      defaultMessage: 'Enter origin',
+    });*/
 
     const fakeSearchBar = (
-      <FakeSearchBar
-        placeholder={destinationPlaceholder}
-        id="front-page-search-bar"
-      />);
+      <div>
+        <FakeSearchBar
+          placeholder={destinationPlaceholder}
+          id="front-page-search-bar"
+        />
+      </div>);
+
+    const fakeSearchBar2 = (
+      <div>
+        <FakeSearchBar
+          placeholder={originPlaceholder}
+          id="front-page-origin-bar"
+        />
+      </div>);
 
     const Component = this.context.breakpoint === 'large' ? SearchModalLarge : SearchModal;
 
-    const origin = this.context.getStore('EndpointStore').getOrigin();
     let searchLayers = getAllEndpointLayers();
     if (origin.useCurrentPosition) { // currpos-currpos routing not allowed
       searchLayers = without(searchLayers, 'CurrentPosition');
@@ -185,7 +204,12 @@ class SearchMainContainer extends React.Component {
           'fake-search-container', `bp-${this.context.breakpoint}`, this.props.className,
         )}
       >
-        <FakeSearchWithButtonContainer fakeSearchBar={fakeSearchBar} onClick={this.clickSearch} />
+        <FakeSearchWithButtonContainer
+          fakeSearchBar={fakeSearchBar}
+          fakeSearchBar2={fakeSearchBar2}
+          onClick={this.clickSearch}
+          onClick2={this.clickOrigin}
+        />
         <Component
           selectedTab={this.props.selectedTab}
           modalIsOpen={this.props.searchModalIsOpen}
