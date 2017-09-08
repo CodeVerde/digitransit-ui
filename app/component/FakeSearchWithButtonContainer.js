@@ -5,9 +5,25 @@ import Icon from './Icon';
 import ComponentUsageExample from './ComponentUsageExample';
 import FakeSearchBar from './FakeSearchBar';
 
-export const FakeSearchWithButton = ({ fakeSearchBar, onClick, breakpoint }) => (
+export const FakeSearchWithButton = ({
+  fakeSearchBar, fakeSearchBar2, onClick, onClick2, breakpoint,
+}) => (
   <div className={`search-form bp-${breakpoint}`}>
-    <div className="small-12 search-form-map-overlay">
+    <div className="small-6 search-form-map-overlay">
+      <button title="haku" tabIndex="0" onClick={onClick2} className="noborder search-button flex-horisontal">
+        <div className="flex-grow row collapse">
+          <div className="small-11 columns">
+            {fakeSearchBar2}
+          </div>
+          <div className="small-1 columns">
+            <span className="postfix search cursor-pointer button-icon search-origin-icon">
+              <Icon img="icon-icon_position" />
+            </span>
+          </div>
+        </div>
+      </button>
+    </div>
+    <div className="small-6 search-form-map-overlay search-form-map-overlay2">
       <button title="haku" tabIndex="0" onClick={onClick} className="noborder search-button flex-horisontal">
         <div className="flex-grow row collapse">
           <div className="small-11 columns">
@@ -27,7 +43,9 @@ export const FakeSearchWithButton = ({ fakeSearchBar, onClick, breakpoint }) => 
 
 FakeSearchWithButton.propTypes = {
   fakeSearchBar: PropTypes.object.isRequired,
+  fakeSearchBar2: PropTypes.object.isRequired,
   onClick: PropTypes.func,
+  onClick2: PropTypes.func,
   breakpoint: PropTypes.string,
 };
 
