@@ -23,7 +23,6 @@ export default class EventPopupContainer extends React.Component {
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
-      fluencyText: PropTypes.string.isRequired,
       geometry: PropTypes.arrayOf(PropTypes.number).isRequired,
       startDate: PropTypes.string.isRequired,
       endDate: PropTypes.string.isRequired,

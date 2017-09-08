@@ -158,8 +158,8 @@ export default [
     venueId: 5,
     name: 'Oulun pääkirjasto',
     geometry: [
-      65.0141775,
-      25.4681372,
+      65.0154421,
+      25.4634084,
     ],
     events: [
       {
@@ -179,8 +179,8 @@ export default [
     venueId: 6,
     name: 'Oulun kauppatori',
     geometry: [
-      65.0141775,
-      25.4681372,
+      65.0135309,
+      25.4621188,
     ],
     events: [
       {
