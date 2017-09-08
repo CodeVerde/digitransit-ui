@@ -354,4 +354,51 @@ export default [
       },
     ],
   },
+  {
+    venueId: 10,
+    name: 'Oulun taidemuseo',
+    geometry: [
+      65.0190215,
+      25.4822172,
+    ],
+    events: [
+      {
+        id: 1001,
+        name: 'LIITOS – Luonto uudessa tarkastelussa',
+        description: 'OULUN TAIDEMUSEO | Suomen Biotaiteen Seura ry:n ja Oulun taidemuseon tuottama kansainvälinen nykytaidenäyttely tarkentaa katseen ihmisen luontosuhteeseen ja muuttuvaan ympäristöön.',
+        infoLink: 'https://www.ouka.fi/oulu/luuppi/liitos',
+        startDate: '2017-05-11',
+        endDate: '2017-11-12',
+        tags: ['museum'],
+      },
+      {
+        id: 1002,
+        name: 'Näytönpaikka pohjoisessa piilaaksossa',
+        description: 'Mikä sai alkunsa vuonna 1979 Oulussa? Kuka oli sotkamolainen Toivo Ruokko, sähköteekkari josta tuli hetkeksi maailman juhlituin teknologiaguru ja yritysjohtaja? Tekikö Toivo Ruokko Suomen yrityshistorian karuimman konkurssin, vai mitä Toivolle tapahtui?',
+        infoLink: 'https://www.ouka.fi/naytonpaikka',
+        startDate: '2017-12-02',
+        endDate: '2019-01-06',
+        tags: ['museum'],
+      },
+    ],
+  },
+  {
+    venueId: 11,
+    name: 'Oulun taidemuseo',
+    geometry: [
+      65.0189441,
+      25.4809093,
+    ],
+    events: [
+      {
+        id: 1101,
+        name: 'Comics Effects',
+        description: 'Sarjakuva- ja kuvitustaide ovat päivittäin läsnä jokaisen suomalaisen elämässä, mutta sarjakuva on myös oma taidemuotonsa, jolla on ollut ja on vaikutusta kuvataiteeseen ja taiteen tekijöihin. Oulun sarjakuvakeskuksen tuottamassa moni-ilmeisessä kokonaisuudessa nähdään mm. Veikko ”Joonas” Savolaisen, JP Ahosen, Kaisa Lekan ja Harri Filpan näyttelyt.',
+        infoLink: 'https://www.ouka.fi/oulu/luuppi/comics-effects',
+        startDate: '2017-12-02',
+        endDate: '2018-01-07',
+        tags: ['museum'],
+      },
+    ],
+  },
 ];
