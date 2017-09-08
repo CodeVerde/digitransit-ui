@@ -10,7 +10,7 @@ export default [
       {
         id: 11,
         name: 'Useita tilaisuuksia',
-        description: 'Welcome to Oulu theatre! Here are some of the plays you can enjoy this fall:<br />-Rautatie Ilosia aikoja<br />-Mielensäpahoittaja<br />-Saituri ja Lasse-Maijan etsivätoimisto',
+        description: 'Welcome to Oulu theatre! Here are some of the plays you can enjoy this fall:<br />-Rautatie Ilosia aikoja<br />-Mielensäpahoittaja<br />-Saituri ja Lasse-Maijan etsivätoimisto<br />And much more...',
         infoLink: 'http://teatteri.ouka.fi/ohjelmisto/nyt-ohjelmistossa',
         startDate: '2017-09-02',
         endDate: '2017-12-31',
