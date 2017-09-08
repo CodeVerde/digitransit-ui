@@ -491,11 +491,28 @@ ul.react-autowhatever__items-list {
   //position: absolute;
 }
 
+.search-form .search-form-map-overlay {
+  background: #eef1f3;
+  width: 100%;
+}
+
 .search-mobile .search-form-map-overlay {
+  background: rgba(255, 255, 255, .4);
+  padding-bottom: 10px;
   padding-top: 53px;
   position: absolute;
-  width: 100%;
   z-index: 802;
+}
+
+.search-mobile .search-form-map-overlay2 {
+  right: 0;
+}
+
+.search-origin-icon {
+  background: #fff !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: #e10069 !important;
 }
 
 .search-modal-overlay {
