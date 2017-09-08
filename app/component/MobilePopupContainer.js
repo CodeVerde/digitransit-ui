@@ -1,27 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import connectToStores from 'fluxible-addons-react/connectToStores';
-// import getContext from 'recompose/getContext';
 
 import isEmpty from 'lodash/isEmpty';
-// import MapUtils from './MapUtils';
-// <MapUtils />
 import AddPopupData from '../action/popupActions';
 
 
 const closePopup = executeAction => (
-  () => executeAction(
-    AddPopupData,
-    {},
-  )
+  () => {
+    event.stopPropagation();
+    executeAction(
+      AddPopupData,
+      {},
+    );
+  }
 );
 
-const MobilePopupContainer = ({ popupData }, { executeAction, breakpoint }) => (
-  <div className="mobile-popup-container" onClick={closePopup(executeAction)}>
-    <div className="mobile-popup-content" id="mobile-popup-content">
-      {!isEmpty(popupData) && breakpoint !== 'large' && popupData}
+const MobilePopupContainer = ({ popupData }, { executeAction, breakpoint }) => {
+  if (isEmpty(popupData) || breakpoint === 'large') {
+    return (<div />);
+  }
+
+  return (
+    <div className="mobile-popup-container" onClick={closePopup(executeAction)}>
+      <div className="mobile-popup-content" id="mobile-popup-content">
+        {popupData}
+      </div>
     </div>
-  </div>);
+  );
+};
 
 MobilePopupContainer.propTypes = {
   popupData: PropTypes.object.isRequired,

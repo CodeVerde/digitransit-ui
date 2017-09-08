@@ -65,12 +65,14 @@ export default class CameraPopupContainer extends React.Component {
     .catch(err => console.error(err));
   }
 
-  prevSlide() {
+  prevSlide(event) {
+    event.stopPropagation();
     this.slideIndex -= 1;
     this.updateObjects();
   }
 
-  nextSlide() {
+  nextSlide(event) {
+    event.stopPropagation();
     this.slideIndex += 1;
     this.updateObjects();
   }

@@ -221,7 +221,7 @@ class TileLayerContainer extends MapLayer {
   render() {
     let popup = null;
     let contents;
-    let customOptions;
+    let customOptions = {};
 
 
     const loadingPopup = () =>
@@ -333,19 +333,29 @@ class TileLayerContainer extends MapLayer {
             this.state.selectableTargets[0].content,
           );
           customOptions = getOuluPopupOptions(this.state.selectableTargets[0].layer);
-          // document.getElementById('mobile-popup-content').innerHTML = contents;
-          console.log('oulu popup found');
-          this.context.executeAction(
-            AddPopupData,
-            contents,
-          );
         }
-        if (this.state.selectableTargets[0].layer.startsWith('oulu-') &&
-          this.context.breakpoint === 'large') {
-          const myOptions = Object.assign({}, PopupOptions, customOptions);
+        if (this.state.selectableTargets[0].layer.startsWith('oulu-')) {
+          if (this.context.breakpoint === 'large' || !customOptions.mobilePopup) {
+            const myOptions = Object.assign({}, PopupOptions, customOptions);
+            popup = (
+              <Popup
+                {...myOptions}
+                key={id}
+                position={this.state.coords}
+              >
+                {contents}
+              </Popup>
+            );
+          } else {
+            this.context.executeAction(
+              AddPopupData,
+              contents,
+            );
+          }
+        } else {
           popup = (
             <Popup
-              {...myOptions}
+              {...PopupOptions}
               key={id}
               position={this.state.coords}
             >
@@ -365,21 +375,31 @@ class TileLayerContainer extends MapLayer {
               element.content,
             );
             customOptions = getOuluPopupOptions(element.layer);
-            const myOptions = Object.assign({}, PopupOptions, customOptions);
-            popup = (
-              <Popup
-                {...myOptions}
-                key={id}
-                position={this.state.coords}
-              >
-                {contents}
-              </Popup>);
+
+            if (this.context.breakpoint === 'large' || !customOptions.mobilePopup) {
+              const myOptions = Object.assign({}, PopupOptions, customOptions);
+              popup = (
+                <Popup
+                  {...myOptions}
+                  key={id}
+                  position={this.state.coords}
+                >
+                  {contents}
+                </Popup>
+              );
+            } else {
+              this.context.executeAction(
+                AddPopupData,
+                contents,
+              );
+            }
+
             return false;
           }
           return true;
         });
 
-        if (!popup) {
+        if (!popup && !customOptions.mobilePopup) {
           popup = (
             <Popup
               key={this.state.coords.toString()}

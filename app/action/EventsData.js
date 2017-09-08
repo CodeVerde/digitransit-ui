@@ -10,7 +10,7 @@ export default [
       {
         id: 11,
         name: 'Useita tilaisuuksia',
-        description: 'Welcome to Oulu theatre! Here are some of the plays you can enjoy this fall:<br />-Rautatie Ilosia aikoja<br />-Mielensäpahoittaja<br />-Saituri ja Lasse-Maijan etsivätoimisto',
+        description: 'Welcome to Oulu theatre! Here are some of the plays you can enjoy this fall:<br />-Rautatie Ilosia aikoja<br />-Mielensäpahoittaja<br />-Saituri ja Lasse-Maijan etsivätoimisto<br />And much more...',
         infoLink: 'http://teatteri.ouka.fi/ohjelmisto/nyt-ohjelmistossa',
         startDate: '2017-09-02',
         endDate: '2017-12-31',
@@ -158,8 +158,8 @@ export default [
     venueId: 5,
     name: 'Oulun pääkirjasto',
     geometry: [
-      65.0141775,
-      25.4681372,
+      65.0154421,
+      25.4634084,
     ],
     events: [
       {
@@ -179,8 +179,8 @@ export default [
     venueId: 6,
     name: 'Oulun kauppatori',
     geometry: [
-      65.0141775,
-      25.4681372,
+      65.0135309,
+      25.4621188,
     ],
     events: [
       {
@@ -351,6 +351,53 @@ export default [
         startTime: '17:00',
         endTime: '20:00',
         tags: ['sport'],
+      },
+    ],
+  },
+  {
+    venueId: 10,
+    name: 'Oulun taidemuseo',
+    geometry: [
+      65.0190215,
+      25.4822172,
+    ],
+    events: [
+      {
+        id: 1001,
+        name: 'LIITOS – Luonto uudessa tarkastelussa',
+        description: 'OULUN TAIDEMUSEO | Suomen Biotaiteen Seura ry:n ja Oulun taidemuseon tuottama kansainvälinen nykytaidenäyttely tarkentaa katseen ihmisen luontosuhteeseen ja muuttuvaan ympäristöön.',
+        infoLink: 'https://www.ouka.fi/oulu/luuppi/liitos',
+        startDate: '2017-05-11',
+        endDate: '2017-11-12',
+        tags: ['museum'],
+      },
+      {
+        id: 1002,
+        name: 'Näytönpaikka pohjoisessa piilaaksossa',
+        description: 'Mikä sai alkunsa vuonna 1979 Oulussa? Kuka oli sotkamolainen Toivo Ruokko, sähköteekkari josta tuli hetkeksi maailman juhlituin teknologiaguru ja yritysjohtaja? Tekikö Toivo Ruokko Suomen yrityshistorian karuimman konkurssin, vai mitä Toivolle tapahtui?',
+        infoLink: 'https://www.ouka.fi/naytonpaikka',
+        startDate: '2017-12-02',
+        endDate: '2019-01-06',
+        tags: ['museum'],
+      },
+    ],
+  },
+  {
+    venueId: 11,
+    name: 'Oulun taidemuseo',
+    geometry: [
+      65.0189441,
+      25.4809093,
+    ],
+    events: [
+      {
+        id: 1101,
+        name: 'Comics Effects',
+        description: 'Sarjakuva- ja kuvitustaide ovat päivittäin läsnä jokaisen suomalaisen elämässä, mutta sarjakuva on myös oma taidemuotonsa, jolla on ollut ja on vaikutusta kuvataiteeseen ja taiteen tekijöihin. Oulun sarjakuvakeskuksen tuottamassa moni-ilmeisessä kokonaisuudessa nähdään mm. Veikko ”Joonas” Savolaisen, JP Ahosen, Kaisa Lekan ja Harri Filpan näyttelyt.',
+        infoLink: 'https://www.ouka.fi/oulu/luuppi/comics-effects',
+        startDate: '2017-12-02',
+        endDate: '2018-01-07',
+        tags: ['museum'],
       },
     ],
   },
