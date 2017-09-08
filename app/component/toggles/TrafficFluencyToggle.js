@@ -59,7 +59,7 @@ const TrafficFluencyToggle = ({ trafficFluencyState }, { executeAction }) => (
         <input type="checkbox" id="traffic-fluency-checkbox-toggle" />
         <label htmlFor="traffic-fluency-checkbox-toggle">
           <svg className="icon" viewBox="0 0 283.46 283.46">
-            <use xlinkHref="#icon-icon_change_direction_1" />
+            <use xlinkHref="#icon-icon_congestation_1" />
           </svg>
           <FormattedMessage id="toggle-traffic-fluency" defaultMessage="Monitoring" />
           <Icon className="fake-select-arrow" img="icon-icon_arrow-dropdown" />
