@@ -11,6 +11,7 @@ import MessageStore from './store/MessageStore';
 import ModeStore from './store/ModeStore';
 import SimpleModeStore from './store/SimpleModeStore';
 import OldSearchesStore from './store/OldSearchesStore';
+import PopupStore from './store/PopupStore';
 import PositionStore from './store/PositionStore';
 import PreferencesStore from './store/PreferencesStore';
 import RealTimeInformationStore from './store/RealTimeInformationStore';
@@ -32,6 +33,7 @@ export default (config) => {
   app.registerStore(ModeStore);
   app.registerStore(SimpleModeStore);
   app.registerStore(OldSearchesStore);
+  app.registerStore(PopupStore);
   app.registerStore(PositionStore);
   app.registerStore(PreferencesStore);
   app.registerStore(RealTimeInformationStore);

@@ -11,6 +11,8 @@ import lodashFilter from 'lodash/filter';
 import L from 'leaflet';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 
+import AddPopupData from '../../../action/popupActions';
+
 import StopRoute from '../../../route/StopRoute';
 import TerminalRoute from '../../../route/TerminalRoute';
 import CityBikeRoute from '../../../route/CityBikeRoute';
@@ -122,6 +124,7 @@ class TileLayerContainer extends MapLayer {
     location: PropTypes.object.isRequired,
     route: PropTypes.object.isRequired,
     config: PropTypes.object.isRequired,
+    breakpoint: PropTypes.string.isRequired,
   };
 
   state = {
@@ -330,17 +333,26 @@ class TileLayerContainer extends MapLayer {
             this.state.selectableTargets[0].content,
           );
           customOptions = getOuluPopupOptions(this.state.selectableTargets[0].layer);
-        }
-        const myOptions = Object.assign({}, PopupOptions, customOptions);
-        popup = (
-          <Popup
-            {...myOptions}
-            key={id}
-            position={this.state.coords}
-          >
-            {contents}
-          </Popup>
+          // document.getElementById('mobile-popup-content').innerHTML = contents;
+          console.log('oulu popup found');
+          this.context.executeAction(
+            AddPopupData,
+            contents,
           );
+        }
+        if (this.state.selectableTargets[0].layer.startsWith('oulu-') &&
+          this.context.breakpoint === 'large') {
+          const myOptions = Object.assign({}, PopupOptions, customOptions);
+          popup = (
+            <Popup
+              {...myOptions}
+              key={id}
+              position={this.state.coords}
+            >
+              {contents}
+            </Popup>
+          );
+        }
       } else if (this.state.selectableTargets.length > 1) {
         // Single Oulu popup is always shown if it's found
         this.state.selectableTargets.every((element) => {
