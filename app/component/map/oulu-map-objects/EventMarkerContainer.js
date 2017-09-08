@@ -4,6 +4,7 @@ import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import moment from 'moment';
 
+import { getEventIconName } from '../../../util/ouluUtils';
 import { asString as iconAsString } from '../../OuluIcon';
 import { isBrowser } from '../../../util/browser';
 import { AddEventsData } from '../../../action/mapSelectionsActions';
@@ -24,7 +25,7 @@ const parseEventMessage = (data) => {
   if (!data || !Array.isArray(data)) { return cleanData; }
 
   const today = moment().set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
-  const limitDate = moment().add(7, 'day').set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
+  const limitDate = moment().add(90, 'day').set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
 
   data.forEach((venue) => {
     venue.events.every((event) => {
@@ -52,9 +53,9 @@ const parseEventMessage = (data) => {
   return cleanData;
 };
 
-const getEventIcon = iconText => (
+const getEventIcon = tags => (
   L.divIcon({
-    html: iconAsString({ img: 'icon-icon_boat-withoutBox', iconText }),
+    html: iconAsString({ img: getEventIconName(tags) }),
     className: 'white-icon-oulu',
     iconSize: [30, 30],
     iconAnchor: [15, 30],
@@ -114,7 +115,7 @@ class EventMarkerContainer extends React.PureComponent {
             lat: element.geometry[0],
             lng: element.geometry[1],
           }}
-          icon={getEventIcon()}
+          icon={getEventIcon(element.tags)}
           title={element.name}
           interactive={false}
         />,

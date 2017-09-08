@@ -16,7 +16,7 @@ const OutdoorGymsToggle = ({ showOutdoorGyms }, { executeAction }) => (
       <Toggle checked={showOutdoorGyms} icons={false} id="OutdoorGymsToggle" onChange={toggleOutdoorGyms(executeAction)} />
       <label htmlFor="OutdoorGymsToggle">
         <svg className="icon" viewBox="0 0 283.46 283.46">
-          <use xlinkHref="#icon-icon_traffic_cam_1" />
+          <use xlinkHref="#icon-outdoor-gym" />
         </svg>
         <FormattedMessage id="toggle-outdoor-gyms" defaultMessage="Outdoor gyms" />
       </label>

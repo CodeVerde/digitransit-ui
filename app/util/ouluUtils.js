@@ -20,3 +20,20 @@ export function parseBreaks(text) {
      line.match(regex) ? <br key={`parse-break-key_${index}`} /> : line
   ));
 }
+
+export const getEventIconName = (tags) => {
+  if (tags.indexOf('children') >= 0) {
+    return 'event-icon-childrens-event';
+  } else if (tags.indexOf('music') >= 0) {
+    return 'event-icon-concert';
+  } else if (tags.indexOf('museum') >= 0) {
+    return 'event-icon-museum';
+  } else if (tags.indexOf('sport') >= 0) {
+    return 'event-icon-sport-event';
+  } else if (tags.indexOf('theatre') >= 0) {
+    return 'event-icon-theatre';
+  } else if (tags.indexOf('festival') >= 0) {
+    return 'event-icon-festival';
+  }
+  return 'events-icon';
+};
