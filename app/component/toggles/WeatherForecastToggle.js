@@ -12,14 +12,13 @@ import ComponentUsageExample from '../ComponentUsageExample';
 
 const parseWeatherXml = (rawData) => {
   const cleanData = [];
-  const today = moment();
   const parser = new DOMParser();
   const xmlDoc = parser.parseFromString(rawData, 'text/xml');
   const locationObj = xmlDoc.getElementsByTagName('location');
   const timeObjs = xmlDoc.getElementsByTagName('time');
 
-  Array.from(timeObjs).every((element) => {
-    if (moment(element.attributes[0].nodeValue).day() === today.day()) {
+  Array.from(timeObjs).every((element, index) => {
+    if (index < 4) {
       cleanData.push({
         forecastLocation: locationObj[0].childNodes[1].innerHTML,
         forecastTime: moment(element.attributes[0].nodeValue),
@@ -31,8 +30,12 @@ const parseWeatherXml = (rawData) => {
     return false;
   });
 
-  console.log('cleanData: ', cleanData);
+  // console.log('cleanData: ', cleanData);
   return cleanData;
+};
+
+const handleCloseModal = () => {
+  document.getElementById('weather-forecast-checkbox-toggle').checked = false;
 };
 
 class WeatherForecastToggle extends React.Component {
@@ -47,9 +50,6 @@ class WeatherForecastToggle extends React.Component {
       showModal: true,
       weatherData: [],
     };
-
-    this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   componentWillMount() {
@@ -63,14 +63,6 @@ class WeatherForecastToggle extends React.Component {
     .then(result => this.setState({ weatherData: result }))
     // eslint-disable-next-line no-console
     .catch(err => console.error(err));
-  }
-
-  handleOpenModal() {
-    this.setState({ showModal: true });
-  }
-
-  handleCloseModal() {
-    this.setState({ showModal: false });
   }
 
   renderWeatherRows() {
@@ -90,11 +82,15 @@ class WeatherForecastToggle extends React.Component {
       </div>,
     );
 
-    data.forEach(element => (
+    const today = moment();
+    const extraDayText = this.context.intl.formatMessage({ id: 'next-day-text', defaultMessage: 'Time' });
+
+    data.forEach((element) => {
+      const extraDay = moment(element.forecastTime).day() !== today.day() ? extraDayText : '';
       rows.push(
         <div className="row weather-popup-row" key={`weather-popup-row-${moment(element.forecastTime).format('HH')}`}>
           <div className="small-4 columns">
-            {moment(element.forecastTime).format('HH:mm')}
+            {moment(element.forecastTime).format('HH:mm')}{extraDay}
           </div>
           <div className="small-4 columns">
             <Icon
@@ -104,8 +100,8 @@ class WeatherForecastToggle extends React.Component {
           </div>
           <div className="small-4 columns">{element.forecastTemperature} °C</div>
         </div>,
-      )
-    ));
+      );
+    });
 
     return rows;
   }
@@ -121,17 +117,24 @@ class WeatherForecastToggle extends React.Component {
     return (
       <div>
         <div className="weather-forecast-header">
-          <div>
-            <h2>
-              <FormattedMessage
-                id="weather-forecast"
-                values={{ city }}
-                defaultMessage="Weather Forecast {city}"
+          <h2>
+            <FormattedMessage
+              id="weather-forecast"
+              values={{ city }}
+              defaultMessage="Weather Forecast {city}"
+            />
+            <button
+              className="close-button cursor-pointer"
+              onClick={handleCloseModal}
+            >
+              <Icon
+                id="weather-forecast-icon"
+                img="icon-icon_close"
               />
-            </h2>
-          </div>
+            </button>
+          </h2>
           <div className="weather-forecast-sub-header">
-            {moment().format('D.M.YYYY')}
+            {moment().format('DD.MM.YYYY')}
           </div>
         </div>
         <div>
@@ -145,7 +148,7 @@ class WeatherForecastToggle extends React.Component {
             values={{ city }}
             defaultMessage="Weather forecast provided by "
           />
-          <a href="https://www.yr.no">yr.no</a>
+          <a href="http://www.yr.no/place/Finland/Oulu/Oulu/">yr.no</a>
         </div>
       </div>
     );
@@ -161,9 +164,9 @@ class WeatherForecastToggle extends React.Component {
             <input type="checkbox" id="weather-forecast-checkbox-toggle" />
             <label htmlFor="weather-forecast-checkbox-toggle">
               <svg className="icon" viewBox="0 0 283.46 283.46">
-                <use xlinkHref="#icon-icon_weather" />
+                <use xlinkHref="#weather-icon-d000" />
               </svg>
-              <FormattedMessage id="toggle-weather-forecast" defaultMessage="Sääennuste" />
+              <FormattedMessage id="toggle-weather-forecast" defaultMessage="Weather forecast" />
             </label>
             {this.renderObjects()}
           </div>

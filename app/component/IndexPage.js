@@ -9,6 +9,7 @@ import FrontPagePanelSmall from './FrontPagePanelSmall';
 import MapWithTracking from '../component/map/MapWithTracking';
 import SearchMainContainer from './SearchMainContainer';
 import MapUtils from './MapUtils';
+import MobilePopupContainer from './MobilePopupContainer';
 import PageFooter from './PageFooter';
 import SimpleModeFilterContainer from './SimpleModeFilterContainer';
 
@@ -215,6 +216,9 @@ class IndexPage extends React.Component {
               favouritesClicked={this.clickFavourites}
             >{this.props.content}</FrontPagePanelLarge>
           </div>
+          {/* <div className="mobile-popup-container">
+            <MobilePopupContainer>{this.props.content}</MobilePopupContainer>
+          </div> */}
           <div className="map-utils-container">
             <MapUtils>{this.props.content}</MapUtils>
           </div>
@@ -259,6 +263,7 @@ class IndexPage extends React.Component {
                 selectedTab={selectedSearchTab}
               />
             </div>
+            <MobilePopupContainer>{this.props.content}</MobilePopupContainer>
           </MapWithTracking>
         </div>
         <div>

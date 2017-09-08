@@ -254,6 +254,13 @@ export default (config) => {
               .then(getDefault).then(content => cb(null, { content })).catch(errorLoading)
           }
         />
+        {/* <Route
+          path="mobile-popup-container"
+          getComponents={(location, cb) =>
+            System.import('./component/MobilePopupContainer')
+              .then(getDefault).then(content => cb(null, { content })).catch(errorLoading)
+          }
+        />*/}
       </Route>
       <Route
         path="/?mock" topBarOptions={{ disableBackButton: true }} components={{
@@ -282,6 +289,13 @@ export default (config) => {
               .then(getDefault).then(content => cb(null, { content })).catch(errorLoading)
           }
         />
+        {/* <Route
+          path="mobile-popup-container"
+          getComponents={(location, cb) =>
+            System.import('./component/MobilePopupContainer')
+              .then(getDefault).then(content => cb(null, { content })).catch(errorLoading)
+          }
+        /> */}
       </Route>
 
       <Route path="/pysakit">

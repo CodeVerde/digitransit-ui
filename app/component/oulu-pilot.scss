@@ -30,6 +30,81 @@
     vertical-align: middle;
 }
 
+
+@media screen and (max-width: 989px) {
+  .mobile-popup-container {
+    display: flex;
+    position: absolute;
+    background: rgba(128,128,128,0.7);
+    // opacity: 0.5;
+    // z-index: 1100;
+    // top: 0px;
+    // bottom: 0;
+    width: 100%;
+    // width: calc(100% - 100px);
+    top: 100px;
+    max-height: 50%;
+    // height: calc(100% - 100px);
+    // display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // max-height: calc(100% - 60px);
+    // max-width: 200px;
+    // min-width: 40px;
+    // padding: 10px;
+    // position: absolute;
+    // right: 30px;
+    // top: 30px;
+    //width: 30%;
+    // width: 200px;
+    z-index: 703;
+  }
+
+  .mobile-popup-content {
+    display: flex;
+    position: relative;
+    background: rgba(128, 128, 128, 1.0);
+    opacity: 1;
+    color: $black;
+    // z-index: 1100;
+    // top: 0px;
+    // bottom: 0;
+    // width: 100%;
+    width: calc(100% - 100px);
+    // height: 100%;
+    max-height: calc(100% - 100px);
+    overflow-y: auto;
+    // display: flex;
+    // flex-direction: column;
+
+    // max-height: calc(100% - 60px);
+    // max-width: 200px;
+    // min-width: 40px;
+    // padding: 10px;
+    // position: absolute;
+    // right: 30px;
+    // top: 30px;
+    //width: 30%;
+    // width: 200px;
+    z-index: 704;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .mobile-popup-container {
+    display: none;
+    position: absolute;
+    // bottom: 0;
+    // right: 0px;
+    // width: 500px;
+  }
+
+  .mobile-popup-content {
+    // Nada
+  }
+}
+
 .oulu-popup-large {
   left: -21px !important;
   .route-header {
@@ -235,6 +310,7 @@
 
 .weather-forecast-popup {
   display: inline-block;
+  padding-left: 24px;
 
   & input[type=checkbox] {
     & ~ label {
@@ -276,14 +352,35 @@
   width: 250px;
   padding: 0.4em 0 0.5em;
 
-  span {
-    margin-left: 4px;
-    color: $primary-color;
-  }
-
   h2 {
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     margin: 0px;
+    width: 100%;
+
+    span {
+      display: flex;
+      @include font-bold;
+      margin-left: 4px;
+      font-size: $font-size-small;
+      text-transform: uppercase;
+      color: $black !important;
+    }
+
+    button {
+      display: flex;
+      float: right;
+      background-color: inherit;
+      margin: 0px;
+      padding: 0px;
+
+      .icon {
+        margin: 0px;
+        width: 0.8em;
+        height: 0.8em;
+      }
+    }
   }
 
   .weather-forecast-sub-header {

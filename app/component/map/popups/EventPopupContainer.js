@@ -7,6 +7,7 @@ import Icon from '../../Icon';
 import Card from '../../Card';
 import {
   parseBreaks,
+  getEventIconName,
 } from '../../../util/ouluUtils';
 
 export default class EventPopupContainer extends React.Component {
@@ -43,9 +44,10 @@ export default class EventPopupContainer extends React.Component {
         <div className="card-header">
           <div className="card-header-wrapper">
             <div className="card-header-icon">
+              {}
               <Icon
                 id="event-popup-icon"
-                img="icon-icon_boat-withoutBox"
+                img={getEventIconName(data.tags)}
                 className="oulu-popup-icon"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
