@@ -41,7 +41,7 @@ export default class EventPopupContainer extends React.Component {
         extraInfo.push(
           <li key={`event-popup-extra-info-${element.linkText}`}>
             <span className="oulu-popup-content route-detail-text no-padding no-margin">
-              <a href={element.url}>{element.linkText}</a>
+              <a href={element.url} target="_blank" rel="noreferrer noopener">{element.linkText}</a>
             </span>
           </li>,
         );
@@ -52,7 +52,7 @@ export default class EventPopupContainer extends React.Component {
       <ul>
         <li>
           <span className="oulu-popup-content route-detail-text no-padding no-margin">
-            <a href={data.infoLink}>Tapahtumasivut</a>
+            <a href={data.infoLink} target="_blank" rel="noreferrer noopener">Tapahtumasivut</a>
           </span>
         </li>
         { extraInfo }
