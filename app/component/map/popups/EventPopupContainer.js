@@ -80,7 +80,7 @@ export default class EventPopupContainer extends React.Component {
               <Icon
                 id="event-popup-icon"
                 img={getEventIconName(data.tags)}
-                className="oulu-popup-icon"
+                className="icon-purple"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
                 Tapahtuma

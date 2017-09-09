@@ -58,6 +58,7 @@ export default class WeatherStationPopupContainer extends React.Component {
               <Icon
                 id="car-monitor-popup-icon"
                 img="icon-icon_tiesaa_marker"
+                className="icon-blue"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
                 {this.context.intl.formatMessage({ id: 'road-weather', defaultMessage: 'Road weather' })}

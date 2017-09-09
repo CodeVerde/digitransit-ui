@@ -21,7 +21,7 @@ if (isBrowser) {
 const getOutdoorGymIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-outdoor-gym', iconText }),
-    className: 'white-icon-oulu',
+    className: 'green-icon-oulu',
     iconSize: [30, 30],
     iconAnchor: [15, 30],
   })

@@ -45,7 +45,7 @@ const parseWeatherStationMessage = (data) => {
 const getWeatherStationMarkerIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-icon_tiesaa_marker', iconText }),
-    className: 'white-icon-oulu',
+    className: 'blue-icon-oulu',
     iconSize: [30, 30],
     iconAnchor: [15, 30],
   })

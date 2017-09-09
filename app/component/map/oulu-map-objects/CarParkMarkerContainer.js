@@ -40,7 +40,21 @@ const getCarParkIcon = (icon, iconText) => {
   if (icon === 'parking-house-green.png') {
     return L.divIcon({
       html: iconAsString({ img: 'icon-icon_parking', iconText }),
-      className: 'car-park-available-marker',
+      className: 'green-icon-oulu',
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+    });
+  } else if (icon === 'parking-house-yellow.png') {
+    return L.divIcon({
+      html: iconAsString({ img: 'icon-icon_parking', iconText }),
+      className: 'white-icon-oulu',
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+    });
+  } else if (icon === 'parking-house-red.png') {
+    return L.divIcon({
+      html: iconAsString({ img: 'icon-icon_parking', iconText }),
+      className: 'red-icon-oulu',
       iconSize: [30, 30],
       iconAnchor: [15, 30],
     });
@@ -48,7 +62,7 @@ const getCarParkIcon = (icon, iconText) => {
 
   return L.divIcon({
     html: iconAsString({ img: 'icon-icon_parking', iconText }),
-    className: 'white-icon-oulu',
+    className: 'blue-icon-oulu',
     iconSize: [30, 30],
     iconAnchor: [15, 30],
   });

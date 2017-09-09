@@ -40,7 +40,7 @@ const parseBicycleMonitorMessage = (data) => {
 const getBicycleMonitorIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-icon_measurement_1', iconText }),
-    className: 'white-icon-oulu',
+    className: 'green-icon-oulu',
     iconSize: [30, 30],
     iconAnchor: [15, 30],
   })

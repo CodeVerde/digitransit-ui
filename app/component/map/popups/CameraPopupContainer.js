@@ -128,7 +128,7 @@ export default class CameraPopupContainer extends React.Component {
               <Icon
                 id="traffic-camera-popup-icon"
                 img="icon-icon_traffic_cam_1"
-                className="oulu-popup-icon"
+                className="icon-dark-grey"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
                 {this.context.intl.formatMessage({ id: 'traffic-camera', defaultMessage: 'Traffic camera' })}

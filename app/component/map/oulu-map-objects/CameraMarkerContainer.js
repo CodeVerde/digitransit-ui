@@ -39,7 +39,7 @@ const parseCamerasMessage = (data) => {
 const getCameraIcon = iconText => (
   L.divIcon({
     html: iconAsString({ img: 'icon-icon_traffic_cam_1', iconText }),
-    className: 'white-icon-oulu',
+    className: 'dark-grey-icon-oulu',
     iconSize: [30, 30],
     iconAnchor: [15, 30],
   })
