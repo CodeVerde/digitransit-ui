@@ -102,6 +102,7 @@ export default class BicycleMonitorPopupContainer extends React.Component {
               <Icon
                 id="car-monitor-popup-icon"
                 img="icon-icon_measurement_1"
+                className="icon-green"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
                 {this.context.intl.formatMessage({ id: 'monitoring-point', defaultMessage: 'Monitoring point' })}

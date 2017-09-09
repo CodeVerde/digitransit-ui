@@ -49,7 +49,17 @@ export default class CarParkPopupContainer extends React.Component {
       return (<Card className="padding-small">{this.props.loading()}</Card>);
     }
 
-    const parkingIconClass = data.freeSpace && data.totalSpace ? 'icon-green' : '';
+    let parkingIconClass = 'icon-blue';
+    if (data.freeSpace && data.totalSpace) {
+      if (Number(data.freeSpace) > 10) {
+        parkingIconClass = 'icon-green';
+      } else if (Number(data.freeSpace) === 0) {
+        parkingIconClass = 'icon-red';
+      } else {
+        parkingIconClass = '';
+      }
+    }
+
     return (
       <Card className="padding-small">
         <div className="card-header">

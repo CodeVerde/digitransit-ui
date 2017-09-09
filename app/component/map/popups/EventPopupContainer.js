@@ -20,16 +20,49 @@ export default class EventPopupContainer extends React.Component {
     content: PropTypes.shape({
       venueName: PropTypes.string.isRequired,
       infoLink: PropTypes.string.isRequired,
+      extraInfo: PropTypes.arrayOf(PropTypes.object),
       id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
-      geometry: PropTypes.arrayOf(PropTypes.number).isRequired,
       startDate: PropTypes.string.isRequired,
       endDate: PropTypes.string.isRequired,
       startTime: PropTypes.string,
       endTime: PropTypes.string,
       tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     }).isRequired,
+  }
+
+  renderInfoList() {
+    const data = this.props.content;
+    const extraInfo = [];
+
+    if (data.extraInfo) {
+      data.extraInfo.forEach((element) => {
+        extraInfo.push(
+          <li key={`event-popup-extra-info-${element.linkText}`}>
+            <span className="oulu-popup-content route-detail-text no-padding no-margin">
+              <a href={element.url}>{element.linkText}</a>
+            </span>
+          </li>,
+        );
+      });
+    }
+
+    return (
+      <ul>
+        <li>
+          <span className="oulu-popup-content route-detail-text no-padding no-margin">
+            <a href={data.infoLink}>Tapahtumasivut</a>
+          </span>
+        </li>
+        { extraInfo }
+        <li>
+          <span className="oulu-popup-content route-detail-text no-padding no-margin">
+            Paikka: {data.venueName}
+          </span>
+        </li>
+      </ul>
+    );
   }
 
   renderObjects() {
@@ -47,7 +80,7 @@ export default class EventPopupContainer extends React.Component {
               <Icon
                 id="event-popup-icon"
                 img={getEventIconName(data.tags)}
-                className="oulu-popup-icon"
+                className="icon-purple"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
                 Tapahtuma
@@ -65,24 +98,13 @@ export default class EventPopupContainer extends React.Component {
           </div>
         </div>
         <div>
-          <p className="departure route-detail-text">
+          <p className="oulu-popup-content route-detail-text">
             {parseBreaks(data.description)}
           </p>
-          <p className="departure route-detail-text no-padding no-margin">
+          <p className="oulu-popup-content route-detail-text no-padding no-margin">
             {this.context.intl.formatMessage({ id: 'extra-info', defaultMessage: 'Extra info' })}:
           </p>
-          <ul>
-            <li>
-              <span className="departure route-detail-text no-padding no-margin">
-                Paikka: {data.venueName}
-              </span>
-            </li>
-            <li>
-              <span className="departure route-detail-text no-padding no-margin">
-                <a href={data.infoLink}>Tapahtumasivut</a>
-              </span>
-            </li>
-          </ul>
+          {this.renderInfoList()}
         </div>
       </Card>
     );
