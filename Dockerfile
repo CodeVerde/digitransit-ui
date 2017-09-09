@@ -35,7 +35,10 @@ RUN \
 ADD forecast-cron /etc/cron.d/forecast-cron
 
 # Give execution rights on the cron job
-RUN chmod +x /etc/cron.d/forecast-cron
+RUN chmod 0644 /etc/cron.d/forecast-cron
+
+# Give execution rights on the cron job
+# RUN chmod +x /etc/cron.d/forecast-cron
 
 # Create the log file to be able to run tail
 RUN touch /var/log/cron.log

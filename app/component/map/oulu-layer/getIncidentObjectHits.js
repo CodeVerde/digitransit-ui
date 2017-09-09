@@ -5,13 +5,13 @@ const getIncidentObjectHits = (hitBounds, mapSelectionsData, context) => {
 
   const hits = [];
   mapSelectionsData.incidentsData.forEach((element) => {
-    const mousePoint = context.map.latLngToLayerPoint(
+    const elementPoint = context.map.latLngToLayerPoint(
       L.latLng([
         element.geometry.lat,
         element.geometry.lon,
       ]));
 
-    if (hitBounds.contains(mousePoint)) {
+    if (hitBounds.contains(elementPoint)) {
       hits.push({
         id: element.id,
         FID: `oulu-incident-popup-${element.id}`,
@@ -19,6 +19,24 @@ const getIncidentObjectHits = (hitBounds, mapSelectionsData, context) => {
         lng: element.geometry.lon,
         layer: 'oulu-incident',
       });
+    }
+
+    if (element.geometry2) {
+      const element2Point = context.map.latLngToLayerPoint(
+        L.latLng([
+          element.geometry2.lat,
+          element.geometry2.lon,
+        ]));
+
+      if (hitBounds.contains(element2Point)) {
+        hits.push({
+          id: element.id,
+          FID: `oulu-incident2-popup-${element.id}`,
+          lat: element.geometry2.lat,
+          lng: element.geometry2.lon,
+          layer: 'oulu-incident',
+        });
+      }
     }
   });
   return hits;
