@@ -67,6 +67,7 @@ $heading-color: #858585;
   left: 30px;
   z-index: 802;
   max-height: calc(100% - 60px);
+  height: calc(100% - 60px);
   min-width: 340px;
   width: 30%;
   max-width: 600px;
@@ -86,7 +87,7 @@ $heading-color: #858585;
 }
 
 .map-utils-float {
-  background: #fff;
+  background: rgba(255, 255, 255, .75);
   border-radius: $border-radius-bigger;
   box-shadow: 1.5px 2.6px 10px 0 rgba(0, 0, 0, 0.2);
   display: flex;
@@ -144,8 +145,9 @@ $heading-color: #858585;
 }
 
 .fpcfloat {
+  max-height: 100%;
   height: 100%;
-  max-height: 1000px;
+  //max-height: 1000px;
   display: flex;
   flex-direction: column;
   box-shadow: 1.5px 2.6px 10px 0 rgba(0, 0, 0, 0.2);
@@ -160,10 +162,13 @@ $heading-color: #858585;
     display: flex;
     flex-direction: column;
     padding-bottom: $border-radius-bigger;
-    overflow: hidden;
-    background: #eef1f3;
+    //overflow: hidden;
+    //background: #eef1f3;
+    background: rgba(238, 241, 243, .5) !important;
     border-bottom-right-radius: $border-radius-bigger;
     border-bottom-left-radius: $border-radius-bigger;
+    max-height: 100%;
+    height: 100%;
 
     .row {
       padding-top:10px;
@@ -192,6 +197,17 @@ $heading-color: #858585;
       right:0;
       bottom: $border-radius-bigger;
       z-index:1
+    }
+    .scrollable.nearby {
+      height: calc(100% - (50px - 63px - 45.2833px - 156px - 28.5px - 20px));
+      max-height: calc(100% - (50px - 63px - 45.2833px - 156px - 28.5px - 20px));
+      //height: -moz-calc(100% - (50px - 63px - 45px - 156px - 29px));
+      //height: calc(100% - 50px - 63px - 45px - 156px - 29px);
+      //max-height: calc(100% - 50px - 63px - 45px - 156px - 29px);
+      //height: 200px;
+      //max-height: 200px;
+      overflow: hidden;
+      overflow-y: scroll;
     }
     .scrollable.favourites {
       position: relative;
