@@ -421,6 +421,16 @@ export default [
         name: 'LIITOS – Luonto uudessa tarkastelussa',
         description: 'Suomen Biotaiteen Seura ry:n ja Oulun taidemuseon tuottama kansainvälinen nykytaidenäyttely tarkentaa katseen ihmisen luontosuhteeseen ja muuttuvaan ympäristöön.',
         infoLink: 'https://www.ouka.fi/oulu/luuppi/liitos',
+        extraInfo: [
+          {
+            linkText: 'Tämän hetken näyttelyt Oulun taidemuseossa',
+            url: 'https://www.ouka.fi/oulu/luuppi/etusivu',
+          },
+          {
+            linkText: 'Tulevat näyttelyt Oulun taidemuseossa',
+            url: 'https://www.ouka.fi/oulu/luuppi/tulevat-nayttelyt',
+          },
+        ],
         startDate: '2017-05-11',
         endDate: '2017-11-12',
         tags: ['museum'],
@@ -430,6 +440,16 @@ export default [
         name: 'Näytönpaikka pohjoisessa piilaaksossa',
         description: 'Mikä sai alkunsa vuonna 1979 Oulussa? Kuka oli sotkamolainen Toivo Ruokko, sähköteekkari josta tuli hetkeksi maailman juhlituin teknologiaguru ja yritysjohtaja? Tekikö Toivo Ruokko Suomen yrityshistorian karuimman konkurssin, vai mitä Toivolle tapahtui?',
         infoLink: 'https://www.ouka.fi/naytonpaikka',
+        extraInfo: [
+          {
+            linkText: 'Tämän hetken näyttelyt Oulun taidemuseossa',
+            url: 'https://www.ouka.fi/oulu/luuppi/etusivu',
+          },
+          {
+            linkText: 'Tulevat näyttelyt Oulun taidemuseossa',
+            url: 'https://www.ouka.fi/oulu/luuppi/tulevat-nayttelyt',
+          },
+        ],
         startDate: '2017-12-02',
         endDate: '2019-01-06',
         tags: ['museum'],
@@ -449,6 +469,16 @@ export default [
         name: 'Comics Effects',
         description: 'Sarjakuva- ja kuvitustaide ovat päivittäin läsnä jokaisen suomalaisen elämässä, mutta sarjakuva on myös oma taidemuotonsa, jolla on ollut ja on vaikutusta kuvataiteeseen ja taiteen tekijöihin.<br /><br />Oulun sarjakuvakeskuksen tuottamassa moni-ilmeisessä kokonaisuudessa nähdään mm. Veikko ”Joonas” Savolaisen, JP Ahosen, Kaisa Lekan ja Harri Filpan näyttelyt.',
         infoLink: 'https://www.ouka.fi/oulu/luuppi/comics-effects',
+        extraInfo: [
+          {
+            linkText: 'Tämän hetken näyttelyt Oulun taidemuseossa',
+            url: 'https://www.ouka.fi/oulu/luuppi/etusivu',
+          },
+          {
+            linkText: 'Tulevat näyttelyt Oulun taidemuseossa',
+            url: 'https://www.ouka.fi/oulu/luuppi/tulevat-nayttelyt',
+          },
+        ],
         startDate: '2017-12-02',
         endDate: '2018-01-07',
         tags: ['museum'],
