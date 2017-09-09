@@ -20,6 +20,24 @@ const getBulletinObjectHits = (hitBounds, mapSelectionsData, context) => {
         layer: 'oulu-bulletin',
       });
     }
+
+    if (element.geometry2) {
+      const element2Point = context.map.latLngToLayerPoint(
+        L.latLng([
+          element.geometry2.lat,
+          element.geometry2.lon,
+        ]));
+
+      if (hitBounds.contains(element2Point)) {
+        hits.push({
+          id: element.id,
+          FID: `oulu-bulletin2-popup-${element.id}`,
+          lat: element.geometry2.lat,
+          lng: element.geometry2.lon,
+          layer: 'oulu-bulletin',
+        });
+      }
+    }
   });
   return hits;
 };

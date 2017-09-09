@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { intlShape } from 'react-intl';
 import connectToStores from 'fluxible-addons-react/connectToStores';
+import polyline from 'polyline-encoded';
 
 import { asString as iconAsString } from '../../OuluIcon';
 
@@ -9,11 +10,13 @@ import { isBrowser } from '../../../util/browser';
 import { AddBulletinsData } from '../../../action/mapSelectionsActions';
 
 let Marker;
+let Polyline;
 let L;
 
 if (isBrowser) {
   /* eslint-disable global-require */
   Marker = require('react-leaflet/lib/Marker').default;
+  Polyline = require('react-leaflet/lib/Polyline').default;
   L = require('leaflet');
   /* eslint-enable global-require */
 }
@@ -125,6 +128,32 @@ class BulletinContainer extends React.PureComponent {
           interactive={false}
         />,
       );
+
+      if (element.geometry2) {
+        newObjs.push(
+          <Marker
+            id={`bulletin-marker-${element.id}-2`}
+            key={`bulletin-marker-${element.id}-2`}
+            position={{
+              lat: element.geometry2.lat,
+              lng: element.geometry2.lon,
+            }}
+            icon={getBulletinIcon(element.incidentMainClass)}
+            title={element.name}
+            interactive={false}
+          />,
+        );
+      }
+      if (element.encodedGeometry) {
+        newObjs.push(
+          <Polyline
+            id={`bulletin-marker-${element.id}-poly`}
+            key={`bulletin-marker-${element.id}-poly`}
+            positions={polyline.decode(element.encodedGeometry)}
+            interactive={false}
+          />,
+        );
+      }
     });
     this.objs = newObjs;
   }
