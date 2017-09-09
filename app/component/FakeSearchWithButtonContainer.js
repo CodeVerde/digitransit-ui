@@ -10,7 +10,7 @@ export const FakeSearchWithButton = ({
 }) => (
   <div className={`search-form bp-${breakpoint}`}>
     <div className="small-6 search-form-map-overlay">
-      <button title="haku" tabIndex="0" onClick={onClick2} className="noborder search-button flex-horisontal">
+      <button tabIndex="0" onClick={onClick2} className="noborder search-button flex-horisontal">
         <div className="flex-grow row collapse">
           <div className="small-11 columns">
             {fakeSearchBar2}
@@ -24,7 +24,7 @@ export const FakeSearchWithButton = ({
       </button>
     </div>
     <div className="small-6 search-form-map-overlay search-form-map-overlay2">
-      <button title="haku" tabIndex="0" onClick={onClick} className="noborder search-button flex-horisontal">
+      <button tabIndex="0" onClick={onClick} className="noborder search-button flex-horisontal">
         <div className="flex-grow row collapse">
           <div className="small-11 columns">
             {fakeSearchBar}
