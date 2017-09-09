@@ -77,7 +77,8 @@ export default class CameraPopupContainer extends React.Component {
     this.updateObjects();
   }
 
-  currentSlide(newIndex) {
+  currentSlide(event, newIndex) {
+    event.stopPropagation();
     this.slideIndex = newIndex;
     this.updateObjects();
   }
@@ -116,7 +117,7 @@ export default class CameraPopupContainer extends React.Component {
         </div>);
 
       dotItems.push(
-        <span className={dotClass} onClick={() => this.currentSlide(index)} key={`traffic-camera-dots-${indexNum}`} />,
+        <span className={dotClass} onClick={(event) => this.currentSlide(event, index)} key={`traffic-camera-dots-${indexNum}`} />,
       );
     });
 
