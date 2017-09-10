@@ -209,6 +209,10 @@ export function AddWalkMonitorsData(actionContext, parser) {
   .catch(err => console.error(err));
 }
 
+export function ToggleWeatherForecastState(actionContext) {
+  actionContext.dispatch('ToggleWeatherForecastState');
+}
+
 export function AddWeatherStationsData(actionContext, parser) {
   const url = 'https://www.oulunliikenne.fi/oulunliikenne_traffic_data_rest_api_new_restricted/roadweather/roadweatherstations.php';
 

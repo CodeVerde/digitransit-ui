@@ -2,13 +2,19 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { FormattedMessage, intlShape } from 'react-intl';
 import moment from 'moment';
+import connectToStores from 'fluxible-addons-react/connectToStores';
 
 import { isBrowser } from '../../util/browser';
 import { getTextWithHeaders } from '../../util/xhrPromise';
 import { mapYrWeatherIcon } from '../../util/weatherIconMapper';
 
+import { ToggleWeatherForecastState } from '../../action/mapSelectionsActions';
+
 import Icon from '../Icon';
 import ComponentUsageExample from '../ComponentUsageExample';
+
+const toggleWeatherForecast = executeAction =>
+  () => executeAction(ToggleWeatherForecastState);
 
 const parseWeatherXml = (rawData) => {
   const cleanData = [];
@@ -34,20 +40,19 @@ const parseWeatherXml = (rawData) => {
   return cleanData;
 };
 
-const handleCloseModal = () => {
-  document.getElementById('weather-forecast-checkbox-toggle').checked = false;
-};
-
 class WeatherForecastToggle extends React.Component {
+  static propTypes = {
+    showWeatherForecast: PropTypes.bool.isRequired,
+  }
   static contextTypes = {
     config: PropTypes.object.isRequired,
     intl: intlShape.isRequired,
+    executeAction: PropTypes.func.isRequired,
   };
 
   constructor() {
     super();
     this.state = {
-      showModal: true,
       weatherData: [],
     };
   }
@@ -125,7 +130,7 @@ class WeatherForecastToggle extends React.Component {
             />
             <button
               className="close-button cursor-pointer"
-              onClick={handleCloseModal}
+              onClick={toggleWeatherForecast(this.context.executeAction)}
             >
               <Icon
                 id="weather-forecast-icon"
@@ -158,16 +163,17 @@ class WeatherForecastToggle extends React.Component {
     if (!isBrowser) { return false; }
 
     return (
-      <div className="" id="toggle-weather-forecast" key="toggle-weather-forecast">
-        <div className={this.state.showModal ? 'map-utils-button active' : 'map-utils-button'} id="toggle-weather-forecast-button">
-          <div className="weather-forecast-popup">
-            <input type="checkbox" id="weather-forecast-checkbox-toggle" />
-            <label htmlFor="weather-forecast-checkbox-toggle">
-              <svg className="icon" viewBox="0 0 283.46 283.46">
-                <use xlinkHref="#weather-icon-d000" />
-              </svg>
-              <FormattedMessage id="toggle-weather-forecast" defaultMessage="Weather forecast" />
-            </label>
+      <div className="" id="toggle-weather-forecast-container" key="toggle-weather-forecast-container">
+        <div className={this.props.showWeatherForecast ? 'map-utils-button active' : 'map-utils-button'} id="toggle-weather-forecast-button">
+          <div className={this.props.showWeatherForecast ? 'weather-forecast-popup active' : 'weather-forecast-popup'}>
+            <button onClick={toggleWeatherForecast(this.context.executeAction)}>
+              <label htmlFor="weather-forecast-checkbox-toggle">
+                <svg className="icon" viewBox="0 0 283.46 283.46">
+                  <use xlinkHref="#weather-icon-d000" />
+                </svg>
+                <FormattedMessage id="toggle-weather-forecast" defaultMessage="Weather forecast" />
+              </label>
+            </button>
             {this.renderObjects()}
           </div>
         </div>
@@ -175,45 +181,6 @@ class WeatherForecastToggle extends React.Component {
     );
   }
 }
-
-// const toggleWeatherForecast = executeAction =>
-//   () => executeAction(ToggleWeatherForecastState);
-//
-// const setWeatherForecast = (executeAction, state) => (
-//   () => {
-//     document.getElementById('weather-forecast-checkbox-toggle').checked = false;
-//     executeAction(SetWeatherForecastState, state);
-//   }
-// );
-
-// const modes = [
-//   'weather-forecast-now',
-//   'weather-forecast-30',
-// ];
-
-// const renderList = (trafficFluencyState, executeAction) => {
-//   const items = [];
-//   modes.forEach((element, index) => {
-//     const iconClass = trafficFluencyState === index + 1 ? 'icon' : 'icon icon-not-selected';
-//     items.push(
-//       <li key={`weather-forecast-list-${element}`}>
-//         <div role="button" htmlFor="SetWeatherForecast"
-// onClick={setWeatherForecast(executeAction, index + 1)}>
-//           <svg className={iconClass} viewBox="0 0 283.46 283.46">
-//             <use xlinkHref="#icon-icon_check_1" />
-//           </svg>
-//           <FormattedMessage id={element} defaultMessage={`Fluency option ${index}`} />
-//         </div>
-//       </li>,
-//     );
-//   });
-//
-//   return (
-//     <ul className="submenu">
-//       {items}
-//     </ul>
-//   );
-// };
 
 WeatherForecastToggle.displayName = 'WeatherForecastToggle';
 
@@ -229,4 +196,6 @@ WeatherForecastToggle.description = () => (
     </ComponentUsageExample>
   </div>);
 
-export default WeatherForecastToggle;
+export default connectToStores(WeatherForecastToggle, ['MapSelectionsStore'], context => ({
+  showWeatherForecast: context.getStore('MapSelectionsStore').getWeatherForecastState(),
+}));
