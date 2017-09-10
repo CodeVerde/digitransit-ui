@@ -7,7 +7,7 @@ import AddPopupData from '../action/popupActions';
 
 
 const closePopup = executeAction => (
-  () => {
+  (event) => {
     event.stopPropagation();
     executeAction(
       AddPopupData,
