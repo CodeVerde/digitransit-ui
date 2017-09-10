@@ -354,8 +354,8 @@
   }
 
   > div {
-    left: -230px;
-    bottom: -50px;
+    left: -180px;
+    bottom: -20px;
     position: absolute;
     display: block;
     list-style: none;
@@ -379,14 +379,28 @@
   display: flex;
   flex-direction: column;
   align-items: left;
-  width: 180px;
+  // width: 170px;
   padding: 0.4em 0 0.5em;
 
-  h2 {
+  span {
+    display: flex;
+    @include font-bold;
+    margin-left: 4px;
+    font-size: $font-size-small;
+    text-transform: uppercase;
+    color: $black !important;
+  }
+
+  > h2 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: flex-start;
     margin: 0px;
+    -webkit-margin-before: 0px;
+    -webkit-margin-after: 0px;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
     width: 100%;
 
     span {
@@ -398,7 +412,9 @@
       color: $black !important;
     }
 
-    button {
+    button,
+    button:hover,
+    button:focus {
       display: flex;
       float: right;
       background-color: inherit;
@@ -428,7 +444,7 @@
   margin-left: 4px;
   font-size: $font-size-xxsmall;
   padding: 0.4em 0 0.5em;
-  width: 180px;
+  // width: 170px;
 
   > span {
     margin-left: 4px;
