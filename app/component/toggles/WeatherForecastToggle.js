@@ -73,19 +73,19 @@ class WeatherForecastToggle extends React.Component {
   renderWeatherRows() {
     const data = this.state.weatherData;
     const rows = [];
-    rows.push(
-      <div className="row weather-popup-row" key="oulu-weather-popup-heading">
-        <div className="small-5 columns">
-          {this.context.intl.formatMessage({ id: 'road-weather-time', defaultMessage: 'Time' })}
-        </div>
-        <div className="small-4 columns">
-          {this.context.intl.formatMessage({ id: 'weather', defaultMessage: 'Weather' })}
-        </div>
-        <div className="small-3 columns">
-          {this.context.intl.formatMessage({ id: 'weather-temperature', defaultMessage: 'Temperature' })}
-        </div>
-      </div>,
-    );
+    // rows.push(
+    //   <div className="row weather-popup-row" key="oulu-weather-popup-heading">
+    //     <div className="small-5 columns">
+    //       {this.context.intl.formatMessage({ id: 'road-weather-time', defaultMessage: 'Time' })}
+    //     </div>
+    //     <div className="small-4 columns">
+    //       {this.context.intl.formatMessage({ id: 'weather', defaultMessage: 'Weather' })}
+    //     </div>
+    //     <div className="small-3 columns">
+    //       {this.context.intl.formatMessage({ id: 'weather-temperature', defaultMessage: 'Temperature' })}
+    //     </div>
+    //   </div>,
+    // );
 
     const today = moment();
     const extraDayText = this.context.intl.formatMessage({ id: 'next-day-text', defaultMessage: 'Time' });
