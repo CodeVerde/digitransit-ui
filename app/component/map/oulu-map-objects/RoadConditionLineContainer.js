@@ -15,8 +15,10 @@ const parseRoadConditionMessage = (data) => {
 
   data.roadcondition.forEach((element) => {
     const roadGeom = [];
-    element.road_geom.coordinates[0].forEach((coord) => {
-      roadGeom.push({ lat: coord[1], lon: coord[0] });
+    element.road_geom.coordinates.forEach((coordSet) => {
+      coordSet.forEach((coord) => {
+        roadGeom.push({ lat: coord[1], lon: coord[0] });
+      });
     });
 
     cleanData.push({
