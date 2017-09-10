@@ -34,13 +34,13 @@ RUN \
 # Add crontab file in the cron directory
 ADD forecast-cron /etc/cron.d/forecast-cron
 
-# Give execution rights on the cron job
+# Give access rights for the cron job
 RUN chmod 0644 /etc/cron.d/forecast-cron
 
-# Give execution rights on the cron job
+# Set execution rights on the cron job
 RUN chmod +x /etc/cron.d/forecast-cron
 
-# Create the log file to be able to run tail
+# Create the log file for cron
 RUN touch /var/log/cron.log
 
 # Give execution rights on the cron job
@@ -52,10 +52,5 @@ RUN \
   yarn run build && \
   rm -rf static docs test /tmp/* && \
   yarn cache clean
-
-# Run the command on container startup
-# CMD cron && tail -f /var/log/cron.log
-
-# CMD yarn run start
 
 CMD ["scripts/startup.sh"]

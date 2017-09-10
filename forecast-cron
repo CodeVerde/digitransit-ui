@@ -1,3 +1,2 @@
-* * * * * echo "Hello world" >> /var/log/cron.log 2>&1
 5 * * * * wget http://www.yr.no/place/Finland/Oulu/Oulu/forecast.xml -O /opt/digitransit-ui/_static/xml/forecast.xml
-# comment
+# Empty line, just in case
