@@ -75,13 +75,13 @@ class WeatherForecastToggle extends React.Component {
     const rows = [];
     rows.push(
       <div className="row weather-popup-row" key="oulu-weather-popup-heading">
-        <div className="small-4 columns">
+        <div className="small-5 columns">
           {this.context.intl.formatMessage({ id: 'road-weather-time', defaultMessage: 'Time' })}
         </div>
         <div className="small-4 columns">
           {this.context.intl.formatMessage({ id: 'weather', defaultMessage: 'Weather' })}
         </div>
-        <div className="small-4 columns">
+        <div className="small-3 columns">
           {this.context.intl.formatMessage({ id: 'weather-temperature', defaultMessage: 'Temperature' })}
         </div>
       </div>,
@@ -94,7 +94,7 @@ class WeatherForecastToggle extends React.Component {
       const extraDay = moment(element.forecastTime).day() !== today.day() ? extraDayText : '';
       rows.push(
         <div className="row weather-popup-row" key={`weather-popup-row-${moment(element.forecastTime).format('HH')}`}>
-          <div className="small-4 columns">
+          <div className="small-5 columns">
             {moment(element.forecastTime).format('HH:mm')}{extraDay}
           </div>
           <div className="small-4 columns">
@@ -103,7 +103,7 @@ class WeatherForecastToggle extends React.Component {
               img={mapYrWeatherIcon(element.forecastWeatherSymbol)}
             />
           </div>
-          <div className="small-4 columns">{element.forecastTemperature} °C</div>
+          <div className="small-3 columns">{element.forecastTemperature} °C</div>
         </div>,
       );
     });
@@ -120,9 +120,16 @@ class WeatherForecastToggle extends React.Component {
     const city = this.state.weatherData[0].forecastLocation;
 
     return (
-      <div>
+      <div style={{ width: '180px' }}>
         <div className="weather-forecast-header">
-          <h2>
+          <div
+            style={{
+              display: 'flex',
+              'flex-direction': 'row',
+              'justify-content': 'space-between',
+              'align-items': 'flex-start',
+            }}
+          >
             <FormattedMessage
               id="weather-forecast"
               values={{ city }}
@@ -137,7 +144,7 @@ class WeatherForecastToggle extends React.Component {
                 img="icon-icon_close"
               />
             </button>
-          </h2>
+          </div>
           <div className="weather-forecast-sub-header">
             {moment().format('DD.MM.YYYY')}
           </div>
