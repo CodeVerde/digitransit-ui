@@ -60,7 +60,9 @@ $item-border-color: #eee;
     border-radius: $form-input-border-radius;
     border: 0px;
     padding-left: calc(#{$padding-large} - 10px);
-    line-height: $search-form-input-overlay-height;
+    //line-height: $search-form-input-overlay-height;
+    line-height: auto;
+    font-size: 90%;
     overflow: hidden;
   }
 }
