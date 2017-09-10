@@ -82,7 +82,8 @@ class WeatherForecastToggle extends React.Component {
     //       {this.context.intl.formatMessage({ id: 'weather', defaultMessage: 'Weather' })}
     //     </div>
     //     <div className="small-3 columns">
-    //       {this.context.intl.formatMessage({ id: 'weather-temperature', defaultMessage: 'Temperature' })}
+    //       {this.context.intl.formatMessage({
+    // id: 'weather-temperature', defaultMessage: 'Temperature' })}
     //     </div>
     //   </div>,
     // );
