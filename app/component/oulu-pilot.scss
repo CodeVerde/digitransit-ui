@@ -283,27 +283,48 @@
 .weather-forecast-popup {
   display: inline-block;
   padding-left: 24px;
+  background: transparent;
+  color: #333;
 
-  & input[type=checkbox] {
-    & ~ label {
-      margin: 0px;
-      padding: 0px;
+  button:focus,
+  button:hover,
+  button {
+    display: flex;
+    background-color: inherit;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+    outline: 0;
+
+    font-family: "PT Sans Narrow", "Arial Condensed", Arial, Georgia, Serif;
+    font-weight: 400;
+
+    .icon {
+      margin-top: 8px;
     }
+  }
 
-    &:checked ~ div {
-      display: block;
+  span {
+    margin-left: 4px;
+    color: #707070;
+  }
+
+  label {
+    .icon {
+      margin-top: 8px;
+      color: $white;
+      fill: #707070;
     }
   }
 }
 
 .weather-forecast-popup > div {
-  left: -270px;
+  left: -230px;
   bottom: -50px;
   position: absolute;
   display: none;
   list-style: none;
   text-align: left;
-  z-index: 1;
   margin: 0px;
   padding: 10px;
   -webkit-box-shadow: 2px 2px 2px $oulu-light-gray;
@@ -317,11 +338,48 @@
   font-family: $font-family;
 }
 
+.weather-forecast-popup.active {
+
+  span {
+    margin-left: 4px;
+    color: $primary-color;
+  }
+
+  label {
+    .icon {
+      margin-top: 8px;
+      color: $white;
+      fill: $primary-color;
+    }
+  }
+
+  > div {
+    left: -230px;
+    bottom: -50px;
+    position: absolute;
+    display: block;
+    list-style: none;
+    text-align: left;
+    margin: 0px;
+    padding: 10px;
+    -webkit-box-shadow: 2px 2px 2px $oulu-light-gray;
+    -moz-box-shadow: 2px 2px 2px $oulu-light-gray;
+    box-shadow: 2px 2px 2px $oulu-light-gray;
+    // background: rgba(255, 255, 255, 0.75);
+    background-color: $white;
+    border-radius: 5px;
+    color: $black;
+    overflow: hidden;
+    float: left;
+    font-family: $font-family;
+  }
+}
+
 .weather-forecast-header {
   display: flex;
   flex-direction: column;
   align-items: left;
-  width: 250px;
+  width: 180px;
   padding: 0.4em 0 0.5em;
 
   h2 {
@@ -370,6 +428,7 @@
   margin-left: 4px;
   font-size: $font-size-xxsmall;
   padding: 0.4em 0 0.5em;
+  width: 180px;
 
   > span {
     margin-left: 4px;

@@ -42,6 +42,7 @@ class MapSelectionsStore extends Store {
     trafficFluencyData: [],
     trafficFluencyState: 0,
     weatherStationsData: [],
+    showWeatherForecast: false,
     showWeatherStations: false,
   });
 
@@ -58,6 +59,7 @@ class MapSelectionsStore extends Store {
     this.data.showWalkMonitors = false;
     this.data.roadConditionsState = 0;
     this.data.trafficFluencyState = 0;
+    this.data.showWeatherForecast = false;
     this.data.showWeatherStations = false;
 
     switch (mode) {
@@ -237,6 +239,11 @@ class MapSelectionsStore extends Store {
     this.emitChange();
   }
 
+  toggleWeatherForecastState() {
+    this.data.showWeatherForecast = !this.data.showWeatherForecast;
+    this.emitChange();
+  }
+
   toggleWeatherStationsState() {
     this.data.showWeatherStations = !this.data.showWeatherStations;
     this.emitChange();
@@ -338,6 +345,10 @@ class MapSelectionsStore extends Store {
     return this.data.showWalkMonitors;
   }
 
+  getWeatherForecastState() {
+    return this.data.showWeatherForecast;
+  }
+
   getWeatherStationsData() {
     return this.data.weatherStationsData;
   }
@@ -373,6 +384,7 @@ class MapSelectionsStore extends Store {
     SetTrafficFluencyState: 'setTrafficFluencyState',
     AddWalkMonitorsData: 'addWalkMonitorsData',
     ToggleWalkMonitorsState: 'toggleWalkMonitorsState',
+    ToggleWeatherForecastState: 'toggleWeatherForecastState',
     AddWeatherStationsData: 'addWeatherStationsData',
     ToggleWeatherStationsState: 'toggleWeatherStationsState',
   };
