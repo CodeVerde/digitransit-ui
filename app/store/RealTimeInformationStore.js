@@ -10,6 +10,10 @@ class RealTimeInformationStore extends Store {
   }
 
   storeClient(data) {
+    if (this.client) {
+      this.client.end();
+      this.clearClient();
+    }
     this.client = data.client;
     this.subscriptions = data.topics;
   }
