@@ -39,6 +39,7 @@ $content-background-color: $background-color;
   text-align: center;
   overflow: visible; // Show drawer menu
   z-index: 1001;
+  border-bottom: 4px solid rgb(240, 140, 0);
 
   // Fixed navbar height for now, as dynamic height leads to Safari issues
   height: 40px;
@@ -71,16 +72,19 @@ $content-background-color: $background-color;
     color: $top-navigation-title-color;
   }
   .logo {
-    height: 100%;
     min-height: 40px;
     background-image: $nav-logo;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: left center;
     min-width: 8em;
+    margin-top: -15px;
+    height: auto;
+    width: 300px;
   }
   .navi-logo {
     margin-left: 32px;
+    margin-top: -20px;
     width: $nav-logo-width;
     height: $nav-logo-height;
     min-width: 130px; //for ff
