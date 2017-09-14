@@ -145,6 +145,17 @@ class TileLayerContainer extends MapLayer {
     this.leafletElement.on('click contextmenu', this.onClick);
   }
 
+  // Needed due to the full screen mobile popoup logic, which doesn't fit
+  // well into the current popup logic -> need to clear the previous popups
+  componentWillReceiveProps() {
+    if (this.state.selectableTargets) {
+      this.setState({
+        selectableTargets: undefined,
+        coords: undefined,
+      });
+    }
+  }
+
   componentDidUpdate() {
     if (this.context.popupContainer != null) {
       this.context.popupContainer.openPopup();
