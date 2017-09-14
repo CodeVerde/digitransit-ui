@@ -452,3 +452,13 @@
     color: $black !important;
   }
 }
+
+.wind-direction-icon {
+  border: none;
+  padding: 2px;
+  width: 1.2em;
+  height: 1.2em;
+  background-color: $white;
+  color: $white;
+  fill: $generic-blue;
+}
