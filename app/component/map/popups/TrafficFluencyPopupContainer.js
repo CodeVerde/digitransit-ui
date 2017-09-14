@@ -35,7 +35,7 @@ export default class TrafficFluencyPopupContainer extends React.Component {
             <div className="card-header-icon">
               <Icon
                 id="traffic-fluency-popup-icon"
-                img="icon-icon_change_direction_1"
+                img="icon-icon_congestation_1"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
                 {this.context.intl.formatMessage({ id: 'traffic-fluency', defaultMessage: 'Congestion' })}
