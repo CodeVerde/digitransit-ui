@@ -116,6 +116,9 @@ export default class RoadConditionPopupContainer extends React.Component {
           break;
       }
 
+      const windDirection = Number(element.forecastWindDirectionSymbol.split('.')[0]);
+      const windInDegrees = (windDirection * 45) - 90;
+
       rows.push(
         <div className="row weather-popup-row" key={forecastTexts[index]}>
           <div className="small-2 columns">
@@ -127,8 +130,21 @@ export default class RoadConditionPopupContainer extends React.Component {
               img={mapForecaWeatherIcon(element.forecastWeatherSymbol)}
             />
           </div>
-          <div className="small-2 columns">{element.forecastWindSpeed}</div>
-          {false && <div className="small-2 columns">{element.forecastWindDirectionSymbol}</div>}
+          <div className="small-2 columns">
+            <div>{element.forecastWindSpeed} m/s</div>
+            <div>
+              <svg
+                id="road-condition-wind-icon"
+                viewBox="0 0 283.46 283.46"
+                className="wind-direction-icon"
+              >
+                <use
+                  xlinkHref="#wind-direction-arrow-1"
+                  transform={`rotate(${windInDegrees} ${283.46 / 2} ${283.46 / 2})`}
+                />
+              </svg>
+            </div>
+          </div>
           <div className="small-2 columns">{element.forecastAirTemp} °C</div>
           <div className="small-2 columns">{element.forecastRoadTemp} °C</div>
           <div className={`small-2 columns ${conditionClass}`}>{conditionText}</div>
