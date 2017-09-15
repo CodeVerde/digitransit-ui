@@ -1,19 +1,5 @@
 export default [
   // https://www.ouka.fi/oulu/liikunta-ja-ulkoilu/kuntoilupuistot
-  // Ritaharju
-  // Kuusisaari
-  // Tuira Tervaportti
-  // Myllytulli Puusepänpuisto
-  // Raksila liikuntapuisto
-  // Kaukovainio Kaunuunpuisto Merikotkantie 5
-  // Pöllönkangas
-  // Tinatien kenttä
-  // Merialin puisto
-  // Sankivaara
-  // Auran maja
-  // Honkimaa
-  // Tuokkosenmäki
-  //
   {
     id: 1,
     name: 'Hiironen',
