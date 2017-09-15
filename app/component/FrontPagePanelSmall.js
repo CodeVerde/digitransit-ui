@@ -25,7 +25,7 @@ const FrontPagePanelSmall = ({ selectedPanel, nearbyClicked,
     heading = <FormattedMessage id="your-favourites" defaultMessage="Your favourites" />;
     favouritesClasses.push('selected');
   } else if (selectedPanel === 3) {
-    heading = <FormattedMessage id="utils" defaultMessage="Utils" />;
+    heading = '';
     utilsClasses.push('selected');
     panelClasses.push('utils-panel');
   }
