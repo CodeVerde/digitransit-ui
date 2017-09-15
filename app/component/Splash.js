@@ -47,6 +47,12 @@ class Splash extends React.Component {
             defaultMessage="How do you wish to start?"
           />
         </h3>
+        <div className="intro-text">
+          <FormattedMessage
+            id="splash-intro"
+            defaultMessage="How do you wish to start?"
+          />
+        </div>
         <div className="splash-separator">
           <FormattedMessage id="splash-select-mode-of-transport" defaultMessage="Select mode of transport" />
         </div>
