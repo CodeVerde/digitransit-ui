@@ -13,6 +13,7 @@ import CarMonitorPopupContainer from '../popups/CarMonitorPopupContainer';
 import CarParkPopupContainer from '../popups/CarParkPopupContainer';
 import EventPopupContainer from '../popups/EventPopupContainer';
 import IncidentPopupContainer from '../popups/IncidentPopupContainer';
+import OutdoorGymPopupContainer from '../popups/OutdoorGymPopupContainer';
 import RoadConditionPopupContainer from '../popups/RoadConditionPopupContainer';
 import TrafficFluencyPopupContainer from '../popups/TrafficFluencyPopupContainer';
 import WalkMonitorPopupContainer from '../popups/WalkMonitorPopupContainer';
@@ -25,6 +26,7 @@ import getCarMonitorObjectHits from './getCarMonitorObjectHits';
 import getCarParkObjectHits from './getCarParkObjectHits';
 import getEventObjectHits from './getEventObjectHits';
 import getIncidentObjectHits from './getIncidentObjectHits';
+import getOutdoorGymObjectHits from './getOutdoorGymObjectHits';
 import getRoadConditionObjectHits from './getRoadConditionObjectHits';
 import getTrafficFluencyObjectHits from './getTrafficFluencyObjectHits';
 import getWalkMonitorObjectHits from './getWalkMonitorObjectHits';
@@ -86,6 +88,14 @@ const IncidentPopupContainerWithContext = provideContext(IncidentPopupContainer,
   config: PropTypes.object.isRequired,
 });
 
+const OutdoorGymPopupContainerWithContext = provideContext(OutdoorGymPopupContainer, {
+  intl: intlShape.isRequired,
+  router: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  route: PropTypes.object.isRequired,
+  config: PropTypes.object.isRequired,
+});
+
 const RoadConditionPopupContainerWithContext = provideContext(RoadConditionPopupContainer, {
   intl: intlShape.isRequired,
   router: PropTypes.object.isRequired,
@@ -134,6 +144,7 @@ export const getOuluObjectHits = (e, mapSelectionsData, context) => {
     ...getCarParkObjectHits(hitBounds, mapSelectionsData, context),
     ...getEventObjectHits(hitBounds, mapSelectionsData, context),
     ...getIncidentObjectHits(hitBounds, mapSelectionsData, context),
+    ...getOutdoorGymObjectHits(hitBounds, mapSelectionsData, context),
     ...getWalkMonitorObjectHits(hitBounds, mapSelectionsData, context),
     ...getWeatherStationObjectHits(hitBounds, mapSelectionsData, context),
     // Road objects are checked last
@@ -203,6 +214,15 @@ export const getOuluPopup = (layer, id, context, content) => {
           loading={Loading}
         />);
       break;
+    case 'oulu-outdoor-gym':
+      popup = (
+        <OutdoorGymPopupContainerWithContext
+          id={id}
+          content={content}
+          context={context}
+          loading={Loading}
+        />);
+      break;
     case 'oulu-road-condition':
       popup = (
         <RoadConditionPopupContainerWithContext
@@ -256,6 +276,7 @@ export const getOuluPopupOptions = (layer) => {
     case 'oulu-bulletin':
     case 'oulu-event':
     case 'oulu-incident':
+    case 'oulu-outdoor-gym':
       options = {
         autoPanPaddingTopLeft: [0, 465],
         autoPanPaddingBottomRight: [110, 5],
