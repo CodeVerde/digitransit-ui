@@ -76,14 +76,13 @@ export default class EventPopupContainer extends React.Component {
         <div className="card-header">
           <div className="card-header-wrapper">
             <div className="card-header-icon">
-              {}
               <Icon
                 id="event-popup-icon"
                 img={getEventIconName(data.tags)}
                 className="icon-purple"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
-                Tapahtuma
+                {this.context.intl.formatMessage({ id: 'event', defaultMessage: 'Event' })}
               </span>
             </div>
             <span className="oulu-card-header-primary">
