@@ -52,7 +52,9 @@ export default class EventPopupContainer extends React.Component {
       <ul>
         <li>
           <span className="oulu-popup-content route-detail-text no-padding no-margin">
-            <a href={data.infoLink} target="_blank" rel="noreferrer noopener">Tapahtumasivut</a>
+            <a href={data.infoLink} target="_blank" rel="noreferrer noopener">
+              {this.context.intl.formatMessage({ id: 'event-pages', defaultMessage: 'Event pages' })}
+            </a>
           </span>
         </li>
         { extraInfo }
