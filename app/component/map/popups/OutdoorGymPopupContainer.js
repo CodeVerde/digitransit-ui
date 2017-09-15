@@ -7,10 +7,9 @@ import Icon from '../../Icon';
 import Card from '../../Card';
 import {
   parseBreaks,
-  getEventIconName,
 } from '../../../util/ouluUtils';
 
-export default class EventPopupContainer extends React.Component {
+export default class OutdoorGymPopupContainer extends React.Component {
   static contextTypes = {
     intl: intlShape,
   };
@@ -18,49 +17,24 @@ export default class EventPopupContainer extends React.Component {
   static propTypes = {
     loading: PropTypes.func.isRequired,
     content: PropTypes.shape({
-      venueName: PropTypes.string.isRequired,
-      infoLink: PropTypes.string.isRequired,
-      extraInfo: PropTypes.arrayOf(PropTypes.object),
-      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
+      infoLink: PropTypes.string.isRequired,
       description: PropTypes.string.isRequired,
       startDate: PropTypes.string.isRequired,
       endDate: PropTypes.string.isRequired,
-      startTime: PropTypes.string,
-      endTime: PropTypes.string,
-      tags: PropTypes.arrayOf(PropTypes.string).isRequired,
     }).isRequired,
   }
 
   renderInfoList() {
     const data = this.props.content;
-    const extraInfo = [];
-
-    if (data.extraInfo) {
-      data.extraInfo.forEach((element) => {
-        extraInfo.push(
-          <li key={`event-popup-extra-info-${element.linkText}`}>
-            <span className="oulu-popup-content route-detail-text no-padding no-margin">
-              <a href={element.url} target="_blank" rel="noreferrer noopener">{element.linkText}</a>
-            </span>
-          </li>,
-        );
-      });
-    }
 
     return (
       <ul>
         <li>
           <span className="oulu-popup-content route-detail-text no-padding no-margin">
             <a href={data.infoLink} target="_blank" rel="noreferrer noopener">
-              {this.context.intl.formatMessage({ id: 'event-pages', defaultMessage: 'Event pages' })}
+              {this.context.intl.formatMessage({ id: 'destination-pages', defaultMessage: 'Destination pages' })}
             </a>
-          </span>
-        </li>
-        { extraInfo }
-        <li>
-          <span className="oulu-popup-content route-detail-text no-padding no-margin">
-            Paikka: {data.venueName}
           </span>
         </li>
       </ul>
@@ -80,21 +54,18 @@ export default class EventPopupContainer extends React.Component {
             <div className="card-header-icon">
               <Icon
                 id="event-popup-icon"
-                img={getEventIconName(data.tags)}
-                className="icon-purple"
+                img="icon-outdoor-gym"
+                className="icon-green"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
-                {this.context.intl.formatMessage({ id: 'event', defaultMessage: 'Event' })}
+                {this.context.intl.formatMessage({ id: 'outdoor-gym', defaultMessage: 'Outdoor gym' })}
               </span>
             </div>
             <span className="oulu-card-header-primary">
               {data.name}
             </span>
             <div className="card-sub-header">
-              {data.startDate}
-              {data.endDate !== data.startDate && ` - ${data.endDate}`}
-              {data.startTime && ` ${data.startTime}`}
-              {data.endTime && ` - ${data.endTime}`}
+              {data.startDate} - {data.endDate}
             </div>
           </div>
         </div>

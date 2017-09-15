@@ -187,7 +187,12 @@
     display: none;
     list-style: none;
     text-align: left;
-    width: calc(100% - 30px);
+    @media screen and (max-width: 989px) {
+      width: calc(100% - 60px);
+    }
+    @media screen and (min-width: 990px) {
+      width: calc(100% - 30px);
+    }
     z-index: 1;
     margin: 0px;
     padding: 10px;
