@@ -37,3 +37,9 @@ services:
       - secret: FRONT_SERVICE_DOMAIN
         name: KONTENA_LB_VIRTUAL_HOSTS
         type: env
+      - secret: PIWIK_ADDRESS
+        name: PIWIK_ADDRESS
+        type: env
+      - secret: PIWIK_ID
+        name: PIWIK_ID
+        type: env
