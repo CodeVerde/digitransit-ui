@@ -1,5 +1,5 @@
-stack: coodari/digiprod
-version: 0.5.0
+stack: coodari/digidev
+version: 0.0.1
 description: Oulu Digitransit Project
 
 variables:
@@ -14,8 +14,6 @@ services:
     ports:
       - 443:443
       - 80:80
-    deploy:
-      strategy: daemon
     secrets:
       - secret: SSL_LOAD_BALANCER_CERT_BUNDLE
         name: SSL_CERTS
@@ -29,8 +27,6 @@ services:
       - KONTENA_LB_BALANCE=roundrobin
       - KONTENA_LB_INTERNAL_PORT=8080
       - KONTENA_LB_CUSTOM_SETTINGS=redirect scheme https code 301 if !{ ssl_fc }
-    deploy:
-      strategy: daemon
     links:
       - lb-proxy
     secrets:
