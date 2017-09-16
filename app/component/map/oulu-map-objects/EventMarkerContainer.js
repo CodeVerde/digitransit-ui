@@ -25,7 +25,7 @@ const parseEventMessage = (data) => {
   if (!data || !Array.isArray(data)) { return cleanData; }
 
   const today = moment().set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
-  const limitDate = moment().add(90, 'day').set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
+  const limitDate = moment().add(7, 'day').set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
 
   data.forEach((venue) => {
     venue.events.every((event) => {
