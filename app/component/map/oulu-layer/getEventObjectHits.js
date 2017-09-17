@@ -20,6 +20,7 @@ const getEventObjectHits = (hitBounds, mapSelectionsData, context) => {
         layer: 'oulu-event',
         content: {
           venueName: element.venueName,
+          geometry: element.geometry,
           infoLink: element.infoLink,
           extraInfo: element.extraInfo,
           id: element.id,
