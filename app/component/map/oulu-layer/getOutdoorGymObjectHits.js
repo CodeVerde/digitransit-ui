@@ -21,6 +21,7 @@ const getOutdoorGymObjectHits = (hitBounds, mapSelectionsData, context) => {
         content: {
           id: element.id,
           name: element.name,
+          geometry: element.geometry,
           infoLink: element.infoLink,
           description: element.description,
           startDate: element.startDate,

@@ -3,6 +3,16 @@ import React from 'react';
 import cx from 'classnames';
 
 function Icon(props) {
+  if (props.clickAction) {
+    return (
+      <span aria-hidden onClick={props.clickAction}>
+        <svg id={props.id} viewBox={props.viewBox} className={cx('icon', props.className)}>
+          <use xlinkHref={`#${props.img}`} />
+        </svg>
+      </span>
+    );
+  }
+
   return (
     <span aria-hidden>
       <svg id={props.id} viewBox={props.viewBox} className={cx('icon', props.className)}>
@@ -17,6 +27,7 @@ Icon.propTypes = {
   viewBox: PropTypes.string,
   className: PropTypes.string,
   img: PropTypes.string.isRequired,
+  clickAction: PropTypes.func,
 };
 
 Icon.defaultProps = {
