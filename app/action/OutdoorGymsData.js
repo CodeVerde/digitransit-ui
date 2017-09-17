@@ -28,8 +28,8 @@ export default [
     id: 3,
     name: 'Kuusisaari',
     geometry: [
-      65.0207244,
-      25.4595878,
+      65.0215804,
+      25.4610488,
     ],
     description: 'Kuusisaaren kuntoilupuisto  löytyy Raatin puoleisesta kärjestä, Kuusisaaren sisäänkäynnin tuntumasta. Kauniissa jokimaisemissa sijaitseva puisto on suunniteltu vastaamaan mahdollisimman laaja-alaisen käyttäjäryhmän tarpeisiin.<br /><br />Liikuntapalvelut vastaa kuntoilupuistojen laitteista ja alueista, alueiden kunnossapidon hoitaa Teknisen Liikelaitoksen ylläpito-osasto. Ei talvikunnossapitoa.',
     infoLink: 'https://www.ouka.fi/oulu/liikunta-ja-ulkoilu/kuntoilupuistot',
@@ -40,8 +40,8 @@ export default [
     id: 4,
     name: 'Tuira',
     geometry: [
-      65.023241,
-      25.4601063,
+      65.026858,
+      25.454322,
     ],
     description: 'Tuirassa sijaitsevassa Tervaporvarin puistossa (Koskitie 8, 90500 Oulu) on laitteita kaiken ikäisille kuntoilijoille.<br /><br />Liikuntapalvelut vastaa kuntoilupuistojen laitteista ja alueista, alueiden kunnossapidon hoitaa Teknisen Liikelaitoksen ylläpito-osasto. Ei talvikunnossapitoa.',
     infoLink: 'https://www.ouka.fi/oulu/liikunta-ja-ulkoilu/kuntoilupuistot',
@@ -114,18 +114,6 @@ export default [
     geometry: [
       64.992594,
       25.5094933,
-    ],
-    description: 'Liikuntapalvelut vastaa kuntoilupuistojen laitteista ja alueista, alueiden kunnossapidon hoitaa Teknisen Liikelaitoksen ylläpito-osasto. Ei talvikunnossapitoa.',
-    infoLink: 'https://www.ouka.fi/oulu/liikunta-ja-ulkoilu/kuntoilupuistot',
-    startDate: '2017-09-01',
-    endDate: '2017-12-01',
-  },
-  {
-    id: 11,
-    name: 'Merijalin puisto',
-    geometry: [
-      65.026241,
-      25.4527523,
     ],
     description: 'Liikuntapalvelut vastaa kuntoilupuistojen laitteista ja alueista, alueiden kunnossapidon hoitaa Teknisen Liikelaitoksen ylläpito-osasto. Ei talvikunnossapitoa.',
     infoLink: 'https://www.ouka.fi/oulu/liikunta-ja-ulkoilu/kuntoilupuistot',
