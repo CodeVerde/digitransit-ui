@@ -57,7 +57,7 @@ const parseEventMessage = (data) => {
 const getEventIcon = tags => (
   L.divIcon({
     html: iconAsString({ img: getEventIconName(tags) }),
-    className: 'purple-icon-oulu',
+    className: 'bluish-icon-oulu',
     iconSize: [30, 30],
     iconAnchor: [15, 30],
   })

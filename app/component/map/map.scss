@@ -149,7 +149,7 @@ div.leaflet-marker-icon.vehicle-icon {
   }
 }
 
-div.leaflet-marker-icon.white-icon-oulu {
+div.leaflet-marker-icon.orange-icon-oulu {
   > span > svg.icon {
     border: none;
     border-radius: 5px;
@@ -161,14 +161,14 @@ div.leaflet-marker-icon.white-icon-oulu {
   }
 }
 
-div.leaflet-marker-icon.purple-icon-oulu {
+div.leaflet-marker-icon.bluish-icon-oulu {
   > span > svg.icon {
     border: none;
     border-radius: 5px;
     padding: 3px;
     font-size: 30px;
-    background-color: $generic-purple;
-    color: $generic-purple;
+    background-color: $generic-bluish;
+    color: $generic-bluish;
     fill: $white;
   }
 }
@@ -237,19 +237,14 @@ div.card-header-icon {
     color: $oulu-green;
     fill: $white;
   }
-  > span > svg.icon-purple {
-    background-color: $generic-purple;
-    color: $generic-purple;
+  > span > svg.icon-bluish {
+    background-color: $generic-bluish;
+    color: $generic-bluish;
     fill: $white;
   }
   > span > svg.icon-blue {
     background-color: $generic-blue;
     color: $generic-blue;
-    fill: $white;
-  }
-  > span > svg.icon-purple {
-    background-color: $generic-purple;
-    color: $generic-purple;
     fill: $white;
   }
   > span > svg.icon-red {

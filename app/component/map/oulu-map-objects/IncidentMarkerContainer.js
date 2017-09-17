@@ -83,7 +83,7 @@ const getIncidentsIcon = (mainClass, iconText) => {
   const iconName = mainClass === 'Tietyö' ? 'icon-icon_roadwork_1' : 'icon-icon_caution';
   return L.divIcon({
     html: iconAsString({ img: iconName, iconText }),
-    className: 'white-icon-oulu',
+    className: 'orange-icon-oulu',
     iconSize: [30, 30],
     iconAnchor: [15, 30],
   });

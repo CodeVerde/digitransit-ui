@@ -47,7 +47,7 @@ const getCarParkIcon = (icon, iconText) => {
   } else if (icon === 'parking-house-yellow.png') {
     return L.divIcon({
       html: iconAsString({ img: 'icon-icon_parking', iconText }),
-      className: 'white-icon-oulu',
+      className: 'orange-icon-oulu',
       iconSize: [30, 30],
       iconAnchor: [15, 30],
     });
