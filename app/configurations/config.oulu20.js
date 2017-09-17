@@ -72,7 +72,7 @@ export default configMerger(walttiConfig, {
     content: [
       { label: (function footerContent() { return `© Oulu ${(1900 + new Date().getYear())}`; }()) },
       {},
-      { name: 'footer-feedback', nameEn: 'Submit feedback', href: 'http://www.oulunjoukkoliikenne.fi/palautteet', icon: 'icon-icon_speech-bubble' },
+      { name: 'footer-feedback', nameEn: 'Submit feedback', href: 'https://docs.google.com/forms/d/1qZA0zRbVNOy4V4vk8yU_M07KMKiTnIsq_bWhZZFKFYk', icon: 'icon-icon_speech-bubble' },
       { name: 'about-this-service', nameEn: 'About this service', route: '/tietoja-palvelusta', icon: 'icon-icon_info' },
     ],
   },
