@@ -81,7 +81,7 @@ export default class EventPopupContainer extends React.Component {
               <Icon
                 id="event-popup-icon"
                 img={getEventIconName(data.tags)}
-                className="icon-purple"
+                className="icon-bluish"
               />
               <span className="oulu-card-content oulu-card-detail-text no-padding no-margin">
                 {this.context.intl.formatMessage({ id: 'event', defaultMessage: 'Event' })}
