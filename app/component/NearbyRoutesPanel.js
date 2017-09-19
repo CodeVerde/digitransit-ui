@@ -52,7 +52,7 @@ function NearbyRoutesPanel({
         </div>
       </div>
       {selectedSimpleMode === 'BUS' && <div className="flex-vertical">
-        <div className="row small-12 small-centered columns">
+        <div className="bus-line-selector-wrapper">
           <BusLineSelector />
         </div>
       </div>}

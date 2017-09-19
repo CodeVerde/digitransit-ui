@@ -21,13 +21,13 @@ class BusLineSelector extends React.Component {
       const linkUrl = `/linjat/${element.gtfsId}/pysakit/${element.patterns[0].code}`;
       selectOptions.push(
         <option value={linkUrl} key={count}>
-          {label}
+          &nbsp;&nbsp;{label}
         </option>);
       count += 1;
     });
 
     return (
-      <div className="bus-line-selector small-12 columns">
+      <div className="bus-line-selector">
         <div className="select-wrapper">
           <select className="lines" onChange={this.selectLine}>
             {selectOptions}

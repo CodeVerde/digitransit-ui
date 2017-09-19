@@ -16,10 +16,17 @@
     padding: 1em;
 }
 
+.bus-line-selector-wrapper {
+  padding: 10px;
+  background-color: #eef1f3;
+}
+
 .bus-line-selector {
   @include font-book;
   font-size: $font-size-small;
-  // align-items: stretch;
+
+  width: 100%;
+  position: relative;
 
   select {
     vertical-align: middle;
@@ -47,7 +54,6 @@
     border-radius: $border-radius;
     // background: $background-color-darker;
     background-color: $white;
-    margin-right: 1px;
     border: solid 1px $light-gray;
 
     &:hover {
