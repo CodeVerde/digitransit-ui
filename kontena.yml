@@ -1,5 +1,5 @@
 stack: coodari/digiprod
-version: 0.5.0
+version: 0.6.0
 description: Oulu Digitransit Project
 
 variables:
@@ -42,4 +42,38 @@ services:
         type: env
       - secret: PIWIK_ID
         name: PIWIK_ID
+        type: env
+
+  piwik-app2:
+    image: bitnami/piwik:latest
+    stateful: true
+    environment:
+      - KONTENA_LB_MODE=http
+      - KONTENA_LB_BALANCE=roundrobin
+      - KONTENA_LB_INTERNAL_PORT=80
+      - KONTENA_LB_CUSTOM_SETTINGS=redirect scheme https code 301 if !{ ssl_fc }
+      - PIWIK_WEBSITE_NAME=Digitransit
+      - PIWIK_WEBSITE_HOST=https://pilot1.its-oulu-pilots.fi
+      - MARIADB_HOST=piwik-db2
+    links:
+      - lb-proxy
+    secrets:
+      - secret: PIWIK_SERVICE_DOMAIN
+        name: KONTENA_LB_VIRTUAL_HOSTS
+        type: env
+      - secret: PIWIK_USER_PASSWORD
+        name: PIWIK_PASSWORD
+        type: env
+      - secret: PIWIK_DB_PASSWORD
+        name: MARIADB_PASSWORD
+        type: env
+
+  piwik-db2:
+    image: mariadb:10.3.1
+    stateful: true
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    secrets:
+      - secret: PIWIK_DB_PASSWORD
+        name: MYSQL_ROOT_PASSWORD
         type: env
