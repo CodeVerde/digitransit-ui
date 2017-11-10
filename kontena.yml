@@ -1,5 +1,5 @@
 stack: coodari/digiprod
-version: 0.6.0
+version: 0.7.0
 description: Oulu Digitransit Project
 
 variables:
@@ -16,10 +16,10 @@ services:
       - 80:80
     deploy:
       strategy: daemon
-    secrets:
-      - secret: SSL_LOAD_BALANCER_CERT_BUNDLE
-        name: SSL_CERTS
+    certificates:
+      - subject: pilot1.its-oulu-pilots.fi
         type: env
+        name: SSL_CERTS
 
   digidev:
     image: "quay.io/codeverde/digitransit-ui:${front_service_version}"
