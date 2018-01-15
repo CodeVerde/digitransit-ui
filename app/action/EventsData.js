@@ -153,7 +153,7 @@ export default [
         infoLink: 'https://www.ouka.fi/oulu/english/culture-links',
         startDate: '2018-01-01',
         endDate: '2018-12-31',
-        tags: ['festival','music'],
+        tags: ['festival', 'music'],
       },
     ],
   },
